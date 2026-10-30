@@ -44,6 +44,25 @@ function learnedTen(date = guestToday()) {
   return state;
 }
 describe("guest scale, local availability and uncapped New counts", () => {
+  it("selects missing and blank CEFR only, intersecting the same grade and topic scope", async () => {
+    const fixture = { ...index, vocabulary: [
+      { id: 1, level: "GRADE_1", cefr: "A1" },
+      { id: 6718, level: "GRADE_1" },
+      { id: 7000, level: "GRADE_1", cefr: " " },
+      { id: 7001, level: "GRADE_2", cefr: "C1" }
+    ] };
+    const original = network.getMockImplementation()!;
+    network.mockImplementation((url: string) => url === "/api/public/learning-index"
+      ? Promise.resolve(new Response(JSON.stringify(fixture))) : original(url));
+    const broad = await getQueue("source=all&cefr=UNCLASSIFIED&capacity=5");
+    expect(broad.queue.map((item) => item.vocabulary.id)).toEqual([6718, 7000]);
+    expect(broad.newCount).toBe(2);
+    const scoped = await getQueue("topicId=1&level=GRADE_1&cefr=UNCLASSIFIED&capacity=5");
+    expect(scoped.queue.map((item) => item.vocabulary.id)).toEqual([6718]);
+    const empty = await getQueue("topicId=1&level=GRADE_2&cefr=UNCLASSIFIED&capacity=5");
+    expect(empty.queue).toEqual([]);
+    expect(empty.newCount).toBe(0);
+  });
   it("intersects a topic with school grade and CEFR without falling back to broad content", async () => {
     const fixture = { ...index, vocabulary: [
       { id: 1, level: "GRADE_1", cefr: "A1" },

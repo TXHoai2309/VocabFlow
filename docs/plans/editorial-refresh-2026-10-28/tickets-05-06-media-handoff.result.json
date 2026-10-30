@@ -1,0 +1,60 @@
+{
+  "artifactType": "TICKETS_05_06_MEDIA_RESULT",
+  "status": "PRODUCED_FINAL_ACCEPTANCE_PENDING",
+  "counts": {
+    "audio": 60,
+    "selectedImages": 25,
+    "omittedImages": 5,
+    "priorImageAttemptsPreserved": 2,
+    "asrExact": 55,
+    "decodePass": 60
+  },
+  "runtimeEligible": false,
+  "databaseWrites": 0,
+  "artifacts": [
+    {
+      "path": ".vocabflow-local/editorial-refresh-20261028/media-production-r0001/coordinator-snapshot-r0002.json",
+      "byteSha256": "258ce58dbee50443672fc948c190e6729c44283b3666ccc69b3d2e565c2484b0",
+      "byteLength": 135649
+    },
+    {
+      "path": ".vocabflow-local/editorial-refresh-20261028/media-production-r0001/review-gallery-r0002.html",
+      "byteSha256": "c20af889294e8d29bcc0ed5ce62ea305de9e8307761a70cd5e4d9f5598c29bd3",
+      "byteLength": 20984
+    },
+    {
+      "path": ".vocabflow-local/editorial-refresh-20261028/media-production-r0001/image-visual-preflight-r0002.json",
+      "byteSha256": "02bdcf61587b4abc2852bb80237bbf494c683e2c495a2f9474d6c980e8c0cd7f",
+      "byteLength": 22867
+    },
+    {
+      "path": ".vocabflow-local/editorial-refresh-20261028/media-production-r0001/audio-qa/all60-report-r0001.json",
+      "byteSha256": "e87167d1e17e2b2d4543d6f528b163f9ea25102eb00dd48332513a02fc6c095f",
+      "byteLength": 188512
+    },
+    {
+      "path": ".vocabflow-local/editorial-refresh-20261028/media-production-r0001/work-orders-muse-r0002.json",
+      "byteSha256": "6c30daf8c7e93ae6f3333fe0e198a9009f14ae29225bad4f2ccefdb0bedd433f",
+      "byteLength": 461069
+    },
+    {
+      "path": ".vocabflow-local/editorial-refresh-20261028/media-production-r0001/work-orders-muse-retry-r0003.json",
+      "byteSha256": "9411888abf8d775eb975ee4a1e4ed63dfebd9add2a01a16d47ea58c019db900a",
+      "byteLength": 461203
+    }
+  ],
+  "ownerIsolatedAudioListeningAcceptance": {
+    "path": "docs/plans/editorial-refresh-2026-10-28/ticket-06-owner-listening-acceptance.json",
+    "sha256": "f250f7d8d14b6f3ae25861c2ed315507c67ce200572364fd2b38dde476137af8",
+    "words": [
+      "duck",
+      "blue",
+      "white",
+      "pen",
+      "pencil"
+    ],
+    "heldAudioRemaining": 0
+  },
+  "localPlaybackRevision": 2,
+  "localPlaybackAudioEnabled": 60
+}

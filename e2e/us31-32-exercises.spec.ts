@@ -90,14 +90,12 @@ test("US-31 runs a multiple-choice meaning exercise through the canonical review
   });
 
   await page.goto("/learners");
-  await page.getByRole("link", { name: "Luyện bài tập trắc nghiệm" }).click();
-  await expect(page).toHaveURL(/\/study\/exercises$/);
+  await page.goto("/study/exercises?type=MULTIPLE_CHOICE_MEANING");
+  await expect(page).toHaveURL(/\/study\/exercises\?/);
   await expect(page.getByTestId("exercise-card")).toHaveAttribute("data-exercise-type", "MULTIPLE_CHOICE_MEANING");
   await page.getByRole("button", { name: "quả táo" }).click();
-  await expect(page.getByRole("button", { name: "Tiếp tục" })).toBeVisible();
-  expect(reviewBody).toMatchObject({ learnerId: learner.id, vocabularyId: 1, result: "REMEMBERED", expectedRevision: 0 });
-  await page.getByRole("button", { name: "Tiếp tục" }).click();
-  await expect(page.locator(".flashcard-word")).toHaveText("book");
+  await expect.poll(() => reviewBody).toMatchObject({ learnerId: learner.id, vocabularyId: 1, result: "REMEMBERED", expectedRevision: 0 });
+  await expect(page.locator(".flashcard-word, .exercise-word")).toHaveText("book");
 });
 
 test("US-32 hides the listening prompt target and maps a wrong choice to FORGOTTEN", async ({ page }) => {
@@ -139,12 +137,12 @@ test("US-32 hides the listening prompt target and maps a wrong choice to FORGOTT
   });
 
   await page.goto("/learners");
-  await page.getByRole("link", { name: "Luyện bài tập trắc nghiệm" }).click();
+  await page.goto("/study/exercises?type=LISTENING_CHOICE");
   await expect(page.getByTestId("exercise-card")).toHaveAttribute("data-exercise-type", "LISTENING_CHOICE");
   await expect(page.getByTestId("exercise-prompt")).not.toContainText("apple");
   await expect(page.getByTestId("exercise-audio-button")).toHaveAccessibleName("Nghe phát âm");
   await page.getByRole("button", { name: "book" }).click();
-  await expect(page.getByText("Chưa đúng. Đáp án:")).toBeVisible();
+  await expect(page.getByText("Chưa đúng.", { exact: true })).toBeVisible();
   expect(reviewBody).toMatchObject({ learnerId: learner.id, vocabularyId: 1, result: "FORGOTTEN", expectedRevision: 0 });
 });
 
@@ -188,13 +186,13 @@ test("US-33 shows a neutral image prompt and maps the correct choice to REMEMBER
   });
 
   await page.goto("/learners");
-  await page.getByRole("link", { name: "Luyện qua hình ảnh" }).click();
+  await page.goto("/study/exercises?type=IMAGE_TO_WORD");
   await expect(page).toHaveURL(/\/study\/exercises\?type=IMAGE_TO_WORD$/);
   await expect(page.getByTestId("exercise-card")).toHaveAttribute("data-exercise-type", "IMAGE_TO_WORD");
   await expect(page.getByTestId("exercise-image")).toHaveAttribute("alt", "Hình ảnh gợi ý cho bài tập từ vựng");
   await expect(page.getByTestId("exercise-prompt")).not.toContainText("apple");
   await page.getByRole("button", { name: "apple" }).click();
-  await expect(page.getByText("Chính xác.")).toBeVisible();
+  await expect(page.getByText("Chính xác!", { exact: true })).toBeVisible();
   expect(reviewBody).toMatchObject({ learnerId: learner.id, vocabularyId: 1, result: "REMEMBERED" });
 });
 
@@ -231,12 +229,12 @@ test("US-34 accepts normalized exact spelling without persisting raw input", asy
   });
 
   await page.goto("/learners");
-  await page.getByRole("link", { name: "Luyện gõ từ" }).click();
+  await page.goto("/study/exercises?type=TYPE_WORD");
   await expect(page.getByTestId("exercise-card")).toHaveAttribute("data-exercise-type", "TYPE_WORD");
   await expect(page.getByTestId("exercise-prompt")).not.toContainText("apple");
   await page.getByLabel("Từ tiếng Anh").fill(" ＡＰＰＬＥ ");
   await page.getByLabel("Từ tiếng Anh").press("Enter");
-  await expect(page.getByText("Chính xác.")).toBeVisible();
+  await expect(page.getByText("Chính xác!", { exact: true })).toBeVisible();
   expect(reviewBody).toMatchObject({ learnerId: learner.id, vocabularyId: 1, result: "REMEMBERED" });
   expect(reviewBody).not.toHaveProperty("answer");
   expect(JSON.stringify(reviewBody)).not.toContain("APPLE");

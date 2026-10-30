@@ -173,7 +173,7 @@ export function createContinueLearningService(database: ContinueLearningDatabase
       try {
         // The V2 catalog has no learning-set or topic definitions yet; never
         // surface a legacy collection as a V2 continuation target.
-        const candidate = datasetVersion === "v2" ? null : await latestCandidate(database, ownership.learnerId);
+        const candidate = datasetVersion !== "legacy" ? null : await latestCandidate(database, ownership.learnerId);
         const parsed = continueLearningSummaryResponseSchema.safeParse({ learnerId: ownership.learnerId, candidate });
         if (!parsed.success) throw new ContinueLearningServiceError("INTERNAL_ERROR", 500);
         return parsed.data;

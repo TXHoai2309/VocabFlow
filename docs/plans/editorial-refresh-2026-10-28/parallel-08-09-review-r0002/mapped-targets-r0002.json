@@ -1,0 +1,3791 @@
+{
+  "status": "PROPOSED_OFFLINE",
+  "schemaVersion": "coordinator-foundation-mapping/0.2.0",
+  "adapterVersion": "coordinator-r2-forward/0.2.0",
+  "canonicalAllocationPerformed": false,
+  "newLexicalSenses": 0,
+  "targets": [
+    {
+      "status": "PROPOSED_OFFLINE",
+      "adapterVersion": "coordinator-r2-forward/0.2.0",
+      "draftTarget": {
+        "itemType": "UTTERANCE",
+        "draftRef": "t09:utterance:01"
+      },
+      "canonicalTarget": null,
+      "progressOwner": {
+        "itemType": "UTTERANCE",
+        "draftRef": "t09:utterance:01"
+      },
+      "revisionPins": {
+        "targetRevision": 1,
+        "presentationRevision": 1,
+        "pronunciationRevision": null
+      },
+      "placements": [
+        {
+          "placementRef": "t09:placement:01",
+          "itemRef": "t09:utterance:01",
+          "groupRef": "greetings",
+          "learningLevel": "FIRST_UTTERANCES",
+          "cefr": null,
+          "schoolGrade": null,
+          "order": 1,
+          "requiredPreviousGroup": null
+        }
+      ],
+      "source": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket09-draft-r0001/draft-items-r0001.json",
+        "byteSha256": "f2a394008be905a727113c67a1832955cb4819ca4387cf004fb82972d4900bad",
+        "jsonPointer": "/items/0"
+      },
+      "sourceMedia": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket09-draft-r0001/media-specs.json",
+        "byteSha256": "4fd768d83438fa960c9e75fe971b3874e258dbbd93f2973d7a4f1b8af54752d2",
+        "jsonPointer": "/audio/0"
+      },
+      "sourceDependency": {
+        "algorithm": "sha256-utf8-json-sortkeys-compact-t09-v1",
+        "dependencyHash": "527bd0fed4cdb6b1f22472aa77766dc833cabc39aaca2290e864316b902d7d6e",
+        "payloadHash": null,
+        "providerRequestHash": null,
+        "outputByteSha256": null
+      },
+      "authorityContent": {
+        "draftRef": "t09:utterance:01",
+        "itemType": "UTTERANCE",
+        "canonicalItemId": null,
+        "identityStatus": "PENDING_IDENTITY",
+        "contentRevision": 1,
+        "presentationRef": "t09:presentation:01:r0001",
+        "presentationRevision": 1,
+        "communicativeGoal": "Chào người bạn mới gặp",
+        "context": "Hai bạn gặp nhau trước lớp và chưa bắt đầu nói chuyện.",
+        "englishExactText": "Hello.",
+        "translationVi": "Chào bạn.",
+        "translationRevision": 1,
+        "locale": "en-US",
+        "speaker": "người chào",
+        "precedingTurn": null,
+        "response": {
+          "englishExactText": "Hello.",
+          "translationVi": "Chào bạn.",
+          "audioPolicy": "TEXT_ONLY_NOT_TARGET_AUDIO"
+        },
+        "beginnerRationale": "Một lời chào ngắn, không cần thêm thông tin cá nhân.",
+        "sourceRefs": [
+          "englishconnect-interaction"
+        ],
+        "lexicalSenseCandidates": [],
+        "activity": {
+          "draftRef": "t09:activity:01:listen-recall",
+          "type": "CONTEXT_LISTEN_RECALL",
+          "targetTurnRef": "t09:utterance:01",
+          "completionRule": "SELF_RECALL_CONFIRMED_SAVE",
+          "automaticSpeechScoring": false
+        },
+        "progressProposal": {
+          "ownerRef": "t09:utterance:01",
+          "namespace": "UTTERANCE",
+          "keyAfterCanonicalization": "(learnerId, UTTERANCE, canonicalItemId)",
+          "relatedSenseUpdates": false
+        },
+        "placementRefs": [
+          "t09:placement:01"
+        ],
+        "imagePolicy": "OMIT",
+        "audioSpecRef": "t09:audio:01:r0001",
+        "reviewStatus": "DRAFT_SELF_REVIEWED"
+      },
+      "originalMediaSpec": {
+        "specRef": "t09:audio:01:r0001",
+        "kind": "UTTERANCE_TARGET_AUDIO",
+        "revision": 1,
+        "status": "SPEC_ONLY",
+        "executionAllowed": false,
+        "binding": {
+          "itemRef": "t09:utterance:01",
+          "contentRevision": 1,
+          "presentationRef": "t09:presentation:01:r0001",
+          "presentationRevision": 1,
+          "activityRef": "t09:activity:01:listen-recall",
+          "activityType": "CONTEXT_LISTEN_RECALL",
+          "targetTurnRef": "t09:utterance:01",
+          "englishExactText": "Hello.",
+          "locale": "en-US"
+        },
+        "textUtf8Sha256": "2d8bd7d9bb5f85ba643f0110d50cb506a1fe439e769a22503193ea6046bb87f7",
+        "dependencyHashAlgorithm": "sha256-utf8-json-sortkeys-compact-t09-v1",
+        "dependencyHash": "527bd0fed4cdb6b1f22472aa77766dc833cabc39aaca2290e864316b902d7d6e",
+        "providerRequestHash": null,
+        "providerConfig": null,
+        "providerConfigStatus": "PENDING_COORDINATOR_WORK_ORDER",
+        "delivery": null,
+        "outputByteSha256": null,
+        "direction": "One natural clear American English target turn; no context, response, item number, translation, role name, or instructions spoken. Preserve question intonation and ordinary contractions. No music. Final voice/rate/model must be pinned by coordinator.",
+        "acceptance": [
+          "Exact target words, full turn, no omissions/additions.",
+          "Locale/voice/rate match frozen production request; human listening required, ASR alone insufficient.",
+          "Receipt pins work order, dependency hash, provider request hash, output bytes, MIME and duration.",
+          "No inherited rights/acceptance from ticket07."
+        ]
+      },
+      "deliveryEligible": false,
+      "blockers": [
+        "SPEC_ONLY_NO_AUDIO_OR_CANONICAL_ID"
+      ],
+      "componentProgressWrites": [],
+      "supportingResponseTargets": []
+    },
+    {
+      "status": "PROPOSED_OFFLINE",
+      "adapterVersion": "coordinator-r2-forward/0.2.0",
+      "draftTarget": {
+        "itemType": "UTTERANCE",
+        "draftRef": "t09:utterance:02"
+      },
+      "canonicalTarget": null,
+      "progressOwner": {
+        "itemType": "UTTERANCE",
+        "draftRef": "t09:utterance:02"
+      },
+      "revisionPins": {
+        "targetRevision": 1,
+        "presentationRevision": 1,
+        "pronunciationRevision": null
+      },
+      "placements": [
+        {
+          "placementRef": "t09:placement:02",
+          "itemRef": "t09:utterance:02",
+          "groupRef": "greetings",
+          "learningLevel": "FIRST_UTTERANCES",
+          "cefr": null,
+          "schoolGrade": null,
+          "order": 2,
+          "requiredPreviousGroup": null
+        }
+      ],
+      "source": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket09-draft-r0001/draft-items-r0001.json",
+        "byteSha256": "f2a394008be905a727113c67a1832955cb4819ca4387cf004fb82972d4900bad",
+        "jsonPointer": "/items/1"
+      },
+      "sourceMedia": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket09-draft-r0001/media-specs.json",
+        "byteSha256": "4fd768d83438fa960c9e75fe971b3874e258dbbd93f2973d7a4f1b8af54752d2",
+        "jsonPointer": "/audio/1"
+      },
+      "sourceDependency": {
+        "algorithm": "sha256-utf8-json-sortkeys-compact-t09-v1",
+        "dependencyHash": "32dca7ae5a195dbccb157fd6d41b03c4c4aad8bc67269fc6020841f440a19b62",
+        "payloadHash": null,
+        "providerRequestHash": null,
+        "outputByteSha256": null
+      },
+      "authorityContent": {
+        "draftRef": "t09:utterance:02",
+        "itemType": "UTTERANCE",
+        "canonicalItemId": null,
+        "identityStatus": "PENDING_IDENTITY",
+        "contentRevision": 1,
+        "presentationRef": "t09:presentation:02:r0001",
+        "presentationRevision": 1,
+        "communicativeGoal": "Chào vào buổi sáng",
+        "context": "Hai bạn gặp nhau ở lớp vào buổi sáng.",
+        "englishExactText": "Good morning.",
+        "translationVi": "Chào buổi sáng.",
+        "translationRevision": 1,
+        "locale": "en-US",
+        "speaker": "người đến lớp",
+        "precedingTurn": null,
+        "response": {
+          "englishExactText": "Good morning.",
+          "translationVi": "Chào buổi sáng.",
+          "audioPolicy": "TEXT_ONLY_NOT_TARGET_AUDIO"
+        },
+        "beginnerRationale": "Ngắn và gắn với thời điểm rõ ràng.",
+        "sourceRefs": [
+          "englishconnect-interaction"
+        ],
+        "lexicalSenseCandidates": [],
+        "activity": {
+          "draftRef": "t09:activity:02:listen-recall",
+          "type": "CONTEXT_LISTEN_RECALL",
+          "targetTurnRef": "t09:utterance:02",
+          "completionRule": "SELF_RECALL_CONFIRMED_SAVE",
+          "automaticSpeechScoring": false
+        },
+        "progressProposal": {
+          "ownerRef": "t09:utterance:02",
+          "namespace": "UTTERANCE",
+          "keyAfterCanonicalization": "(learnerId, UTTERANCE, canonicalItemId)",
+          "relatedSenseUpdates": false
+        },
+        "placementRefs": [
+          "t09:placement:02"
+        ],
+        "imagePolicy": "OMIT",
+        "audioSpecRef": "t09:audio:02:r0001",
+        "reviewStatus": "DRAFT_SELF_REVIEWED"
+      },
+      "originalMediaSpec": {
+        "specRef": "t09:audio:02:r0001",
+        "kind": "UTTERANCE_TARGET_AUDIO",
+        "revision": 1,
+        "status": "SPEC_ONLY",
+        "executionAllowed": false,
+        "binding": {
+          "itemRef": "t09:utterance:02",
+          "contentRevision": 1,
+          "presentationRef": "t09:presentation:02:r0001",
+          "presentationRevision": 1,
+          "activityRef": "t09:activity:02:listen-recall",
+          "activityType": "CONTEXT_LISTEN_RECALL",
+          "targetTurnRef": "t09:utterance:02",
+          "englishExactText": "Good morning.",
+          "locale": "en-US"
+        },
+        "textUtf8Sha256": "e3522eadca07c9501d5e4422f42559a7db6e4cee9d116248117bd4af2f884659",
+        "dependencyHashAlgorithm": "sha256-utf8-json-sortkeys-compact-t09-v1",
+        "dependencyHash": "32dca7ae5a195dbccb157fd6d41b03c4c4aad8bc67269fc6020841f440a19b62",
+        "providerRequestHash": null,
+        "providerConfig": null,
+        "providerConfigStatus": "PENDING_COORDINATOR_WORK_ORDER",
+        "delivery": null,
+        "outputByteSha256": null,
+        "direction": "One natural clear American English target turn; no context, response, item number, translation, role name, or instructions spoken. Preserve question intonation and ordinary contractions. No music. Final voice/rate/model must be pinned by coordinator.",
+        "acceptance": [
+          "Exact target words, full turn, no omissions/additions.",
+          "Locale/voice/rate match frozen production request; human listening required, ASR alone insufficient.",
+          "Receipt pins work order, dependency hash, provider request hash, output bytes, MIME and duration.",
+          "No inherited rights/acceptance from ticket07."
+        ]
+      },
+      "deliveryEligible": false,
+      "blockers": [
+        "SPEC_ONLY_NO_AUDIO_OR_CANONICAL_ID"
+      ],
+      "componentProgressWrites": [],
+      "supportingResponseTargets": []
+    },
+    {
+      "status": "PROPOSED_OFFLINE",
+      "adapterVersion": "coordinator-r2-forward/0.2.0",
+      "draftTarget": {
+        "itemType": "UTTERANCE",
+        "draftRef": "t09:utterance:03"
+      },
+      "canonicalTarget": null,
+      "progressOwner": {
+        "itemType": "UTTERANCE",
+        "draftRef": "t09:utterance:03"
+      },
+      "revisionPins": {
+        "targetRevision": 1,
+        "presentationRevision": 1,
+        "pronunciationRevision": null
+      },
+      "placements": [
+        {
+          "placementRef": "t09:placement:03",
+          "itemRef": "t09:utterance:03",
+          "groupRef": "greetings",
+          "learningLevel": "FIRST_UTTERANCES",
+          "cefr": null,
+          "schoolGrade": null,
+          "order": 3,
+          "requiredPreviousGroup": null
+        }
+      ],
+      "source": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket09-draft-r0001/draft-items-r0001.json",
+        "byteSha256": "f2a394008be905a727113c67a1832955cb4819ca4387cf004fb82972d4900bad",
+        "jsonPointer": "/items/2"
+      },
+      "sourceMedia": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket09-draft-r0001/media-specs.json",
+        "byteSha256": "4fd768d83438fa960c9e75fe971b3874e258dbbd93f2973d7a4f1b8af54752d2",
+        "jsonPointer": "/audio/2"
+      },
+      "sourceDependency": {
+        "algorithm": "sha256-utf8-json-sortkeys-compact-t09-v1",
+        "dependencyHash": "bc1c71b5140c970aa4aa9e448b40a581b18aa3b3f5a78e466db21ec9003ce2b4",
+        "payloadHash": null,
+        "providerRequestHash": null,
+        "outputByteSha256": null
+      },
+      "authorityContent": {
+        "draftRef": "t09:utterance:03",
+        "itemType": "UTTERANCE",
+        "canonicalItemId": null,
+        "identityStatus": "PENDING_IDENTITY",
+        "contentRevision": 1,
+        "presentationRef": "t09:presentation:03:r0001",
+        "presentationRevision": 1,
+        "communicativeGoal": "Hỏi thăm sau lời chào",
+        "context": "Hai bạn đã chào nhau; một bạn hỏi thăm người kia.",
+        "englishExactText": "How are you?",
+        "translationVi": "Bạn khỏe không?",
+        "translationRevision": 1,
+        "locale": "en-US",
+        "speaker": "người hỏi thăm",
+        "precedingTurn": null,
+        "response": {
+          "englishExactText": "I'm fine, thank you.",
+          "translationVi": "Mình khỏe, cảm ơn bạn.",
+          "audioPolicy": "TEXT_ONLY_NOT_TARGET_AUDIO"
+        },
+        "beginnerRationale": "Câu hỏi cố định có thể dùng ngay sau lời chào.",
+        "sourceRefs": [
+          "editorial-context"
+        ],
+        "lexicalSenseCandidates": [],
+        "activity": {
+          "draftRef": "t09:activity:03:listen-recall",
+          "type": "CONTEXT_LISTEN_RECALL",
+          "targetTurnRef": "t09:utterance:03",
+          "completionRule": "SELF_RECALL_CONFIRMED_SAVE",
+          "automaticSpeechScoring": false
+        },
+        "progressProposal": {
+          "ownerRef": "t09:utterance:03",
+          "namespace": "UTTERANCE",
+          "keyAfterCanonicalization": "(learnerId, UTTERANCE, canonicalItemId)",
+          "relatedSenseUpdates": false
+        },
+        "placementRefs": [
+          "t09:placement:03"
+        ],
+        "imagePolicy": "OMIT",
+        "audioSpecRef": "t09:audio:03:r0001",
+        "reviewStatus": "DRAFT_SELF_REVIEWED"
+      },
+      "originalMediaSpec": {
+        "specRef": "t09:audio:03:r0001",
+        "kind": "UTTERANCE_TARGET_AUDIO",
+        "revision": 1,
+        "status": "SPEC_ONLY",
+        "executionAllowed": false,
+        "binding": {
+          "itemRef": "t09:utterance:03",
+          "contentRevision": 1,
+          "presentationRef": "t09:presentation:03:r0001",
+          "presentationRevision": 1,
+          "activityRef": "t09:activity:03:listen-recall",
+          "activityType": "CONTEXT_LISTEN_RECALL",
+          "targetTurnRef": "t09:utterance:03",
+          "englishExactText": "How are you?",
+          "locale": "en-US"
+        },
+        "textUtf8Sha256": "df287dfc1406ed2b692e1c2c783bb5cec97eac53151ee1d9810397aa0afa0d89",
+        "dependencyHashAlgorithm": "sha256-utf8-json-sortkeys-compact-t09-v1",
+        "dependencyHash": "bc1c71b5140c970aa4aa9e448b40a581b18aa3b3f5a78e466db21ec9003ce2b4",
+        "providerRequestHash": null,
+        "providerConfig": null,
+        "providerConfigStatus": "PENDING_COORDINATOR_WORK_ORDER",
+        "delivery": null,
+        "outputByteSha256": null,
+        "direction": "One natural clear American English target turn; no context, response, item number, translation, role name, or instructions spoken. Preserve question intonation and ordinary contractions. No music. Final voice/rate/model must be pinned by coordinator.",
+        "acceptance": [
+          "Exact target words, full turn, no omissions/additions.",
+          "Locale/voice/rate match frozen production request; human listening required, ASR alone insufficient.",
+          "Receipt pins work order, dependency hash, provider request hash, output bytes, MIME and duration.",
+          "No inherited rights/acceptance from ticket07."
+        ]
+      },
+      "deliveryEligible": false,
+      "blockers": [
+        "SPEC_ONLY_NO_AUDIO_OR_CANONICAL_ID"
+      ],
+      "componentProgressWrites": [],
+      "supportingResponseTargets": []
+    },
+    {
+      "status": "PROPOSED_OFFLINE",
+      "adapterVersion": "coordinator-r2-forward/0.2.0",
+      "draftTarget": {
+        "itemType": "UTTERANCE",
+        "draftRef": "t09:utterance:04"
+      },
+      "canonicalTarget": null,
+      "progressOwner": {
+        "itemType": "UTTERANCE",
+        "draftRef": "t09:utterance:04"
+      },
+      "revisionPins": {
+        "targetRevision": 1,
+        "presentationRevision": 1,
+        "pronunciationRevision": null
+      },
+      "placements": [
+        {
+          "placementRef": "t09:placement:04",
+          "itemRef": "t09:utterance:04",
+          "groupRef": "greetings",
+          "learningLevel": "FIRST_UTTERANCES",
+          "cefr": null,
+          "schoolGrade": null,
+          "order": 4,
+          "requiredPreviousGroup": null
+        }
+      ],
+      "source": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket09-draft-r0001/draft-items-r0001.json",
+        "byteSha256": "f2a394008be905a727113c67a1832955cb4819ca4387cf004fb82972d4900bad",
+        "jsonPointer": "/items/3"
+      },
+      "sourceMedia": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket09-draft-r0001/media-specs.json",
+        "byteSha256": "4fd768d83438fa960c9e75fe971b3874e258dbbd93f2973d7a4f1b8af54752d2",
+        "jsonPointer": "/audio/3"
+      },
+      "sourceDependency": {
+        "algorithm": "sha256-utf8-json-sortkeys-compact-t09-v1",
+        "dependencyHash": "6693c5ad3e70dcf58ee5e68622dc5f2be65d1784d0466242a2fba7865339cff9",
+        "payloadHash": null,
+        "providerRequestHash": null,
+        "outputByteSha256": null
+      },
+      "authorityContent": {
+        "draftRef": "t09:utterance:04",
+        "itemType": "UTTERANCE",
+        "canonicalItemId": null,
+        "identityStatus": "PENDING_IDENTITY",
+        "contentRevision": 1,
+        "presentationRef": "t09:presentation:04:r0001",
+        "presentationRevision": 1,
+        "communicativeGoal": "Đáp lại câu hỏi thăm",
+        "context": "Bạn vừa được hỏi “How are you?” và muốn nói mình vẫn khỏe.",
+        "englishExactText": "I'm fine, thank you.",
+        "translationVi": "Mình khỏe, cảm ơn bạn.",
+        "translationRevision": 1,
+        "locale": "en-US",
+        "speaker": "người trả lời",
+        "precedingTurn": {
+          "englishExactText": "How are you?",
+          "translationVi": "Bạn khỏe không?"
+        },
+        "response": null,
+        "beginnerRationale": "Một lượt đáp đủ ý; không yêu cầu kể chi tiết sức khỏe.",
+        "sourceRefs": [
+          "editorial-context"
+        ],
+        "lexicalSenseCandidates": [],
+        "activity": {
+          "draftRef": "t09:activity:04:listen-recall",
+          "type": "CONTEXT_LISTEN_RECALL",
+          "targetTurnRef": "t09:utterance:04",
+          "completionRule": "SELF_RECALL_CONFIRMED_SAVE",
+          "automaticSpeechScoring": false
+        },
+        "progressProposal": {
+          "ownerRef": "t09:utterance:04",
+          "namespace": "UTTERANCE",
+          "keyAfterCanonicalization": "(learnerId, UTTERANCE, canonicalItemId)",
+          "relatedSenseUpdates": false
+        },
+        "placementRefs": [
+          "t09:placement:04"
+        ],
+        "imagePolicy": "OMIT",
+        "audioSpecRef": "t09:audio:04:r0001",
+        "reviewStatus": "DRAFT_SELF_REVIEWED"
+      },
+      "originalMediaSpec": {
+        "specRef": "t09:audio:04:r0001",
+        "kind": "UTTERANCE_TARGET_AUDIO",
+        "revision": 1,
+        "status": "SPEC_ONLY",
+        "executionAllowed": false,
+        "binding": {
+          "itemRef": "t09:utterance:04",
+          "contentRevision": 1,
+          "presentationRef": "t09:presentation:04:r0001",
+          "presentationRevision": 1,
+          "activityRef": "t09:activity:04:listen-recall",
+          "activityType": "CONTEXT_LISTEN_RECALL",
+          "targetTurnRef": "t09:utterance:04",
+          "englishExactText": "I'm fine, thank you.",
+          "locale": "en-US"
+        },
+        "textUtf8Sha256": "d8510d4cc11d6d6456d29e256c3e78b46879ba650ea736f194ed5b27bac8bc70",
+        "dependencyHashAlgorithm": "sha256-utf8-json-sortkeys-compact-t09-v1",
+        "dependencyHash": "6693c5ad3e70dcf58ee5e68622dc5f2be65d1784d0466242a2fba7865339cff9",
+        "providerRequestHash": null,
+        "providerConfig": null,
+        "providerConfigStatus": "PENDING_COORDINATOR_WORK_ORDER",
+        "delivery": null,
+        "outputByteSha256": null,
+        "direction": "One natural clear American English target turn; no context, response, item number, translation, role name, or instructions spoken. Preserve question intonation and ordinary contractions. No music. Final voice/rate/model must be pinned by coordinator.",
+        "acceptance": [
+          "Exact target words, full turn, no omissions/additions.",
+          "Locale/voice/rate match frozen production request; human listening required, ASR alone insufficient.",
+          "Receipt pins work order, dependency hash, provider request hash, output bytes, MIME and duration.",
+          "No inherited rights/acceptance from ticket07."
+        ]
+      },
+      "deliveryEligible": false,
+      "blockers": [
+        "SPEC_ONLY_NO_AUDIO_OR_CANONICAL_ID"
+      ],
+      "componentProgressWrites": [],
+      "supportingResponseTargets": []
+    },
+    {
+      "status": "PROPOSED_OFFLINE",
+      "adapterVersion": "coordinator-r2-forward/0.2.0",
+      "draftTarget": {
+        "itemType": "UTTERANCE",
+        "draftRef": "t09:utterance:05"
+      },
+      "canonicalTarget": null,
+      "progressOwner": {
+        "itemType": "UTTERANCE",
+        "draftRef": "t09:utterance:05"
+      },
+      "revisionPins": {
+        "targetRevision": 1,
+        "presentationRevision": 1,
+        "pronunciationRevision": null
+      },
+      "placements": [
+        {
+          "placementRef": "t09:placement:05",
+          "itemRef": "t09:utterance:05",
+          "groupRef": "greetings",
+          "learningLevel": "FIRST_UTTERANCES",
+          "cefr": null,
+          "schoolGrade": null,
+          "order": 5,
+          "requiredPreviousGroup": null
+        }
+      ],
+      "source": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket09-draft-r0001/draft-items-r0001.json",
+        "byteSha256": "f2a394008be905a727113c67a1832955cb4819ca4387cf004fb82972d4900bad",
+        "jsonPointer": "/items/4"
+      },
+      "sourceMedia": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket09-draft-r0001/media-specs.json",
+        "byteSha256": "4fd768d83438fa960c9e75fe971b3874e258dbbd93f2973d7a4f1b8af54752d2",
+        "jsonPointer": "/audio/4"
+      },
+      "sourceDependency": {
+        "algorithm": "sha256-utf8-json-sortkeys-compact-t09-v1",
+        "dependencyHash": "0331f315a2eeedea0c689569f71294fdedcbd9f78416b04095e27e94c8eb66d5",
+        "payloadHash": null,
+        "providerRequestHash": null,
+        "outputByteSha256": null
+      },
+      "authorityContent": {
+        "draftRef": "t09:utterance:05",
+        "itemType": "UTTERANCE",
+        "canonicalItemId": null,
+        "identityStatus": "PENDING_IDENTITY",
+        "contentRevision": 1,
+        "presentationRef": "t09:presentation:05:r0001",
+        "presentationRevision": 1,
+        "communicativeGoal": "Bày tỏ vui khi mới làm quen",
+        "context": "Hai bạn vừa được giới thiệu với nhau lần đầu.",
+        "englishExactText": "Nice to meet you.",
+        "translationVi": "Rất vui được làm quen với bạn.",
+        "translationRevision": 1,
+        "locale": "en-US",
+        "speaker": "người mới làm quen",
+        "precedingTurn": null,
+        "response": {
+          "englishExactText": "Nice to meet you, too.",
+          "translationVi": "Mình cũng rất vui được làm quen với bạn.",
+          "audioPolicy": "TEXT_ONLY_NOT_TARGET_AUDIO"
+        },
+        "beginnerRationale": "Học như một lượt nói cố định khi gặp lần đầu.",
+        "sourceRefs": [
+          "bc-meeting"
+        ],
+        "lexicalSenseCandidates": [],
+        "activity": {
+          "draftRef": "t09:activity:05:listen-recall",
+          "type": "CONTEXT_LISTEN_RECALL",
+          "targetTurnRef": "t09:utterance:05",
+          "completionRule": "SELF_RECALL_CONFIRMED_SAVE",
+          "automaticSpeechScoring": false
+        },
+        "progressProposal": {
+          "ownerRef": "t09:utterance:05",
+          "namespace": "UTTERANCE",
+          "keyAfterCanonicalization": "(learnerId, UTTERANCE, canonicalItemId)",
+          "relatedSenseUpdates": false
+        },
+        "placementRefs": [
+          "t09:placement:05"
+        ],
+        "imagePolicy": "OMIT",
+        "audioSpecRef": "t09:audio:05:r0001",
+        "reviewStatus": "DRAFT_SELF_REVIEWED"
+      },
+      "originalMediaSpec": {
+        "specRef": "t09:audio:05:r0001",
+        "kind": "UTTERANCE_TARGET_AUDIO",
+        "revision": 1,
+        "status": "SPEC_ONLY",
+        "executionAllowed": false,
+        "binding": {
+          "itemRef": "t09:utterance:05",
+          "contentRevision": 1,
+          "presentationRef": "t09:presentation:05:r0001",
+          "presentationRevision": 1,
+          "activityRef": "t09:activity:05:listen-recall",
+          "activityType": "CONTEXT_LISTEN_RECALL",
+          "targetTurnRef": "t09:utterance:05",
+          "englishExactText": "Nice to meet you.",
+          "locale": "en-US"
+        },
+        "textUtf8Sha256": "39954823f73a76e35ec7280de44b2eb4b26399ecdc00a2b3640db22375d3a4b3",
+        "dependencyHashAlgorithm": "sha256-utf8-json-sortkeys-compact-t09-v1",
+        "dependencyHash": "0331f315a2eeedea0c689569f71294fdedcbd9f78416b04095e27e94c8eb66d5",
+        "providerRequestHash": null,
+        "providerConfig": null,
+        "providerConfigStatus": "PENDING_COORDINATOR_WORK_ORDER",
+        "delivery": null,
+        "outputByteSha256": null,
+        "direction": "One natural clear American English target turn; no context, response, item number, translation, role name, or instructions spoken. Preserve question intonation and ordinary contractions. No music. Final voice/rate/model must be pinned by coordinator.",
+        "acceptance": [
+          "Exact target words, full turn, no omissions/additions.",
+          "Locale/voice/rate match frozen production request; human listening required, ASR alone insufficient.",
+          "Receipt pins work order, dependency hash, provider request hash, output bytes, MIME and duration.",
+          "No inherited rights/acceptance from ticket07."
+        ]
+      },
+      "deliveryEligible": false,
+      "blockers": [
+        "SPEC_ONLY_NO_AUDIO_OR_CANONICAL_ID"
+      ],
+      "componentProgressWrites": [],
+      "supportingResponseTargets": []
+    },
+    {
+      "status": "PROPOSED_OFFLINE",
+      "adapterVersion": "coordinator-r2-forward/0.2.0",
+      "draftTarget": {
+        "itemType": "UTTERANCE",
+        "draftRef": "t09:utterance:06"
+      },
+      "canonicalTarget": null,
+      "progressOwner": {
+        "itemType": "UTTERANCE",
+        "draftRef": "t09:utterance:06"
+      },
+      "revisionPins": {
+        "targetRevision": 1,
+        "presentationRevision": 1,
+        "pronunciationRevision": null
+      },
+      "placements": [
+        {
+          "placementRef": "t09:placement:06",
+          "itemRef": "t09:utterance:06",
+          "groupRef": "thanks",
+          "learningLevel": "FIRST_UTTERANCES",
+          "cefr": null,
+          "schoolGrade": null,
+          "order": 6,
+          "requiredPreviousGroup": null
+        }
+      ],
+      "source": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket09-draft-r0001/draft-items-r0001.json",
+        "byteSha256": "f2a394008be905a727113c67a1832955cb4819ca4387cf004fb82972d4900bad",
+        "jsonPointer": "/items/5"
+      },
+      "sourceMedia": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket09-draft-r0001/media-specs.json",
+        "byteSha256": "4fd768d83438fa960c9e75fe971b3874e258dbbd93f2973d7a4f1b8af54752d2",
+        "jsonPointer": "/audio/5"
+      },
+      "sourceDependency": {
+        "algorithm": "sha256-utf8-json-sortkeys-compact-t09-v1",
+        "dependencyHash": "1f3d8ce99e7412faddf63d08db0dec4de8c6a75ede3e71257fe03b73490bf91f",
+        "payloadHash": null,
+        "providerRequestHash": null,
+        "outputByteSha256": null
+      },
+      "authorityContent": {
+        "draftRef": "t09:utterance:06",
+        "itemType": "UTTERANCE",
+        "canonicalItemId": null,
+        "identityStatus": "PENDING_IDENTITY",
+        "contentRevision": 1,
+        "presentationRef": "t09:presentation:06:r0001",
+        "presentationRevision": 1,
+        "communicativeGoal": "Cảm ơn khi được giúp",
+        "context": "Một người vừa nhặt giúp bạn chiếc bút rơi.",
+        "englishExactText": "Thank you.",
+        "translationVi": "Cảm ơn bạn.",
+        "translationRevision": 1,
+        "locale": "en-US",
+        "speaker": "người được giúp",
+        "precedingTurn": null,
+        "response": {
+          "englishExactText": "You're welcome.",
+          "translationVi": "Không có gì đâu.",
+          "audioPolicy": "TEXT_ONLY_NOT_TARGET_AUDIO"
+        },
+        "beginnerRationale": "Lời cảm ơn ngắn, tình huống dễ hình dung.",
+        "sourceRefs": [
+          "englishconnect-interaction"
+        ],
+        "lexicalSenseCandidates": [],
+        "activity": {
+          "draftRef": "t09:activity:06:listen-recall",
+          "type": "CONTEXT_LISTEN_RECALL",
+          "targetTurnRef": "t09:utterance:06",
+          "completionRule": "SELF_RECALL_CONFIRMED_SAVE",
+          "automaticSpeechScoring": false
+        },
+        "progressProposal": {
+          "ownerRef": "t09:utterance:06",
+          "namespace": "UTTERANCE",
+          "keyAfterCanonicalization": "(learnerId, UTTERANCE, canonicalItemId)",
+          "relatedSenseUpdates": false
+        },
+        "placementRefs": [
+          "t09:placement:06"
+        ],
+        "imagePolicy": "OMIT",
+        "audioSpecRef": "t09:audio:06:r0001",
+        "reviewStatus": "DRAFT_SELF_REVIEWED"
+      },
+      "originalMediaSpec": {
+        "specRef": "t09:audio:06:r0001",
+        "kind": "UTTERANCE_TARGET_AUDIO",
+        "revision": 1,
+        "status": "SPEC_ONLY",
+        "executionAllowed": false,
+        "binding": {
+          "itemRef": "t09:utterance:06",
+          "contentRevision": 1,
+          "presentationRef": "t09:presentation:06:r0001",
+          "presentationRevision": 1,
+          "activityRef": "t09:activity:06:listen-recall",
+          "activityType": "CONTEXT_LISTEN_RECALL",
+          "targetTurnRef": "t09:utterance:06",
+          "englishExactText": "Thank you.",
+          "locale": "en-US"
+        },
+        "textUtf8Sha256": "8569efc4ed5a6273140c2b6ec0ab8d99f4398210808fbb7c0cbbae4fbcc21350",
+        "dependencyHashAlgorithm": "sha256-utf8-json-sortkeys-compact-t09-v1",
+        "dependencyHash": "1f3d8ce99e7412faddf63d08db0dec4de8c6a75ede3e71257fe03b73490bf91f",
+        "providerRequestHash": null,
+        "providerConfig": null,
+        "providerConfigStatus": "PENDING_COORDINATOR_WORK_ORDER",
+        "delivery": null,
+        "outputByteSha256": null,
+        "direction": "One natural clear American English target turn; no context, response, item number, translation, role name, or instructions spoken. Preserve question intonation and ordinary contractions. No music. Final voice/rate/model must be pinned by coordinator.",
+        "acceptance": [
+          "Exact target words, full turn, no omissions/additions.",
+          "Locale/voice/rate match frozen production request; human listening required, ASR alone insufficient.",
+          "Receipt pins work order, dependency hash, provider request hash, output bytes, MIME and duration.",
+          "No inherited rights/acceptance from ticket07."
+        ]
+      },
+      "deliveryEligible": false,
+      "blockers": [
+        "SPEC_ONLY_NO_AUDIO_OR_CANONICAL_ID"
+      ],
+      "componentProgressWrites": [],
+      "supportingResponseTargets": []
+    },
+    {
+      "status": "PROPOSED_OFFLINE",
+      "adapterVersion": "coordinator-r2-forward/0.2.0",
+      "draftTarget": {
+        "itemType": "UTTERANCE",
+        "draftRef": "t09:utterance:07"
+      },
+      "canonicalTarget": null,
+      "progressOwner": {
+        "itemType": "UTTERANCE",
+        "draftRef": "t09:utterance:07"
+      },
+      "revisionPins": {
+        "targetRevision": 1,
+        "presentationRevision": 1,
+        "pronunciationRevision": null
+      },
+      "placements": [
+        {
+          "placementRef": "t09:placement:07",
+          "itemRef": "t09:utterance:07",
+          "groupRef": "thanks",
+          "learningLevel": "FIRST_UTTERANCES",
+          "cefr": null,
+          "schoolGrade": null,
+          "order": 7,
+          "requiredPreviousGroup": null
+        }
+      ],
+      "source": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket09-draft-r0001/draft-items-r0001.json",
+        "byteSha256": "f2a394008be905a727113c67a1832955cb4819ca4387cf004fb82972d4900bad",
+        "jsonPointer": "/items/6"
+      },
+      "sourceMedia": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket09-draft-r0001/media-specs.json",
+        "byteSha256": "4fd768d83438fa960c9e75fe971b3874e258dbbd93f2973d7a4f1b8af54752d2",
+        "jsonPointer": "/audio/6"
+      },
+      "sourceDependency": {
+        "algorithm": "sha256-utf8-json-sortkeys-compact-t09-v1",
+        "dependencyHash": "244b3c2af4ae7a1adb57ab1345ce6fa3a026211a2df1bd5d90cee6316719cb09",
+        "payloadHash": null,
+        "providerRequestHash": null,
+        "outputByteSha256": null
+      },
+      "authorityContent": {
+        "draftRef": "t09:utterance:07",
+        "itemType": "UTTERANCE",
+        "canonicalItemId": null,
+        "identityStatus": "PENDING_IDENTITY",
+        "contentRevision": 1,
+        "presentationRef": "t09:presentation:07:r0001",
+        "presentationRevision": 1,
+        "communicativeGoal": "Đáp lại lời cảm ơn",
+        "context": "Bạn vừa giúp nhặt bút và người kia nói “Thank you.”",
+        "englishExactText": "You're welcome.",
+        "translationVi": "Không có gì đâu.",
+        "translationRevision": 1,
+        "locale": "en-US",
+        "speaker": "người đã giúp",
+        "precedingTurn": {
+          "englishExactText": "Thank you.",
+          "translationVi": "Cảm ơn bạn."
+        },
+        "response": null,
+        "beginnerRationale": "Một cách đáp cố định; không dịch từng chữ thành chào mừng.",
+        "sourceRefs": [
+          "editorial-context"
+        ],
+        "lexicalSenseCandidates": [],
+        "activity": {
+          "draftRef": "t09:activity:07:listen-recall",
+          "type": "CONTEXT_LISTEN_RECALL",
+          "targetTurnRef": "t09:utterance:07",
+          "completionRule": "SELF_RECALL_CONFIRMED_SAVE",
+          "automaticSpeechScoring": false
+        },
+        "progressProposal": {
+          "ownerRef": "t09:utterance:07",
+          "namespace": "UTTERANCE",
+          "keyAfterCanonicalization": "(learnerId, UTTERANCE, canonicalItemId)",
+          "relatedSenseUpdates": false
+        },
+        "placementRefs": [
+          "t09:placement:07"
+        ],
+        "imagePolicy": "OMIT",
+        "audioSpecRef": "t09:audio:07:r0001",
+        "reviewStatus": "DRAFT_SELF_REVIEWED"
+      },
+      "originalMediaSpec": {
+        "specRef": "t09:audio:07:r0001",
+        "kind": "UTTERANCE_TARGET_AUDIO",
+        "revision": 1,
+        "status": "SPEC_ONLY",
+        "executionAllowed": false,
+        "binding": {
+          "itemRef": "t09:utterance:07",
+          "contentRevision": 1,
+          "presentationRef": "t09:presentation:07:r0001",
+          "presentationRevision": 1,
+          "activityRef": "t09:activity:07:listen-recall",
+          "activityType": "CONTEXT_LISTEN_RECALL",
+          "targetTurnRef": "t09:utterance:07",
+          "englishExactText": "You're welcome.",
+          "locale": "en-US"
+        },
+        "textUtf8Sha256": "124eb273f9a0a470e3d6930f97e1402f311a753dc9d656b1ef17ef12367caffa",
+        "dependencyHashAlgorithm": "sha256-utf8-json-sortkeys-compact-t09-v1",
+        "dependencyHash": "244b3c2af4ae7a1adb57ab1345ce6fa3a026211a2df1bd5d90cee6316719cb09",
+        "providerRequestHash": null,
+        "providerConfig": null,
+        "providerConfigStatus": "PENDING_COORDINATOR_WORK_ORDER",
+        "delivery": null,
+        "outputByteSha256": null,
+        "direction": "One natural clear American English target turn; no context, response, item number, translation, role name, or instructions spoken. Preserve question intonation and ordinary contractions. No music. Final voice/rate/model must be pinned by coordinator.",
+        "acceptance": [
+          "Exact target words, full turn, no omissions/additions.",
+          "Locale/voice/rate match frozen production request; human listening required, ASR alone insufficient.",
+          "Receipt pins work order, dependency hash, provider request hash, output bytes, MIME and duration.",
+          "No inherited rights/acceptance from ticket07."
+        ]
+      },
+      "deliveryEligible": false,
+      "blockers": [
+        "SPEC_ONLY_NO_AUDIO_OR_CANONICAL_ID"
+      ],
+      "componentProgressWrites": [],
+      "supportingResponseTargets": []
+    },
+    {
+      "status": "PROPOSED_OFFLINE",
+      "adapterVersion": "coordinator-r2-forward/0.2.0",
+      "draftTarget": {
+        "itemType": "UTTERANCE",
+        "draftRef": "t09:utterance:08"
+      },
+      "canonicalTarget": null,
+      "progressOwner": {
+        "itemType": "UTTERANCE",
+        "draftRef": "t09:utterance:08"
+      },
+      "revisionPins": {
+        "targetRevision": 1,
+        "presentationRevision": 1,
+        "pronunciationRevision": null
+      },
+      "placements": [
+        {
+          "placementRef": "t09:placement:08",
+          "itemRef": "t09:utterance:08",
+          "groupRef": "help",
+          "learningLevel": "FIRST_UTTERANCES",
+          "cefr": null,
+          "schoolGrade": null,
+          "order": 8,
+          "requiredPreviousGroup": null
+        }
+      ],
+      "source": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket09-draft-r0001/draft-items-r0001.json",
+        "byteSha256": "f2a394008be905a727113c67a1832955cb4819ca4387cf004fb82972d4900bad",
+        "jsonPointer": "/items/7"
+      },
+      "sourceMedia": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket09-draft-r0001/media-specs.json",
+        "byteSha256": "4fd768d83438fa960c9e75fe971b3874e258dbbd93f2973d7a4f1b8af54752d2",
+        "jsonPointer": "/audio/7"
+      },
+      "sourceDependency": {
+        "algorithm": "sha256-utf8-json-sortkeys-compact-t09-v1",
+        "dependencyHash": "89f12fc5c1d634725ffc2d85d1919599adc9f7c511ce257da8150f2ea3d79b7e",
+        "payloadHash": null,
+        "providerRequestHash": null,
+        "outputByteSha256": null
+      },
+      "authorityContent": {
+        "draftRef": "t09:utterance:08",
+        "itemType": "UTTERANCE",
+        "canonicalItemId": null,
+        "identityStatus": "PENDING_IDENTITY",
+        "contentRevision": 1,
+        "presentationRef": "t09:presentation:08:r0001",
+        "presentationRevision": 1,
+        "communicativeGoal": "Thu hút sự chú ý lịch sự",
+        "context": "Bạn muốn hỏi một bạn gần đó; nói câu này trước khi xin giúp.",
+        "englishExactText": "Excuse me.",
+        "translationVi": "Cho mình hỏi một chút.",
+        "translationRevision": 1,
+        "locale": "en-US",
+        "speaker": "người muốn hỏi",
+        "precedingTurn": null,
+        "response": {
+          "englishExactText": "Yes?",
+          "translationVi": "Có chuyện gì vậy?",
+          "audioPolicy": "TEXT_ONLY_NOT_TARGET_AUDIO"
+        },
+        "beginnerRationale": "Tập một lượt mở lời trước câu hỏi; không dùng nghĩa xin lỗi làm rơi đồ.",
+        "sourceRefs": [
+          "editorial-context"
+        ],
+        "lexicalSenseCandidates": [],
+        "activity": {
+          "draftRef": "t09:activity:08:listen-recall",
+          "type": "CONTEXT_LISTEN_RECALL",
+          "targetTurnRef": "t09:utterance:08",
+          "completionRule": "SELF_RECALL_CONFIRMED_SAVE",
+          "automaticSpeechScoring": false
+        },
+        "progressProposal": {
+          "ownerRef": "t09:utterance:08",
+          "namespace": "UTTERANCE",
+          "keyAfterCanonicalization": "(learnerId, UTTERANCE, canonicalItemId)",
+          "relatedSenseUpdates": false
+        },
+        "placementRefs": [
+          "t09:placement:08"
+        ],
+        "imagePolicy": "OMIT",
+        "audioSpecRef": "t09:audio:08:r0001",
+        "reviewStatus": "DRAFT_SELF_REVIEWED"
+      },
+      "originalMediaSpec": {
+        "specRef": "t09:audio:08:r0001",
+        "kind": "UTTERANCE_TARGET_AUDIO",
+        "revision": 1,
+        "status": "SPEC_ONLY",
+        "executionAllowed": false,
+        "binding": {
+          "itemRef": "t09:utterance:08",
+          "contentRevision": 1,
+          "presentationRef": "t09:presentation:08:r0001",
+          "presentationRevision": 1,
+          "activityRef": "t09:activity:08:listen-recall",
+          "activityType": "CONTEXT_LISTEN_RECALL",
+          "targetTurnRef": "t09:utterance:08",
+          "englishExactText": "Excuse me.",
+          "locale": "en-US"
+        },
+        "textUtf8Sha256": "fa120587cef0d23217a917d601b6366c1c92f8557b206978257c9813503d9e18",
+        "dependencyHashAlgorithm": "sha256-utf8-json-sortkeys-compact-t09-v1",
+        "dependencyHash": "89f12fc5c1d634725ffc2d85d1919599adc9f7c511ce257da8150f2ea3d79b7e",
+        "providerRequestHash": null,
+        "providerConfig": null,
+        "providerConfigStatus": "PENDING_COORDINATOR_WORK_ORDER",
+        "delivery": null,
+        "outputByteSha256": null,
+        "direction": "One natural clear American English target turn; no context, response, item number, translation, role name, or instructions spoken. Preserve question intonation and ordinary contractions. No music. Final voice/rate/model must be pinned by coordinator.",
+        "acceptance": [
+          "Exact target words, full turn, no omissions/additions.",
+          "Locale/voice/rate match frozen production request; human listening required, ASR alone insufficient.",
+          "Receipt pins work order, dependency hash, provider request hash, output bytes, MIME and duration.",
+          "No inherited rights/acceptance from ticket07."
+        ]
+      },
+      "deliveryEligible": false,
+      "blockers": [
+        "SPEC_ONLY_NO_AUDIO_OR_CANONICAL_ID"
+      ],
+      "componentProgressWrites": [],
+      "supportingResponseTargets": []
+    },
+    {
+      "status": "PROPOSED_OFFLINE",
+      "adapterVersion": "coordinator-r2-forward/0.2.0",
+      "draftTarget": {
+        "itemType": "UTTERANCE",
+        "draftRef": "t09:utterance:09"
+      },
+      "canonicalTarget": null,
+      "progressOwner": {
+        "itemType": "UTTERANCE",
+        "draftRef": "t09:utterance:09"
+      },
+      "revisionPins": {
+        "targetRevision": 1,
+        "presentationRevision": 1,
+        "pronunciationRevision": null
+      },
+      "placements": [
+        {
+          "placementRef": "t09:placement:09",
+          "itemRef": "t09:utterance:09",
+          "groupRef": "help",
+          "learningLevel": "FIRST_UTTERANCES",
+          "cefr": null,
+          "schoolGrade": null,
+          "order": 9,
+          "requiredPreviousGroup": null
+        }
+      ],
+      "source": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket09-draft-r0001/draft-items-r0001.json",
+        "byteSha256": "f2a394008be905a727113c67a1832955cb4819ca4387cf004fb82972d4900bad",
+        "jsonPointer": "/items/8"
+      },
+      "sourceMedia": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket09-draft-r0001/media-specs.json",
+        "byteSha256": "4fd768d83438fa960c9e75fe971b3874e258dbbd93f2973d7a4f1b8af54752d2",
+        "jsonPointer": "/audio/8"
+      },
+      "sourceDependency": {
+        "algorithm": "sha256-utf8-json-sortkeys-compact-t09-v1",
+        "dependencyHash": "a12024c2d970688423f6b233d27e9289f5e8e7b4b630357114b00b9652478a57",
+        "payloadHash": null,
+        "providerRequestHash": null,
+        "outputByteSha256": null
+      },
+      "authorityContent": {
+        "draftRef": "t09:utterance:09",
+        "itemType": "UTTERANCE",
+        "canonicalItemId": null,
+        "identityStatus": "PENDING_IDENTITY",
+        "contentRevision": 1,
+        "presentationRef": "t09:presentation:09:r0001",
+        "presentationRevision": 1,
+        "communicativeGoal": "Xin người khác giúp",
+        "context": "Bạn không tìm thấy trang sách và nhờ bạn bên cạnh giúp.",
+        "englishExactText": "Can you help me, please?",
+        "translationVi": "Bạn giúp mình được không?",
+        "translationRevision": 1,
+        "locale": "en-US",
+        "speaker": "người cần giúp",
+        "precedingTurn": null,
+        "response": {
+          "englishExactText": "Yes, I can.",
+          "translationVi": "Được chứ.",
+          "audioPolicy": "TEXT_ONLY_NOT_TARGET_AUDIO"
+        },
+        "beginnerRationale": "Yêu cầu ngắn; ngữ cảnh cho biết cần giúp việc gì.",
+        "sourceRefs": [
+          "editorial-context"
+        ],
+        "lexicalSenseCandidates": [
+          {
+            "baselineRowId": "runtime-33417",
+            "runtimeVocabularyId": 33417,
+            "masterSenseId": null,
+            "identityStatus": "PENDING_IDENTITY",
+            "relation": "EXACT_MEANING_COMPONENT_CANDIDATE",
+            "progressEffect": "NONE",
+            "reviewStatus": "COORDINATOR_REVIEW_REQUIRED"
+          }
+        ],
+        "activity": {
+          "draftRef": "t09:activity:09:listen-recall",
+          "type": "CONTEXT_LISTEN_RECALL",
+          "targetTurnRef": "t09:utterance:09",
+          "completionRule": "SELF_RECALL_CONFIRMED_SAVE",
+          "automaticSpeechScoring": false
+        },
+        "progressProposal": {
+          "ownerRef": "t09:utterance:09",
+          "namespace": "UTTERANCE",
+          "keyAfterCanonicalization": "(learnerId, UTTERANCE, canonicalItemId)",
+          "relatedSenseUpdates": false
+        },
+        "placementRefs": [
+          "t09:placement:09"
+        ],
+        "imagePolicy": "OMIT",
+        "audioSpecRef": "t09:audio:09:r0001",
+        "reviewStatus": "DRAFT_SELF_REVIEWED"
+      },
+      "originalMediaSpec": {
+        "specRef": "t09:audio:09:r0001",
+        "kind": "UTTERANCE_TARGET_AUDIO",
+        "revision": 1,
+        "status": "SPEC_ONLY",
+        "executionAllowed": false,
+        "binding": {
+          "itemRef": "t09:utterance:09",
+          "contentRevision": 1,
+          "presentationRef": "t09:presentation:09:r0001",
+          "presentationRevision": 1,
+          "activityRef": "t09:activity:09:listen-recall",
+          "activityType": "CONTEXT_LISTEN_RECALL",
+          "targetTurnRef": "t09:utterance:09",
+          "englishExactText": "Can you help me, please?",
+          "locale": "en-US"
+        },
+        "textUtf8Sha256": "8266f9d07e530dee2fa934fd340022f956bd258d92193de5b3d9174d6748b1da",
+        "dependencyHashAlgorithm": "sha256-utf8-json-sortkeys-compact-t09-v1",
+        "dependencyHash": "a12024c2d970688423f6b233d27e9289f5e8e7b4b630357114b00b9652478a57",
+        "providerRequestHash": null,
+        "providerConfig": null,
+        "providerConfigStatus": "PENDING_COORDINATOR_WORK_ORDER",
+        "delivery": null,
+        "outputByteSha256": null,
+        "direction": "One natural clear American English target turn; no context, response, item number, translation, role name, or instructions spoken. Preserve question intonation and ordinary contractions. No music. Final voice/rate/model must be pinned by coordinator.",
+        "acceptance": [
+          "Exact target words, full turn, no omissions/additions.",
+          "Locale/voice/rate match frozen production request; human listening required, ASR alone insufficient.",
+          "Receipt pins work order, dependency hash, provider request hash, output bytes, MIME and duration.",
+          "No inherited rights/acceptance from ticket07."
+        ]
+      },
+      "deliveryEligible": false,
+      "blockers": [
+        "SPEC_ONLY_NO_AUDIO_OR_CANONICAL_ID"
+      ],
+      "componentProgressWrites": [],
+      "supportingResponseTargets": []
+    },
+    {
+      "status": "PROPOSED_OFFLINE",
+      "adapterVersion": "coordinator-r2-forward/0.2.0",
+      "draftTarget": {
+        "itemType": "UTTERANCE",
+        "draftRef": "t09:utterance:10"
+      },
+      "canonicalTarget": null,
+      "progressOwner": {
+        "itemType": "UTTERANCE",
+        "draftRef": "t09:utterance:10"
+      },
+      "revisionPins": {
+        "targetRevision": 1,
+        "presentationRevision": 1,
+        "pronunciationRevision": null
+      },
+      "placements": [
+        {
+          "placementRef": "t09:placement:10",
+          "itemRef": "t09:utterance:10",
+          "groupRef": "repair",
+          "learningLevel": "FIRST_UTTERANCES",
+          "cefr": null,
+          "schoolGrade": null,
+          "order": 10,
+          "requiredPreviousGroup": null
+        }
+      ],
+      "source": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket09-draft-r0001/draft-items-r0001.json",
+        "byteSha256": "f2a394008be905a727113c67a1832955cb4819ca4387cf004fb82972d4900bad",
+        "jsonPointer": "/items/9"
+      },
+      "sourceMedia": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket09-draft-r0001/media-specs.json",
+        "byteSha256": "4fd768d83438fa960c9e75fe971b3874e258dbbd93f2973d7a4f1b8af54752d2",
+        "jsonPointer": "/audio/9"
+      },
+      "sourceDependency": {
+        "algorithm": "sha256-utf8-json-sortkeys-compact-t09-v1",
+        "dependencyHash": "1ff1783a50a1645bd1d719210d3a696f5027579d4a08b7b0899246b8f751fc2b",
+        "payloadHash": null,
+        "providerRequestHash": null,
+        "outputByteSha256": null
+      },
+      "authorityContent": {
+        "draftRef": "t09:utterance:10",
+        "itemType": "UTTERANCE",
+        "canonicalItemId": null,
+        "identityStatus": "PENDING_IDENTITY",
+        "contentRevision": 1,
+        "presentationRef": "t09:presentation:10:r0001",
+        "presentationRevision": 1,
+        "communicativeGoal": "Báo rằng chưa hiểu nội dung",
+        "context": "Một bạn giải thích bài tập nhưng bạn chưa hiểu ý.",
+        "englishExactText": "I don't understand.",
+        "translationVi": "Mình chưa hiểu.",
+        "translationRevision": 1,
+        "locale": "en-US",
+        "speaker": "người nghe",
+        "precedingTurn": null,
+        "response": null,
+        "beginnerRationale": "Cho người mới học một cách báo khó khăn ngay trong cuộc trò chuyện.",
+        "sourceRefs": [
+          "bc-checking"
+        ],
+        "lexicalSenseCandidates": [
+          {
+            "baselineRowId": "runtime-31328",
+            "runtimeVocabularyId": 31328,
+            "masterSenseId": null,
+            "identityStatus": "PENDING_IDENTITY",
+            "relation": "EXACT_MEANING_COMPONENT_CANDIDATE",
+            "progressEffect": "NONE",
+            "reviewStatus": "COORDINATOR_REVIEW_REQUIRED"
+          }
+        ],
+        "activity": {
+          "draftRef": "t09:activity:10:listen-recall",
+          "type": "CONTEXT_LISTEN_RECALL",
+          "targetTurnRef": "t09:utterance:10",
+          "completionRule": "SELF_RECALL_CONFIRMED_SAVE",
+          "automaticSpeechScoring": false
+        },
+        "progressProposal": {
+          "ownerRef": "t09:utterance:10",
+          "namespace": "UTTERANCE",
+          "keyAfterCanonicalization": "(learnerId, UTTERANCE, canonicalItemId)",
+          "relatedSenseUpdates": false
+        },
+        "placementRefs": [
+          "t09:placement:10"
+        ],
+        "imagePolicy": "OMIT",
+        "audioSpecRef": "t09:audio:10:r0001",
+        "reviewStatus": "DRAFT_SELF_REVIEWED"
+      },
+      "originalMediaSpec": {
+        "specRef": "t09:audio:10:r0001",
+        "kind": "UTTERANCE_TARGET_AUDIO",
+        "revision": 1,
+        "status": "SPEC_ONLY",
+        "executionAllowed": false,
+        "binding": {
+          "itemRef": "t09:utterance:10",
+          "contentRevision": 1,
+          "presentationRef": "t09:presentation:10:r0001",
+          "presentationRevision": 1,
+          "activityRef": "t09:activity:10:listen-recall",
+          "activityType": "CONTEXT_LISTEN_RECALL",
+          "targetTurnRef": "t09:utterance:10",
+          "englishExactText": "I don't understand.",
+          "locale": "en-US"
+        },
+        "textUtf8Sha256": "906248d9ffd63d8b8c54443d728446a5d5fb598e5c2134e1f2a05ed4b23a7460",
+        "dependencyHashAlgorithm": "sha256-utf8-json-sortkeys-compact-t09-v1",
+        "dependencyHash": "1ff1783a50a1645bd1d719210d3a696f5027579d4a08b7b0899246b8f751fc2b",
+        "providerRequestHash": null,
+        "providerConfig": null,
+        "providerConfigStatus": "PENDING_COORDINATOR_WORK_ORDER",
+        "delivery": null,
+        "outputByteSha256": null,
+        "direction": "One natural clear American English target turn; no context, response, item number, translation, role name, or instructions spoken. Preserve question intonation and ordinary contractions. No music. Final voice/rate/model must be pinned by coordinator.",
+        "acceptance": [
+          "Exact target words, full turn, no omissions/additions.",
+          "Locale/voice/rate match frozen production request; human listening required, ASR alone insufficient.",
+          "Receipt pins work order, dependency hash, provider request hash, output bytes, MIME and duration.",
+          "No inherited rights/acceptance from ticket07."
+        ]
+      },
+      "deliveryEligible": false,
+      "blockers": [
+        "SPEC_ONLY_NO_AUDIO_OR_CANONICAL_ID"
+      ],
+      "componentProgressWrites": [],
+      "supportingResponseTargets": []
+    },
+    {
+      "status": "PROPOSED_OFFLINE",
+      "adapterVersion": "coordinator-r2-forward/0.2.0",
+      "draftTarget": {
+        "itemType": "UTTERANCE",
+        "draftRef": "t09:utterance:11"
+      },
+      "canonicalTarget": null,
+      "progressOwner": {
+        "itemType": "UTTERANCE",
+        "draftRef": "t09:utterance:11"
+      },
+      "revisionPins": {
+        "targetRevision": 1,
+        "presentationRevision": 1,
+        "pronunciationRevision": null
+      },
+      "placements": [
+        {
+          "placementRef": "t09:placement:11",
+          "itemRef": "t09:utterance:11",
+          "groupRef": "repair",
+          "learningLevel": "FIRST_UTTERANCES",
+          "cefr": null,
+          "schoolGrade": null,
+          "order": 11,
+          "requiredPreviousGroup": null
+        }
+      ],
+      "source": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket09-draft-r0001/draft-items-r0001.json",
+        "byteSha256": "f2a394008be905a727113c67a1832955cb4819ca4387cf004fb82972d4900bad",
+        "jsonPointer": "/items/10"
+      },
+      "sourceMedia": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket09-draft-r0001/media-specs.json",
+        "byteSha256": "4fd768d83438fa960c9e75fe971b3874e258dbbd93f2973d7a4f1b8af54752d2",
+        "jsonPointer": "/audio/10"
+      },
+      "sourceDependency": {
+        "algorithm": "sha256-utf8-json-sortkeys-compact-t09-v1",
+        "dependencyHash": "e08111ab716cdb0dd106fca78a710785d218f9ec12e8c0ebd3f34742df441bf1",
+        "payloadHash": null,
+        "providerRequestHash": null,
+        "outputByteSha256": null
+      },
+      "authorityContent": {
+        "draftRef": "t09:utterance:11",
+        "itemType": "UTTERANCE",
+        "canonicalItemId": null,
+        "identityStatus": "PENDING_IDENTITY",
+        "contentRevision": 1,
+        "presentationRef": "t09:presentation:11:r0001",
+        "presentationRevision": 1,
+        "communicativeGoal": "Xin nhắc lại điều vừa nói",
+        "context": "Bạn không nghe rõ lời chỉ dẫn vừa được nói; muốn nghe lại.",
+        "englishExactText": "Can you say that again, please?",
+        "translationVi": "Bạn nói lại giúp mình được không?",
+        "translationRevision": 1,
+        "locale": "en-US",
+        "speaker": "người nghe",
+        "precedingTurn": null,
+        "response": null,
+        "beginnerRationale": "Câu yêu cầu dùng nguyên lượt; “that” là lời vừa nói trong ngữ cảnh.",
+        "sourceRefs": [
+          "bc-checking"
+        ],
+        "lexicalSenseCandidates": [
+          {
+            "baselineRowId": "runtime-30835",
+            "runtimeVocabularyId": 30835,
+            "masterSenseId": null,
+            "identityStatus": "PENDING_IDENTITY",
+            "relation": "EXACT_MEANING_COMPONENT_CANDIDATE",
+            "progressEffect": "NONE",
+            "reviewStatus": "COORDINATOR_REVIEW_REQUIRED"
+          }
+        ],
+        "activity": {
+          "draftRef": "t09:activity:11:listen-recall",
+          "type": "CONTEXT_LISTEN_RECALL",
+          "targetTurnRef": "t09:utterance:11",
+          "completionRule": "SELF_RECALL_CONFIRMED_SAVE",
+          "automaticSpeechScoring": false
+        },
+        "progressProposal": {
+          "ownerRef": "t09:utterance:11",
+          "namespace": "UTTERANCE",
+          "keyAfterCanonicalization": "(learnerId, UTTERANCE, canonicalItemId)",
+          "relatedSenseUpdates": false
+        },
+        "placementRefs": [
+          "t09:placement:11"
+        ],
+        "imagePolicy": "OMIT",
+        "audioSpecRef": "t09:audio:11:r0001",
+        "reviewStatus": "DRAFT_SELF_REVIEWED"
+      },
+      "originalMediaSpec": {
+        "specRef": "t09:audio:11:r0001",
+        "kind": "UTTERANCE_TARGET_AUDIO",
+        "revision": 1,
+        "status": "SPEC_ONLY",
+        "executionAllowed": false,
+        "binding": {
+          "itemRef": "t09:utterance:11",
+          "contentRevision": 1,
+          "presentationRef": "t09:presentation:11:r0001",
+          "presentationRevision": 1,
+          "activityRef": "t09:activity:11:listen-recall",
+          "activityType": "CONTEXT_LISTEN_RECALL",
+          "targetTurnRef": "t09:utterance:11",
+          "englishExactText": "Can you say that again, please?",
+          "locale": "en-US"
+        },
+        "textUtf8Sha256": "968523039f5b7544fbfee326b55f87bdaf7639f097c3fbd27b3e1b927a21d3cb",
+        "dependencyHashAlgorithm": "sha256-utf8-json-sortkeys-compact-t09-v1",
+        "dependencyHash": "e08111ab716cdb0dd106fca78a710785d218f9ec12e8c0ebd3f34742df441bf1",
+        "providerRequestHash": null,
+        "providerConfig": null,
+        "providerConfigStatus": "PENDING_COORDINATOR_WORK_ORDER",
+        "delivery": null,
+        "outputByteSha256": null,
+        "direction": "One natural clear American English target turn; no context, response, item number, translation, role name, or instructions spoken. Preserve question intonation and ordinary contractions. No music. Final voice/rate/model must be pinned by coordinator.",
+        "acceptance": [
+          "Exact target words, full turn, no omissions/additions.",
+          "Locale/voice/rate match frozen production request; human listening required, ASR alone insufficient.",
+          "Receipt pins work order, dependency hash, provider request hash, output bytes, MIME and duration.",
+          "No inherited rights/acceptance from ticket07."
+        ]
+      },
+      "deliveryEligible": false,
+      "blockers": [
+        "SPEC_ONLY_NO_AUDIO_OR_CANONICAL_ID"
+      ],
+      "componentProgressWrites": [],
+      "supportingResponseTargets": []
+    },
+    {
+      "status": "PROPOSED_OFFLINE",
+      "adapterVersion": "coordinator-r2-forward/0.2.0",
+      "draftTarget": {
+        "itemType": "UTTERANCE",
+        "draftRef": "t09:utterance:12"
+      },
+      "canonicalTarget": null,
+      "progressOwner": {
+        "itemType": "UTTERANCE",
+        "draftRef": "t09:utterance:12"
+      },
+      "revisionPins": {
+        "targetRevision": 1,
+        "presentationRevision": 1,
+        "pronunciationRevision": null
+      },
+      "placements": [
+        {
+          "placementRef": "t09:placement:12",
+          "itemRef": "t09:utterance:12",
+          "groupRef": "repair",
+          "learningLevel": "FIRST_UTTERANCES",
+          "cefr": null,
+          "schoolGrade": null,
+          "order": 12,
+          "requiredPreviousGroup": null
+        }
+      ],
+      "source": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket09-draft-r0001/draft-items-r0001.json",
+        "byteSha256": "f2a394008be905a727113c67a1832955cb4819ca4387cf004fb82972d4900bad",
+        "jsonPointer": "/items/11"
+      },
+      "sourceMedia": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket09-draft-r0001/media-specs.json",
+        "byteSha256": "4fd768d83438fa960c9e75fe971b3874e258dbbd93f2973d7a4f1b8af54752d2",
+        "jsonPointer": "/audio/11"
+      },
+      "sourceDependency": {
+        "algorithm": "sha256-utf8-json-sortkeys-compact-t09-v1",
+        "dependencyHash": "50fb814313f37d21d08c38cd90b914f2c3c7f38a970f75a79adf124af6374b58",
+        "payloadHash": null,
+        "providerRequestHash": null,
+        "outputByteSha256": null
+      },
+      "authorityContent": {
+        "draftRef": "t09:utterance:12",
+        "itemType": "UTTERANCE",
+        "canonicalItemId": null,
+        "identityStatus": "PENDING_IDENTITY",
+        "contentRevision": 1,
+        "presentationRef": "t09:presentation:12:r0001",
+        "presentationRevision": 1,
+        "communicativeGoal": "Xin giảm tốc độ nói",
+        "context": "Bạn nghe được nhưng người đối diện nói quá nhanh để theo kịp.",
+        "englishExactText": "Can you speak more slowly, please?",
+        "translationVi": "Bạn nói chậm hơn giúp mình được không?",
+        "translationRevision": 1,
+        "locale": "en-US",
+        "speaker": "người nghe",
+        "precedingTurn": null,
+        "response": null,
+        "beginnerRationale": "Tình huống cụ thể giúp hiểu “more slowly”; học như câu cố định.",
+        "sourceRefs": [
+          "bc-checking"
+        ],
+        "lexicalSenseCandidates": [
+          {
+            "baselineRowId": "runtime-36367",
+            "runtimeVocabularyId": 36367,
+            "masterSenseId": null,
+            "identityStatus": "PENDING_IDENTITY",
+            "relation": "EXACT_MEANING_COMPONENT_CANDIDATE",
+            "progressEffect": "NONE",
+            "reviewStatus": "COORDINATOR_REVIEW_REQUIRED"
+          }
+        ],
+        "activity": {
+          "draftRef": "t09:activity:12:listen-recall",
+          "type": "CONTEXT_LISTEN_RECALL",
+          "targetTurnRef": "t09:utterance:12",
+          "completionRule": "SELF_RECALL_CONFIRMED_SAVE",
+          "automaticSpeechScoring": false
+        },
+        "progressProposal": {
+          "ownerRef": "t09:utterance:12",
+          "namespace": "UTTERANCE",
+          "keyAfterCanonicalization": "(learnerId, UTTERANCE, canonicalItemId)",
+          "relatedSenseUpdates": false
+        },
+        "placementRefs": [
+          "t09:placement:12"
+        ],
+        "imagePolicy": "OMIT",
+        "audioSpecRef": "t09:audio:12:r0001",
+        "reviewStatus": "DRAFT_SELF_REVIEWED"
+      },
+      "originalMediaSpec": {
+        "specRef": "t09:audio:12:r0001",
+        "kind": "UTTERANCE_TARGET_AUDIO",
+        "revision": 1,
+        "status": "SPEC_ONLY",
+        "executionAllowed": false,
+        "binding": {
+          "itemRef": "t09:utterance:12",
+          "contentRevision": 1,
+          "presentationRef": "t09:presentation:12:r0001",
+          "presentationRevision": 1,
+          "activityRef": "t09:activity:12:listen-recall",
+          "activityType": "CONTEXT_LISTEN_RECALL",
+          "targetTurnRef": "t09:utterance:12",
+          "englishExactText": "Can you speak more slowly, please?",
+          "locale": "en-US"
+        },
+        "textUtf8Sha256": "6d06770a169a0c16803cc607d994999f5359b2ad8bd4caccdd3cfbace7d884e8",
+        "dependencyHashAlgorithm": "sha256-utf8-json-sortkeys-compact-t09-v1",
+        "dependencyHash": "50fb814313f37d21d08c38cd90b914f2c3c7f38a970f75a79adf124af6374b58",
+        "providerRequestHash": null,
+        "providerConfig": null,
+        "providerConfigStatus": "PENDING_COORDINATOR_WORK_ORDER",
+        "delivery": null,
+        "outputByteSha256": null,
+        "direction": "One natural clear American English target turn; no context, response, item number, translation, role name, or instructions spoken. Preserve question intonation and ordinary contractions. No music. Final voice/rate/model must be pinned by coordinator.",
+        "acceptance": [
+          "Exact target words, full turn, no omissions/additions.",
+          "Locale/voice/rate match frozen production request; human listening required, ASR alone insufficient.",
+          "Receipt pins work order, dependency hash, provider request hash, output bytes, MIME and duration.",
+          "No inherited rights/acceptance from ticket07."
+        ]
+      },
+      "deliveryEligible": false,
+      "blockers": [
+        "SPEC_ONLY_NO_AUDIO_OR_CANONICAL_ID"
+      ],
+      "componentProgressWrites": [],
+      "supportingResponseTargets": []
+    },
+    {
+      "status": "PROPOSED_OFFLINE",
+      "adapterVersion": "coordinator-r2-forward/0.2.0",
+      "draftTarget": {
+        "itemType": "LETTER_ACTIVITY",
+        "draftRef": "w08:activity:a:name"
+      },
+      "canonicalTarget": null,
+      "progressOwner": {
+        "itemType": "LETTER_ACTIVITY",
+        "draftRef": "w08:activity:a:name"
+      },
+      "revisionPins": {
+        "targetRevision": 1,
+        "presentationRevision": 2,
+        "pronunciationRevision": 1
+      },
+      "placements": [
+        {
+          "placementRef": "w08:placement:1",
+          "activityRef": "w08:activity:a:name",
+          "collectionRef": "w08:collection:first-six-letters",
+          "discoveryLevel": "intro-letters-sounds",
+          "cefr": null,
+          "schoolGrade": null,
+          "placementRevision": 1
+        }
+      ],
+      "source": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket08-draft-r0002/draft-items-r0002.json",
+        "byteSha256": "438abbea3d18cd36eb5240060187ae41180a13dbee7b550fc3044c0ce27dd82d",
+        "jsonPointer": "/activities/0"
+      },
+      "sourceMedia": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket08-draft-r0002/media-specs.json",
+        "byteSha256": "8740fc6d9d56a8107e69a2bfa6a7903ff93a75fa30aaf580dc85f1931ff3f5a3",
+        "jsonPointer": "/audioSpecs/0"
+      },
+      "sourceDependency": {
+        "algorithm": "sha256-sorted-json-worker08-v1 (recursive key sort, compact JSON.stringify, UTF-8; draft only; not JCS)",
+        "dependencyHash": "9e21f90179b156e30cefc0fd58ba4d58acca53e14bb94543219c857a22ef365a",
+        "payloadHash": "7f6a98e767eefade733c73979e37b6b512acb8344dc00278518473e40bc7485f",
+        "providerRequestHash": null,
+        "outputByteSha256": null
+      },
+      "authorityContent": {
+        "activity": {
+          "activityRef": "w08:activity:a:name",
+          "itemType": "LETTER_ACTIVITY",
+          "activityId": null,
+          "draftItemRef": "w08:letter:a",
+          "activityRevision": 1,
+          "targetKind": "LETTER_NAME",
+          "locale": "en-US",
+          "pronunciationRef": "w08:pronunciation:a:name",
+          "mode": "LISTEN_SELECT_LETTER_PAIR",
+          "sourceRefs": [
+            "cambridge-a"
+          ],
+          "readiness": "DRAFT_REVIEW_REQUIRED",
+          "presentationRevision": 2,
+          "optionLetterRefs": [
+            "w08:letter:a",
+            "w08:letter:i",
+            "w08:letter:m"
+          ],
+          "teaching": {
+            "phase": "TEACHING",
+            "graded": false,
+            "progressWriteAllowed": false,
+            "explanationVi": "Nghe tên chữ A, rồi chọn cặp chữ đúng.",
+            "coachingVi": "Tên chữ bắt đầu bằng nguyên âm rồi chuyển nhẹ; nghe mẫu, không dùng cách đánh vần tiếng Việt.",
+            "criterionVi": "Sau khi nghe tên chữ /eɪ/, chọn A/a. Chỉ chọn đúng cặp chữ mục tiêu được tính đúng.",
+            "scopeNoteVi": "Chỉ học tên chữ, không học nghĩa từ."
+          },
+          "assessment": {
+            "phase": "ASSESSMENT_PRE_ANSWER",
+            "mode": "LISTEN_SELECT_LETTER_PAIR",
+            "instructionVi": "Nghe tên chữ, rồi chọn cặp chữ đúng.",
+            "gradeAt": "AUTHORITY_AFTER_VALIDATED_SUBMISSION",
+            "sourceRevisionPins": "AUTHORITY_ONLY",
+            "teachingBeforeSubmission": "INVALIDATE_ATTEMPT_AND_DO_NOT_GRADE"
+          }
+        },
+        "pronunciationBinding": {
+          "pronunciationRef": "w08:pronunciation:a:name",
+          "pronunciationBindingId": null,
+          "activityRef": "w08:activity:a:name",
+          "draftItemRef": "w08:letter:a",
+          "targetKind": "LETTER_NAME",
+          "locale": "en-US",
+          "ipa": "/eɪ/",
+          "notation": "IPA broad phonemic target; no provider encoding",
+          "spokenText": "A",
+          "anchorWord": null,
+          "sourceRefs": [
+            "cambridge-a"
+          ],
+          "pronunciationRevision": 1
+        }
+      },
+      "originalMediaSpec": {
+        "mediaSpecRef": "w08:media:a:name",
+        "draftItemRef": "w08:letter:a",
+        "activityRef": "w08:activity:a:name",
+        "kind": "LETTER_NAME_AUDIO",
+        "executionAllowed": false,
+        "payload": {
+          "draftItemRef": "w08:letter:a",
+          "activityRef": "w08:activity:a:name",
+          "targetKind": "LETTER_NAME",
+          "pronunciationRef": "w08:pronunciation:a:name",
+          "pronunciationRevision": 1,
+          "locale": "en-US",
+          "spokenText": "A",
+          "targetIpa": "/eɪ/",
+          "anchorWord": null,
+          "speakAnchorWord": false,
+          "speakInstruction": false,
+          "ssml": null,
+          "providerPhonemePayload": null,
+          "renderMode": "LETTER_NAME_TTS_CANDIDATE",
+          "directionVi": "Chỉ đọc một tên chữ A theo /eɪ/; không đọc câu giải thích, không đọc từ neo.",
+          "output": {
+            "proposedMime": "audio/mpeg",
+            "channels": 1,
+            "leadingSilenceMaxMs": 200,
+            "trailingSilenceMaxMs": 300,
+            "normalization": "Consistent perceived volume; no clipping; final loudness/codec decided with provider"
+          },
+          "provider": null,
+          "model": null,
+          "voice": null,
+          "rate": null
+        },
+        "dependency": {
+          "activityRef": "w08:activity:a:name",
+          "draftItemRef": "w08:letter:a",
+          "targetKind": "LETTER_NAME",
+          "pronunciationRef": "w08:pronunciation:a:name",
+          "pronunciationRevision": 1,
+          "ipa": "/eɪ/",
+          "locale": "en-US",
+          "spokenText": "A",
+          "sourceRefs": [
+            "cambridge-a"
+          ]
+        },
+        "payloadHash": "7f6a98e767eefade733c73979e37b6b512acb8344dc00278518473e40bc7485f",
+        "dependencyHash": "9e21f90179b156e30cefc0fd58ba4d58acca53e14bb94543219c857a22ef365a",
+        "providerRequestHash": null,
+        "outputByteSha256": null,
+        "reuseStatus": "NO_VERIFIED_REUSABLE_ASSET",
+        "requiredReview": [
+          "Correct en-US target and kind",
+          "Independent human listening; isolated sounds must have no added vowel",
+          "Exact activity/locale/payload binding and decoded bytes",
+          "Provenance and rights acceptance"
+        ],
+        "fallbackVi": "Nếu TTS đọc sai chữ, dùng thu âm tên chữ riêng."
+      },
+      "deliveryEligible": false,
+      "blockers": [
+        "SPEC_ONLY_NO_AUDIO_OR_CANONICAL_ID",
+        "RUNTIME_IMPLEMENTATION_PENDING"
+      ],
+      "componentProgressWrites": [],
+      "supportingResponseTargets": []
+    },
+    {
+      "status": "PROPOSED_OFFLINE",
+      "adapterVersion": "coordinator-r2-forward/0.2.0",
+      "draftTarget": {
+        "itemType": "LETTER_ACTIVITY",
+        "draftRef": "w08:activity:a:sound"
+      },
+      "canonicalTarget": null,
+      "progressOwner": {
+        "itemType": "LETTER_ACTIVITY",
+        "draftRef": "w08:activity:a:sound"
+      },
+      "revisionPins": {
+        "targetRevision": 1,
+        "presentationRevision": 2,
+        "pronunciationRevision": 1
+      },
+      "placements": [
+        {
+          "placementRef": "w08:placement:2",
+          "activityRef": "w08:activity:a:sound",
+          "collectionRef": "w08:collection:first-six-letters",
+          "discoveryLevel": "intro-letters-sounds",
+          "cefr": null,
+          "schoolGrade": null,
+          "placementRevision": 1
+        }
+      ],
+      "source": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket08-draft-r0002/draft-items-r0002.json",
+        "byteSha256": "438abbea3d18cd36eb5240060187ae41180a13dbee7b550fc3044c0ce27dd82d",
+        "jsonPointer": "/activities/1"
+      },
+      "sourceMedia": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket08-draft-r0002/media-specs.json",
+        "byteSha256": "8740fc6d9d56a8107e69a2bfa6a7903ff93a75fa30aaf580dc85f1931ff3f5a3",
+        "jsonPointer": "/audioSpecs/1"
+      },
+      "sourceDependency": {
+        "algorithm": "sha256-sorted-json-worker08-v1 (recursive key sort, compact JSON.stringify, UTF-8; draft only; not JCS)",
+        "dependencyHash": "9173e09a7259fe2ee6de3a9d203c41083d8ec49febfc6cad0e79eecd550d21b1",
+        "payloadHash": "dd5fa0075b69ca206b4717dc1638ddc335e5220e448bff24b91e1a3e58004e13",
+        "providerRequestHash": null,
+        "outputByteSha256": null
+      },
+      "authorityContent": {
+        "activity": {
+          "activityRef": "w08:activity:a:sound",
+          "itemType": "LETTER_ACTIVITY",
+          "activityId": null,
+          "draftItemRef": "w08:letter:a",
+          "activityRevision": 1,
+          "targetKind": "LETTER_SOUND",
+          "locale": "en-US",
+          "pronunciationRef": "w08:pronunciation:a:sound",
+          "mode": "LISTEN_SELECT_LETTER_PAIR",
+          "sourceRefs": [
+            "oxford-us-guide",
+            "amplify-continuous",
+            "ipa-chart"
+          ],
+          "readiness": "DRAFT_REVIEW_REQUIRED",
+          "presentationRevision": 2,
+          "optionLetterRefs": [
+            "w08:letter:i",
+            "w08:letter:a",
+            "w08:letter:m"
+          ],
+          "teaching": {
+            "phase": "TEACHING",
+            "graded": false,
+            "progressWriteAllowed": false,
+            "explanationVi": "Trong hoạt động này, a biểu diễn /æ/ như âm giữa của mat.",
+            "coachingVi": "Mở miệng, nghe mẫu /æ/ ngắn; không đọc tên chữ /eɪ/.",
+            "criterionVi": "Sau khi nghe âm /æ/, chọn A/a. Chỉ chọn đúng cặp chữ mục tiêu được tính đúng.",
+            "scopeNoteVi": "Chỉ chọn âm /æ/ trong ngữ cảnh mat; không khẳng định chữ a luôn có âm này."
+          },
+          "assessment": {
+            "phase": "ASSESSMENT_PRE_ANSWER",
+            "mode": "LISTEN_SELECT_LETTER_PAIR",
+            "instructionVi": "Nghe âm, rồi chọn cặp chữ đúng.",
+            "gradeAt": "AUTHORITY_AFTER_VALIDATED_SUBMISSION",
+            "sourceRevisionPins": "AUTHORITY_ONLY",
+            "teachingBeforeSubmission": "INVALIDATE_ATTEMPT_AND_DO_NOT_GRADE"
+          }
+        },
+        "pronunciationBinding": {
+          "pronunciationRef": "w08:pronunciation:a:sound",
+          "pronunciationBindingId": null,
+          "activityRef": "w08:activity:a:sound",
+          "draftItemRef": "w08:letter:a",
+          "targetKind": "LETTER_SOUND",
+          "locale": "en-US",
+          "ipa": "/æ/",
+          "notation": "IPA broad phonemic target; no provider encoding",
+          "spokenText": null,
+          "anchorWord": "mat",
+          "sourceRefs": [
+            "oxford-us-guide",
+            "amplify-continuous",
+            "ipa-chart"
+          ],
+          "pronunciationRevision": 1
+        }
+      },
+      "originalMediaSpec": {
+        "mediaSpecRef": "w08:media:a:sound",
+        "draftItemRef": "w08:letter:a",
+        "activityRef": "w08:activity:a:sound",
+        "kind": "LETTER_SOUND_AUDIO",
+        "executionAllowed": false,
+        "payload": {
+          "draftItemRef": "w08:letter:a",
+          "activityRef": "w08:activity:a:sound",
+          "targetKind": "LETTER_SOUND",
+          "pronunciationRef": "w08:pronunciation:a:sound",
+          "pronunciationRevision": 1,
+          "locale": "en-US",
+          "spokenText": null,
+          "targetIpa": "/æ/",
+          "anchorWord": "mat",
+          "speakAnchorWord": false,
+          "speakInstruction": false,
+          "ssml": null,
+          "providerPhonemePayload": null,
+          "renderMode": "SPECIALIST_ISOLATED_SOUND_RECORDING_REQUIRED",
+          "directionVi": "Chỉ phát một âm /æ/; không đọc chữ A, từ mat, tên IPA hoặc nguyên âm đệm. Mở miệng, nghe mẫu /æ/ ngắn; không đọc tên chữ /eɪ/.",
+          "output": {
+            "proposedMime": "audio/mpeg",
+            "channels": 1,
+            "leadingSilenceMaxMs": 200,
+            "trailingSilenceMaxMs": 300,
+            "normalization": "Consistent perceived volume; no clipping; final loudness/codec decided with provider"
+          },
+          "provider": null,
+          "model": null,
+          "voice": null,
+          "rate": null
+        },
+        "dependency": {
+          "activityRef": "w08:activity:a:sound",
+          "draftItemRef": "w08:letter:a",
+          "targetKind": "LETTER_SOUND",
+          "pronunciationRef": "w08:pronunciation:a:sound",
+          "pronunciationRevision": 1,
+          "ipa": "/æ/",
+          "locale": "en-US",
+          "spokenText": null,
+          "sourceRefs": [
+            "oxford-us-guide",
+            "amplify-continuous",
+            "ipa-chart"
+          ]
+        },
+        "payloadHash": "dd5fa0075b69ca206b4717dc1638ddc335e5220e448bff24b91e1a3e58004e13",
+        "dependencyHash": "9173e09a7259fe2ee6de3a9d203c41083d8ec49febfc6cad0e79eecd550d21b1",
+        "providerRequestHash": null,
+        "outputByteSha256": null,
+        "reuseStatus": "NO_VERIFIED_REUSABLE_ASSET",
+        "requiredReview": [
+          "Correct en-US target and kind",
+          "Independent human listening; isolated sounds must have no added vowel",
+          "Exact activity/locale/payload binding and decoded bytes",
+          "Provenance and rights acceptance"
+        ],
+        "fallbackVi": "Nếu TTS chỉ đọc tên chữ, không dùng clip đó. Thu âm âm đơn chuyên biệt; không cắt từ neo bằng máy để giả âm đơn."
+      },
+      "deliveryEligible": false,
+      "blockers": [
+        "SPEC_ONLY_NO_AUDIO_OR_CANONICAL_ID",
+        "RUNTIME_IMPLEMENTATION_PENDING"
+      ],
+      "componentProgressWrites": [],
+      "supportingResponseTargets": []
+    },
+    {
+      "status": "PROPOSED_OFFLINE",
+      "adapterVersion": "coordinator-r2-forward/0.2.0",
+      "draftTarget": {
+        "itemType": "LETTER_ACTIVITY",
+        "draftRef": "w08:activity:i:name"
+      },
+      "canonicalTarget": null,
+      "progressOwner": {
+        "itemType": "LETTER_ACTIVITY",
+        "draftRef": "w08:activity:i:name"
+      },
+      "revisionPins": {
+        "targetRevision": 1,
+        "presentationRevision": 2,
+        "pronunciationRevision": 1
+      },
+      "placements": [
+        {
+          "placementRef": "w08:placement:3",
+          "activityRef": "w08:activity:i:name",
+          "collectionRef": "w08:collection:first-six-letters",
+          "discoveryLevel": "intro-letters-sounds",
+          "cefr": null,
+          "schoolGrade": null,
+          "placementRevision": 1
+        }
+      ],
+      "source": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket08-draft-r0002/draft-items-r0002.json",
+        "byteSha256": "438abbea3d18cd36eb5240060187ae41180a13dbee7b550fc3044c0ce27dd82d",
+        "jsonPointer": "/activities/2"
+      },
+      "sourceMedia": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket08-draft-r0002/media-specs.json",
+        "byteSha256": "8740fc6d9d56a8107e69a2bfa6a7903ff93a75fa30aaf580dc85f1931ff3f5a3",
+        "jsonPointer": "/audioSpecs/2"
+      },
+      "sourceDependency": {
+        "algorithm": "sha256-sorted-json-worker08-v1 (recursive key sort, compact JSON.stringify, UTF-8; draft only; not JCS)",
+        "dependencyHash": "4d3d47dad4108c6cbc0acfa0054c9a85887bff5394cf98bfe4d02a884aa86614",
+        "payloadHash": "a18f25d2b654eada83be58c3b32523fd02e22978a150536cb77faa26bafd0e5d",
+        "providerRequestHash": null,
+        "outputByteSha256": null
+      },
+      "authorityContent": {
+        "activity": {
+          "activityRef": "w08:activity:i:name",
+          "itemType": "LETTER_ACTIVITY",
+          "activityId": null,
+          "draftItemRef": "w08:letter:i",
+          "activityRevision": 1,
+          "targetKind": "LETTER_NAME",
+          "locale": "en-US",
+          "pronunciationRef": "w08:pronunciation:i:name",
+          "mode": "LISTEN_SELECT_LETTER_PAIR",
+          "sourceRefs": [
+            "cambridge-i"
+          ],
+          "readiness": "DRAFT_REVIEW_REQUIRED",
+          "presentationRevision": 2,
+          "optionLetterRefs": [
+            "w08:letter:a",
+            "w08:letter:m",
+            "w08:letter:i"
+          ],
+          "teaching": {
+            "phase": "TEACHING",
+            "graded": false,
+            "progressWriteAllowed": false,
+            "explanationVi": "Nghe tên chữ I, rồi chọn cặp chữ đúng.",
+            "coachingVi": "Nghe trọn tên chữ /aɪ/; không đọc thành tên chữ i tiếng Việt.",
+            "criterionVi": "Sau khi nghe tên chữ /aɪ/, chọn I/i. Chỉ chọn đúng cặp chữ mục tiêu được tính đúng.",
+            "scopeNoteVi": "Chỉ học tên chữ, không học nghĩa từ."
+          },
+          "assessment": {
+            "phase": "ASSESSMENT_PRE_ANSWER",
+            "mode": "LISTEN_SELECT_LETTER_PAIR",
+            "instructionVi": "Nghe tên chữ, rồi chọn cặp chữ đúng.",
+            "gradeAt": "AUTHORITY_AFTER_VALIDATED_SUBMISSION",
+            "sourceRevisionPins": "AUTHORITY_ONLY",
+            "teachingBeforeSubmission": "INVALIDATE_ATTEMPT_AND_DO_NOT_GRADE"
+          }
+        },
+        "pronunciationBinding": {
+          "pronunciationRef": "w08:pronunciation:i:name",
+          "pronunciationBindingId": null,
+          "activityRef": "w08:activity:i:name",
+          "draftItemRef": "w08:letter:i",
+          "targetKind": "LETTER_NAME",
+          "locale": "en-US",
+          "ipa": "/aɪ/",
+          "notation": "IPA broad phonemic target; no provider encoding",
+          "spokenText": "I",
+          "anchorWord": null,
+          "sourceRefs": [
+            "cambridge-i"
+          ],
+          "pronunciationRevision": 1
+        }
+      },
+      "originalMediaSpec": {
+        "mediaSpecRef": "w08:media:i:name",
+        "draftItemRef": "w08:letter:i",
+        "activityRef": "w08:activity:i:name",
+        "kind": "LETTER_NAME_AUDIO",
+        "executionAllowed": false,
+        "payload": {
+          "draftItemRef": "w08:letter:i",
+          "activityRef": "w08:activity:i:name",
+          "targetKind": "LETTER_NAME",
+          "pronunciationRef": "w08:pronunciation:i:name",
+          "pronunciationRevision": 1,
+          "locale": "en-US",
+          "spokenText": "I",
+          "targetIpa": "/aɪ/",
+          "anchorWord": null,
+          "speakAnchorWord": false,
+          "speakInstruction": false,
+          "ssml": null,
+          "providerPhonemePayload": null,
+          "renderMode": "LETTER_NAME_TTS_CANDIDATE",
+          "directionVi": "Chỉ đọc một tên chữ I theo /aɪ/; không đọc câu giải thích, không đọc từ neo.",
+          "output": {
+            "proposedMime": "audio/mpeg",
+            "channels": 1,
+            "leadingSilenceMaxMs": 200,
+            "trailingSilenceMaxMs": 300,
+            "normalization": "Consistent perceived volume; no clipping; final loudness/codec decided with provider"
+          },
+          "provider": null,
+          "model": null,
+          "voice": null,
+          "rate": null
+        },
+        "dependency": {
+          "activityRef": "w08:activity:i:name",
+          "draftItemRef": "w08:letter:i",
+          "targetKind": "LETTER_NAME",
+          "pronunciationRef": "w08:pronunciation:i:name",
+          "pronunciationRevision": 1,
+          "ipa": "/aɪ/",
+          "locale": "en-US",
+          "spokenText": "I",
+          "sourceRefs": [
+            "cambridge-i"
+          ]
+        },
+        "payloadHash": "a18f25d2b654eada83be58c3b32523fd02e22978a150536cb77faa26bafd0e5d",
+        "dependencyHash": "4d3d47dad4108c6cbc0acfa0054c9a85887bff5394cf98bfe4d02a884aa86614",
+        "providerRequestHash": null,
+        "outputByteSha256": null,
+        "reuseStatus": "NO_VERIFIED_REUSABLE_ASSET",
+        "requiredReview": [
+          "Correct en-US target and kind",
+          "Independent human listening; isolated sounds must have no added vowel",
+          "Exact activity/locale/payload binding and decoded bytes",
+          "Provenance and rights acceptance"
+        ],
+        "fallbackVi": "Nếu TTS đọc sai chữ, dùng thu âm tên chữ riêng."
+      },
+      "deliveryEligible": false,
+      "blockers": [
+        "SPEC_ONLY_NO_AUDIO_OR_CANONICAL_ID",
+        "RUNTIME_IMPLEMENTATION_PENDING"
+      ],
+      "componentProgressWrites": [],
+      "supportingResponseTargets": []
+    },
+    {
+      "status": "PROPOSED_OFFLINE",
+      "adapterVersion": "coordinator-r2-forward/0.2.0",
+      "draftTarget": {
+        "itemType": "LETTER_ACTIVITY",
+        "draftRef": "w08:activity:i:sound"
+      },
+      "canonicalTarget": null,
+      "progressOwner": {
+        "itemType": "LETTER_ACTIVITY",
+        "draftRef": "w08:activity:i:sound"
+      },
+      "revisionPins": {
+        "targetRevision": 1,
+        "presentationRevision": 2,
+        "pronunciationRevision": 1
+      },
+      "placements": [
+        {
+          "placementRef": "w08:placement:4",
+          "activityRef": "w08:activity:i:sound",
+          "collectionRef": "w08:collection:first-six-letters",
+          "discoveryLevel": "intro-letters-sounds",
+          "cefr": null,
+          "schoolGrade": null,
+          "placementRevision": 1
+        }
+      ],
+      "source": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket08-draft-r0002/draft-items-r0002.json",
+        "byteSha256": "438abbea3d18cd36eb5240060187ae41180a13dbee7b550fc3044c0ce27dd82d",
+        "jsonPointer": "/activities/3"
+      },
+      "sourceMedia": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket08-draft-r0002/media-specs.json",
+        "byteSha256": "8740fc6d9d56a8107e69a2bfa6a7903ff93a75fa30aaf580dc85f1931ff3f5a3",
+        "jsonPointer": "/audioSpecs/3"
+      },
+      "sourceDependency": {
+        "algorithm": "sha256-sorted-json-worker08-v1 (recursive key sort, compact JSON.stringify, UTF-8; draft only; not JCS)",
+        "dependencyHash": "1d83d983c67721bcb71749657fb9f9895c8d9d9ea9955d026d017975ed482baa",
+        "payloadHash": "db29259c7e886c24872b5746de2ed13e286df29c9a007bf7dfdf222b50a2a1c7",
+        "providerRequestHash": null,
+        "outputByteSha256": null
+      },
+      "authorityContent": {
+        "activity": {
+          "activityRef": "w08:activity:i:sound",
+          "itemType": "LETTER_ACTIVITY",
+          "activityId": null,
+          "draftItemRef": "w08:letter:i",
+          "activityRevision": 1,
+          "targetKind": "LETTER_SOUND",
+          "locale": "en-US",
+          "pronunciationRef": "w08:pronunciation:i:sound",
+          "mode": "LISTEN_SELECT_LETTER_PAIR",
+          "sourceRefs": [
+            "oxford-us-guide",
+            "amplify-continuous",
+            "ipa-chart"
+          ],
+          "readiness": "DRAFT_REVIEW_REQUIRED",
+          "presentationRevision": 2,
+          "optionLetterRefs": [
+            "w08:letter:i",
+            "w08:letter:a",
+            "w08:letter:m"
+          ],
+          "teaching": {
+            "phase": "TEACHING",
+            "graded": false,
+            "progressWriteAllowed": false,
+            "explanationVi": "Trong hoạt động này, i biểu diễn /ɪ/ như âm giữa của sit.",
+            "coachingVi": "Nghe mẫu nguyên âm ngắn /ɪ/; không kéo thành /iː/ hoặc đọc tên chữ /aɪ/.",
+            "criterionVi": "Sau khi nghe âm /ɪ/, chọn I/i. Chỉ chọn đúng cặp chữ mục tiêu được tính đúng.",
+            "scopeNoteVi": "Chỉ chọn âm /ɪ/ trong ngữ cảnh sit; không khẳng định chữ i luôn có âm này."
+          },
+          "assessment": {
+            "phase": "ASSESSMENT_PRE_ANSWER",
+            "mode": "LISTEN_SELECT_LETTER_PAIR",
+            "instructionVi": "Nghe âm, rồi chọn cặp chữ đúng.",
+            "gradeAt": "AUTHORITY_AFTER_VALIDATED_SUBMISSION",
+            "sourceRevisionPins": "AUTHORITY_ONLY",
+            "teachingBeforeSubmission": "INVALIDATE_ATTEMPT_AND_DO_NOT_GRADE"
+          }
+        },
+        "pronunciationBinding": {
+          "pronunciationRef": "w08:pronunciation:i:sound",
+          "pronunciationBindingId": null,
+          "activityRef": "w08:activity:i:sound",
+          "draftItemRef": "w08:letter:i",
+          "targetKind": "LETTER_SOUND",
+          "locale": "en-US",
+          "ipa": "/ɪ/",
+          "notation": "IPA broad phonemic target; no provider encoding",
+          "spokenText": null,
+          "anchorWord": "sit",
+          "sourceRefs": [
+            "oxford-us-guide",
+            "amplify-continuous",
+            "ipa-chart"
+          ],
+          "pronunciationRevision": 1
+        }
+      },
+      "originalMediaSpec": {
+        "mediaSpecRef": "w08:media:i:sound",
+        "draftItemRef": "w08:letter:i",
+        "activityRef": "w08:activity:i:sound",
+        "kind": "LETTER_SOUND_AUDIO",
+        "executionAllowed": false,
+        "payload": {
+          "draftItemRef": "w08:letter:i",
+          "activityRef": "w08:activity:i:sound",
+          "targetKind": "LETTER_SOUND",
+          "pronunciationRef": "w08:pronunciation:i:sound",
+          "pronunciationRevision": 1,
+          "locale": "en-US",
+          "spokenText": null,
+          "targetIpa": "/ɪ/",
+          "anchorWord": "sit",
+          "speakAnchorWord": false,
+          "speakInstruction": false,
+          "ssml": null,
+          "providerPhonemePayload": null,
+          "renderMode": "SPECIALIST_ISOLATED_SOUND_RECORDING_REQUIRED",
+          "directionVi": "Chỉ phát một âm /ɪ/; không đọc chữ I, từ sit, tên IPA hoặc nguyên âm đệm. Nghe mẫu nguyên âm ngắn /ɪ/; không kéo thành /iː/ hoặc đọc tên chữ /aɪ/.",
+          "output": {
+            "proposedMime": "audio/mpeg",
+            "channels": 1,
+            "leadingSilenceMaxMs": 200,
+            "trailingSilenceMaxMs": 300,
+            "normalization": "Consistent perceived volume; no clipping; final loudness/codec decided with provider"
+          },
+          "provider": null,
+          "model": null,
+          "voice": null,
+          "rate": null
+        },
+        "dependency": {
+          "activityRef": "w08:activity:i:sound",
+          "draftItemRef": "w08:letter:i",
+          "targetKind": "LETTER_SOUND",
+          "pronunciationRef": "w08:pronunciation:i:sound",
+          "pronunciationRevision": 1,
+          "ipa": "/ɪ/",
+          "locale": "en-US",
+          "spokenText": null,
+          "sourceRefs": [
+            "oxford-us-guide",
+            "amplify-continuous",
+            "ipa-chart"
+          ]
+        },
+        "payloadHash": "db29259c7e886c24872b5746de2ed13e286df29c9a007bf7dfdf222b50a2a1c7",
+        "dependencyHash": "1d83d983c67721bcb71749657fb9f9895c8d9d9ea9955d026d017975ed482baa",
+        "providerRequestHash": null,
+        "outputByteSha256": null,
+        "reuseStatus": "NO_VERIFIED_REUSABLE_ASSET",
+        "requiredReview": [
+          "Correct en-US target and kind",
+          "Independent human listening; isolated sounds must have no added vowel",
+          "Exact activity/locale/payload binding and decoded bytes",
+          "Provenance and rights acceptance"
+        ],
+        "fallbackVi": "Nếu TTS chỉ đọc tên chữ, không dùng clip đó. Thu âm âm đơn chuyên biệt; không cắt từ neo bằng máy để giả âm đơn."
+      },
+      "deliveryEligible": false,
+      "blockers": [
+        "SPEC_ONLY_NO_AUDIO_OR_CANONICAL_ID",
+        "RUNTIME_IMPLEMENTATION_PENDING"
+      ],
+      "componentProgressWrites": [],
+      "supportingResponseTargets": []
+    },
+    {
+      "status": "PROPOSED_OFFLINE",
+      "adapterVersion": "coordinator-r2-forward/0.2.0",
+      "draftTarget": {
+        "itemType": "LETTER_ACTIVITY",
+        "draftRef": "w08:activity:m:name"
+      },
+      "canonicalTarget": null,
+      "progressOwner": {
+        "itemType": "LETTER_ACTIVITY",
+        "draftRef": "w08:activity:m:name"
+      },
+      "revisionPins": {
+        "targetRevision": 1,
+        "presentationRevision": 2,
+        "pronunciationRevision": 1
+      },
+      "placements": [
+        {
+          "placementRef": "w08:placement:5",
+          "activityRef": "w08:activity:m:name",
+          "collectionRef": "w08:collection:first-six-letters",
+          "discoveryLevel": "intro-letters-sounds",
+          "cefr": null,
+          "schoolGrade": null,
+          "placementRevision": 1
+        }
+      ],
+      "source": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket08-draft-r0002/draft-items-r0002.json",
+        "byteSha256": "438abbea3d18cd36eb5240060187ae41180a13dbee7b550fc3044c0ce27dd82d",
+        "jsonPointer": "/activities/4"
+      },
+      "sourceMedia": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket08-draft-r0002/media-specs.json",
+        "byteSha256": "8740fc6d9d56a8107e69a2bfa6a7903ff93a75fa30aaf580dc85f1931ff3f5a3",
+        "jsonPointer": "/audioSpecs/4"
+      },
+      "sourceDependency": {
+        "algorithm": "sha256-sorted-json-worker08-v1 (recursive key sort, compact JSON.stringify, UTF-8; draft only; not JCS)",
+        "dependencyHash": "fc5d540315d0586fcfe9496c2557a41d9fec3e9f213fced8213454b1b5056175",
+        "payloadHash": "9d5913c2f784e6901b6cd42701d501b263a3d2f4246665660de316a245826fcf",
+        "providerRequestHash": null,
+        "outputByteSha256": null
+      },
+      "authorityContent": {
+        "activity": {
+          "activityRef": "w08:activity:m:name",
+          "itemType": "LETTER_ACTIVITY",
+          "activityId": null,
+          "draftItemRef": "w08:letter:m",
+          "activityRevision": 1,
+          "targetKind": "LETTER_NAME",
+          "locale": "en-US",
+          "pronunciationRef": "w08:pronunciation:m:name",
+          "mode": "LISTEN_SELECT_LETTER_PAIR",
+          "sourceRefs": [
+            "cambridge-m"
+          ],
+          "readiness": "DRAFT_REVIEW_REQUIRED",
+          "presentationRevision": 2,
+          "optionLetterRefs": [
+            "w08:letter:a",
+            "w08:letter:m",
+            "w08:letter:i"
+          ],
+          "teaching": {
+            "phase": "TEACHING",
+            "graded": false,
+            "progressWriteAllowed": false,
+            "explanationVi": "Nghe tên chữ M, rồi chọn cặp chữ đúng.",
+            "coachingVi": "Nghe cả tên chữ /em/, gồm nguyên âm và âm cuối.",
+            "criterionVi": "Sau khi nghe tên chữ /em/, chọn M/m. Chỉ chọn đúng cặp chữ mục tiêu được tính đúng.",
+            "scopeNoteVi": "Chỉ học tên chữ, không học nghĩa từ."
+          },
+          "assessment": {
+            "phase": "ASSESSMENT_PRE_ANSWER",
+            "mode": "LISTEN_SELECT_LETTER_PAIR",
+            "instructionVi": "Nghe tên chữ, rồi chọn cặp chữ đúng.",
+            "gradeAt": "AUTHORITY_AFTER_VALIDATED_SUBMISSION",
+            "sourceRevisionPins": "AUTHORITY_ONLY",
+            "teachingBeforeSubmission": "INVALIDATE_ATTEMPT_AND_DO_NOT_GRADE"
+          }
+        },
+        "pronunciationBinding": {
+          "pronunciationRef": "w08:pronunciation:m:name",
+          "pronunciationBindingId": null,
+          "activityRef": "w08:activity:m:name",
+          "draftItemRef": "w08:letter:m",
+          "targetKind": "LETTER_NAME",
+          "locale": "en-US",
+          "ipa": "/em/",
+          "notation": "IPA broad phonemic target; no provider encoding",
+          "spokenText": "M",
+          "anchorWord": null,
+          "sourceRefs": [
+            "cambridge-m"
+          ],
+          "pronunciationRevision": 1
+        }
+      },
+      "originalMediaSpec": {
+        "mediaSpecRef": "w08:media:m:name",
+        "draftItemRef": "w08:letter:m",
+        "activityRef": "w08:activity:m:name",
+        "kind": "LETTER_NAME_AUDIO",
+        "executionAllowed": false,
+        "payload": {
+          "draftItemRef": "w08:letter:m",
+          "activityRef": "w08:activity:m:name",
+          "targetKind": "LETTER_NAME",
+          "pronunciationRef": "w08:pronunciation:m:name",
+          "pronunciationRevision": 1,
+          "locale": "en-US",
+          "spokenText": "M",
+          "targetIpa": "/em/",
+          "anchorWord": null,
+          "speakAnchorWord": false,
+          "speakInstruction": false,
+          "ssml": null,
+          "providerPhonemePayload": null,
+          "renderMode": "LETTER_NAME_TTS_CANDIDATE",
+          "directionVi": "Chỉ đọc một tên chữ M theo /em/; không đọc câu giải thích, không đọc từ neo.",
+          "output": {
+            "proposedMime": "audio/mpeg",
+            "channels": 1,
+            "leadingSilenceMaxMs": 200,
+            "trailingSilenceMaxMs": 300,
+            "normalization": "Consistent perceived volume; no clipping; final loudness/codec decided with provider"
+          },
+          "provider": null,
+          "model": null,
+          "voice": null,
+          "rate": null
+        },
+        "dependency": {
+          "activityRef": "w08:activity:m:name",
+          "draftItemRef": "w08:letter:m",
+          "targetKind": "LETTER_NAME",
+          "pronunciationRef": "w08:pronunciation:m:name",
+          "pronunciationRevision": 1,
+          "ipa": "/em/",
+          "locale": "en-US",
+          "spokenText": "M",
+          "sourceRefs": [
+            "cambridge-m"
+          ]
+        },
+        "payloadHash": "9d5913c2f784e6901b6cd42701d501b263a3d2f4246665660de316a245826fcf",
+        "dependencyHash": "fc5d540315d0586fcfe9496c2557a41d9fec3e9f213fced8213454b1b5056175",
+        "providerRequestHash": null,
+        "outputByteSha256": null,
+        "reuseStatus": "NO_VERIFIED_REUSABLE_ASSET",
+        "requiredReview": [
+          "Correct en-US target and kind",
+          "Independent human listening; isolated sounds must have no added vowel",
+          "Exact activity/locale/payload binding and decoded bytes",
+          "Provenance and rights acceptance"
+        ],
+        "fallbackVi": "Nếu TTS đọc sai chữ, dùng thu âm tên chữ riêng."
+      },
+      "deliveryEligible": false,
+      "blockers": [
+        "SPEC_ONLY_NO_AUDIO_OR_CANONICAL_ID",
+        "RUNTIME_IMPLEMENTATION_PENDING"
+      ],
+      "componentProgressWrites": [],
+      "supportingResponseTargets": []
+    },
+    {
+      "status": "PROPOSED_OFFLINE",
+      "adapterVersion": "coordinator-r2-forward/0.2.0",
+      "draftTarget": {
+        "itemType": "LETTER_ACTIVITY",
+        "draftRef": "w08:activity:m:sound"
+      },
+      "canonicalTarget": null,
+      "progressOwner": {
+        "itemType": "LETTER_ACTIVITY",
+        "draftRef": "w08:activity:m:sound"
+      },
+      "revisionPins": {
+        "targetRevision": 1,
+        "presentationRevision": 2,
+        "pronunciationRevision": 1
+      },
+      "placements": [
+        {
+          "placementRef": "w08:placement:6",
+          "activityRef": "w08:activity:m:sound",
+          "collectionRef": "w08:collection:first-six-letters",
+          "discoveryLevel": "intro-letters-sounds",
+          "cefr": null,
+          "schoolGrade": null,
+          "placementRevision": 1
+        }
+      ],
+      "source": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket08-draft-r0002/draft-items-r0002.json",
+        "byteSha256": "438abbea3d18cd36eb5240060187ae41180a13dbee7b550fc3044c0ce27dd82d",
+        "jsonPointer": "/activities/5"
+      },
+      "sourceMedia": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket08-draft-r0002/media-specs.json",
+        "byteSha256": "8740fc6d9d56a8107e69a2bfa6a7903ff93a75fa30aaf580dc85f1931ff3f5a3",
+        "jsonPointer": "/audioSpecs/5"
+      },
+      "sourceDependency": {
+        "algorithm": "sha256-sorted-json-worker08-v1 (recursive key sort, compact JSON.stringify, UTF-8; draft only; not JCS)",
+        "dependencyHash": "aaa861b188e9cb762672ecb65a8e5ce6365e1e44501fd5a2c53d841db800a9b7",
+        "payloadHash": "994cae6b2a2b93fd6fd5cde945c561c9250b37403c9f01fbce217d4ca79b36f3",
+        "providerRequestHash": null,
+        "outputByteSha256": null
+      },
+      "authorityContent": {
+        "activity": {
+          "activityRef": "w08:activity:m:sound",
+          "itemType": "LETTER_ACTIVITY",
+          "activityId": null,
+          "draftItemRef": "w08:letter:m",
+          "activityRevision": 1,
+          "targetKind": "LETTER_SOUND",
+          "locale": "en-US",
+          "pronunciationRef": "w08:pronunciation:m:sound",
+          "mode": "LISTEN_SELECT_LETTER_PAIR",
+          "sourceRefs": [
+            "oxford-us-guide",
+            "amplify-continuous",
+            "ipa-chart"
+          ],
+          "readiness": "DRAFT_REVIEW_REQUIRED",
+          "presentationRevision": 2,
+          "optionLetterRefs": [
+            "w08:letter:a",
+            "w08:letter:i",
+            "w08:letter:m"
+          ],
+          "teaching": {
+            "phase": "TEACHING",
+            "graded": false,
+            "progressWriteAllowed": false,
+            "explanationVi": "Trong hoạt động này, m biểu diễn âm đầu /m/ của mad.",
+            "coachingVi": "Khép hai môi, ngân nhẹ âm /m/; không thêm nguyên âm và không đọc tên chữ /em/.",
+            "criterionVi": "Sau khi nghe âm /m/, chọn M/m. Chỉ chọn đúng cặp chữ mục tiêu được tính đúng.",
+            "scopeNoteVi": "Chỉ chọn âm /m/ trong ngữ cảnh mad; không khẳng định chữ m luôn có âm này."
+          },
+          "assessment": {
+            "phase": "ASSESSMENT_PRE_ANSWER",
+            "mode": "LISTEN_SELECT_LETTER_PAIR",
+            "instructionVi": "Nghe âm, rồi chọn cặp chữ đúng.",
+            "gradeAt": "AUTHORITY_AFTER_VALIDATED_SUBMISSION",
+            "sourceRevisionPins": "AUTHORITY_ONLY",
+            "teachingBeforeSubmission": "INVALIDATE_ATTEMPT_AND_DO_NOT_GRADE"
+          }
+        },
+        "pronunciationBinding": {
+          "pronunciationRef": "w08:pronunciation:m:sound",
+          "pronunciationBindingId": null,
+          "activityRef": "w08:activity:m:sound",
+          "draftItemRef": "w08:letter:m",
+          "targetKind": "LETTER_SOUND",
+          "locale": "en-US",
+          "ipa": "/m/",
+          "notation": "IPA broad phonemic target; no provider encoding",
+          "spokenText": null,
+          "anchorWord": "mad",
+          "sourceRefs": [
+            "oxford-us-guide",
+            "amplify-continuous",
+            "ipa-chart"
+          ],
+          "pronunciationRevision": 1
+        }
+      },
+      "originalMediaSpec": {
+        "mediaSpecRef": "w08:media:m:sound",
+        "draftItemRef": "w08:letter:m",
+        "activityRef": "w08:activity:m:sound",
+        "kind": "LETTER_SOUND_AUDIO",
+        "executionAllowed": false,
+        "payload": {
+          "draftItemRef": "w08:letter:m",
+          "activityRef": "w08:activity:m:sound",
+          "targetKind": "LETTER_SOUND",
+          "pronunciationRef": "w08:pronunciation:m:sound",
+          "pronunciationRevision": 1,
+          "locale": "en-US",
+          "spokenText": null,
+          "targetIpa": "/m/",
+          "anchorWord": "mad",
+          "speakAnchorWord": false,
+          "speakInstruction": false,
+          "ssml": null,
+          "providerPhonemePayload": null,
+          "renderMode": "SPECIALIST_ISOLATED_SOUND_RECORDING_REQUIRED",
+          "directionVi": "Chỉ phát một âm /m/; không đọc chữ M, từ mad, tên IPA hoặc nguyên âm đệm. Khép hai môi, ngân nhẹ âm /m/; không thêm nguyên âm và không đọc tên chữ /em/.",
+          "output": {
+            "proposedMime": "audio/mpeg",
+            "channels": 1,
+            "leadingSilenceMaxMs": 200,
+            "trailingSilenceMaxMs": 300,
+            "normalization": "Consistent perceived volume; no clipping; final loudness/codec decided with provider"
+          },
+          "provider": null,
+          "model": null,
+          "voice": null,
+          "rate": null
+        },
+        "dependency": {
+          "activityRef": "w08:activity:m:sound",
+          "draftItemRef": "w08:letter:m",
+          "targetKind": "LETTER_SOUND",
+          "pronunciationRef": "w08:pronunciation:m:sound",
+          "pronunciationRevision": 1,
+          "ipa": "/m/",
+          "locale": "en-US",
+          "spokenText": null,
+          "sourceRefs": [
+            "oxford-us-guide",
+            "amplify-continuous",
+            "ipa-chart"
+          ]
+        },
+        "payloadHash": "994cae6b2a2b93fd6fd5cde945c561c9250b37403c9f01fbce217d4ca79b36f3",
+        "dependencyHash": "aaa861b188e9cb762672ecb65a8e5ce6365e1e44501fd5a2c53d841db800a9b7",
+        "providerRequestHash": null,
+        "outputByteSha256": null,
+        "reuseStatus": "NO_VERIFIED_REUSABLE_ASSET",
+        "requiredReview": [
+          "Correct en-US target and kind",
+          "Independent human listening; isolated sounds must have no added vowel",
+          "Exact activity/locale/payload binding and decoded bytes",
+          "Provenance and rights acceptance"
+        ],
+        "fallbackVi": "Nếu TTS chỉ đọc tên chữ, không dùng clip đó. Thu âm âm đơn chuyên biệt; không cắt từ neo bằng máy để giả âm đơn."
+      },
+      "deliveryEligible": false,
+      "blockers": [
+        "SPEC_ONLY_NO_AUDIO_OR_CANONICAL_ID",
+        "RUNTIME_IMPLEMENTATION_PENDING"
+      ],
+      "componentProgressWrites": [],
+      "supportingResponseTargets": []
+    },
+    {
+      "status": "PROPOSED_OFFLINE",
+      "adapterVersion": "coordinator-r2-forward/0.2.0",
+      "draftTarget": {
+        "itemType": "LETTER_ACTIVITY",
+        "draftRef": "w08:activity:s:name"
+      },
+      "canonicalTarget": null,
+      "progressOwner": {
+        "itemType": "LETTER_ACTIVITY",
+        "draftRef": "w08:activity:s:name"
+      },
+      "revisionPins": {
+        "targetRevision": 1,
+        "presentationRevision": 2,
+        "pronunciationRevision": 1
+      },
+      "placements": [
+        {
+          "placementRef": "w08:placement:7",
+          "activityRef": "w08:activity:s:name",
+          "collectionRef": "w08:collection:first-six-letters",
+          "discoveryLevel": "intro-letters-sounds",
+          "cefr": null,
+          "schoolGrade": null,
+          "placementRevision": 1
+        }
+      ],
+      "source": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket08-draft-r0002/draft-items-r0002.json",
+        "byteSha256": "438abbea3d18cd36eb5240060187ae41180a13dbee7b550fc3044c0ce27dd82d",
+        "jsonPointer": "/activities/6"
+      },
+      "sourceMedia": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket08-draft-r0002/media-specs.json",
+        "byteSha256": "8740fc6d9d56a8107e69a2bfa6a7903ff93a75fa30aaf580dc85f1931ff3f5a3",
+        "jsonPointer": "/audioSpecs/6"
+      },
+      "sourceDependency": {
+        "algorithm": "sha256-sorted-json-worker08-v1 (recursive key sort, compact JSON.stringify, UTF-8; draft only; not JCS)",
+        "dependencyHash": "cc0384c29b2d68f2fac071e8a4e44b6933fd4d3e72b5689d26b114e90b739e8d",
+        "payloadHash": "9b1ad68dd34867742c9f20d20821167c9355e95a6161993361102862d1d1184a",
+        "providerRequestHash": null,
+        "outputByteSha256": null
+      },
+      "authorityContent": {
+        "activity": {
+          "activityRef": "w08:activity:s:name",
+          "itemType": "LETTER_ACTIVITY",
+          "activityId": null,
+          "draftItemRef": "w08:letter:s",
+          "activityRevision": 1,
+          "targetKind": "LETTER_NAME",
+          "locale": "en-US",
+          "pronunciationRef": "w08:pronunciation:s:name",
+          "mode": "LISTEN_SELECT_LETTER_PAIR",
+          "sourceRefs": [
+            "oxford-s"
+          ],
+          "readiness": "DRAFT_REVIEW_REQUIRED",
+          "presentationRevision": 2,
+          "optionLetterRefs": [
+            "w08:letter:s",
+            "w08:letter:a",
+            "w08:letter:i"
+          ],
+          "teaching": {
+            "phase": "TEACHING",
+            "graded": false,
+            "progressWriteAllowed": false,
+            "explanationVi": "Nghe tên chữ S, rồi chọn cặp chữ đúng.",
+            "coachingVi": "Nghe cả tên chữ /es/, gồm nguyên âm và âm cuối.",
+            "criterionVi": "Sau khi nghe tên chữ /es/, chọn S/s. Chỉ chọn đúng cặp chữ mục tiêu được tính đúng.",
+            "scopeNoteVi": "Chỉ học tên chữ, không học nghĩa từ."
+          },
+          "assessment": {
+            "phase": "ASSESSMENT_PRE_ANSWER",
+            "mode": "LISTEN_SELECT_LETTER_PAIR",
+            "instructionVi": "Nghe tên chữ, rồi chọn cặp chữ đúng.",
+            "gradeAt": "AUTHORITY_AFTER_VALIDATED_SUBMISSION",
+            "sourceRevisionPins": "AUTHORITY_ONLY",
+            "teachingBeforeSubmission": "INVALIDATE_ATTEMPT_AND_DO_NOT_GRADE"
+          }
+        },
+        "pronunciationBinding": {
+          "pronunciationRef": "w08:pronunciation:s:name",
+          "pronunciationBindingId": null,
+          "activityRef": "w08:activity:s:name",
+          "draftItemRef": "w08:letter:s",
+          "targetKind": "LETTER_NAME",
+          "locale": "en-US",
+          "ipa": "/es/",
+          "notation": "IPA broad phonemic target; no provider encoding",
+          "spokenText": "S",
+          "anchorWord": null,
+          "sourceRefs": [
+            "oxford-s"
+          ],
+          "pronunciationRevision": 1
+        }
+      },
+      "originalMediaSpec": {
+        "mediaSpecRef": "w08:media:s:name",
+        "draftItemRef": "w08:letter:s",
+        "activityRef": "w08:activity:s:name",
+        "kind": "LETTER_NAME_AUDIO",
+        "executionAllowed": false,
+        "payload": {
+          "draftItemRef": "w08:letter:s",
+          "activityRef": "w08:activity:s:name",
+          "targetKind": "LETTER_NAME",
+          "pronunciationRef": "w08:pronunciation:s:name",
+          "pronunciationRevision": 1,
+          "locale": "en-US",
+          "spokenText": "S",
+          "targetIpa": "/es/",
+          "anchorWord": null,
+          "speakAnchorWord": false,
+          "speakInstruction": false,
+          "ssml": null,
+          "providerPhonemePayload": null,
+          "renderMode": "LETTER_NAME_TTS_CANDIDATE",
+          "directionVi": "Chỉ đọc một tên chữ S theo /es/; không đọc câu giải thích, không đọc từ neo.",
+          "output": {
+            "proposedMime": "audio/mpeg",
+            "channels": 1,
+            "leadingSilenceMaxMs": 200,
+            "trailingSilenceMaxMs": 300,
+            "normalization": "Consistent perceived volume; no clipping; final loudness/codec decided with provider"
+          },
+          "provider": null,
+          "model": null,
+          "voice": null,
+          "rate": null
+        },
+        "dependency": {
+          "activityRef": "w08:activity:s:name",
+          "draftItemRef": "w08:letter:s",
+          "targetKind": "LETTER_NAME",
+          "pronunciationRef": "w08:pronunciation:s:name",
+          "pronunciationRevision": 1,
+          "ipa": "/es/",
+          "locale": "en-US",
+          "spokenText": "S",
+          "sourceRefs": [
+            "oxford-s"
+          ]
+        },
+        "payloadHash": "9b1ad68dd34867742c9f20d20821167c9355e95a6161993361102862d1d1184a",
+        "dependencyHash": "cc0384c29b2d68f2fac071e8a4e44b6933fd4d3e72b5689d26b114e90b739e8d",
+        "providerRequestHash": null,
+        "outputByteSha256": null,
+        "reuseStatus": "NO_VERIFIED_REUSABLE_ASSET",
+        "requiredReview": [
+          "Correct en-US target and kind",
+          "Independent human listening; isolated sounds must have no added vowel",
+          "Exact activity/locale/payload binding and decoded bytes",
+          "Provenance and rights acceptance"
+        ],
+        "fallbackVi": "Nếu TTS đọc sai chữ, dùng thu âm tên chữ riêng."
+      },
+      "deliveryEligible": false,
+      "blockers": [
+        "SPEC_ONLY_NO_AUDIO_OR_CANONICAL_ID",
+        "RUNTIME_IMPLEMENTATION_PENDING"
+      ],
+      "componentProgressWrites": [],
+      "supportingResponseTargets": []
+    },
+    {
+      "status": "PROPOSED_OFFLINE",
+      "adapterVersion": "coordinator-r2-forward/0.2.0",
+      "draftTarget": {
+        "itemType": "LETTER_ACTIVITY",
+        "draftRef": "w08:activity:s:sound"
+      },
+      "canonicalTarget": null,
+      "progressOwner": {
+        "itemType": "LETTER_ACTIVITY",
+        "draftRef": "w08:activity:s:sound"
+      },
+      "revisionPins": {
+        "targetRevision": 1,
+        "presentationRevision": 2,
+        "pronunciationRevision": 1
+      },
+      "placements": [
+        {
+          "placementRef": "w08:placement:8",
+          "activityRef": "w08:activity:s:sound",
+          "collectionRef": "w08:collection:first-six-letters",
+          "discoveryLevel": "intro-letters-sounds",
+          "cefr": null,
+          "schoolGrade": null,
+          "placementRevision": 1
+        }
+      ],
+      "source": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket08-draft-r0002/draft-items-r0002.json",
+        "byteSha256": "438abbea3d18cd36eb5240060187ae41180a13dbee7b550fc3044c0ce27dd82d",
+        "jsonPointer": "/activities/7"
+      },
+      "sourceMedia": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket08-draft-r0002/media-specs.json",
+        "byteSha256": "8740fc6d9d56a8107e69a2bfa6a7903ff93a75fa30aaf580dc85f1931ff3f5a3",
+        "jsonPointer": "/audioSpecs/7"
+      },
+      "sourceDependency": {
+        "algorithm": "sha256-sorted-json-worker08-v1 (recursive key sort, compact JSON.stringify, UTF-8; draft only; not JCS)",
+        "dependencyHash": "f18bf53d5a1cd4953214e5e339a000926107fe785b1790994cb924fcb663c738",
+        "payloadHash": "99990d3631c629ba7cd9b9446059f8d026b407e525591b7fa6d359eda869c5bd",
+        "providerRequestHash": null,
+        "outputByteSha256": null
+      },
+      "authorityContent": {
+        "activity": {
+          "activityRef": "w08:activity:s:sound",
+          "itemType": "LETTER_ACTIVITY",
+          "activityId": null,
+          "draftItemRef": "w08:letter:s",
+          "activityRevision": 1,
+          "targetKind": "LETTER_SOUND",
+          "locale": "en-US",
+          "pronunciationRef": "w08:pronunciation:s:sound",
+          "mode": "LISTEN_SELECT_LETTER_PAIR",
+          "sourceRefs": [
+            "oxford-us-guide",
+            "amplify-continuous",
+            "ipa-chart"
+          ],
+          "readiness": "DRAFT_REVIEW_REQUIRED",
+          "presentationRevision": 2,
+          "optionLetterRefs": [
+            "w08:letter:a",
+            "w08:letter:s",
+            "w08:letter:i"
+          ],
+          "teaching": {
+            "phase": "TEACHING",
+            "graded": false,
+            "progressWriteAllowed": false,
+            "explanationVi": "Trong hoạt động này, s biểu diễn âm đầu /s/ của sit.",
+            "coachingVi": "Để hơi đi ra liên tục theo mẫu /s/; không thêm nguyên âm và không đọc tên chữ /es/.",
+            "criterionVi": "Sau khi nghe âm /s/, chọn S/s. Chỉ chọn đúng cặp chữ mục tiêu được tính đúng.",
+            "scopeNoteVi": "Chỉ chọn âm /s/ trong ngữ cảnh sit; không khẳng định chữ s luôn có âm này."
+          },
+          "assessment": {
+            "phase": "ASSESSMENT_PRE_ANSWER",
+            "mode": "LISTEN_SELECT_LETTER_PAIR",
+            "instructionVi": "Nghe âm, rồi chọn cặp chữ đúng.",
+            "gradeAt": "AUTHORITY_AFTER_VALIDATED_SUBMISSION",
+            "sourceRevisionPins": "AUTHORITY_ONLY",
+            "teachingBeforeSubmission": "INVALIDATE_ATTEMPT_AND_DO_NOT_GRADE"
+          }
+        },
+        "pronunciationBinding": {
+          "pronunciationRef": "w08:pronunciation:s:sound",
+          "pronunciationBindingId": null,
+          "activityRef": "w08:activity:s:sound",
+          "draftItemRef": "w08:letter:s",
+          "targetKind": "LETTER_SOUND",
+          "locale": "en-US",
+          "ipa": "/s/",
+          "notation": "IPA broad phonemic target; no provider encoding",
+          "spokenText": null,
+          "anchorWord": "sit",
+          "sourceRefs": [
+            "oxford-us-guide",
+            "amplify-continuous",
+            "ipa-chart"
+          ],
+          "pronunciationRevision": 1
+        }
+      },
+      "originalMediaSpec": {
+        "mediaSpecRef": "w08:media:s:sound",
+        "draftItemRef": "w08:letter:s",
+        "activityRef": "w08:activity:s:sound",
+        "kind": "LETTER_SOUND_AUDIO",
+        "executionAllowed": false,
+        "payload": {
+          "draftItemRef": "w08:letter:s",
+          "activityRef": "w08:activity:s:sound",
+          "targetKind": "LETTER_SOUND",
+          "pronunciationRef": "w08:pronunciation:s:sound",
+          "pronunciationRevision": 1,
+          "locale": "en-US",
+          "spokenText": null,
+          "targetIpa": "/s/",
+          "anchorWord": "sit",
+          "speakAnchorWord": false,
+          "speakInstruction": false,
+          "ssml": null,
+          "providerPhonemePayload": null,
+          "renderMode": "SPECIALIST_ISOLATED_SOUND_RECORDING_REQUIRED",
+          "directionVi": "Chỉ phát một âm /s/; không đọc chữ S, từ sit, tên IPA hoặc nguyên âm đệm. Để hơi đi ra liên tục theo mẫu /s/; không thêm nguyên âm và không đọc tên chữ /es/.",
+          "output": {
+            "proposedMime": "audio/mpeg",
+            "channels": 1,
+            "leadingSilenceMaxMs": 200,
+            "trailingSilenceMaxMs": 300,
+            "normalization": "Consistent perceived volume; no clipping; final loudness/codec decided with provider"
+          },
+          "provider": null,
+          "model": null,
+          "voice": null,
+          "rate": null
+        },
+        "dependency": {
+          "activityRef": "w08:activity:s:sound",
+          "draftItemRef": "w08:letter:s",
+          "targetKind": "LETTER_SOUND",
+          "pronunciationRef": "w08:pronunciation:s:sound",
+          "pronunciationRevision": 1,
+          "ipa": "/s/",
+          "locale": "en-US",
+          "spokenText": null,
+          "sourceRefs": [
+            "oxford-us-guide",
+            "amplify-continuous",
+            "ipa-chart"
+          ]
+        },
+        "payloadHash": "99990d3631c629ba7cd9b9446059f8d026b407e525591b7fa6d359eda869c5bd",
+        "dependencyHash": "f18bf53d5a1cd4953214e5e339a000926107fe785b1790994cb924fcb663c738",
+        "providerRequestHash": null,
+        "outputByteSha256": null,
+        "reuseStatus": "NO_VERIFIED_REUSABLE_ASSET",
+        "requiredReview": [
+          "Correct en-US target and kind",
+          "Independent human listening; isolated sounds must have no added vowel",
+          "Exact activity/locale/payload binding and decoded bytes",
+          "Provenance and rights acceptance"
+        ],
+        "fallbackVi": "Nếu TTS chỉ đọc tên chữ, không dùng clip đó. Thu âm âm đơn chuyên biệt; không cắt từ neo bằng máy để giả âm đơn."
+      },
+      "deliveryEligible": false,
+      "blockers": [
+        "SPEC_ONLY_NO_AUDIO_OR_CANONICAL_ID",
+        "RUNTIME_IMPLEMENTATION_PENDING"
+      ],
+      "componentProgressWrites": [],
+      "supportingResponseTargets": []
+    },
+    {
+      "status": "PROPOSED_OFFLINE",
+      "adapterVersion": "coordinator-r2-forward/0.2.0",
+      "draftTarget": {
+        "itemType": "LETTER_ACTIVITY",
+        "draftRef": "w08:activity:f:name"
+      },
+      "canonicalTarget": null,
+      "progressOwner": {
+        "itemType": "LETTER_ACTIVITY",
+        "draftRef": "w08:activity:f:name"
+      },
+      "revisionPins": {
+        "targetRevision": 1,
+        "presentationRevision": 2,
+        "pronunciationRevision": 1
+      },
+      "placements": [
+        {
+          "placementRef": "w08:placement:9",
+          "activityRef": "w08:activity:f:name",
+          "collectionRef": "w08:collection:first-six-letters",
+          "discoveryLevel": "intro-letters-sounds",
+          "cefr": null,
+          "schoolGrade": null,
+          "placementRevision": 1
+        }
+      ],
+      "source": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket08-draft-r0002/draft-items-r0002.json",
+        "byteSha256": "438abbea3d18cd36eb5240060187ae41180a13dbee7b550fc3044c0ce27dd82d",
+        "jsonPointer": "/activities/8"
+      },
+      "sourceMedia": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket08-draft-r0002/media-specs.json",
+        "byteSha256": "8740fc6d9d56a8107e69a2bfa6a7903ff93a75fa30aaf580dc85f1931ff3f5a3",
+        "jsonPointer": "/audioSpecs/8"
+      },
+      "sourceDependency": {
+        "algorithm": "sha256-sorted-json-worker08-v1 (recursive key sort, compact JSON.stringify, UTF-8; draft only; not JCS)",
+        "dependencyHash": "a714b2a06f23190eaff82c2a98fad377853e293ac83165defb2c3a02288ab3ed",
+        "payloadHash": "40e2029d13a0d02fb053064bcdaa88d29e9294aa9501f4a6175c0186700199a4",
+        "providerRequestHash": null,
+        "outputByteSha256": null
+      },
+      "authorityContent": {
+        "activity": {
+          "activityRef": "w08:activity:f:name",
+          "itemType": "LETTER_ACTIVITY",
+          "activityId": null,
+          "draftItemRef": "w08:letter:f",
+          "activityRevision": 1,
+          "targetKind": "LETTER_NAME",
+          "locale": "en-US",
+          "pronunciationRef": "w08:pronunciation:f:name",
+          "mode": "LISTEN_SELECT_LETTER_PAIR",
+          "sourceRefs": [
+            "cambridge-f"
+          ],
+          "readiness": "DRAFT_REVIEW_REQUIRED",
+          "presentationRevision": 2,
+          "optionLetterRefs": [
+            "w08:letter:a",
+            "w08:letter:i",
+            "w08:letter:f"
+          ],
+          "teaching": {
+            "phase": "TEACHING",
+            "graded": false,
+            "progressWriteAllowed": false,
+            "explanationVi": "Nghe tên chữ F, rồi chọn cặp chữ đúng.",
+            "coachingVi": "Nghe cả tên chữ /ef/, gồm nguyên âm và âm cuối.",
+            "criterionVi": "Sau khi nghe tên chữ /ef/, chọn F/f. Chỉ chọn đúng cặp chữ mục tiêu được tính đúng.",
+            "scopeNoteVi": "Chỉ học tên chữ, không học nghĩa từ."
+          },
+          "assessment": {
+            "phase": "ASSESSMENT_PRE_ANSWER",
+            "mode": "LISTEN_SELECT_LETTER_PAIR",
+            "instructionVi": "Nghe tên chữ, rồi chọn cặp chữ đúng.",
+            "gradeAt": "AUTHORITY_AFTER_VALIDATED_SUBMISSION",
+            "sourceRevisionPins": "AUTHORITY_ONLY",
+            "teachingBeforeSubmission": "INVALIDATE_ATTEMPT_AND_DO_NOT_GRADE"
+          }
+        },
+        "pronunciationBinding": {
+          "pronunciationRef": "w08:pronunciation:f:name",
+          "pronunciationBindingId": null,
+          "activityRef": "w08:activity:f:name",
+          "draftItemRef": "w08:letter:f",
+          "targetKind": "LETTER_NAME",
+          "locale": "en-US",
+          "ipa": "/ef/",
+          "notation": "IPA broad phonemic target; no provider encoding",
+          "spokenText": "F",
+          "anchorWord": null,
+          "sourceRefs": [
+            "cambridge-f"
+          ],
+          "pronunciationRevision": 1
+        }
+      },
+      "originalMediaSpec": {
+        "mediaSpecRef": "w08:media:f:name",
+        "draftItemRef": "w08:letter:f",
+        "activityRef": "w08:activity:f:name",
+        "kind": "LETTER_NAME_AUDIO",
+        "executionAllowed": false,
+        "payload": {
+          "draftItemRef": "w08:letter:f",
+          "activityRef": "w08:activity:f:name",
+          "targetKind": "LETTER_NAME",
+          "pronunciationRef": "w08:pronunciation:f:name",
+          "pronunciationRevision": 1,
+          "locale": "en-US",
+          "spokenText": "F",
+          "targetIpa": "/ef/",
+          "anchorWord": null,
+          "speakAnchorWord": false,
+          "speakInstruction": false,
+          "ssml": null,
+          "providerPhonemePayload": null,
+          "renderMode": "LETTER_NAME_TTS_CANDIDATE",
+          "directionVi": "Chỉ đọc một tên chữ F theo /ef/; không đọc câu giải thích, không đọc từ neo.",
+          "output": {
+            "proposedMime": "audio/mpeg",
+            "channels": 1,
+            "leadingSilenceMaxMs": 200,
+            "trailingSilenceMaxMs": 300,
+            "normalization": "Consistent perceived volume; no clipping; final loudness/codec decided with provider"
+          },
+          "provider": null,
+          "model": null,
+          "voice": null,
+          "rate": null
+        },
+        "dependency": {
+          "activityRef": "w08:activity:f:name",
+          "draftItemRef": "w08:letter:f",
+          "targetKind": "LETTER_NAME",
+          "pronunciationRef": "w08:pronunciation:f:name",
+          "pronunciationRevision": 1,
+          "ipa": "/ef/",
+          "locale": "en-US",
+          "spokenText": "F",
+          "sourceRefs": [
+            "cambridge-f"
+          ]
+        },
+        "payloadHash": "40e2029d13a0d02fb053064bcdaa88d29e9294aa9501f4a6175c0186700199a4",
+        "dependencyHash": "a714b2a06f23190eaff82c2a98fad377853e293ac83165defb2c3a02288ab3ed",
+        "providerRequestHash": null,
+        "outputByteSha256": null,
+        "reuseStatus": "NO_VERIFIED_REUSABLE_ASSET",
+        "requiredReview": [
+          "Correct en-US target and kind",
+          "Independent human listening; isolated sounds must have no added vowel",
+          "Exact activity/locale/payload binding and decoded bytes",
+          "Provenance and rights acceptance"
+        ],
+        "fallbackVi": "Nếu TTS đọc sai chữ, dùng thu âm tên chữ riêng."
+      },
+      "deliveryEligible": false,
+      "blockers": [
+        "SPEC_ONLY_NO_AUDIO_OR_CANONICAL_ID",
+        "RUNTIME_IMPLEMENTATION_PENDING"
+      ],
+      "componentProgressWrites": [],
+      "supportingResponseTargets": []
+    },
+    {
+      "status": "PROPOSED_OFFLINE",
+      "adapterVersion": "coordinator-r2-forward/0.2.0",
+      "draftTarget": {
+        "itemType": "LETTER_ACTIVITY",
+        "draftRef": "w08:activity:f:sound"
+      },
+      "canonicalTarget": null,
+      "progressOwner": {
+        "itemType": "LETTER_ACTIVITY",
+        "draftRef": "w08:activity:f:sound"
+      },
+      "revisionPins": {
+        "targetRevision": 1,
+        "presentationRevision": 2,
+        "pronunciationRevision": 1
+      },
+      "placements": [
+        {
+          "placementRef": "w08:placement:10",
+          "activityRef": "w08:activity:f:sound",
+          "collectionRef": "w08:collection:first-six-letters",
+          "discoveryLevel": "intro-letters-sounds",
+          "cefr": null,
+          "schoolGrade": null,
+          "placementRevision": 1
+        }
+      ],
+      "source": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket08-draft-r0002/draft-items-r0002.json",
+        "byteSha256": "438abbea3d18cd36eb5240060187ae41180a13dbee7b550fc3044c0ce27dd82d",
+        "jsonPointer": "/activities/9"
+      },
+      "sourceMedia": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket08-draft-r0002/media-specs.json",
+        "byteSha256": "8740fc6d9d56a8107e69a2bfa6a7903ff93a75fa30aaf580dc85f1931ff3f5a3",
+        "jsonPointer": "/audioSpecs/9"
+      },
+      "sourceDependency": {
+        "algorithm": "sha256-sorted-json-worker08-v1 (recursive key sort, compact JSON.stringify, UTF-8; draft only; not JCS)",
+        "dependencyHash": "921c6115d02f718b75afcee900b9600e9471d26c9ff0eec781e70520b03b8977",
+        "payloadHash": "e254bec5b9003e3520bfb44c6f580e27247e2956d083595ca7ef6d5f64066fa5",
+        "providerRequestHash": null,
+        "outputByteSha256": null
+      },
+      "authorityContent": {
+        "activity": {
+          "activityRef": "w08:activity:f:sound",
+          "itemType": "LETTER_ACTIVITY",
+          "activityId": null,
+          "draftItemRef": "w08:letter:f",
+          "activityRevision": 1,
+          "targetKind": "LETTER_SOUND",
+          "locale": "en-US",
+          "pronunciationRef": "w08:pronunciation:f:sound",
+          "mode": "LISTEN_SELECT_LETTER_PAIR",
+          "sourceRefs": [
+            "oxford-us-guide",
+            "amplify-continuous",
+            "ipa-chart"
+          ],
+          "readiness": "DRAFT_REVIEW_REQUIRED",
+          "presentationRevision": 2,
+          "optionLetterRefs": [
+            "w08:letter:f",
+            "w08:letter:a",
+            "w08:letter:i"
+          ],
+          "teaching": {
+            "phase": "TEACHING",
+            "graded": false,
+            "progressWriteAllowed": false,
+            "explanationVi": "Trong hoạt động này, f biểu diễn âm đầu /f/ của fit.",
+            "coachingVi": "Chạm nhẹ răng trên vào môi dưới, thổi hơi theo mẫu /f/; không đọc tên chữ /ef/.",
+            "criterionVi": "Sau khi nghe âm /f/, chọn F/f. Chỉ chọn đúng cặp chữ mục tiêu được tính đúng.",
+            "scopeNoteVi": "Chỉ chọn âm /f/ trong ngữ cảnh fit; không khẳng định chữ f luôn có âm này."
+          },
+          "assessment": {
+            "phase": "ASSESSMENT_PRE_ANSWER",
+            "mode": "LISTEN_SELECT_LETTER_PAIR",
+            "instructionVi": "Nghe âm, rồi chọn cặp chữ đúng.",
+            "gradeAt": "AUTHORITY_AFTER_VALIDATED_SUBMISSION",
+            "sourceRevisionPins": "AUTHORITY_ONLY",
+            "teachingBeforeSubmission": "INVALIDATE_ATTEMPT_AND_DO_NOT_GRADE"
+          }
+        },
+        "pronunciationBinding": {
+          "pronunciationRef": "w08:pronunciation:f:sound",
+          "pronunciationBindingId": null,
+          "activityRef": "w08:activity:f:sound",
+          "draftItemRef": "w08:letter:f",
+          "targetKind": "LETTER_SOUND",
+          "locale": "en-US",
+          "ipa": "/f/",
+          "notation": "IPA broad phonemic target; no provider encoding",
+          "spokenText": null,
+          "anchorWord": "fit",
+          "sourceRefs": [
+            "oxford-us-guide",
+            "amplify-continuous",
+            "ipa-chart"
+          ],
+          "pronunciationRevision": 1
+        }
+      },
+      "originalMediaSpec": {
+        "mediaSpecRef": "w08:media:f:sound",
+        "draftItemRef": "w08:letter:f",
+        "activityRef": "w08:activity:f:sound",
+        "kind": "LETTER_SOUND_AUDIO",
+        "executionAllowed": false,
+        "payload": {
+          "draftItemRef": "w08:letter:f",
+          "activityRef": "w08:activity:f:sound",
+          "targetKind": "LETTER_SOUND",
+          "pronunciationRef": "w08:pronunciation:f:sound",
+          "pronunciationRevision": 1,
+          "locale": "en-US",
+          "spokenText": null,
+          "targetIpa": "/f/",
+          "anchorWord": "fit",
+          "speakAnchorWord": false,
+          "speakInstruction": false,
+          "ssml": null,
+          "providerPhonemePayload": null,
+          "renderMode": "SPECIALIST_ISOLATED_SOUND_RECORDING_REQUIRED",
+          "directionVi": "Chỉ phát một âm /f/; không đọc chữ F, từ fit, tên IPA hoặc nguyên âm đệm. Chạm nhẹ răng trên vào môi dưới, thổi hơi theo mẫu /f/; không đọc tên chữ /ef/.",
+          "output": {
+            "proposedMime": "audio/mpeg",
+            "channels": 1,
+            "leadingSilenceMaxMs": 200,
+            "trailingSilenceMaxMs": 300,
+            "normalization": "Consistent perceived volume; no clipping; final loudness/codec decided with provider"
+          },
+          "provider": null,
+          "model": null,
+          "voice": null,
+          "rate": null
+        },
+        "dependency": {
+          "activityRef": "w08:activity:f:sound",
+          "draftItemRef": "w08:letter:f",
+          "targetKind": "LETTER_SOUND",
+          "pronunciationRef": "w08:pronunciation:f:sound",
+          "pronunciationRevision": 1,
+          "ipa": "/f/",
+          "locale": "en-US",
+          "spokenText": null,
+          "sourceRefs": [
+            "oxford-us-guide",
+            "amplify-continuous",
+            "ipa-chart"
+          ]
+        },
+        "payloadHash": "e254bec5b9003e3520bfb44c6f580e27247e2956d083595ca7ef6d5f64066fa5",
+        "dependencyHash": "921c6115d02f718b75afcee900b9600e9471d26c9ff0eec781e70520b03b8977",
+        "providerRequestHash": null,
+        "outputByteSha256": null,
+        "reuseStatus": "NO_VERIFIED_REUSABLE_ASSET",
+        "requiredReview": [
+          "Correct en-US target and kind",
+          "Independent human listening; isolated sounds must have no added vowel",
+          "Exact activity/locale/payload binding and decoded bytes",
+          "Provenance and rights acceptance"
+        ],
+        "fallbackVi": "Nếu TTS chỉ đọc tên chữ, không dùng clip đó. Thu âm âm đơn chuyên biệt; không cắt từ neo bằng máy để giả âm đơn."
+      },
+      "deliveryEligible": false,
+      "blockers": [
+        "SPEC_ONLY_NO_AUDIO_OR_CANONICAL_ID",
+        "RUNTIME_IMPLEMENTATION_PENDING"
+      ],
+      "componentProgressWrites": [],
+      "supportingResponseTargets": []
+    },
+    {
+      "status": "PROPOSED_OFFLINE",
+      "adapterVersion": "coordinator-r2-forward/0.2.0",
+      "draftTarget": {
+        "itemType": "LETTER_ACTIVITY",
+        "draftRef": "w08:activity:t:name"
+      },
+      "canonicalTarget": null,
+      "progressOwner": {
+        "itemType": "LETTER_ACTIVITY",
+        "draftRef": "w08:activity:t:name"
+      },
+      "revisionPins": {
+        "targetRevision": 1,
+        "presentationRevision": 2,
+        "pronunciationRevision": 1
+      },
+      "placements": [
+        {
+          "placementRef": "w08:placement:11",
+          "activityRef": "w08:activity:t:name",
+          "collectionRef": "w08:collection:first-six-letters",
+          "discoveryLevel": "intro-letters-sounds",
+          "cefr": null,
+          "schoolGrade": null,
+          "placementRevision": 1
+        }
+      ],
+      "source": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket08-draft-r0002/draft-items-r0002.json",
+        "byteSha256": "438abbea3d18cd36eb5240060187ae41180a13dbee7b550fc3044c0ce27dd82d",
+        "jsonPointer": "/activities/10"
+      },
+      "sourceMedia": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket08-draft-r0002/media-specs.json",
+        "byteSha256": "8740fc6d9d56a8107e69a2bfa6a7903ff93a75fa30aaf580dc85f1931ff3f5a3",
+        "jsonPointer": "/audioSpecs/10"
+      },
+      "sourceDependency": {
+        "algorithm": "sha256-sorted-json-worker08-v1 (recursive key sort, compact JSON.stringify, UTF-8; draft only; not JCS)",
+        "dependencyHash": "9ba69161cf8019f40810b1410251fa2725219f0b6552a184643cc4e321b568fc",
+        "payloadHash": "af9025417407fcd4cd8240ca29878f0dc3c3f449a8c43d7de04ed8ac81688014",
+        "providerRequestHash": null,
+        "outputByteSha256": null
+      },
+      "authorityContent": {
+        "activity": {
+          "activityRef": "w08:activity:t:name",
+          "itemType": "LETTER_ACTIVITY",
+          "activityId": null,
+          "draftItemRef": "w08:letter:t",
+          "activityRevision": 1,
+          "targetKind": "LETTER_NAME",
+          "locale": "en-US",
+          "pronunciationRef": "w08:pronunciation:t:name",
+          "mode": "LISTEN_SELECT_LETTER_PAIR",
+          "sourceRefs": [
+            "oxford-t"
+          ],
+          "readiness": "DRAFT_REVIEW_REQUIRED",
+          "presentationRevision": 2,
+          "optionLetterRefs": [
+            "w08:letter:a",
+            "w08:letter:t",
+            "w08:letter:i"
+          ],
+          "teaching": {
+            "phase": "TEACHING",
+            "graded": false,
+            "progressWriteAllowed": false,
+            "explanationVi": "Nghe tên chữ T, rồi chọn cặp chữ đúng.",
+            "coachingVi": "Nghe cả tên chữ /tiː/, có nguyên âm sau phụ âm.",
+            "criterionVi": "Sau khi nghe tên chữ /tiː/, chọn T/t. Chỉ chọn đúng cặp chữ mục tiêu được tính đúng.",
+            "scopeNoteVi": "Chỉ học tên chữ, không học nghĩa từ."
+          },
+          "assessment": {
+            "phase": "ASSESSMENT_PRE_ANSWER",
+            "mode": "LISTEN_SELECT_LETTER_PAIR",
+            "instructionVi": "Nghe tên chữ, rồi chọn cặp chữ đúng.",
+            "gradeAt": "AUTHORITY_AFTER_VALIDATED_SUBMISSION",
+            "sourceRevisionPins": "AUTHORITY_ONLY",
+            "teachingBeforeSubmission": "INVALIDATE_ATTEMPT_AND_DO_NOT_GRADE"
+          }
+        },
+        "pronunciationBinding": {
+          "pronunciationRef": "w08:pronunciation:t:name",
+          "pronunciationBindingId": null,
+          "activityRef": "w08:activity:t:name",
+          "draftItemRef": "w08:letter:t",
+          "targetKind": "LETTER_NAME",
+          "locale": "en-US",
+          "ipa": "/tiː/",
+          "notation": "IPA broad phonemic target; no provider encoding",
+          "spokenText": "T",
+          "anchorWord": null,
+          "sourceRefs": [
+            "oxford-t"
+          ],
+          "pronunciationRevision": 1
+        }
+      },
+      "originalMediaSpec": {
+        "mediaSpecRef": "w08:media:t:name",
+        "draftItemRef": "w08:letter:t",
+        "activityRef": "w08:activity:t:name",
+        "kind": "LETTER_NAME_AUDIO",
+        "executionAllowed": false,
+        "payload": {
+          "draftItemRef": "w08:letter:t",
+          "activityRef": "w08:activity:t:name",
+          "targetKind": "LETTER_NAME",
+          "pronunciationRef": "w08:pronunciation:t:name",
+          "pronunciationRevision": 1,
+          "locale": "en-US",
+          "spokenText": "T",
+          "targetIpa": "/tiː/",
+          "anchorWord": null,
+          "speakAnchorWord": false,
+          "speakInstruction": false,
+          "ssml": null,
+          "providerPhonemePayload": null,
+          "renderMode": "LETTER_NAME_TTS_CANDIDATE",
+          "directionVi": "Chỉ đọc một tên chữ T theo /tiː/; không đọc câu giải thích, không đọc từ neo.",
+          "output": {
+            "proposedMime": "audio/mpeg",
+            "channels": 1,
+            "leadingSilenceMaxMs": 200,
+            "trailingSilenceMaxMs": 300,
+            "normalization": "Consistent perceived volume; no clipping; final loudness/codec decided with provider"
+          },
+          "provider": null,
+          "model": null,
+          "voice": null,
+          "rate": null
+        },
+        "dependency": {
+          "activityRef": "w08:activity:t:name",
+          "draftItemRef": "w08:letter:t",
+          "targetKind": "LETTER_NAME",
+          "pronunciationRef": "w08:pronunciation:t:name",
+          "pronunciationRevision": 1,
+          "ipa": "/tiː/",
+          "locale": "en-US",
+          "spokenText": "T",
+          "sourceRefs": [
+            "oxford-t"
+          ]
+        },
+        "payloadHash": "af9025417407fcd4cd8240ca29878f0dc3c3f449a8c43d7de04ed8ac81688014",
+        "dependencyHash": "9ba69161cf8019f40810b1410251fa2725219f0b6552a184643cc4e321b568fc",
+        "providerRequestHash": null,
+        "outputByteSha256": null,
+        "reuseStatus": "NO_VERIFIED_REUSABLE_ASSET",
+        "requiredReview": [
+          "Correct en-US target and kind",
+          "Independent human listening; isolated sounds must have no added vowel",
+          "Exact activity/locale/payload binding and decoded bytes",
+          "Provenance and rights acceptance"
+        ],
+        "fallbackVi": "Nếu TTS đọc sai chữ, dùng thu âm tên chữ riêng."
+      },
+      "deliveryEligible": false,
+      "blockers": [
+        "SPEC_ONLY_NO_AUDIO_OR_CANONICAL_ID",
+        "RUNTIME_IMPLEMENTATION_PENDING"
+      ],
+      "componentProgressWrites": [],
+      "supportingResponseTargets": []
+    },
+    {
+      "status": "PROPOSED_OFFLINE",
+      "adapterVersion": "coordinator-r2-forward/0.2.0",
+      "draftTarget": {
+        "itemType": "LETTER_ACTIVITY",
+        "draftRef": "w08:activity:t:sound"
+      },
+      "canonicalTarget": null,
+      "progressOwner": {
+        "itemType": "LETTER_ACTIVITY",
+        "draftRef": "w08:activity:t:sound"
+      },
+      "revisionPins": {
+        "targetRevision": 1,
+        "presentationRevision": 2,
+        "pronunciationRevision": 1
+      },
+      "placements": [
+        {
+          "placementRef": "w08:placement:12",
+          "activityRef": "w08:activity:t:sound",
+          "collectionRef": "w08:collection:first-six-letters",
+          "discoveryLevel": "intro-letters-sounds",
+          "cefr": null,
+          "schoolGrade": null,
+          "placementRevision": 1
+        }
+      ],
+      "source": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket08-draft-r0002/draft-items-r0002.json",
+        "byteSha256": "438abbea3d18cd36eb5240060187ae41180a13dbee7b550fc3044c0ce27dd82d",
+        "jsonPointer": "/activities/11"
+      },
+      "sourceMedia": {
+        "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket08-draft-r0002/media-specs.json",
+        "byteSha256": "8740fc6d9d56a8107e69a2bfa6a7903ff93a75fa30aaf580dc85f1931ff3f5a3",
+        "jsonPointer": "/audioSpecs/11"
+      },
+      "sourceDependency": {
+        "algorithm": "sha256-sorted-json-worker08-v1 (recursive key sort, compact JSON.stringify, UTF-8; draft only; not JCS)",
+        "dependencyHash": "e8010aefd671ae934471995af61b7ba2ecfc8011bf5b74dc350f1024be6321be",
+        "payloadHash": "037cef276e6c5fa7914c202d85cea3496c3b7081523c01f9aa003444897463fe",
+        "providerRequestHash": null,
+        "outputByteSha256": null
+      },
+      "authorityContent": {
+        "activity": {
+          "activityRef": "w08:activity:t:sound",
+          "itemType": "LETTER_ACTIVITY",
+          "activityId": null,
+          "draftItemRef": "w08:letter:t",
+          "activityRevision": 1,
+          "targetKind": "LETTER_SOUND",
+          "locale": "en-US",
+          "pronunciationRef": "w08:pronunciation:t:sound",
+          "mode": "LISTEN_SELECT_LETTER_PAIR",
+          "sourceRefs": [
+            "oxford-us-guide",
+            "ipa-chart"
+          ],
+          "readiness": "DRAFT_REVIEW_REQUIRED",
+          "presentationRevision": 2,
+          "optionLetterRefs": [
+            "w08:letter:a",
+            "w08:letter:i",
+            "w08:letter:t"
+          ],
+          "teaching": {
+            "phase": "TEACHING",
+            "graded": false,
+            "progressWriteAllowed": false,
+            "explanationVi": "Trong hoạt động này, t biểu diễn âm đầu /t/ của tea.",
+            "coachingVi": "Chặn rồi nhả hơi ngắn theo mẫu /t/; không kéo dài thành tiếng hoặc thêm nguyên âm như tên chữ /tiː/.",
+            "criterionVi": "Sau khi nghe âm /t/, chọn T/t. Chỉ chọn đúng cặp chữ mục tiêu được tính đúng.",
+            "scopeNoteVi": "Chỉ chọn âm /t/ trong ngữ cảnh tea; không khẳng định chữ t luôn có âm này."
+          },
+          "assessment": {
+            "phase": "ASSESSMENT_PRE_ANSWER",
+            "mode": "LISTEN_SELECT_LETTER_PAIR",
+            "instructionVi": "Nghe âm, rồi chọn cặp chữ đúng.",
+            "gradeAt": "AUTHORITY_AFTER_VALIDATED_SUBMISSION",
+            "sourceRevisionPins": "AUTHORITY_ONLY",
+            "teachingBeforeSubmission": "INVALIDATE_ATTEMPT_AND_DO_NOT_GRADE"
+          }
+        },
+        "pronunciationBinding": {
+          "pronunciationRef": "w08:pronunciation:t:sound",
+          "pronunciationBindingId": null,
+          "activityRef": "w08:activity:t:sound",
+          "draftItemRef": "w08:letter:t",
+          "targetKind": "LETTER_SOUND",
+          "locale": "en-US",
+          "ipa": "/t/",
+          "notation": "IPA broad phonemic target; no provider encoding",
+          "spokenText": null,
+          "anchorWord": "tea",
+          "sourceRefs": [
+            "oxford-us-guide",
+            "ipa-chart"
+          ],
+          "pronunciationRevision": 1
+        }
+      },
+      "originalMediaSpec": {
+        "mediaSpecRef": "w08:media:t:sound",
+        "draftItemRef": "w08:letter:t",
+        "activityRef": "w08:activity:t:sound",
+        "kind": "LETTER_SOUND_AUDIO",
+        "executionAllowed": false,
+        "payload": {
+          "draftItemRef": "w08:letter:t",
+          "activityRef": "w08:activity:t:sound",
+          "targetKind": "LETTER_SOUND",
+          "pronunciationRef": "w08:pronunciation:t:sound",
+          "pronunciationRevision": 1,
+          "locale": "en-US",
+          "spokenText": null,
+          "targetIpa": "/t/",
+          "anchorWord": "tea",
+          "speakAnchorWord": false,
+          "speakInstruction": false,
+          "ssml": null,
+          "providerPhonemePayload": null,
+          "renderMode": "SPECIALIST_ISOLATED_SOUND_RECORDING_REQUIRED",
+          "directionVi": "Chỉ phát một âm /t/; không đọc chữ T, từ tea, tên IPA hoặc nguyên âm đệm. Chặn rồi nhả hơi ngắn theo mẫu /t/; không kéo dài thành tiếng hoặc thêm nguyên âm như tên chữ /tiː/.",
+          "output": {
+            "proposedMime": "audio/mpeg",
+            "channels": 1,
+            "leadingSilenceMaxMs": 200,
+            "trailingSilenceMaxMs": 300,
+            "normalization": "Consistent perceived volume; no clipping; final loudness/codec decided with provider"
+          },
+          "provider": null,
+          "model": null,
+          "voice": null,
+          "rate": null
+        },
+        "dependency": {
+          "activityRef": "w08:activity:t:sound",
+          "draftItemRef": "w08:letter:t",
+          "targetKind": "LETTER_SOUND",
+          "pronunciationRef": "w08:pronunciation:t:sound",
+          "pronunciationRevision": 1,
+          "ipa": "/t/",
+          "locale": "en-US",
+          "spokenText": null,
+          "sourceRefs": [
+            "oxford-us-guide",
+            "ipa-chart"
+          ]
+        },
+        "payloadHash": "037cef276e6c5fa7914c202d85cea3496c3b7081523c01f9aa003444897463fe",
+        "dependencyHash": "e8010aefd671ae934471995af61b7ba2ecfc8011bf5b74dc350f1024be6321be",
+        "providerRequestHash": null,
+        "outputByteSha256": null,
+        "reuseStatus": "NO_VERIFIED_REUSABLE_ASSET",
+        "requiredReview": [
+          "Correct en-US target and kind",
+          "Independent human listening; isolated sounds must have no added vowel",
+          "Exact activity/locale/payload binding and decoded bytes",
+          "Provenance and rights acceptance"
+        ],
+        "fallbackVi": "Nếu TTS chỉ đọc tên chữ, không dùng clip đó. Thu âm âm đơn chuyên biệt; không cắt từ neo bằng máy để giả âm đơn."
+      },
+      "deliveryEligible": false,
+      "blockers": [
+        "SPEC_ONLY_NO_AUDIO_OR_CANONICAL_ID",
+        "RUNTIME_IMPLEMENTATION_PENDING"
+      ],
+      "componentProgressWrites": [],
+      "supportingResponseTargets": []
+    }
+  ],
+  "legacyVocabularyCanary": {
+    "status": "PROPOSED_OFFLINE",
+    "target": {
+      "itemType": "VOCABULARY_SENSE",
+      "vocabularyId": 33417
+    },
+    "masterSenseId": null,
+    "masterIdentityStatus": "PENDING_IDENTITY",
+    "legacyDtoMutation": false,
+    "source": {
+      "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/baseline-v2/corpus.json",
+      "byteSha256": "bcc91c46b4c8be536f2a445a3a3da4a605da75a97f75bfceeed72b213547b309",
+      "jsonPointer": "/rows/4172"
+    },
+    "content": {
+      "baselineRowId": "runtime-33417",
+      "runtimeVocabularyId": 33417,
+      "sourceDataset": "VOCABFLOW_MASTER_V2_DEV",
+      "proposalKey": "PHASE_E_2026_10_12:help:core-sense",
+      "sourceGroupKey": "NORMALIZED_HEADWORD:help",
+      "headword": "help",
+      "runtimeDisplay": "help",
+      "partOfSpeech": "VERB",
+      "sourceContentSha256": "4e4de751461162acd3b920c2da5034310be2d878a3a924b006bb83dd14e9a281",
+      "currentRuntimeContentVersion": 1,
+      "currentCefr": "A1",
+      "proposedCefrEvidence": {
+        "value": "A1",
+        "status": "SOURCE_VERIFIED",
+        "authority": "EXISTING_OXFORD_PINNED_BASELINE",
+        "evidence": [
+          {
+            "value": "A1",
+            "sourceField": "CEFR",
+            "corpus": "OXFORD_5000",
+            "sourceRecordId": "1788223606089",
+            "sourceNoteGuid": "j1APBJ^g|Y",
+            "recordEvidenceSha256": "f95240cac8fc9a8b996c934097e22856f64c9a31623b90fa53906f4eab1aed47"
+          }
+        ],
+        "corroboratingEvidence": [
+          {
+            "value": "A1",
+            "sourceField": "deck:4600 English Vocab::A1",
+            "corpus": "ENGLISH_VOCAB_4600",
+            "sourceRecordId": "1556384730967",
+            "sourceNoteGuid": "K4A/S6<,sf",
+            "recordEvidenceSha256": "5ba68b6d913260c04039a2ed7f531e9969e1e98798521255f8c97421be275795"
+          },
+          {
+            "value": "A1",
+            "sourceField": "noteTag",
+            "corpus": "ENGLISH_VOCAB_4600",
+            "sourceRecordId": "1556384730967",
+            "sourceNoteGuid": "K4A/S6<,sf",
+            "recordEvidenceSha256": "5ba68b6d913260c04039a2ed7f531e9969e1e98798521255f8c97421be275795"
+          }
+        ],
+        "secondarySourceConflicts": []
+      },
+      "definitionEn": "To do something that makes a task or situation easier for another person.",
+      "meaningVi": "giúp; hỗ trợ",
+      "meaningViOverride": null,
+      "examples": [
+        {
+          "en": "A printed diagram helped the visitors find the upper gallery.",
+          "vi": "Sơ đồ in sẵn giúp khách tham quan tìm được phòng trưng bày phía trên.",
+          "exampleKey": "PHASE_E_2026_10_12:help:core-sense:example-1"
+        }
+      ],
+      "usageNotes": "Transitive or followed by with; help someone do something.",
+      "historicalContentReview": {
+        "decision": "PASS",
+        "receiptPath": "vocabflow-dataset/workspaces/master-v2-development-sync/independent-review-receipt-b.json",
+        "receiptSha256": "a87f10057d758a094fe885999bdebd95040d3a6ec7c9a0500dc7aa0942322233",
+        "reviewerIdentity": "/root/independent_review_b"
+      },
+      "campaignEditorialDisposition": "UNREVIEWED",
+      "masterIdentityStatus": "PENDING_IDENTITY",
+      "mediaStateInLocalRestore": {
+        "images": [],
+        "wordAudio": [],
+        "exampleAudio": []
+      },
+      "enabled": true,
+      "shardId": "review-shard-0064"
+    }
+  },
+  "counts": {
+    "letters": 6,
+    "letterActivities": 12,
+    "utterances": 12,
+    "realFoundationCanonicalIds": 0
+  },
+  "previousMapping": {
+    "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket09-compat-r0001/mapped-targets.json",
+    "byteSha256": "d60dcebf0cb8577c5198c6e05cf2500ff2b517652dc199b48668a035802e6529"
+  },
+  "letterDeliveryBoundary": {
+    "preAnswerFile": {
+      "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket08-draft-r0002/pre-answer-projections.json",
+      "byteSha256": "c8033f38b5ca87f7baded998e979579a942d60918e11535e76a32c5e70438092"
+    },
+    "authorityKeys": {
+      "repoRelativePath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket08-draft-r0002/authority-answer-keys.json",
+      "byteSha256": "c354697bec1c2beed9bbc770d0575a366f17c134988f1b110fdd9f3bf485ea7f"
+    },
+    "splitRequired": true,
+    "publicDeliveryOfWholeMappingAllowed": false,
+    "runtimeHandles": "Fresh opaque attempt/audio/option handles; fixture refs never served as production handles"
+  }
+}

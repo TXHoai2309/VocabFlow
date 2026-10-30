@@ -1,3 +1,5 @@
+import { vocabularyProjectionTable } from "./vocabulary-dataset-version";
+import { editorialPreviewDisplayForm, editorialPreviewWord, editorialPreviewExampleEn, editorialPreviewField, editorialPreviewMeaning, editorialPreviewMeaningStatus, editorialPreviewTags } from "./editorial-local-preview";
 import { sql, type SQL } from "drizzle-orm";
 import {
   APP_SCHEMA,
@@ -139,11 +141,11 @@ export function createLearnerVocabularyService(database: LearnerVocabularyDataba
         const result = await database.execute(sql`
           SELECT
             v.id,
-            v.word,
+            ${editorialPreviewWord} AS word,
             v.ipa,
             COALESCE(v.vietnamese_override, v.vietnamese) AS vietnamese,
             v.definition_en,
-            v.example_en,
+            ${editorialPreviewExampleEn} AS example_en,
             CASE WHEN v.image_quarantined THEN NULL ELSE v.image_url END AS image_url,
             v.audio_url,
             v.topic,
@@ -152,14 +154,14 @@ export function createLearnerVocabularyService(database: LearnerVocabularyDataba
             v.content_version,
             md.proposal_key AS master_sense_identity,
             md.source_provenance->'masterV2Identity'->>'sourceMeaningVi' AS source_meaning_vi,
-            sm.short_meaning_vi AS short_meaning_vi, sm.validation_status AS short_meaning_status,
-            md.source_provenance->'masterV2Identity'->>'displayForm' AS display_form,
-            md.part_of_speech, md.cefr, md.tags, md.examples, md.content_sha256,
-            md.content_review_decision, md.editorial_status, md.rights_status, md.development_media,
+            ${editorialPreviewMeaning} AS short_meaning_vi, ${editorialPreviewMeaningStatus} AS short_meaning_status,
+            ${editorialPreviewDisplayForm} AS display_form,
+            md.part_of_speech, md.cefr, ${editorialPreviewTags} AS tags, ${editorialPreviewField("examples", sql`md.examples`)} AS examples, md.content_sha256,
+            md.content_review_decision, md.editorial_status, md.rights_status, ${editorialPreviewField("media", sql`md.development_media`)} AS development_media,
             lp.status::text AS progress_status,
             lp.next_review_date
           FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
-          LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
+          LEFT JOIN ${vocabularyProjectionTable(datasetVersion)} md ON md.vocabulary_id = v.id
           LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_short_meanings" sm
             ON sm.vocabulary_id = v.id AND sm.source_content_hash = md.content_sha256 AND sm.validation_status = 'VERIFIED'
           LEFT JOIN "${sql.raw(APP_SCHEMA)}"."learner_progress" lp
@@ -168,7 +170,7 @@ export function createLearnerVocabularyService(database: LearnerVocabularyDataba
           WHERE v.enabled = true
             AND ${vocabularyDatasetPredicate("v", datasetVersion)}
             ${level ? sql`AND v.level = ${level}` : sql``}
-            ${datasetVersion === "v2" && vocabularyId ? sql`AND v.id = ${vocabularyId}` : sql``}
+            ${datasetVersion !== "legacy" && vocabularyId ? sql`AND v.id = ${vocabularyId}` : sql``}
           ORDER BY v.id ASC
         `);
         return rowsOf<LearnerVocabularyRow>(result).map(toLearnerVocabularyDto);

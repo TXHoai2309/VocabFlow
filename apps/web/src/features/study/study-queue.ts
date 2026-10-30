@@ -1,4 +1,4 @@
-import { parseStudySetIds, type CatalogStudyScope, type LearningSourceScope, type ReviewQueueResponse, type StudyQueueCapacity } from "@vocabflow/contracts";
+import { parseStudySetIds, isCefrFilter, type CatalogStudyScope, type LearningSourceScope, type ReviewQueueResponse, type StudyQueueCapacity } from "@vocabflow/contracts";
 import { requestReviewQueue } from "./review-queue-client";
 
 export type StudyScope = CatalogStudyScope | { type: "saved"; all: boolean } | { type: "weak" } | { type: "invalid" } | LearningSourceScope;
@@ -16,7 +16,7 @@ export function studyScopeFromParams(searchParams: URLSearchParams): StudyScope 
   const level = params.get("level"); const cefr = params.get("cefr");
   if (params.getAll("level").length > 1 || params.getAll("cefr").length > 1
     || (level !== null && !["GRADE_1", "GRADE_2", "GRADE_3", "GRADE_4", "GRADE_5", "GENERAL"].includes(level))
-    || (cefr !== null && !/^[ABC][12]$/.test(cefr))) return { type: "invalid" };
+    || (cefr !== null && !isCefrFilter(cefr))) return { type: "invalid" };
   params.delete("level"); params.delete("cefr");
   const scope = baseStudyScopeFromParams(params);
   if (level === null && cefr === null) return scope;

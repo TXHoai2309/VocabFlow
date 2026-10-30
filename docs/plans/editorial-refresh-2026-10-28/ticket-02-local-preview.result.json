@@ -1,0 +1,200 @@
+{
+  "artifactType": "TICKET_02_LOCAL_COMPATIBILITY_RESULT",
+  "schemaVersion": 1,
+  "ticketId": "02",
+  "status": "COMPLETE_LOCAL_ONLY",
+  "target": "127.0.0.1:55432/vocabflow_dev",
+  "appliedTags": [
+    "0019_light_penance",
+    "0020_learning_topic_review",
+    "0021_flashcard_display_mode"
+  ],
+  "beforeCounts": {
+    "vocabulary": 7341,
+    "v2": 7311,
+    "progress": 1,
+    "reviews": 1
+  },
+  "afterCounts": {
+    "vocabulary": 7341,
+    "v2": 7311,
+    "progress": 1,
+    "reviews": 1
+  },
+  "preservedTables": 30,
+  "existingHistoryPrefixPreserved": true,
+  "protectedRoleAndSchemaStatePreserved": true,
+  "newHistoryRows": 3,
+  "backup": {
+    "archiveRelative": ".vocabflow-local/editorial-refresh-20261028/ticket02-local-compat-v1/backup/pre-migration.dump",
+    "archiveByteSha256": "85293117ddfb1c1d46ce63f474e7fc42b9a51bb0a2472a7ce2ffd25c4d3e432b",
+    "archiveByteLength": 4335081,
+    "globalsRelative": ".vocabflow-local/editorial-refresh-20261028/ticket02-local-compat-v1/backup/globals-without-passwords.sql",
+    "globalsByteSha256": "5576f8ba2adcf15672daccf2b7fc81a758c2d5b4adebe4adadf2b0dddd956d41",
+    "restoreTocValidated": true,
+    "rolePasswordsIncluded": false,
+    "databaseRestored": false,
+    "recoveryScope": "Same dedicated local Docker DB with existing unchanged roles; restore command must be reviewed before destructive use."
+  },
+  "verification": {
+    "guardTests": {
+      "passed": 9,
+      "failed": 0
+    },
+    "migrationSuites": {
+      "files": 4,
+      "passed": 21,
+      "failed": 0
+    },
+    "invariantsAfterBrowser": "PASS",
+    "backupFullDecode": "PASS_NOT_RESTORED",
+    "realApiChecks": [
+      {
+        "name": "Real learning index preserves all 7311 V2 IDs",
+        "status": "PASS",
+        "count": 7311
+      },
+      {
+        "name": "Real filtered browse A1",
+        "status": "PASS",
+        "total": 1008,
+        "visible": 30
+      },
+      {
+        "name": "Real filtered browse UNCLASSIFIED",
+        "status": "PASS",
+        "total": 1772,
+        "visible": 30
+      },
+      {
+        "name": "Empty grade intersection stays empty",
+        "status": "PASS",
+        "total": 0
+      }
+    ],
+    "realBrowserFlows": [
+      {
+        "width": 1440,
+        "cefr": "A1",
+        "status": "PASS",
+        "pages": [
+          "vocabulary",
+          "study/setup",
+          "study"
+        ],
+        "detailIdsInScope": [
+          29275,
+          29285,
+          29286,
+          29287,
+          29288,
+          29338,
+          29339,
+          29340,
+          29341,
+          29342
+        ],
+        "flashcardWord": "a, an",
+        "flipped": true
+      },
+      {
+        "width": 390,
+        "cefr": "UNCLASSIFIED",
+        "status": "PASS",
+        "pages": [
+          "vocabulary",
+          "study/setup",
+          "study"
+        ],
+        "detailIdsInScope": [
+          29281,
+          29282,
+          29290,
+          29302,
+          29309,
+          29319,
+          29324,
+          29327,
+          29328,
+          29330
+        ],
+        "flashcardWord": "abnormal",
+        "flipped": true
+      }
+    ],
+    "apiMocks": false,
+    "accountReviewWritesTested": false,
+    "dbContentImported": false
+  },
+  "evidence": [
+    {
+      "path": ".vocabflow-local/editorial-refresh-20261028/ticket02-local-compat-v1/plan.json",
+      "byteSha256": "363c9cc7d927f26e166ef1d01765078c7dbb28b2ecd777612fa70c3383b9a5cf"
+    },
+    {
+      "path": ".vocabflow-local/editorial-refresh-20261028/ticket02-local-compat-v1/before.json",
+      "byteSha256": "2af418dbbfe71e52dd7f208f144133143d2b38cf8d195003c3232cc5e69145bc"
+    },
+    {
+      "path": ".vocabflow-local/editorial-refresh-20261028/ticket02-local-compat-v1/after.json",
+      "byteSha256": "9c0e46aef8b1bc96df8427cef21effe0c9fc5678125ad3a9926d9666c055e98d"
+    },
+    {
+      "path": ".vocabflow-local/editorial-refresh-20261028/ticket02-local-compat-v1/applied.json",
+      "byteSha256": "900035d0741dd53d45d39c9631c5403dfcfbad4f441d2632e7fac78638f4ef99"
+    },
+    {
+      "path": ".vocabflow-local/editorial-refresh-20261028/ticket02-local-compat-v1/backup/decode-verification.json",
+      "byteSha256": "fb957d365df918e543d07a07a97d64b0f518f5d2687b7e044bbbc571d5778357"
+    },
+    {
+      "path": ".vocabflow-local/editorial-refresh-20261028/ticket02-local-compat-v1/recovery-notes.md",
+      "byteSha256": "26ed704ae0b5416597b2a8ef3b6922e7fa92ddc4d0b914e1bd5f31b503b71498"
+    }
+  ],
+  "preview": {
+    "reportRelative": ".vocabflow-local/editorial-refresh-20261028/ticket02-preview/514bd87d-e932-443f-b7d8-f3d79c19fb47/report.json",
+    "reportByteSha256": "01f5fd74619a24b7a326a2760ab20097688fc4ec50c93eef2c74fe5e3ed4150e",
+    "screenshots": [
+      {
+        "path": ".vocabflow-local/editorial-refresh-20261028/ticket02-preview/514bd87d-e932-443f-b7d8-f3d79c19fb47/browse-A1-1440.png",
+        "byteSha256": "c5f78f8f4d634330e55904c404e11d862da80cd48cb7de406814633b0ca27242"
+      },
+      {
+        "path": ".vocabflow-local/editorial-refresh-20261028/ticket02-preview/514bd87d-e932-443f-b7d8-f3d79c19fb47/browse-UNCLASSIFIED-390.png",
+        "byteSha256": "82b3ccf7ba132f779a9dcfa3eabbf0b1f43c54b74d4179410dc38e27ad1fbe30"
+      },
+      {
+        "path": ".vocabflow-local/editorial-refresh-20261028/ticket02-preview/514bd87d-e932-443f-b7d8-f3d79c19fb47/study-A1-1440.png",
+        "byteSha256": "2159364977fd759d6a2b94c1d5a877a6f4fb8b24e2219e2ac0d68aeb84befecd"
+      },
+      {
+        "path": ".vocabflow-local/editorial-refresh-20261028/ticket02-preview/514bd87d-e932-443f-b7d8-f3d79c19fb47/study-UNCLASSIFIED-390.png",
+        "byteSha256": "0d6e95d2e22d13f433340d6ec23a58ffd617681c34b0da22107c6f4c325b9746"
+      }
+    ]
+  },
+  "tools": [
+    {
+      "path": "scripts/editorial-local-compat-v1.mts",
+      "byteSha256": "e1d03e9a7cb1aa88c3cfa916f730da6825bdc76308524b6e336146b54bbc34c5"
+    },
+    {
+      "path": "scripts/editorial-local-compat-v1.test.mjs",
+      "byteSha256": "6dc55f4f11b98880d9785854cb5b888ef89b2aa2ff04b42019d27c3973581e44"
+    },
+    {
+      "path": "scripts/editorial-preview-smoke-v1.mjs",
+      "byteSha256": "da8cf651f0c2f5d6ba5420d0a71442a6bb514092c1e93693dbfab9d938ae4063"
+    }
+  ],
+  "limitations": [
+    "Dedicated local schema migration only; no remote DB or deployment.",
+    "Historical extra migration SQL is unavailable; observed history prefix preserved with source evidence.",
+    "Backup fully decoded but not restored; recovery procedure provided.",
+    "Browser verified guest browse/setup/study with real API and no review writes."
+  ],
+  "newVocabularyAuthored": 0,
+  "providerCalls": 0,
+  "mediaActivated": false
+}

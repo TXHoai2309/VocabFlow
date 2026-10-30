@@ -127,7 +127,7 @@ test("7,311-word guest Home separates unseen count, daily allowance and selected
   await expect(page.getByRole("link", { name: "Từ mới: 7301", exact: true })).toBeVisible();
   await expect(page.locator(".home-hero-copy")).toContainText("90 từ mới");
   expect(fullCatalogRequests).toEqual([]);
-  expect(detailBatches.flat()).toHaveLength(10);
+  expect(detailBatches.flat()).toHaveLength(5);
   await page.goto("/study/setup?source=all");
   await expect(page.getByRole("button", { name: "Bắt đầu học", exact: true })).toBeEnabled();
   expect(detailBatches.every((batch) => batch.length <= 60)).toBe(true);

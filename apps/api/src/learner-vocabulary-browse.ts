@@ -1,3 +1,5 @@
+import { vocabularyProjectionTable } from "./vocabulary-dataset-version";
+import { editorialPreviewDisplayForm, editorialPreviewWord, localFirstWords, editorialPreviewField, editorialPreviewMeaning, editorialPreviewMeaningStatus, editorialPreviewTags } from "./editorial-local-preview";
 import { sql, type SQL } from "drizzle-orm";
 import {
   APP_SCHEMA,
@@ -13,6 +15,7 @@ import { LearnerVocabularyServiceError, type LearnerVocabularyDatabase } from ".
 import { jsonArray, jsonObject, vocabularyDatasetPredicate, type VocabularyDatasetVersion } from "./vocabulary-dataset-version";
 
 import { topicMembership } from "./topic-policy";
+import { catalogCefrFilter } from "./catalog-cefr-filter";
 
 type VocabularyBrowseRow = {
   is_saved?: unknown;
@@ -108,7 +111,7 @@ function browseFilters(datasetVersion: VocabularyDatasetVersion, query: LearnerV
     vocabularyDatasetPredicate("v", datasetVersion)
   ];
   if (query.level) filters.push(sql`v.level = ${query.level}`);
-  if (query.cefr) filters.push(sql`md.cefr = ${query.cefr}`);
+  if (query.cefr) filters.push(catalogCefrFilter(query.cefr));
   if (query.topicId) filters.push(topicMembership(sql`v.id`, sql`${query.topicId}`));
   if (query.topic) filters.push(sql`EXISTS (
     SELECT 1 FROM "${sql.raw(APP_SCHEMA)}".topics selected_topic
@@ -119,7 +122,7 @@ function browseFilters(datasetVersion: VocabularyDatasetVersion, query: LearnerV
   if (query.q) {
     const pattern = `%${query.q.replace(/[\\%_]/g, "\\$&")}%`;
     filters.push(sql`(
-      v.word ILIKE ${pattern} ESCAPE ${"\\"}
+      ${editorialPreviewWord} ILIKE ${pattern} ESCAPE ${"\\"}
       OR md.source_provenance->'masterV2Identity'->>'sourceMeaningVi' ILIKE ${pattern} ESCAPE ${"\\"}
       OR COALESCE(v.vietnamese_override, v.vietnamese) ILIKE ${pattern} ESCAPE ${"\\"}
     )`);
@@ -159,7 +162,7 @@ export async function readPublicVocabularyMatchIds(database: LearnerVocabularyDa
   const where = sql.join(browseFilters(datasetVersion, { page: 1, pageSize: 20, q: query }), sql` AND `);
   const result = await database.execute(sql`
     SELECT v.id FROM "${sql.raw(APP_SCHEMA)}".vocabularies v
-    LEFT JOIN "${sql.raw(APP_SCHEMA)}".master_v2_development_projections md ON md.vocabulary_id = v.id
+    LEFT JOIN ${vocabularyProjectionTable(datasetVersion)} md ON md.vocabulary_id = v.id
     WHERE ${where} ORDER BY v.id
   `);
   return rowsOf<{ id: unknown }>(result).map((row) => safeInteger(row.id));
@@ -189,7 +192,7 @@ async function readVocabularyBrowse(database: LearnerVocabularyDatabase, dataset
     const [pageResult, countResult, filtersResult] = await Promise.all([
       database.execute(sql`
         SELECT
-          v.id, v.word, v.ipa,
+          v.id, ${editorialPreviewWord} AS word, v.ipa,
           ${learnerId ? sql`EXISTS (SELECT 1 FROM "${sql.raw(APP_SCHEMA)}".learner_saved_vocabulary saved
             WHERE saved.learner_id = ${learnerId}::uuid AND saved.vocabulary_id = v.id)` : sql`false`} AS is_saved,
           COALESCE(v.vietnamese_override, v.vietnamese) AS vietnamese,
@@ -197,19 +200,19 @@ async function readVocabularyBrowse(database: LearnerVocabularyDatabase, dataset
           v.audio_url, v.topic, v.level, v.enabled, v.content_version,
           md.proposal_key AS master_sense_identity,
           md.source_provenance->'masterV2Identity'->>'sourceMeaningVi' AS source_meaning_vi,
-          sm.short_meaning_vi AS short_meaning_vi, sm.validation_status AS short_meaning_status,
-          md.source_provenance->'masterV2Identity'->>'displayForm' AS display_form,
-          md.part_of_speech, md.cefr, md.tags, md.rights_status, md.content_sha256,
+          ${editorialPreviewMeaning} AS short_meaning_vi, ${editorialPreviewMeaningStatus} AS short_meaning_status,
+          ${editorialPreviewDisplayForm} AS display_form,
+          md.part_of_speech, md.cefr, ${editorialPreviewTags} AS tags, md.rights_status, md.content_sha256,
           md.content_review_decision, md.editorial_status,
-          CASE WHEN md.development_media IS NULL THEN NULL ELSE
+          CASE WHEN ${editorialPreviewField("media", sql`md.development_media`)} IS NULL THEN NULL ELSE
             jsonb_strip_nulls(jsonb_build_object(
-              'images', md.development_media->'images',
-              'wordAudio', md.development_media->'wordAudio'
+              'images', ${editorialPreviewField("media", sql`md.development_media`)}->'images',
+              'wordAudio', ${editorialPreviewField("media", sql`md.development_media`)}->'wordAudio'
             ))
           END AS development_media,
           ${learnerId ? sql`lp.status::text AS progress_status, lp.next_review_date` : sql`NULL::text AS progress_status, NULL::date AS next_review_date`}
         FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
-        LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
+        LEFT JOIN ${vocabularyProjectionTable(datasetVersion)} md ON md.vocabulary_id = v.id
         LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_short_meanings" sm
           ON sm.vocabulary_id = v.id AND sm.source_content_hash = md.content_sha256 AND sm.validation_status = 'VERIFIED'
         ${learnerId ? sql`LEFT JOIN "${sql.raw(APP_SCHEMA)}"."learner_progress" lp
@@ -221,7 +224,7 @@ async function readVocabularyBrowse(database: LearnerVocabularyDatabase, dataset
       database.execute(sql`
         SELECT COUNT(*)::bigint AS total
         FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
-        LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
+        LEFT JOIN ${vocabularyProjectionTable(datasetVersion)} md ON md.vocabulary_id = v.id
         WHERE ${where}
       `),
       cachedFilters(database, datasetVersion, sql`
@@ -236,8 +239,9 @@ async function readVocabularyBrowse(database: LearnerVocabularyDatabase, dataset
             FROM (
               SELECT DISTINCT md.cefr AS cefr
               FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
-              JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
+              JOIN ${vocabularyProjectionTable(datasetVersion)} md ON md.vocabulary_id = v.id
               WHERE v.enabled = true AND ${vocabularyDatasetPredicate("v", datasetVersion)} AND md.cefr IS NOT NULL
+              UNION SELECT 'intro-first-words' WHERE EXISTS (SELECT 1 FROM ${vocabularyProjectionTable(datasetVersion)} md JOIN "${sql.raw(APP_SCHEMA)}".vocabularies v ON v.id=md.vocabulary_id WHERE v.enabled=true AND ${vocabularyDatasetPredicate("v", datasetVersion)} AND ${localFirstWords})
             ) options
           ), ARRAY[]::text[]) AS cefr_options,
           COALESCE((

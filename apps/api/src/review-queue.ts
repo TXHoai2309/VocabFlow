@@ -1,4 +1,7 @@
+import { vocabularyProjectionTable } from "./vocabulary-dataset-version";
+import { editorialPreviewDisplayForm, editorialPreviewWord, editorialPreviewExampleEn, editorialPreviewField, editorialPreviewMeaning, editorialPreviewMeaningStatus, editorialPreviewTags } from "./editorial-local-preview";
 import { topicMembership } from "./topic-policy";
+import { catalogCefrFilter } from "./catalog-cefr-filter";
 import { sql, type SQL } from "drizzle-orm";
 import { performance } from "node:perf_hooks";
 import {
@@ -224,7 +227,7 @@ function vocabularyMembership(learner: SQL, scope?: ReviewQueueScope, datasetVer
   const filters = [baseVocabularyMembership(learner, scope, datasetVersion)];
   if (typeof scope === "object") {
     if (scope.level) filters.push(sql`v.level = ${scope.level}`);
-    if (scope.cefr) filters.push(sql`md.cefr = ${scope.cefr}`);
+    if (scope.cefr) filters.push(catalogCefrFilter(scope.cefr));
   }
   return sql.join(filters, sql` AND `);
 }
@@ -239,8 +242,8 @@ function baseVocabularyMembership(learner: SQL, scope?: ReviewQueueScope, datase
     )`;
   }
   if (typeof scope === "object") {
-    if (datasetVersion === "v2" && (scope.type === "pathway" || scope.type === "all")) return vocabularyDatasetPredicate("v", datasetVersion);
-    if (scope.type === "topic") return sql`${datasetVersion === "v2" ? sql`true` : baseVocabularyMembership(learner, undefined, datasetVersion)}
+    if (datasetVersion !== "legacy" && (scope.type === "pathway" || scope.type === "all")) return vocabularyDatasetPredicate("v", datasetVersion);
+    if (scope.type === "topic") return sql`${datasetVersion !== "legacy" ? sql`true` : baseVocabularyMembership(learner, undefined, datasetVersion)}
       AND ${topicMembership(sql`v.id`, sql`${scope.id}`)}`;
     const selected = scope.type === "custom"
       ? sql`AND ls.id IN (${sql.join(scope.ids.map((id) => sql`${id}`), sql`, `)})`
@@ -251,7 +254,7 @@ function baseVocabularyMembership(learner: SQL, scope?: ReviewQueueScope, datase
       WHERE ls.enabled = true AND lsi.vocabulary_id = v.id ${selected}
     )`;
   }
-  if (datasetVersion === "v2") return vocabularyDatasetPredicate("v", datasetVersion);
+  if (datasetVersion !== "legacy") return vocabularyDatasetPredicate("v", datasetVersion);
   return sql`EXISTS (
     SELECT 1
     FROM "${sql.raw(APP_SCHEMA)}"."learner_learning_sets" lls
@@ -268,11 +271,11 @@ async function dueRows(database: ReviewQueueDatabase, learnerId: string, reviewD
   const membership = vocabularyMembership(sql.raw("lp.learner_id"), scope, datasetVersion);
   const result = await database.execute(sql`
     SELECT v.id,
-           v.word,
+           ${editorialPreviewWord} AS word,
            v.ipa,
            COALESCE(v.vietnamese_override, v.vietnamese) AS vietnamese,
            v.definition_en,
-           v.example_en,
+           ${editorialPreviewExampleEn} AS example_en,
            CASE WHEN v.image_quarantined THEN NULL ELSE v.image_url END AS image_url,
            v.audio_url,
            v.topic,
@@ -281,17 +284,17 @@ async function dueRows(database: ReviewQueueDatabase, learnerId: string, reviewD
            v.content_version,
            md.proposal_key AS master_sense_identity,
            md.source_provenance->'masterV2Identity'->>'sourceMeaningVi' AS source_meaning_vi,
-           sm.short_meaning_vi AS short_meaning_vi, sm.validation_status AS short_meaning_status,
-           md.source_provenance->'masterV2Identity'->>'displayForm' AS display_form,
-           md.part_of_speech, md.cefr, md.tags, md.examples, md.content_sha256,
-           md.content_review_decision, md.editorial_status, md.rights_status, md.development_media,
+           ${editorialPreviewMeaning} AS short_meaning_vi, ${editorialPreviewMeaningStatus} AS short_meaning_status,
+           ${editorialPreviewDisplayForm} AS display_form,
+           md.part_of_speech, md.cefr, ${editorialPreviewTags} AS tags, ${editorialPreviewField("examples", sql`md.examples`)} AS examples, md.content_sha256,
+           md.content_review_decision, md.editorial_status, md.rights_status, ${editorialPreviewField("media", sql`md.development_media`)} AS development_media,
            lp.status::text AS status,
            lp.next_review_date::text AS next_review_date,
            lp.revision,
            COUNT(*) OVER() AS total_count
     FROM "${sql.raw(APP_SCHEMA)}"."learner_progress" lp
     JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = lp.vocabulary_id
-    LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
+    LEFT JOIN ${vocabularyProjectionTable(datasetVersion)} md ON md.vocabulary_id = v.id
     LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_short_meanings" sm
       ON sm.vocabulary_id = v.id AND sm.source_content_hash = md.content_sha256 AND sm.validation_status = 'VERIFIED'
     WHERE lp.learner_id = ${learnerId}::uuid
@@ -309,11 +312,11 @@ async function newRows(database: ReviewQueueDatabase, learnerId: string, scope?:
   const membership = vocabularyMembership(sql`${learnerId}::uuid`, scope, datasetVersion);
   const result = await database.execute(sql`
     SELECT v.id,
-           v.word,
+           ${editorialPreviewWord} AS word,
            v.ipa,
            COALESCE(v.vietnamese_override, v.vietnamese) AS vietnamese,
            v.definition_en,
-           v.example_en,
+           ${editorialPreviewExampleEn} AS example_en,
            CASE WHEN v.image_quarantined THEN NULL ELSE v.image_url END AS image_url,
            v.audio_url,
            v.topic,
@@ -322,16 +325,16 @@ async function newRows(database: ReviewQueueDatabase, learnerId: string, scope?:
            v.content_version,
            md.proposal_key AS master_sense_identity,
            md.source_provenance->'masterV2Identity'->>'sourceMeaningVi' AS source_meaning_vi,
-           sm.short_meaning_vi AS short_meaning_vi, sm.validation_status AS short_meaning_status,
-           md.source_provenance->'masterV2Identity'->>'displayForm' AS display_form,
-           md.part_of_speech, md.cefr, md.tags, md.examples, md.content_sha256,
-           md.content_review_decision, md.editorial_status, md.rights_status, md.development_media,
+           ${editorialPreviewMeaning} AS short_meaning_vi, ${editorialPreviewMeaningStatus} AS short_meaning_status,
+           ${editorialPreviewDisplayForm} AS display_form,
+           md.part_of_speech, md.cefr, ${editorialPreviewTags} AS tags, ${editorialPreviewField("examples", sql`md.examples`)} AS examples, md.content_sha256,
+           md.content_review_decision, md.editorial_status, md.rights_status, ${editorialPreviewField("media", sql`md.development_media`)} AS development_media,
            'NEW'::text AS status,
            NULL::date AS next_review_date,
            0::bigint AS revision,
            COUNT(*) OVER() AS total_count
     FROM "${sql.raw(APP_SCHEMA)}"."vocabularies" v
-    LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
+    LEFT JOIN ${vocabularyProjectionTable(datasetVersion)} md ON md.vocabulary_id = v.id
     LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_short_meanings" sm
       ON sm.vocabulary_id = v.id AND sm.source_content_hash = md.content_sha256 AND sm.validation_status = 'VERIFIED'
     LEFT JOIN "${sql.raw(APP_SCHEMA)}"."learner_progress" lp
@@ -350,11 +353,11 @@ async function newRows(database: ReviewQueueDatabase, learnerId: string, scope?:
 async function allSavedRows(database: ReviewQueueDatabase, learnerId: string, datasetVersion: VocabularyDatasetVersion) {
   const result = await database.execute(sql`
     SELECT v.id,
-           v.word,
+           ${editorialPreviewWord} AS word,
            v.ipa,
            COALESCE(v.vietnamese_override, v.vietnamese) AS vietnamese,
            v.definition_en,
-           v.example_en,
+           ${editorialPreviewExampleEn} AS example_en,
            CASE WHEN v.image_quarantined THEN NULL ELSE v.image_url END AS image_url,
            v.audio_url,
            v.topic,
@@ -366,14 +369,14 @@ async function allSavedRows(database: ReviewQueueDatabase, learnerId: string, da
            COALESCE(lp.revision, 0)::bigint AS revision,
            md.proposal_key AS master_sense_identity,
            md.source_provenance->'masterV2Identity'->>'sourceMeaningVi' AS source_meaning_vi,
-           sm.short_meaning_vi AS short_meaning_vi, sm.validation_status AS short_meaning_status,
-           md.source_provenance->'masterV2Identity'->>'displayForm' AS display_form,
-           md.part_of_speech, md.cefr, md.tags, md.examples, md.content_sha256,
-           md.content_review_decision, md.editorial_status, md.rights_status, md.development_media,
+           ${editorialPreviewMeaning} AS short_meaning_vi, ${editorialPreviewMeaningStatus} AS short_meaning_status,
+           ${editorialPreviewDisplayForm} AS display_form,
+           md.part_of_speech, md.cefr, ${editorialPreviewTags} AS tags, ${editorialPreviewField("examples", sql`md.examples`)} AS examples, md.content_sha256,
+           md.content_review_decision, md.editorial_status, md.rights_status, ${editorialPreviewField("media", sql`md.development_media`)} AS development_media,
            COUNT(*) OVER() AS total_count
     FROM "${sql.raw(APP_SCHEMA)}"."learner_saved_vocabulary" saved
     JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = saved.vocabulary_id
-    LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
+    LEFT JOIN ${vocabularyProjectionTable(datasetVersion)} md ON md.vocabulary_id = v.id
     LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_short_meanings" sm
       ON sm.vocabulary_id = v.id AND sm.source_content_hash = md.content_sha256 AND sm.validation_status = 'VERIFIED'
     LEFT JOIN "${sql.raw(APP_SCHEMA)}"."learner_progress" lp
@@ -430,7 +433,7 @@ export function createReviewQueueService(
               const ids = scope.type === "custom" ? scope.ids : [scope.id];
               const table = scope.type === "topic" ? "topics" : "learning_sets";
               const idFilter = sql`id::bigint IN (${sql.join(ids.map((id) => sql`${id}::bigint`), sql`, `)})`;
-              const validQuery = datasetVersion === "v2"
+              const validQuery = datasetVersion !== "legacy"
                 ? scope.type === "topic"
                   ? sql`SELECT t.id FROM "${sql.raw(APP_SCHEMA)}"."topics" t
                       WHERE t.enabled = true AND t.review_status = 'APPROVED' AND ${idFilter}
@@ -449,7 +452,7 @@ export function createReviewQueueService(
               const valid = rowsOf<{ id: number }>(await database.execute(validQuery));
               if (valid.length !== ids.length) throw new ReviewQueueServiceError("SCOPE_NOT_FOUND", 404);
             }
-            if (scope.type === "pathway" && datasetVersion !== "v2") {
+            if (scope.type === "pathway" && datasetVersion === "legacy") {
               const candidates = rowsOf<{ id: number | string }>(await database.execute(sql`
                 SELECT ls.id FROM "${sql.raw(APP_SCHEMA)}"."learning_sets" ls
                 WHERE ls.enabled = true AND EXISTS (
@@ -462,7 +465,7 @@ export function createReviewQueueService(
                 ) ORDER BY ls.sort_order ASC, ls.id ASC LIMIT 1
               `));
               newScope = { type: "custom", ids: candidates.length ? [Number(candidates[0]!.id)] : [], ...(scope.level ? { level: scope.level } : {}), ...(scope.cefr ? { cefr: scope.cefr } : {}) };
-            } else if (scope.type === "pathway" && datasetVersion === "v2") {
+            } else if (scope.type === "pathway" && datasetVersion !== "legacy") {
               newScope = { type: "pathway", ...(scope.level ? { level: scope.level } : {}), ...(scope.cefr ? { cefr: scope.cefr } : {}) };
             }
           }

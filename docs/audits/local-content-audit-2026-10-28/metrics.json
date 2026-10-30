@@ -1,0 +1,1218 @@
+{
+  "scope": "local Docker PostgreSQL only; no remote DB or API requests",
+  "repoRoot": "D:\\hoctienganh\\VocabFlow\\",
+  "connectionFile": ".vocabflow-local/development.env",
+  "target": {
+    "hostname": "127.0.0.1",
+    "port": "55432",
+    "database": "vocabflow_dev"
+  },
+  "metrics": {
+    "transaction": [
+      {
+        "database": "vocabflow_dev",
+        "read_only": "on",
+        "isolation": "repeatable read",
+        "captured_at": "2026-10-28T15:06:41.807Z"
+      }
+    ],
+    "tables": [
+      {
+        "table_schema": "vocabflow_app",
+        "table_name": "account"
+      },
+      {
+        "table_schema": "vocabflow_app",
+        "table_name": "achievements"
+      },
+      {
+        "table_schema": "vocabflow_app",
+        "table_name": "household_members"
+      },
+      {
+        "table_schema": "vocabflow_app",
+        "table_name": "households"
+      },
+      {
+        "table_schema": "vocabflow_app",
+        "table_name": "learner_achievements"
+      },
+      {
+        "table_schema": "vocabflow_app",
+        "table_name": "learner_learning_sets"
+      },
+      {
+        "table_schema": "vocabflow_app",
+        "table_name": "learner_profiles"
+      },
+      {
+        "table_schema": "vocabflow_app",
+        "table_name": "learner_progress"
+      },
+      {
+        "table_schema": "vocabflow_app",
+        "table_name": "learner_saved_vocabulary"
+      },
+      {
+        "table_schema": "vocabflow_app",
+        "table_name": "learning_set_items"
+      },
+      {
+        "table_schema": "vocabflow_app",
+        "table_name": "learning_sets"
+      },
+      {
+        "table_schema": "vocabflow_app",
+        "table_name": "master_learning_set_mappings"
+      },
+      {
+        "table_schema": "vocabflow_app",
+        "table_name": "master_learning_set_memberships"
+      },
+      {
+        "table_schema": "vocabflow_app",
+        "table_name": "master_topic_mappings"
+      },
+      {
+        "table_schema": "vocabflow_app",
+        "table_name": "master_v2_development_import_runs"
+      },
+      {
+        "table_schema": "vocabflow_app",
+        "table_name": "master_v2_development_projections"
+      },
+      {
+        "table_schema": "vocabflow_app",
+        "table_name": "master_vocabulary_import_runs"
+      },
+      {
+        "table_schema": "vocabflow_app",
+        "table_name": "master_vocabulary_mappings"
+      },
+      {
+        "table_schema": "vocabflow_app",
+        "table_name": "master_vocabulary_topic_memberships"
+      },
+      {
+        "table_schema": "vocabflow_app",
+        "table_name": "review_events"
+      },
+      {
+        "table_schema": "vocabflow_app",
+        "table_name": "session"
+      },
+      {
+        "table_schema": "vocabflow_app",
+        "table_name": "topics"
+      },
+      {
+        "table_schema": "vocabflow_app",
+        "table_name": "user"
+      },
+      {
+        "table_schema": "vocabflow_app",
+        "table_name": "verification"
+      },
+      {
+        "table_schema": "vocabflow_app",
+        "table_name": "vocabularies"
+      },
+      {
+        "table_schema": "vocabflow_app",
+        "table_name": "vocabulary_topics"
+      },
+      {
+        "table_schema": "vocabflow_app",
+        "table_name": "xp_events"
+      }
+    ],
+    "schema_compatibility": [],
+    "runtime_grade_enum": [
+      {
+        "value": "GRADE_1"
+      },
+      {
+        "value": "GRADE_2"
+      },
+      {
+        "value": "GRADE_3"
+      },
+      {
+        "value": "GRADE_4"
+      },
+      {
+        "value": "GRADE_5"
+      },
+      {
+        "value": "GENERAL"
+      }
+    ],
+    "vocabulary_by_source": [
+      {
+        "source_dataset": "VOCABFLOW_MASTER_V2_DEV",
+        "enabled": true,
+        "rows": 7311,
+        "normalized_headwords": 6114,
+        "grade_assigned": 0,
+        "first_created_at": "2026-10-17T04:22:02.034Z",
+        "last_updated_at": "2026-10-17T04:22:02.034Z"
+      },
+      {
+        "source_dataset": null,
+        "enabled": true,
+        "rows": 30,
+        "normalized_headwords": 30,
+        "grade_assigned": 0,
+        "first_created_at": "2026-10-17T04:18:38.441Z",
+        "last_updated_at": "2026-10-17T04:18:38.441Z"
+      }
+    ],
+    "cefr": [
+      {
+        "cefr": "A1",
+        "senses": 1008,
+        "headwords": 699
+      },
+      {
+        "cefr": "A2",
+        "senses": 905,
+        "headwords": 676
+      },
+      {
+        "cefr": "B1",
+        "senses": 740,
+        "headwords": 584
+      },
+      {
+        "cefr": "B2",
+        "senses": 1424,
+        "headwords": 1222
+      },
+      {
+        "cefr": "C1",
+        "senses": 1462,
+        "headwords": 1254
+      },
+      {
+        "cefr": "(unknown)",
+        "senses": 1772,
+        "headwords": 1712
+      }
+    ],
+    "v2_content_coverage": [
+      {
+        "senses": 7311,
+        "headwords": 6114,
+        "ipa": 0,
+        "legacy_image_url": 0,
+        "legacy_audio_url": 0,
+        "missing_vietnamese": 0,
+        "definition_en": 7311,
+        "example_en": 7311,
+        "with_examples": 7311,
+        "with_images": 0,
+        "with_word_audio": 0,
+        "with_example_audio": 0
+      }
+    ],
+    "projection_status": [
+      {
+        "content_review_decision": "PASS",
+        "editorial_status": "DRAFT",
+        "rights_status": "UNKNOWN_REVIEW_REQUIRED",
+        "senses": 7311
+      }
+    ],
+    "sets": [
+      {
+        "id": 1,
+        "slug": "starter-vocabulary",
+        "name": "Bộ từ khởi đầu VocabFlow",
+        "grade": null,
+        "enabled": true,
+        "all_items": 30,
+        "enabled_v2_items": 0,
+        "enabled_legacy_items": 30
+      },
+      {
+        "id": 2,
+        "slug": "grade-1-starter",
+        "name": "Bộ từ khởi đầu lớp 1",
+        "grade": "GRADE_1",
+        "enabled": true,
+        "all_items": 10,
+        "enabled_v2_items": 0,
+        "enabled_legacy_items": 10
+      },
+      {
+        "id": 3,
+        "slug": "family-basics",
+        "name": "Từ vựng gia đình",
+        "grade": null,
+        "enabled": true,
+        "all_items": 5,
+        "enabled_v2_items": 0,
+        "enabled_legacy_items": 5
+      },
+      {
+        "id": 4,
+        "slug": "school-basics",
+        "name": "Từ vựng trường học",
+        "grade": null,
+        "enabled": true,
+        "all_items": 8,
+        "enabled_v2_items": 0,
+        "enabled_legacy_items": 8
+      },
+      {
+        "id": 5,
+        "slug": "everyday-words",
+        "name": "Từ vựng hằng ngày",
+        "grade": null,
+        "enabled": true,
+        "all_items": 17,
+        "enabled_v2_items": 0,
+        "enabled_legacy_items": 17
+      },
+      {
+        "id": 6,
+        "slug": "v2-cefr-a1",
+        "name": "CEFR A1",
+        "grade": null,
+        "enabled": true,
+        "all_items": 1008,
+        "enabled_v2_items": 1008,
+        "enabled_legacy_items": 0
+      },
+      {
+        "id": 7,
+        "slug": "v2-cefr-a2",
+        "name": "CEFR A2",
+        "grade": null,
+        "enabled": true,
+        "all_items": 905,
+        "enabled_v2_items": 905,
+        "enabled_legacy_items": 0
+      },
+      {
+        "id": 8,
+        "slug": "v2-cefr-b1",
+        "name": "CEFR B1",
+        "grade": null,
+        "enabled": true,
+        "all_items": 740,
+        "enabled_v2_items": 740,
+        "enabled_legacy_items": 0
+      },
+      {
+        "id": 9,
+        "slug": "v2-cefr-b2",
+        "name": "CEFR B2",
+        "grade": null,
+        "enabled": true,
+        "all_items": 1424,
+        "enabled_v2_items": 1424,
+        "enabled_legacy_items": 0
+      },
+      {
+        "id": 10,
+        "slug": "v2-cefr-c1",
+        "name": "CEFR C1",
+        "grade": null,
+        "enabled": true,
+        "all_items": 1462,
+        "enabled_v2_items": 1462,
+        "enabled_legacy_items": 0
+      },
+      {
+        "id": 11,
+        "slug": "v2-domain-academic-english",
+        "name": "Gợi ý chuyên ngành: Academic English",
+        "grade": null,
+        "enabled": true,
+        "all_items": 37,
+        "enabled_v2_items": 37,
+        "enabled_legacy_items": 0
+      },
+      {
+        "id": 12,
+        "slug": "v2-domain-business-english",
+        "name": "Gợi ý chuyên ngành: Business English",
+        "grade": null,
+        "enabled": true,
+        "all_items": 91,
+        "enabled_v2_items": 91,
+        "enabled_legacy_items": 0
+      },
+      {
+        "id": 13,
+        "slug": "v2-domain-travel-english",
+        "name": "Gợi ý chuyên ngành: Travel English",
+        "grade": null,
+        "enabled": true,
+        "all_items": 66,
+        "enabled_v2_items": 66,
+        "enabled_legacy_items": 0
+      },
+      {
+        "id": 14,
+        "slug": "v2-domain-it-technology",
+        "name": "Gợi ý chuyên ngành: IT and technology",
+        "grade": null,
+        "enabled": true,
+        "all_items": 39,
+        "enabled_v2_items": 39,
+        "enabled_legacy_items": 0
+      },
+      {
+        "id": 15,
+        "slug": "v2-domain-hospitality",
+        "name": "Gợi ý chuyên ngành: Hospitality",
+        "grade": null,
+        "enabled": true,
+        "all_items": 5,
+        "enabled_v2_items": 5,
+        "enabled_legacy_items": 0
+      }
+    ],
+    "v2_membership_coverage": [
+      {
+        "senses": 7311,
+        "in_enabled_sets": 5594,
+        "in_enabled_topics": 1604
+      }
+    ],
+    "topic_inventory": [
+      {
+        "topics": 36,
+        "enabled_topics": 36
+      }
+    ],
+    "topic_links": [
+      {
+        "links": 1768
+      }
+    ],
+    "duplicate_headwords": [
+      {
+        "multisense_headwords": 851,
+        "rows_above_one_per_headword": 1197,
+        "maximum_senses": 6
+      }
+    ],
+    "duplicate_sample": [
+      {
+        "headword": "abuse",
+        "senses": 6,
+        "parts_of_speech": [
+          "NOUN",
+          "VERB"
+        ]
+      },
+      {
+        "headword": "bow",
+        "senses": 6,
+        "parts_of_speech": [
+          "NOUN",
+          "VERB"
+        ]
+      },
+      {
+        "headword": "post",
+        "senses": 6,
+        "parts_of_speech": [
+          "NOUN",
+          "VERB"
+        ]
+      },
+      {
+        "headword": "turn",
+        "senses": 6,
+        "parts_of_speech": [
+          "NOUN",
+          "VERB"
+        ]
+      },
+      {
+        "headword": "account",
+        "senses": 5,
+        "parts_of_speech": [
+          "NOUN",
+          "VERB"
+        ]
+      },
+      {
+        "headword": "craft",
+        "senses": 5,
+        "parts_of_speech": [
+          "NOUN",
+          "VERB"
+        ]
+      },
+      {
+        "headword": "discharge",
+        "senses": 5,
+        "parts_of_speech": [
+          "VERB"
+        ]
+      },
+      {
+        "headword": "double",
+        "senses": 5,
+        "parts_of_speech": [
+          "ADJECTIVE",
+          "ADVERB",
+          "DETERMINER",
+          "PRONOUN",
+          "VERB"
+        ]
+      },
+      {
+        "headword": "fine",
+        "senses": 5,
+        "parts_of_speech": [
+          "ADJECTIVE",
+          "NOUN",
+          "VERB"
+        ]
+      },
+      {
+        "headword": "hold",
+        "senses": 5,
+        "parts_of_speech": [
+          "NOUN",
+          "VERB"
+        ]
+      },
+      {
+        "headword": "honour",
+        "senses": 5,
+        "parts_of_speech": [
+          "NOUN",
+          "VERB"
+        ]
+      },
+      {
+        "headword": "hurt",
+        "senses": 5,
+        "parts_of_speech": [
+          "ADJECTIVE",
+          "NOUN",
+          "VERB"
+        ]
+      }
+    ],
+    "provenance_keys": [
+      {
+        "key": "acceptedInventoryFingerprint",
+        "senses": 22
+      },
+      {
+        "key": "archiveSha256",
+        "senses": 573
+      },
+      {
+        "key": "authoringBundle",
+        "senses": 22
+      },
+      {
+        "key": "candidateArtifactReferences",
+        "senses": 6716
+      },
+      {
+        "key": "correctionLineage",
+        "senses": 573
+      },
+      {
+        "key": "developmentLearningMetadataV1",
+        "senses": 7311
+      },
+      {
+        "key": "edition",
+        "senses": 573
+      },
+      {
+        "key": "historicalInputPins",
+        "senses": 573
+      },
+      {
+        "key": "independentReviewAccepted",
+        "senses": 573
+      },
+      {
+        "key": "inputSetFingerprintSha256",
+        "senses": 6710
+      },
+      {
+        "key": "licenseFileSha256",
+        "senses": 573
+      },
+      {
+        "key": "linkedSourceCueKeys",
+        "senses": 573
+      },
+      {
+        "key": "localDockerRestoreLineage",
+        "senses": 7311
+      },
+      {
+        "key": "masterV2Identity",
+        "senses": 7311
+      },
+      {
+        "key": "oewnEvidenceReferences",
+        "senses": 22
+      },
+      {
+        "key": "originTxhHead",
+        "senses": 573
+      },
+      {
+        "key": "ownerAuthorizationAmendmentSha256",
+        "senses": 22
+      },
+      {
+        "key": "parentFrozenCohortFingerprint",
+        "senses": 573
+      },
+      {
+        "key": "provenanceVersion",
+        "senses": 6738
+      },
+      {
+        "key": "providerId",
+        "senses": 573
+      },
+      {
+        "key": "provisionalAdmission",
+        "senses": 573
+      },
+      {
+        "key": "provisionalPackage",
+        "senses": 573
+      },
+      {
+        "key": "recordEvidence",
+        "senses": 573
+      },
+      {
+        "key": "recoverySourcePinVerification",
+        "senses": 1968
+      },
+      {
+        "key": "sourceCueIdentityReferences",
+        "senses": 22
+      },
+      {
+        "key": "sourceEvidenceReferences",
+        "senses": 6716
+      },
+      {
+        "key": "sourceInventoryFilePins",
+        "senses": 6738
+      },
+      {
+        "key": "sourceInventoryFingerprintSha256",
+        "senses": 4748
+      },
+      {
+        "key": "sourceInventoryPins",
+        "senses": 573
+      },
+      {
+        "key": "sourceOewnSenseIds",
+        "senses": 573
+      },
+      {
+        "key": "stagingRepair",
+        "senses": 6
+      },
+      {
+        "key": "stagingResolution",
+        "senses": 1670
+      },
+      {
+        "key": "supplementalSourceEvidence",
+        "senses": 10
+      },
+      {
+        "key": "vocabflowContentRevisionV9",
+        "senses": 1
+      },
+      {
+        "key": "wNDBLicenseSha256",
+        "senses": 573
+      }
+    ],
+    "provenance_metadata_keys": [
+      {
+        "key": "ageGroups",
+        "senses": 7311
+      },
+      {
+        "key": "assignments",
+        "senses": 7311
+      },
+      {
+        "key": "cefr",
+        "senses": 7311
+      },
+      {
+        "key": "contentSha256",
+        "senses": 7311
+      },
+      {
+        "key": "domains",
+        "senses": 7311
+      },
+      {
+        "key": "examLabels",
+        "senses": 7311
+      },
+      {
+        "key": "learningSets",
+        "senses": 7311
+      },
+      {
+        "key": "manifestSha256",
+        "senses": 7311
+      },
+      {
+        "key": "ruleset",
+        "senses": 7311
+      },
+      {
+        "key": "schoolGrades",
+        "senses": 7311
+      },
+      {
+        "key": "sourceNoteIdentities",
+        "senses": 7311
+      },
+      {
+        "key": "status",
+        "senses": 7311
+      },
+      {
+        "key": "subtopics",
+        "senses": 7311
+      },
+      {
+        "key": "topics",
+        "senses": 7311
+      },
+      {
+        "key": "version",
+        "senses": 7311
+      }
+    ],
+    "placement_metadata": [
+      {
+        "senses": 7311,
+        "with_school_grades": 0,
+        "with_age_groups": 0,
+        "with_cefr_evidence_object": 5539
+      }
+    ],
+    "cefr_evidence_status": [
+      {
+        "status": "SOURCE_VERIFIED",
+        "senses": 5539
+      },
+      {
+        "status": null,
+        "senses": 1772
+      }
+    ],
+    "local_restore_lineage": [
+      {
+        "media_policy": null,
+        "senses": 7311
+      }
+    ],
+    "v2_pos": [
+      {
+        "part_of_speech": "NOUN",
+        "senses": 3696
+      },
+      {
+        "part_of_speech": "VERB",
+        "senses": 1634
+      },
+      {
+        "part_of_speech": "ADJECTIVE",
+        "senses": 1402
+      },
+      {
+        "part_of_speech": "ADVERB",
+        "senses": 359
+      },
+      {
+        "part_of_speech": "PRONOUN",
+        "senses": 63
+      },
+      {
+        "part_of_speech": "PREPOSITION",
+        "senses": 52
+      },
+      {
+        "part_of_speech": "NUMBER",
+        "senses": 34
+      },
+      {
+        "part_of_speech": "DETERMINER",
+        "senses": 30
+      },
+      {
+        "part_of_speech": "CONJUNCTION",
+        "senses": 28
+      },
+      {
+        "part_of_speech": "INTERJECTION",
+        "senses": 13
+      }
+    ],
+    "example_coverage": [
+      {
+        "total_examples": 7313,
+        "has_en_key": 7313,
+        "has_vi_key": 7313
+      }
+    ],
+    "example_shape": [
+      {
+        "key": "en",
+        "examples": 30
+      },
+      {
+        "key": "exampleKey",
+        "examples": 30
+      },
+      {
+        "key": "vi",
+        "examples": 30
+      }
+    ],
+    "beginner_sense_sample": [
+      {
+        "vocabulary_id": 29368,
+        "word": "apple",
+        "part_of_speech": "NOUN",
+        "cefr": "A1",
+        "vietnamese": "quả táo có thịt giòn, lõi ở giữa và vỏ thường đỏ, xanh hoặc vàng",
+        "example_en": "I packed an apple and a sandwich for the trip."
+      },
+      {
+        "vocabulary_id": 31491,
+        "word": "blue",
+        "part_of_speech": "NOUN",
+        "cefr": "A1",
+        "vietnamese": "màu xanh dương; màu xanh lam",
+        "example_en": "The designer chose blue for the walls of the waiting area."
+      },
+      {
+        "vocabulary_id": 31492,
+        "word": "blue",
+        "part_of_speech": "ADJECTIVE",
+        "cefr": "A1",
+        "vietnamese": "xanh dương; xanh lam",
+        "example_en": "A blue ribbon marked the entrance to the reading room."
+      },
+      {
+        "vocabulary_id": 29399,
+        "word": "book",
+        "part_of_speech": "VERB",
+        "cefr": "A1",
+        "vietnamese": "đặt trước dịch vụ, chỗ hoặc vé",
+        "example_en": "We booked a table for six at the small restaurant."
+      },
+      {
+        "vocabulary_id": 29400,
+        "word": "book",
+        "part_of_speech": "NOUN",
+        "cefr": "A1",
+        "vietnamese": "tác phẩm gồm các trang giấy hoặc nội dung số được viết để đọc thành một chỉnh thể",
+        "example_en": "She borrowed a book about birds from the library."
+      },
+      {
+        "vocabulary_id": 30185,
+        "word": "dog",
+        "part_of_speech": "NOUN",
+        "cefr": "A1",
+        "vietnamese": "con chó",
+        "example_en": "Their dog carried a soft toy to the garden gate."
+      },
+      {
+        "vocabulary_id": 32313,
+        "word": "one",
+        "part_of_speech": "DETERMINER",
+        "cefr": "A1",
+        "vietnamese": "một người hoặc vật đơn lẻ",
+        "example_en": "One student stayed behind to return the library books."
+      },
+      {
+        "vocabulary_id": 32314,
+        "word": "one",
+        "part_of_speech": "NUMBER",
+        "cefr": "A1",
+        "vietnamese": "số một",
+        "example_en": "One is an odd number."
+      },
+      {
+        "vocabulary_id": 32315,
+        "word": "one",
+        "part_of_speech": "PRONOUN",
+        "cefr": "A1",
+        "vietnamese": "một người hoặc vật thay cho danh từ đã nhắc",
+        "example_en": "These cups are clean; choose one for the tea."
+      },
+      {
+        "vocabulary_id": 30826,
+        "word": "zero",
+        "part_of_speech": "NUMBER",
+        "cefr": "A2",
+        "vietnamese": "không; số không",
+        "example_en": "The display showed zero messages in the inbox."
+      }
+    ],
+    "identity_links": [
+      {
+        "issue": "topic_link_missing_topic",
+        "rows": 0
+      },
+      {
+        "issue": "set_item_missing_set",
+        "rows": 0
+      },
+      {
+        "issue": "review_missing_vocab",
+        "rows": 0
+      },
+      {
+        "issue": "progress_missing_vocab",
+        "rows": 0
+      },
+      {
+        "issue": "topic_link_missing_vocab",
+        "rows": 0
+      },
+      {
+        "issue": "saved_missing_vocab",
+        "rows": 0
+      },
+      {
+        "issue": "set_item_missing_vocab",
+        "rows": 0
+      },
+      {
+        "issue": "projection_without_vocab",
+        "rows": 0
+      },
+      {
+        "issue": "v2_vocab_without_projection",
+        "rows": 0
+      }
+    ],
+    "canonical_bridge": [
+      {
+        "canonical_mappings": 0,
+        "canonical_set_memberships": 0,
+        "canonical_topic_memberships": 0
+      }
+    ],
+    "beginner_candidates": [
+      {
+        "word": "a",
+        "enabled_v2_senses": 0,
+        "enabled_legacy_senses": 0,
+        "cefr": null
+      },
+      {
+        "word": "apple",
+        "enabled_v2_senses": 1,
+        "enabled_legacy_senses": 1,
+        "cefr": [
+          "A1"
+        ]
+      },
+      {
+        "word": "b",
+        "enabled_v2_senses": 0,
+        "enabled_legacy_senses": 0,
+        "cefr": null
+      },
+      {
+        "word": "ball",
+        "enabled_v2_senses": 1,
+        "enabled_legacy_senses": 0,
+        "cefr": [
+          "A1"
+        ]
+      },
+      {
+        "word": "banana",
+        "enabled_v2_senses": 1,
+        "enabled_legacy_senses": 0,
+        "cefr": [
+          "A1"
+        ]
+      },
+      {
+        "word": "blue",
+        "enabled_v2_senses": 2,
+        "enabled_legacy_senses": 0,
+        "cefr": [
+          "A1"
+        ]
+      },
+      {
+        "word": "book",
+        "enabled_v2_senses": 2,
+        "enabled_legacy_senses": 1,
+        "cefr": [
+          "A1"
+        ]
+      },
+      {
+        "word": "c",
+        "enabled_v2_senses": 0,
+        "enabled_legacy_senses": 0,
+        "cefr": null
+      },
+      {
+        "word": "cat",
+        "enabled_v2_senses": 0,
+        "enabled_legacy_senses": 1,
+        "cefr": null
+      },
+      {
+        "word": "dog",
+        "enabled_v2_senses": 1,
+        "enabled_legacy_senses": 1,
+        "cefr": [
+          "A1"
+        ]
+      },
+      {
+        "word": "ear",
+        "enabled_v2_senses": 1,
+        "enabled_legacy_senses": 0,
+        "cefr": [
+          "A1"
+        ]
+      },
+      {
+        "word": "eight",
+        "enabled_v2_senses": 1,
+        "enabled_legacy_senses": 0,
+        "cefr": [
+          "A1"
+        ]
+      },
+      {
+        "word": "eye",
+        "enabled_v2_senses": 1,
+        "enabled_legacy_senses": 0,
+        "cefr": [
+          "A1"
+        ]
+      },
+      {
+        "word": "father",
+        "enabled_v2_senses": 1,
+        "enabled_legacy_senses": 0,
+        "cefr": [
+          "A1"
+        ]
+      },
+      {
+        "word": "five",
+        "enabled_v2_senses": 1,
+        "enabled_legacy_senses": 0,
+        "cefr": [
+          "A1"
+        ]
+      },
+      {
+        "word": "four",
+        "enabled_v2_senses": 1,
+        "enabled_legacy_senses": 0,
+        "cefr": [
+          "A1"
+        ]
+      },
+      {
+        "word": "goodbye",
+        "enabled_v2_senses": 2,
+        "enabled_legacy_senses": 0,
+        "cefr": [
+          "A1"
+        ]
+      },
+      {
+        "word": "green",
+        "enabled_v2_senses": 1,
+        "enabled_legacy_senses": 0,
+        "cefr": [
+          "A1"
+        ]
+      },
+      {
+        "word": "hand",
+        "enabled_v2_senses": 0,
+        "enabled_legacy_senses": 0,
+        "cefr": null
+      },
+      {
+        "word": "hello",
+        "enabled_v2_senses": 0,
+        "enabled_legacy_senses": 0,
+        "cefr": null
+      },
+      {
+        "word": "mother",
+        "enabled_v2_senses": 1,
+        "enabled_legacy_senses": 0,
+        "cefr": [
+          "A1"
+        ]
+      },
+      {
+        "word": "mouth",
+        "enabled_v2_senses": 0,
+        "enabled_legacy_senses": 0,
+        "cefr": null
+      },
+      {
+        "word": "nine",
+        "enabled_v2_senses": 1,
+        "enabled_legacy_senses": 0,
+        "cefr": [
+          "A1"
+        ]
+      },
+      {
+        "word": "nose",
+        "enabled_v2_senses": 1,
+        "enabled_legacy_senses": 0,
+        "cefr": [
+          "A1"
+        ]
+      },
+      {
+        "word": "one",
+        "enabled_v2_senses": 3,
+        "enabled_legacy_senses": 0,
+        "cefr": [
+          "A1"
+        ]
+      },
+      {
+        "word": "pen",
+        "enabled_v2_senses": 1,
+        "enabled_legacy_senses": 0,
+        "cefr": [
+          "A1"
+        ]
+      },
+      {
+        "word": "pencil",
+        "enabled_v2_senses": 1,
+        "enabled_legacy_senses": 0,
+        "cefr": [
+          "A1"
+        ]
+      },
+      {
+        "word": "red",
+        "enabled_v2_senses": 1,
+        "enabled_legacy_senses": 0,
+        "cefr": [
+          "A1"
+        ]
+      },
+      {
+        "word": "seven",
+        "enabled_v2_senses": 0,
+        "enabled_legacy_senses": 0,
+        "cefr": null
+      },
+      {
+        "word": "six",
+        "enabled_v2_senses": 1,
+        "enabled_legacy_senses": 0,
+        "cefr": [
+          "A1"
+        ]
+      },
+      {
+        "word": "ten",
+        "enabled_v2_senses": 1,
+        "enabled_legacy_senses": 0,
+        "cefr": [
+          "A1"
+        ]
+      },
+      {
+        "word": "three",
+        "enabled_v2_senses": 1,
+        "enabled_legacy_senses": 0,
+        "cefr": [
+          "A1"
+        ]
+      },
+      {
+        "word": "two",
+        "enabled_v2_senses": 1,
+        "enabled_legacy_senses": 0,
+        "cefr": [
+          "A1"
+        ]
+      },
+      {
+        "word": "yellow",
+        "enabled_v2_senses": 2,
+        "enabled_legacy_senses": 0,
+        "cefr": [
+          "A1"
+        ]
+      },
+      {
+        "word": "zero",
+        "enabled_v2_senses": 1,
+        "enabled_legacy_senses": 0,
+        "cefr": [
+          "A2"
+        ]
+      }
+    ]
+  },
+  "queries": {
+    "transaction": "SELECT current_database() AS database, current_setting('transaction_read_only') AS read_only,\n      current_setting('transaction_isolation') AS isolation, now() AS captured_at",
+    "tables": "SELECT table_schema, table_name FROM information_schema.tables\n      WHERE table_schema IN ('vocabflow_app', 'vocabflow_editorial_staging') AND table_type = 'BASE TABLE'\n      ORDER BY table_schema, table_name",
+    "schema_compatibility": "SELECT table_name, column_name FROM information_schema.columns\n      WHERE table_schema = 'vocabflow_app' AND ((table_name = 'topics' AND column_name IN ('review_status','parent_topic_id'))\n      OR (table_name = 'vocabulary_topics' AND column_name = 'review_status')\n      OR (table_name = 'learner_profiles' AND column_name = 'flashcard_display_mode')\n      OR table_name = 'master_v2_short_meanings') ORDER BY table_name, column_name",
+    "runtime_grade_enum": "SELECT e.enumlabel AS value FROM pg_type t JOIN pg_namespace n ON n.oid=t.typnamespace\n      JOIN pg_enum e ON e.enumtypid=t.oid WHERE n.nspname='vocabflow_app' AND t.typname='vocabulary_level' ORDER BY e.enumsortorder",
+    "vocabulary_by_source": "SELECT source_dataset, enabled, count(*)::int AS rows,\n      count(DISTINCT lower(trim(word)))::int AS normalized_headwords,\n      count(*) FILTER (WHERE level IS NOT NULL)::int AS grade_assigned,\n      min(created_at) AS first_created_at, max(updated_at) AS last_updated_at\n      FROM vocabflow_app.vocabularies GROUP BY source_dataset, enabled ORDER BY source_dataset, enabled",
+    "cefr": "SELECT coalesce(md.cefr, '(unknown)') AS cefr, count(*)::int AS senses,\n      count(DISTINCT lower(trim(v.word)))::int AS headwords\n      FROM vocabflow_app.master_v2_development_projections md JOIN vocabflow_app.vocabularies v ON v.id=md.vocabulary_id\n      WHERE v.enabled AND v.source_dataset='VOCABFLOW_MASTER_V2_DEV' GROUP BY md.cefr ORDER BY md.cefr NULLS LAST",
+    "v2_content_coverage": "SELECT count(*)::int AS senses,\n      count(DISTINCT lower(trim(v.word)))::int AS headwords,\n      count(*) FILTER (WHERE nullif(trim(v.ipa),'') IS NOT NULL)::int AS ipa,\n      count(*) FILTER (WHERE nullif(trim(v.image_url),'') IS NOT NULL)::int AS legacy_image_url,\n      count(*) FILTER (WHERE nullif(trim(v.audio_url),'') IS NOT NULL)::int AS legacy_audio_url,\n      count(*) FILTER (WHERE nullif(trim(v.vietnamese),'') IS NULL)::int AS missing_vietnamese,\n      count(*) FILTER (WHERE nullif(trim(v.definition_en),'') IS NOT NULL)::int AS definition_en,\n      count(*) FILTER (WHERE nullif(trim(v.example_en),'') IS NOT NULL)::int AS example_en,\n      count(*) FILTER (WHERE jsonb_array_length(md.examples)>0)::int AS with_examples,\n      count(*) FILTER (WHERE jsonb_array_length(coalesce(md.development_media->'images','[]'::jsonb))>0)::int AS with_images,\n      count(*) FILTER (WHERE jsonb_array_length(coalesce(md.development_media->'wordAudio','[]'::jsonb))>0)::int AS with_word_audio,\n      count(*) FILTER (WHERE jsonb_array_length(coalesce(md.development_media->'exampleAudio','[]'::jsonb))>0)::int AS with_example_audio\n      FROM vocabflow_app.vocabularies v JOIN vocabflow_app.master_v2_development_projections md ON md.vocabulary_id=v.id\n      WHERE v.enabled AND v.source_dataset='VOCABFLOW_MASTER_V2_DEV'",
+    "projection_status": "SELECT content_review_decision, editorial_status, rights_status, count(*)::int AS senses\n      FROM vocabflow_app.master_v2_development_projections GROUP BY 1,2,3 ORDER BY 1,2,3",
+    "sets": "SELECT ls.id, ls.slug, ls.name, ls.grade, ls.enabled, count(lsi.vocabulary_id)::int AS all_items,\n      count(*) FILTER (WHERE v.enabled AND v.source_dataset='VOCABFLOW_MASTER_V2_DEV')::int AS enabled_v2_items,\n      count(*) FILTER (WHERE v.enabled AND v.source_dataset IS DISTINCT FROM 'VOCABFLOW_MASTER_V2_DEV')::int AS enabled_legacy_items\n      FROM vocabflow_app.learning_sets ls LEFT JOIN vocabflow_app.learning_set_items lsi ON lsi.learning_set_id=ls.id\n      LEFT JOIN vocabflow_app.vocabularies v ON v.id=lsi.vocabulary_id GROUP BY ls.id ORDER BY ls.id",
+    "v2_membership_coverage": "SELECT count(*)::int AS senses,\n      count(*) FILTER (WHERE EXISTS (SELECT 1 FROM vocabflow_app.learning_set_items lsi JOIN vocabflow_app.learning_sets ls\n        ON ls.id=lsi.learning_set_id AND ls.enabled WHERE lsi.vocabulary_id=v.id))::int AS in_enabled_sets,\n      count(*) FILTER (WHERE EXISTS (SELECT 1 FROM vocabflow_app.vocabulary_topics vt JOIN vocabflow_app.topics t\n        ON t.id=vt.topic_id AND t.enabled WHERE vt.vocabulary_id=v.id))::int AS in_enabled_topics\n      FROM vocabflow_app.vocabularies v WHERE v.enabled AND v.source_dataset='VOCABFLOW_MASTER_V2_DEV'",
+    "topic_inventory": "SELECT count(*)::int AS topics, count(*) FILTER(WHERE enabled)::int AS enabled_topics FROM vocabflow_app.topics",
+    "topic_links": "SELECT count(*)::int AS links FROM vocabflow_app.vocabulary_topics",
+    "duplicate_headwords": "WITH grouped AS (SELECT lower(trim(v.word)) AS headword, count(*)::int AS senses,\n      count(DISTINCT md.part_of_speech)::int AS parts_of_speech FROM vocabflow_app.vocabularies v\n      JOIN vocabflow_app.master_v2_development_projections md ON md.vocabulary_id=v.id\n      WHERE v.enabled AND v.source_dataset='VOCABFLOW_MASTER_V2_DEV' GROUP BY 1)\n      SELECT count(*) FILTER(WHERE senses>1)::int AS multisense_headwords,\n      coalesce(sum(senses-1) FILTER(WHERE senses>1),0)::int AS rows_above_one_per_headword,\n      max(senses)::int AS maximum_senses FROM grouped",
+    "duplicate_sample": "SELECT lower(trim(v.word)) AS headword, count(*)::int AS senses,\n      array_agg(DISTINCT md.part_of_speech ORDER BY md.part_of_speech) AS parts_of_speech\n      FROM vocabflow_app.vocabularies v JOIN vocabflow_app.master_v2_development_projections md ON md.vocabulary_id=v.id\n      WHERE v.enabled AND v.source_dataset='VOCABFLOW_MASTER_V2_DEV' GROUP BY 1 HAVING count(*)>1 ORDER BY count(*) DESC, 1 LIMIT 12",
+    "provenance_keys": "SELECT key, count(*)::int AS senses FROM vocabflow_app.master_v2_development_projections,\n      LATERAL jsonb_object_keys(source_provenance) AS key GROUP BY key ORDER BY key",
+    "provenance_metadata_keys": "SELECT key, count(*)::int AS senses FROM vocabflow_app.master_v2_development_projections,\n      LATERAL jsonb_object_keys(coalesce(source_provenance->'developmentLearningMetadataV1','{}'::jsonb)) AS key GROUP BY key ORDER BY key",
+    "placement_metadata": "SELECT count(*)::int AS senses,\n      count(*) FILTER(WHERE jsonb_array_length(coalesce(source_provenance->'developmentLearningMetadataV1'->'schoolGrades','[]'::jsonb))>0)::int AS with_school_grades,\n      count(*) FILTER(WHERE jsonb_array_length(coalesce(source_provenance->'developmentLearningMetadataV1'->'ageGroups','[]'::jsonb))>0)::int AS with_age_groups,\n      count(*) FILTER(WHERE source_provenance->'developmentLearningMetadataV1'->'cefr' IS NOT NULL\n        AND source_provenance->'developmentLearningMetadataV1'->'cefr' <> 'null'::jsonb)::int AS with_cefr_evidence_object\n      FROM vocabflow_app.master_v2_development_projections",
+    "cefr_evidence_status": "SELECT source_provenance->'developmentLearningMetadataV1'->'cefr'->>'status' AS status,\n      count(*)::int AS senses FROM vocabflow_app.master_v2_development_projections GROUP BY 1 ORDER BY 1 NULLS LAST",
+    "local_restore_lineage": "SELECT source_provenance->'localDockerRestoreLineage'->>'mediaPolicy' AS media_policy,\n      count(*)::int AS senses FROM vocabflow_app.master_v2_development_projections GROUP BY 1",
+    "v2_pos": "SELECT md.part_of_speech, count(*)::int AS senses\n      FROM vocabflow_app.master_v2_development_projections md JOIN vocabflow_app.vocabularies v ON v.id=md.vocabulary_id\n      WHERE v.enabled AND v.source_dataset='VOCABFLOW_MASTER_V2_DEV' GROUP BY 1 ORDER BY count(*) DESC",
+    "example_coverage": "SELECT count(*)::int AS total_examples,\n      count(*) FILTER(WHERE nullif(trim(e->>'en'),'') IS NOT NULL)::int AS has_en_key,\n      count(*) FILTER(WHERE nullif(trim(e->>'vi'),'') IS NOT NULL)::int AS has_vi_key\n      FROM vocabflow_app.master_v2_development_projections p, LATERAL jsonb_array_elements(p.examples) AS e",
+    "example_shape": "SELECT key, count(*)::int AS examples FROM\n      (SELECT e FROM vocabflow_app.master_v2_development_projections p, LATERAL jsonb_array_elements(p.examples) AS e LIMIT 30) sample,\n      LATERAL jsonb_object_keys(sample.e) AS key GROUP BY key ORDER BY key",
+    "beginner_sense_sample": "SELECT v.id AS vocabulary_id, v.word, md.part_of_speech, md.cefr,\n      left(coalesce(v.vietnamese_override,v.vietnamese),180) AS vietnamese, left(v.example_en,180) AS example_en\n      FROM vocabflow_app.vocabularies v JOIN vocabflow_app.master_v2_development_projections md ON md.vocabulary_id=v.id\n      WHERE v.enabled AND v.source_dataset='VOCABFLOW_MASTER_V2_DEV' AND lower(trim(v.word)) IN ('one','book','blue','dog','apple','zero')\n      ORDER BY v.word,v.id LIMIT 20",
+    "identity_links": "SELECT 'projection_without_vocab' AS issue, count(*)::int AS rows\n      FROM vocabflow_app.master_v2_development_projections p LEFT JOIN vocabflow_app.vocabularies v ON v.id=p.vocabulary_id WHERE v.id IS NULL\n      UNION ALL SELECT 'v2_vocab_without_projection', count(*)::int FROM vocabflow_app.vocabularies v\n      LEFT JOIN vocabflow_app.master_v2_development_projections p ON p.vocabulary_id=v.id\n      WHERE v.source_dataset='VOCABFLOW_MASTER_V2_DEV' AND p.vocabulary_id IS NULL\n      UNION ALL SELECT 'set_item_missing_vocab',count(*)::int FROM vocabflow_app.learning_set_items l LEFT JOIN vocabflow_app.vocabularies v ON v.id=l.vocabulary_id WHERE v.id IS NULL\n      UNION ALL SELECT 'set_item_missing_set',count(*)::int FROM vocabflow_app.learning_set_items l LEFT JOIN vocabflow_app.learning_sets s ON s.id=l.learning_set_id WHERE s.id IS NULL\n      UNION ALL SELECT 'topic_link_missing_vocab',count(*)::int FROM vocabflow_app.vocabulary_topics l LEFT JOIN vocabflow_app.vocabularies v ON v.id=l.vocabulary_id WHERE v.id IS NULL\n      UNION ALL SELECT 'topic_link_missing_topic',count(*)::int FROM vocabflow_app.vocabulary_topics l LEFT JOIN vocabflow_app.topics t ON t.id=l.topic_id WHERE t.id IS NULL\n      UNION ALL SELECT 'progress_missing_vocab',count(*)::int FROM vocabflow_app.learner_progress l LEFT JOIN vocabflow_app.vocabularies v ON v.id=l.vocabulary_id WHERE v.id IS NULL\n      UNION ALL SELECT 'review_missing_vocab',count(*)::int FROM vocabflow_app.review_events l LEFT JOIN vocabflow_app.vocabularies v ON v.id=l.vocabulary_id WHERE v.id IS NULL\n      UNION ALL SELECT 'saved_missing_vocab',count(*)::int FROM vocabflow_app.learner_saved_vocabulary l LEFT JOIN vocabflow_app.vocabularies v ON v.id=l.vocabulary_id WHERE v.id IS NULL",
+    "canonical_bridge": "SELECT (SELECT count(*)::int FROM vocabflow_app.master_vocabulary_mappings) AS canonical_mappings,\n      (SELECT count(*)::int FROM vocabflow_app.master_learning_set_memberships) AS canonical_set_memberships,\n      (SELECT count(*)::int FROM vocabflow_app.master_vocabulary_topic_memberships) AS canonical_topic_memberships",
+    "beginner_candidates": "WITH requested(word) AS (VALUES ('a'),('b'),('c'),('one'),('two'),('three'),('four'),('five'),('six'),('seven'),('eight'),('nine'),('ten'),\n      ('zero'),('red'),('blue'),('yellow'),('green'),('cat'),('dog'),('apple'),('banana'),('book'),('pen'),('pencil'),('mother'),('father'),('hello'),('goodbye'),('ball'),('hand'),('eye'),('nose'),('ear'),('mouth'))\n      SELECT r.word, count(v.id) FILTER(WHERE v.source_dataset='VOCABFLOW_MASTER_V2_DEV')::int AS enabled_v2_senses,\n      count(v.id) FILTER(WHERE v.source_dataset IS DISTINCT FROM 'VOCABFLOW_MASTER_V2_DEV')::int AS enabled_legacy_senses,\n      array_agg(DISTINCT md.cefr) FILTER(WHERE md.cefr IS NOT NULL) AS cefr\n      FROM requested r LEFT JOIN vocabflow_app.vocabularies v ON lower(trim(v.word))=r.word AND v.enabled\n      LEFT JOIN vocabflow_app.master_v2_development_projections md ON md.vocabulary_id=v.id GROUP BY r.word ORDER BY r.word"
+  }
+}

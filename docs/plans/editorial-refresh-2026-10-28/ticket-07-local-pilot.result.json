@@ -1,0 +1,61 @@
+{
+  "artifactType": "EDITORIAL_TICKET07_RESULT",
+  "date": "2026-10-29",
+  "status": "OWNER_ACCEPTED_LOCAL_PILOT",
+  "ticketStatus": "done",
+  "ownerExecutionStatement": "oci, làm bước tiếp cho tôi",
+  "localIntegrationApplied": true,
+  "productionRelease": false,
+  "canonicalIdsCreated": 0,
+  "newWordsCreated": 0,
+  "counts": {
+    "existingSenses": 30,
+    "newLocalSets": 4,
+    "images": 25,
+    "wordAudio": 30,
+    "exampleAudio": 30,
+    "heldWordAudio": 0,
+    "omittedImages": 5
+  },
+  "plan": {
+    "path": ".vocabflow-local/editorial-refresh-20261028/ticket07-local-pilot-r0002/integration-plan.json",
+    "sha256": "9ce4e83ddb69862a5ea8579a0be6f3969a422418980358e945945c85190a0f39"
+  },
+  "verification": {
+    "path": ".vocabflow-local/editorial-refresh-20261028/ticket07-local-pilot-r0002/verification-result.json",
+    "sha256": "10e93463d44f91227d7865663624eb624458ca02e4f8eda5e93cfa94c9b98ebc",
+    "checksPassed": 11
+  },
+  "browserQa": {
+    "path": ".vocabflow-local/editorial-refresh-20261028/ticket07-local-pilot-r0001/browser-qa.json",
+    "sha256": "a4efb7f25edad7d668fb6945e2c6cc54b8904bf360d9e8c0ebf2d351bff37039"
+  },
+  "testsPassed": 241,
+  "build": "PASS",
+  "apiWebTypecheck": "PASS",
+  "changedTsTsxLint": "PASS",
+  "repositoryLint": "FAIL_59_EXISTING_SCRIPT_LOCAL_ERRORS",
+  "repositoryTypecheck": "FAIL_EXISTING_SCRIPT_ERRORS",
+  "accountWrites": 0,
+  "nextTicketsStarted": false,
+  "handoff": {
+    "path": ".vocabflow-local/editorial-refresh-20261028/handoff/ticket07-local-pilot-1062d140474893f4.zip",
+    "sha256": "0a74bc58f74691d15e1d7756a2bbc7e190241f9c3ba2ea51e7aa26c16efd0e46",
+    "byteLength": 32547319,
+    "files": 256,
+    "manifestSha256": "1062d140474893f4692e72d9a24297d44b12950601f7b8f41c1f096ad93cdc86",
+    "allZipMemberHashesVerified": true,
+    "containsAccountDataOrEnv": false
+  },
+  "ownerAcceptance": {
+    "path": "docs/plans/editorial-refresh-2026-10-28/ticket-07-owner-acceptance.json",
+    "sha256": "1f6728bd237da9ae1f33c1d240a39b29d3c001505c2f7ae5e5045fdd9575c782"
+  },
+  "remainingPublicReleaseGatesOpen": true,
+  "ownerListeningAcceptance": {
+    "path": "docs/plans/editorial-refresh-2026-10-28/ticket-06-owner-listening-acceptance.json",
+    "sha256": "f250f7d8d14b6f3ae25861c2ed315507c67ce200572364fd2b38dde476137af8"
+  },
+  "activePreviewRevision": 2,
+  "newAudioGeneratedForAcceptance": 0
+}

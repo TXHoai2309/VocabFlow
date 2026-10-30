@@ -1,16 +1,18 @@
 import { LearningSetPickerDialog } from "./learning-set-picker-dialog";
 import { readStudyPreference, saveStudyPreference } from "./study-source-preference";
 import { AccountLearningState } from "../learners/account-learning-state";
+import { SessionCapacityControl } from "./session-capacity";
+import type { SessionCapacity } from "./session-capacity-options";
 import { useEffect, useMemo, useRef, useState } from "react";
 import { Link, useLocation, useNavigate, useSearchParams } from "react-router";
 import { LearningSetsClientError, requestLearningSets } from "../learning-sets/learning-sets-client";
 import { useActiveLearner } from "../learners/learner-context-hook";
 import { requestTopics, TopicsClientError } from "../learners/topics-client";
 import type { LearnerDto, ReviewQueueResponse, LearningSetSummary, LearningSourceScope } from "@vocabflow/contracts";
+import { learningLevelLabel } from "@vocabflow/contracts";
 import { requestScopedReviewQueue, selectStudyQueue, studyContentModeFromParams, studyScopeFromParams, type StudyContentMode, type StudyScope, studyScopeParams } from "./study-queue";
 import { EmptyState, ErrorState, LoadingState } from "../../components/async-states";
 
-const STUDY_AMOUNTS = [5, 10, 20, 30] as const;
 const MODE_COPY: Record<StudyContentMode, { title: string; description: string; empty: string; icon: "new" | "review" | "mixed" }> = {
   new: { title: "Từ mới", description: "Học những từ vựng chưa học", empty: "Hiện chưa có từ mới cần học", icon: "new" },
   review: { title: "Ôn tập", description: "Ôn lại những từ đến hạn", empty: "Hiện chưa có từ cần ôn", icon: "review" },
@@ -130,7 +132,7 @@ function StudySetupExperience({ activeLearner, scope: urlScope, userId, preferre
   const [state, setState] = useState<SetupState>("loading");
   const [data, setData] = useState<StudySetupData | null>(null);
   const [message, setMessage] = useState<string | null>(null);
-  const [amount, setAmount] = useState<(typeof STUDY_AMOUNTS)[number]>(10);
+  const [amount, setAmount] = useState<SessionCapacity>(10);
   const [content, setContent] = useState<StudyContentMode | null>(null);
   const [retry, setRetry] = useState(0);
 
@@ -245,7 +247,7 @@ function StudySetupExperience({ activeLearner, scope: urlScope, userId, preferre
         <Link className="study-setup-back-link" to={backHref}><SetupIcon name="back" />Quay lại</Link>
         <h1 id="study-setup-title">Thiết lập buổi học</h1>
         {scope && "level" in scope && scope.level ? <p>{scope.level === "GENERAL" ? "Nội dung chung" : `Lớp ${scope.level.slice(-1)}`}</p> : null}
-        {scope && "cefr" in scope && scope.cefr ? <p>CEFR {scope.cefr}</p> : null}
+        {scope && "cefr" in scope && scope.cefr ? <p>Mức học: {learningLevelLabel(scope.cefr)}</p> : null}
 
       </header>
 
@@ -270,14 +272,7 @@ function StudySetupExperience({ activeLearner, scope: urlScope, userId, preferre
               <span className="study-setup-section-icon"><SetupIcon name="layers" /></span>
               <div><h2 id="study-setup-amount-title">Số lượng từ</h2></div>
             </div>
-            <div className="study-setup-amounts" role="group" aria-labelledby="study-setup-amount-title">
-              {STUDY_AMOUNTS.map((value) => (
-                <button key={value} className={`study-setup-amount${amount === value ? " is-selected" : ""}`} type="button" aria-pressed={amount === value} onClick={() => setAmount(value)}>
-                  {amount === value ? <span className="study-setup-selected-check"><SetupIcon name="check" /></span> : null}
-                  <strong>{value}</strong><span>từ</span>
-                </button>
-              ))}
-            </div>
+            <SessionCapacityControl value={amount} onChange={setAmount} labelledBy="study-setup-amount-title" />
           </section>
 
           {isAllScope ? (

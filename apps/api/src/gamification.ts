@@ -102,7 +102,7 @@ async function reconcileAchievements(database: GamificationDatabase, learnerId: 
 }
 
 async function summary(database: GamificationDatabase, learnerId: string, datasetVersion: VocabularyDatasetVersion): Promise<SummaryRow> {
-  if (datasetVersion === "v2") {
+  if (datasetVersion !== "legacy") {
     const result = await database.execute(sql`
       SELECT COALESCE(SUM(xe.points), 0) AS total_xp
       FROM "${sql.raw(APP_SCHEMA)}"."xp_events" xe
@@ -150,10 +150,10 @@ export function createGamificationService(database: GamificationDatabase, option
       const ownership = await authorizeLearnerOwnership(database, userId, learnerId);
       if (ownership.decision === "FORBIDDEN") throw new GamificationServiceError("HOUSEHOLD_ACCESS_DENIED", 403);
       try {
-        if (datasetVersion !== "v2") await reconcileAchievements(database, ownership.learnerId);
+        if (datasetVersion === "legacy") await reconcileAchievements(database, ownership.learnerId);
         const [xpRow, achievements] = await Promise.all([
           summary(database, ownership.learnerId, datasetVersion),
-          datasetVersion === "v2" ? Promise.resolve([]) : achievementRows(database, ownership.learnerId)
+          datasetVersion !== "legacy" ? Promise.resolve([]) : achievementRows(database, ownership.learnerId)
         ]);
         const total = safeCount(xpRow.total_xp);
         const xpIntoLevel = total % XP_PER_LEVEL;

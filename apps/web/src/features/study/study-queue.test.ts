@@ -9,11 +9,16 @@ describe("catalog intersection scope", () => {
     expect(scope).toEqual({ type: "topic", id: 7, level: "GRADE_1", cefr: "A1" });
     expect(studyScopeFromParams(studyScopeParams(scope))).toEqual(scope);
   });
-  it.each(["level=GRADE_9", "cefr=INVALID", "level=GRADE_1&level=GRADE_2", "saved=1&level=GRADE_1"])("fails closed for %s", (query) => {
+  it.each(["level=GRADE_9", "cefr=INVALID", "cefr=intro-first-utterances", "cefr=UNCLASSIFIED&cefr=A1", "level=GRADE_1&level=GRADE_2", "saved=1&level=GRADE_1"])("fails closed for %s", (query) => {
     expect(studyScopeFromParams(new URLSearchParams(query))).toEqual({ type: "invalid" });
   });
   it("uses a broad source with explicit filters when no collection was selected", () => {
     expect(studyScopeFromParams(new URLSearchParams("level=GRADE_2"))).toEqual({ type: "all", level: "GRADE_2" });
+  });
+  it("round trips the explicit unclassified filter without dropping collection or grade", () => {
+    const scope = studyScopeFromParams(new URLSearchParams("topicId=7&level=GRADE_1&cefr=UNCLASSIFIED"));
+    expect(scope).toEqual({ type: "topic", id: 7, level: "GRADE_1", cefr: "UNCLASSIFIED" });
+    expect(studyScopeFromParams(studyScopeParams(scope))).toEqual(scope);
   });
 });
 

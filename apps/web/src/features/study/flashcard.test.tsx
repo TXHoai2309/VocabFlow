@@ -20,6 +20,21 @@ const vocabulary: VocabularyDto = {
   contentVersion: 1
 };
 
+it("plays the exact locally pinned sentence for a frozen example without an example key", () => {
+  const word: VocabularyDto = {
+    ...vocabulary, audioUrl: null, masterSenseIdentity: "sense:accident:mishap", contentHash: "a".repeat(64),
+    examples: [{ en: "It was a minor accident.", vi: "Đó là một sự cố nhỏ." }],
+    developmentMedia: { exampleAudio: [{
+      url: "/api/bounded-media/example.mp3", mediaSha256: "b".repeat(64), mimeType: "audio/mpeg",
+      sourceNoteIdentity: "job:accident", reviewStatus: "PROPOSED", rightsStatus: "UNKNOWN_REVIEW_REQUIRED",
+      originType: "GENERATED_EDITORIAL_LOCAL_PREVIEW", targetProposalKey: "sense:accident:mishap",
+      targetContentSha256: "a".repeat(64), exampleIndex: 0, spokenText: "It was a minor accident."
+    }] }
+  };
+  render(<Flashcard vocabulary={word} isFlipped onFlip={vi.fn()} />);
+  expect(screen.getByLabelText("Nghe câu ví dụ 1: It was a minor accident.")).toHaveAttribute("src", "/api/bounded-media/example.mp3");
+});
+
 describe("US-11 Flashcard back state", () => {
   it("renders only the allowed front content and no answer-bearing DOM", () => {
     render(<Flashcard vocabulary={vocabulary} isFlipped={false} onFlip={vi.fn()} />);

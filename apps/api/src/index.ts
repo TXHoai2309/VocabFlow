@@ -4,7 +4,7 @@ import { readPublicVocabulary } from "./vocabulary";
 import { PUBLIC_VOCABULARY_BATCH_LIMIT, publicVocabularyBrowseQuerySchema, type PublicLearningIndex, type PublicVocabularyBrowseQuery, type LearnerVocabularyBrowseResponse, type VocabularyDto } from "@vocabflow/contracts";
 import { readPublicLearningCatalog } from "./public-learning-catalog";
 import type { PublicLearningCatalog } from "@vocabflow/contracts";
-import { parseStudySetIds, positiveStudyId, parseStudyQueueCapacity, learnerVocabularyBrowseQuerySchema } from "@vocabflow/contracts";
+import { parseStudySetIds, positiveStudyId, parseStudyQueueCapacity, learnerVocabularyBrowseQuerySchema, isCefrFilter } from "@vocabflow/contracts";
 import { Hono } from "hono";
 import { performance } from "node:perf_hooks";
 import type { RuntimeBindings } from "./runtime-bindings";
@@ -305,7 +305,7 @@ function parseReviewQueueScope(request: Request): ReviewQueueScope | undefined |
   const cefr = url.searchParams.get("cefr");
   if (url.searchParams.getAll("level").length > 1 || url.searchParams.getAll("cefr").length > 1
     || (level !== null && !["GRADE_1", "GRADE_2", "GRADE_3", "GRADE_4", "GRADE_5", "GENERAL"].includes(level))
-    || (cefr !== null && !/^[ABC][12]$/.test(cefr))) return null;
+    || (cefr !== null && !isCefrFilter(cefr))) return null;
   url.searchParams.delete("level"); url.searchParams.delete("cefr");
   const scope = parseBaseReviewQueueScope(new Request(url));
   if (level === null && cefr === null) return scope;
@@ -363,11 +363,19 @@ export function createApp(dependencies: AppDependencies = {}) {
     // Use the actual deployment bindings. Local Development has no VERCEL_ENV
     // and is allowed to show its explicitly labeled source-media previews.
     const mediaEnv = c.env ?? {};
-    if (!mustSanitizeV2MediaResponse(mediaEnv) || c.req.path.startsWith("/api/auth/")
+    // The catalog identity can switch atomically after the compatible runtime
+    // deploys. Public detail/search caches must not retain retired content.
+    if (c.req.path.startsWith("/api/public/") && vocabularyDatasetVersion(mediaEnv) === "owner-production") {
+      c.header("Cache-Control", "no-store");
+    }
+    const explicitLocalPreview = mediaEnv.VOCABFLOW_ENV === "development" && mediaEnv.DATABASE_ENV === "development"
+      && mediaEnv.EXECUTION_CONTEXT === "local-development" && !mediaEnv.VERCEL_ENV;
+    const forcePublicBoundary = c.req.path.startsWith("/api/public/") && !mediaEnv.DATABASE_URL && !explicitLocalPreview;
+    if ((!forcePublicBoundary && !mustSanitizeV2MediaResponse(mediaEnv)) || c.req.path.startsWith("/api/auth/")
       || !c.res.headers.get("content-type")?.includes("application/json")) return;
     const mediaStarted = performance.now();
     const body: unknown = await c.res.clone().json();
-    const response = new Response(JSON.stringify(withoutUnclearedV2Media(body, mediaEnv)), c.res);
+    const response = new Response(JSON.stringify(withoutUnclearedV2Media(body, mediaEnv, { forcePublicBoundary })), c.res);
     response.headers.delete("content-length");
     response.headers.delete("etag");
     if (c.req.path.startsWith("/api/public/")) {
@@ -389,7 +397,9 @@ export function createApp(dependencies: AppDependencies = {}) {
     try {
       const data = dependencies.publicLearningIndex ? await dependencies.publicLearningIndex(c.env)
         : await readPublicLearningIndex(await publicDatabase(c.env), vocabularyDatasetVersion(c.env), timings);
-      c.header("Cache-Control", "public, max-age=60, stale-while-revalidate=300");
+      const ownerPublication = vocabularyDatasetVersion(c.env ?? {}) === "owner-production";
+      c.header("Cache-Control", ownerPublication ? "no-store" : "public, max-age=60, stale-while-revalidate=300");
+      if (ownerPublication) c.header("X-VocabFlow-Catalog-Mode", "owner-production");
       c.header("Server-Timing", [...Object.entries(timings).map(([key, ms]) => `${key};dur=${ms.toFixed(1)}`), `index_total;dur=${(performance.now() - started).toFixed(1)}`].join(", "));
       return c.json(data, 200);
     } catch { return c.json(publicFailure(), 503); }

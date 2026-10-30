@@ -1,5 +1,15 @@
 # VocabFlow Feature UI Specification — Single-account learning
 
+## Nine learning levels (US-63, 2026-10-28)
+
+Vocabulary has one main “Mức học” selector with the approved nine labels, All
+and Unclassified. Keep the existing CEFR identity for the six A1–C2 groups;
+show introductory groups without published content as disabled “Chưa có nội
+dung” options. Grade and topic use an additional-filters disclosure; selected
+constraints are exposed when arriving with filters. Reuse the current native
+controls, theme and empty states. Study setup displays the learner-facing
+level name and preserves its exact filter. See US-63 for the bounded rollout.
+
 ## Flashcard display preferences (US-60, 2026-10-21)
 
 The existing learning settings page offers three accessible, clearly described
@@ -812,3 +822,15 @@ state returned by the canonical API.
 
 > APPROVED FOR UI IMPLEMENTATION
 > Feature UI Specification v1.0.7 là baseline cho Family MVP UI implementation. Backlog/UI code phải bám screen states, interaction contracts, session behavior và responsive rules trong tài liệu này. Product semantics thay đổi phải quay về Family MVP Product Specification; visual language thay đổi phải quay về Global Design System; backend contract thay đổi phải quay về Technical Architecture/contracts.
+## Foundation08/09 local extension —2026-10-30
+
+Compose the existing shell,Study Setup layout,native collection select and
+`SessionCapacityControl` with5/10/20/30andtheunit hoạt động/câu. No new visual
+theme,fonts,token values,modals or toast system. Mức học routes to typed content
+only when lexical grade/topic/search dimensions are absent. Introductory content
+is never a substitute for missing CEFR. Context is the first utterance content;
+targetEN/VI/audio appears on reveal. Save failures stay visible and retry the
+same reviewId;the next button is unavailable before a confirmed save. Letter
+practice is visibly unscored;missing audio disables listening activity. Current
+API/component evidence does not establish desktop/mobile rendered correctness;
+390/1440andreal playback checks remain pending browser capability.

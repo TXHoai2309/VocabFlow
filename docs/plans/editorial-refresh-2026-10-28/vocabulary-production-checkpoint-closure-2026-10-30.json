@@ -1,0 +1,76 @@
+{
+  "artifactType": "OWNER_DIRECTED_PRODUCTION_CHECKPOINT_CLOSURE",
+  "date": "2026-10-30",
+  "campaignId": "editorial-refresh-20261028",
+  "productionStatus": "DONE_OFFLINE_DATA_AND_MEDIA_PACKAGING",
+  "furtherVocabularyGeneration": "PAUSED_BY_OWNER",
+  "ownerRequest": "ok, tạm thời dừng việc tạo từ vựng ở đây, h đóng dc ticker này sang ticker khác dc k nhỉ",
+  "scope": "Close the completed vocabulary authoring/media production checkpoint; do not mark the entire original ticket14 template or whole-corpus campaign complete.",
+  "bundles": [
+    {
+      "name": "EXPANSION-547",
+      "dataset": {
+        "path": ".vocabflow-local/editorial-refresh-20261028/expansion-550-media-r0001/dataset-547-r0004.json",
+        "sha256": "153f5dfed457145e1c8c9febffb22a0cf0b33e5c8ad01a743f144baf47e9fdfb",
+        "byteLength": 3185195
+      },
+      "selectedLearningEntries": 547,
+      "selectedImages": 547,
+      "selectedWordAudio": 547,
+      "selectedExampleAudio": 547,
+      "scope": "Frozen offline selected data/media; original runtime/canonical review gates unchanged"
+    },
+    {
+      "name": "BASIC-500",
+      "dataset": {
+        "path": ".vocabflow-local/editorial-refresh-20261029/basic-500-media-r0002/dataset-complete-r0003.json",
+        "sha256": "85c8d508270b8c9d857962e97efbd76de89be4c4cd26ec2d43dbc5458e174c9b",
+        "byteLength": 3059661
+      },
+      "selectedLearningEntries": 500,
+      "selectedImages": 500,
+      "selectedWordAudio": 500,
+      "selectedExampleAudio": 500,
+      "scope": "Frozen offline selected data/media; original runtime/canonical review gates unchanged"
+    },
+    {
+      "name": "BASIC-PLUS-500",
+      "dataset": {
+        "path": ".vocabflow-local/editorial-refresh-20261029/basic-plus-500-media-r0001/dataset-complete-r0003.json",
+        "sha256": "979623530945044b8bf832a78e93fd8186b374d1584b39fa2993501ad4b1cb9f",
+        "byteLength": 4095375
+      },
+      "selectedLearningEntries": 500,
+      "selectedImages": 500,
+      "selectedWordAudio": 500,
+      "selectedExampleAudio": 500,
+      "scope": "Frozen offline selected data/media; original runtime/canonical review gates unchanged"
+    }
+  ],
+  "totals": {
+    "selectedLearningEntries": 1547,
+    "selectedImages": 1547,
+    "selectedWordAudio": 1547,
+    "selectedExampleAudio": 1547,
+    "selectedMediaJobs": 4641,
+    "newCanonicalRecordCountClaimed": false
+  },
+  "noAutomaticActions": [
+    "No new lexical entries, Muse jobs, image/TTS generation or provider retries",
+    "Do not retry excluded eyelash/muffin tin/wake up",
+    "Do not infer full human listening acceptance from owner pause/closure",
+    "No DB imports, runtime integration, UI work, publication or new chat dispatch"
+  ],
+  "campaignComplete": false,
+  "nextRecommendation": {
+    "ticketId": "10",
+    "scope": "One bounded existing A1/A2 batch of about50 senses: keep/specific fixes, verify exact sense/examples and existing media bindings; preserve IDs and progress; no new vocabulary or media production.",
+    "state": "RECOMMENDED_NOT_STARTED",
+    "executionAuthorizedByThisClosure": false
+  },
+  "remainingWork": [
+    "Canonical reconciliation and any later local import are separate",
+    "Remaining full-corpus dispositions and08/09scope remain unresolved/deferred",
+    "Audio listening-review flags remain visible; no fabricated full-speech-review claim"
+  ]
+}

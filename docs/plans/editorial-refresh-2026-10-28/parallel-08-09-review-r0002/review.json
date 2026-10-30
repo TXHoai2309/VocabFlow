@@ -1,0 +1,44 @@
+{
+  "artifactType": "COORDINATOR_REVIEW_08_09_SECOND_PASS",
+  "date": "2026-10-29",
+  "verdict": "OFFLINE_DRAFT_AND_COMPATIBILITY_REVIEW_PASS",
+  "findingC08_01": "RESOLVED_IN_OFFLINE_PROJECTION; runtime UI/accessibility/network checks still required",
+  "worker08": {
+    "handoffPath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket08-draft-r0002/handoff.json",
+    "artifactCount": 26,
+    "inputPinCount": 29,
+    "validationCoreChecks": 231,
+    "invalidCasesRejected": 70,
+    "handoffSha256": "fce9bd5b5a796d03a1fddb3f4ee95d9db4bde3d58a8adbe96d09960be007cb81"
+  },
+  "worker09": {
+    "handoffPath": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket09-compat-r0001/handoff.json",
+    "artifactCount": 18,
+    "inputPinCount": 42,
+    "canaryTests": 28,
+    "scope": "PROPOSED_OFFLINE; historical08r0001source preserved",
+    "handoffSha256": "c36b2384add0bda05dec1ebafb117ebfe0a76c7a332645b6af79d24d24d6fe56"
+  },
+  "forwardBridge": {
+    "path": "docs/plans/editorial-refresh-2026-10-28/parallel-08-09-review-r0002/mapped-targets-r0002.json",
+    "byteSha256": "8177abd322f4520f9d8cd53dbdca5a3f3a72b7fb841a8feab4d2f6ce004e4efb"
+  },
+  "forwardBridgeChecks": 111,
+  "sharedResolution": {
+    "proposedDiscriminant": "itemType",
+    "newLetterSubmissionField": "selectedOptionKey",
+    "state": "READY_FOR_CONTRACT_REVIEW_NOT_RUNTIME_APPROVED",
+    "letterPresentationRevision": 2,
+    "audioDependencyChanges": 0,
+    "newCanonicalIDs": 0
+  },
+  "nextContract": {
+    "path": "docs/plans/editorial-refresh-2026-10-28/parallel-08-09-review-r0002/implementation-contract.md",
+    "byteSha256": "050c5e24fc1819cef0f69d57f885aeeca0cd1ad5f2e9f179a5ecbab815a9b60b"
+  },
+  "runtimeTests": false,
+  "databaseWrites": 0,
+  "providerCalls": 0,
+  "newLexicalSenses": 0,
+  "fullTicketsDone": false
+}

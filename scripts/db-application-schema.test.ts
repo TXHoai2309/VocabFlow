@@ -52,6 +52,17 @@ describe("dedicated application schema", () => {
     expect(MIGRATION_SCHEMA).toBe("drizzle");
     expect(DATABASE_RESET_POLICY.applicationSchemas).toEqual([APP_SCHEMA]);
     expect(DATABASE_RESET_POLICY.applicationTables).toEqual([
+      `${APP_SCHEMA}.foundation_reviews`,
+      `${APP_SCHEMA}.foundation_attempts`,
+      `${APP_SCHEMA}.foundation_progress`,
+      `${APP_SCHEMA}.foundation_memberships`,
+      `${APP_SCHEMA}.foundation_targets`,
+      `${APP_SCHEMA}.foundation_collections`,
+      `${APP_SCHEMA}.owner_editorial_projections`,
+      `${APP_SCHEMA}.owner_editorial_local_projections`,
+      `${APP_SCHEMA}.master_v2_short_meanings`,
+      `${APP_SCHEMA}.master_v2_development_projections`,
+      `${APP_SCHEMA}.master_v2_development_import_runs`,
       `${APP_SCHEMA}.master_learning_set_memberships`,
       `${APP_SCHEMA}.master_vocabulary_topic_memberships`,
       `${APP_SCHEMA}.master_learning_set_mappings`,
@@ -102,7 +113,7 @@ describe("dedicated application schema", () => {
     expect(absentQueries[0]?.values[0]).toBe(APP_SCHEMA);
 
     const presentQueries: CapturedQuery[] = [];
-    await expect(assertApplicationTablesPresent(applicationAssertionSql(String(DATABASE_RESET_POLICY.applicationTables.length), presentQueries))).resolves.toBeUndefined();
+    await expect(assertApplicationTablesPresent(applicationAssertionSql(String(DATABASE_RESET_POLICY.applicationTables.length - DATABASE_RESET_POLICY.importerOnlyTables.length), presentQueries))).resolves.toBeUndefined();
     expect(presentQueries[0]?.values[0]).toBe(APP_SCHEMA);
     await expect(assertApplicationTablesPresent(applicationAssertionSql("3", []))).rejects.toThrow("APPLICATION_SCHEMA_INCOMPLETE");
   });
@@ -139,6 +150,7 @@ describe("dedicated application schema", () => {
     expect(statements.some((statement) => statement.includes("DROP SCHEMA"))).toBe(false);
     expect(statements.some((statement) => /DROP ROLE|GRANT|REVOKE/i.test(statement))).toBe(false);
     expect(unsafeFragments).toEqual([
+      ...DATABASE_RESET_POLICY.applicationViews.map(name => name.split(".").map(part => `"${part}"`).join(".")),
       ...DATABASE_RESET_POLICY.applicationTables.map((objectName) => {
         const [schema, table] = objectName.split(".");
         return `"${schema}"."${table}"`;
@@ -313,10 +325,10 @@ describe("dedicated application schema", () => {
     expect(reviewSnapshot.tables[`${APP_SCHEMA}.learner_progress`]?.columns.consecutive_correct.type).toBe("bigint");
     expect(reviewSnapshot.tables[`${APP_SCHEMA}.review_events`]?.columns.expected_revision.type).toBe("bigint");
     expect(reviewSnapshot.tables[`${APP_SCHEMA}.review_events`]?.compositePrimaryKeys.review_events_household_review_pk).toBeDefined();
-    expect(journal.entries.map((entry) => entry.tag)).toEqual(["0000_application-schema", "0001_curious_miss_america", "0002_smiling_wrecking_crew", "0003_lazy_lady_deathstrike", "0004_scheduled_review_write", "0005_graceful_eddie_brock", "0006_sticky_risque", "0007_modern_mysterio", "0008_chief_morph", "0009_tricky_meggan", "0010_gamification-rewards", "0011_exercise-correct-xp", "0012_us41_owner_content_overrides", "0013_runtime-vocabulary-sequence-privilege", "0014_vietnamese_catalog_metadata", "0015_clean_yellowjacket", "0016_nostalgic_mattie_franklin", "0017_nosy_hellfire_club", "0018_panoramic_spirit", "0019_light_penance", "0020_learning_topic_review"]);
+    expect(journal.entries.map((entry) => entry.tag)).toEqual(["0000_application-schema", "0001_curious_miss_america", "0002_smiling_wrecking_crew", "0003_lazy_lady_deathstrike", "0004_scheduled_review_write", "0005_graceful_eddie_brock", "0006_sticky_risque", "0007_modern_mysterio", "0008_chief_morph", "0009_tricky_meggan", "0010_gamification-rewards", "0011_exercise-correct-xp", "0012_us41_owner_content_overrides", "0013_runtime-vocabulary-sequence-privilege", "0014_vietnamese_catalog_metadata", "0015_clean_yellowjacket", "0016_nostalgic_mattie_franklin", "0017_nosy_hellfire_club", "0018_panoramic_spirit", "0019_light_penance", "0020_learning_topic_review", "0021_flashcard_display_mode", "0022_foundation_learning", "0023_owner_editorial_local", "0024_owner_editorial_publication"]);
     const latestMigration = journal.entries.at(-1);
     const previousMigration = journal.entries.at(-2);
-    expect(latestMigration).toMatchObject({ idx: 20, tag: "0020_learning_topic_review" });
+    expect(latestMigration).toMatchObject({ idx: 24, tag: "0024_owner_editorial_publication" });
     expect(latestMigration?.when).toBeGreaterThan(previousMigration?.when ?? 0);
     const { id: previousSnapshotId, prevId: previousSnapshotParent, ...previousSnapshotSchema } = previousMigrationSnapshot;
     const { id: currentSnapshotId, prevId: currentSnapshotParent, ...currentSnapshotSchema } = sequencePrivilegeSnapshot;

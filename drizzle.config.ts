@@ -7,7 +7,7 @@ const connectionString = process.env.NEON_TEST_MIGRATION_DATABASE_URL
   ?? "postgresql://placeholder:placeholder@localhost/vocabflow";
 
 export default defineConfig({
-  schema: "./apps/api/src/db/schema.ts",
+  schema: ["./apps/api/src/db/schema.ts", "./apps/api/src/db/foundation-schema.ts"],
   out: "./drizzle/migrations",
   dialect: "postgresql",
   dbCredentials: { url: connectionString },

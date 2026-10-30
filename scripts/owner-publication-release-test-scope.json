@@ -1,0 +1,175 @@
+{
+  "artifactType": "OWNER_PUBLICATION_RELEASE_TEST_SCOPE",
+  "revision": 1,
+  "date": "2026-10-30",
+  "ownerAuthority": "Owner retired the previous catalog and explicitly approved commit/push and repair of CI gates until Production completion.",
+  "activeDefault": "Every application/domain/infrastructure test remains active unless individually listed below. New tests are active by default.",
+  "archivedReason": "These checks validate immutable canonical Master V2 authoring-phase datasets and promotions; those artifacts are not the new owner-publication catalog or its import authority. Preserve originals and their observed failing snapshot reports; do not report them as passing.",
+  "mandatoryReplacementContract": "scripts/owner-publication-catalog.test.ts",
+  "catalog": {
+    "path": "data/owner-publication/catalog-1547-r0001.json",
+    "sha256": "e90e04892b940f01dd0797b1536c53ff73d86b916670f1001967acb6863d26ba",
+    "byteLength": 6142711
+  },
+  "archivedAuthoringTests": [
+    {
+      "testFile": "scripts/development-legacy-reference-retirement-plan.test.ts",
+      "sha256": "fc71b3a6442da04eb224c9be694c51c3b6e19778e64f7769592636ccbf273251",
+      "reason": "Retired Master V2 canonical authoring/promotion/curation artifact contract; not an app/DB/auth/release-safety exemption."
+    },
+    {
+      "testFile": "scripts/development-legacy-vocabulary-cleanup-audit.test.ts",
+      "sha256": "069e7477e2cfa9f64d3dc9440fbb94ccbf9da16d971359634a28d31d8e67b269",
+      "reason": "Retired Master V2 canonical authoring/promotion/curation artifact contract; not an app/DB/auth/release-safety exemption."
+    },
+    {
+      "testFile": "scripts/hybrid-100-approved-release.test.ts",
+      "sha256": "1a0382200757fdcf12162d538194c4a1c23807923d1ca992fc58d83c9c6150cb",
+      "reason": "Retired Master V2 canonical authoring/promotion/curation artifact contract; not an app/DB/auth/release-safety exemption."
+    },
+    {
+      "testFile": "scripts/hybrid-100-canary-integrity.test.ts",
+      "sha256": "80c15d7feeacf6bc1d2548ea122b1bad241881d72c23ea03e376d9d46d9c241a",
+      "reason": "Retired Master V2 canonical authoring/promotion/curation artifact contract; not an app/DB/auth/release-safety exemption."
+    },
+    {
+      "testFile": "scripts/hybrid-100-canonical-promote.test.ts",
+      "sha256": "341af1a190ec36ba7257b7c5d4adafd06d6d009a914b8d31b4530391e1b923fd",
+      "reason": "Retired Master V2 canonical authoring/promotion/curation artifact contract; not an app/DB/auth/release-safety exemption."
+    },
+    {
+      "testFile": "scripts/hybrid-100-cefr-draft.test.ts",
+      "sha256": "51a7fd66e8ac575e257a1c6a06e17ac1091274b0eedd7bfb406102108e6c2f39",
+      "reason": "Retired Master V2 canonical authoring/promotion/curation artifact contract; not an app/DB/auth/release-safety exemption."
+    },
+    {
+      "testFile": "scripts/hybrid-100-cefr-full-owner-approval.test.ts",
+      "sha256": "2904005d83bdfe288d2b14377000dd4df436fd81fab2d5e1b0d70a1f1b34104e",
+      "reason": "Retired Master V2 canonical authoring/promotion/curation artifact contract; not an app/DB/auth/release-safety exemption."
+    },
+    {
+      "testFile": "scripts/hybrid-100-cefr-owner-review-closure.test.ts",
+      "sha256": "d2e1be52aa5963ceebcba1372f2e67c474ba2d43cc4efcac5a765bc5cce0c30a",
+      "reason": "Retired Master V2 canonical authoring/promotion/curation artifact contract; not an app/DB/auth/release-safety exemption."
+    },
+    {
+      "testFile": "scripts/hybrid-100-development-reconciliation-preflight.test.ts",
+      "sha256": "41152bb3193a06cb5b2abc2f9b94366cfa745e2bb1cc97205ce35652c813b8ef",
+      "reason": "Retired Master V2 canonical authoring/promotion/curation artifact contract; not an app/DB/auth/release-safety exemption."
+    },
+    {
+      "testFile": "scripts/hybrid-100-development-reconciliation-scan.test.ts",
+      "sha256": "bcf8d76a40b335e59205b6ed9120504300622b8625672ec3aaa3c1cc90d77d35",
+      "reason": "Retired Master V2 canonical authoring/promotion/curation artifact contract; not an app/DB/auth/release-safety exemption."
+    },
+    {
+      "testFile": "scripts/hybrid-100-editorial-draft.test.ts",
+      "sha256": "a6d0aa0a3fca5412d83f61d2c4b92029fec8fdec3e1a98963f41c92653250aa2",
+      "reason": "Retired Master V2 canonical authoring/promotion/curation artifact contract; not an app/DB/auth/release-safety exemption."
+    },
+    {
+      "testFile": "scripts/hybrid-100-editorial-review.test.ts",
+      "sha256": "1bf18a99d9257ae55a486fd1a0e95445b6f7083e821780510e4f2f39e541e4a2",
+      "reason": "Retired Master V2 canonical authoring/promotion/curation artifact contract; not an app/DB/auth/release-safety exemption."
+    },
+    {
+      "testFile": "scripts/hybrid-100-owner-reconciliation-dry-run.test.ts",
+      "sha256": "ea10017f4273b4c3786dc1e03da77dbfdd8ddedbe5776822c17a198c90cce93d",
+      "reason": "Retired Master V2 canonical authoring/promotion/curation artifact contract; not an app/DB/auth/release-safety exemption."
+    },
+    {
+      "testFile": "scripts/hybrid-100-owner-reconciliation-proposal.test.ts",
+      "sha256": "80cbe5b8a0646471faf711725d87486b51cffb7153f87eae27182d3101eb7221",
+      "reason": "Retired Master V2 canonical authoring/promotion/curation artifact contract; not an app/DB/auth/release-safety exemption."
+    },
+    {
+      "testFile": "scripts/hybrid-100-rc-final-audit.test.ts",
+      "sha256": "452e57e9b39494f8fe8256b59516fb844d5e2c1eef91e4a7dc07a6353be05724",
+      "reason": "Retired Master V2 canonical authoring/promotion/curation artifact contract; not an app/DB/auth/release-safety exemption."
+    },
+    {
+      "testFile": "scripts/hybrid-100-release-candidate.test.ts",
+      "sha256": "c8b074814fb373eecde754552d1d4d76224fe2e85f2d55141775dd9323609a84",
+      "reason": "Retired Master V2 canonical authoring/promotion/curation artifact contract; not an app/DB/auth/release-safety exemption."
+    },
+    {
+      "testFile": "scripts/hybrid-100-runtime-eligibility-closure.test.ts",
+      "sha256": "e3c1df7ca7a097d033a3b8ceee32f9cca8fb85837498d20bfa25a623ccb9bb8c",
+      "reason": "Retired Master V2 canonical authoring/promotion/curation artifact contract; not an app/DB/auth/release-safety exemption."
+    },
+    {
+      "testFile": "scripts/hybrid-100-runtime-eligible-patch-release.test.ts",
+      "sha256": "fb1adccf4b27d07db8cf0d1bf4b9eaf65030f18d92142751b150a0fa51aaa846",
+      "reason": "Retired Master V2 canonical authoring/promotion/curation artifact contract; not an app/DB/auth/release-safety exemption."
+    },
+    {
+      "testFile": "scripts/legacy-master-expansion-plan.test.ts",
+      "sha256": "d1371fd5a9966c17030e97454c5590a70b89f22cdc21469b24d4aab74edac4e6",
+      "reason": "Retired Master V2 canonical authoring/promotion/curation artifact contract; not an app/DB/auth/release-safety exemption."
+    },
+    {
+      "testFile": "scripts/master-vocabulary-v2-bridge-hardening.test.ts",
+      "sha256": "c9edf0f0080056ad962d46afdd845fc3db3e497a543d5cb2452b6d80ee7c5ce7",
+      "reason": "Retired Master V2 canonical authoring/promotion/curation artifact contract; not an app/DB/auth/release-safety exemption."
+    },
+    {
+      "testFile": "scripts/master-vocabulary-v2-canary-release-builder.test.ts",
+      "sha256": "6356e0cabc432ff645a931fbf7dbccbcdca974350b3a350253f4b403cfe08ee7",
+      "reason": "Retired Master V2 canonical authoring/promotion/curation artifact contract; not an app/DB/auth/release-safety exemption."
+    },
+    {
+      "testFile": "scripts/master-vocabulary-v2-import-planner.test.ts",
+      "sha256": "2d41856bf95a96a4490823ce98d7709be3c7aac61aba414e7cf542c7ca26bad9",
+      "reason": "Retired Master V2 canonical authoring/promotion/curation artifact contract; not an app/DB/auth/release-safety exemption."
+    },
+    {
+      "testFile": "scripts/master-vocabulary-v2-import-store.test.ts",
+      "sha256": "3b367e21a6b94538bf67a7996e0daf86848bb78caf7183343ea0f6aa03c7df93",
+      "reason": "Retired Master V2 canonical authoring/promotion/curation artifact contract; not an app/DB/auth/release-safety exemption."
+    },
+    {
+      "testFile": "scripts/master-vocabulary-v2-owner-reconciliation-proposal.test.ts",
+      "sha256": "ae8acb784fafe87f37d7c03212b153681a3bc04440d9ba8b0a382fa915894478",
+      "reason": "Retired Master V2 canonical authoring/promotion/curation artifact contract; not an app/DB/auth/release-safety exemption."
+    },
+    {
+      "testFile": "scripts/master-vocabulary-v2-pilot.test.ts",
+      "sha256": "2e49693617f89ea119933bf508f54c239c772751345885c3074db76de9636d67",
+      "reason": "Retired Master V2 canonical authoring/promotion/curation artifact contract; not an app/DB/auth/release-safety exemption."
+    },
+    {
+      "testFile": "scripts/master-vocabulary-v2-post-apply-verification.test.ts",
+      "sha256": "26c0fd7a49f93da9984adbe2ae72fe73f919d285ee20fb435927fa3bc914c4c1",
+      "reason": "Retired Master V2 canonical authoring/promotion/curation artifact contract; not an app/DB/auth/release-safety exemption."
+    },
+    {
+      "testFile": "scripts/master-vocabulary-v2-read-only-reconciliation-scan.test.ts",
+      "sha256": "317e092ec0e9ce797451d3c50a528f8fbdc4010f5deb8e14e5f14728c47ed4d0",
+      "reason": "Retired Master V2 canonical authoring/promotion/curation artifact contract; not an app/DB/auth/release-safety exemption."
+    },
+    {
+      "testFile": "scripts/phase-aware-test-manifest.v1.test.ts",
+      "sha256": "67e06aebb91b761b38aa64c7ca74a73bd1928e491704a4cb58af0b8fdbe8923b",
+      "reason": "Retired Master V2 canonical authoring/promotion/curation artifact contract; not an app/DB/auth/release-safety exemption."
+    },
+    {
+      "testFile": "scripts/transform-master-vocabulary-v2.test.ts",
+      "sha256": "4adfda62ae7687cc86ec2161ddc39ee142dda061cb555114e6e7ffdb1e655120",
+      "reason": "Retired Master V2 canonical authoring/promotion/curation artifact contract; not an app/DB/auth/release-safety exemption."
+    },
+    {
+      "testFile": "scripts/validate-master-vocabulary-v2.test.ts",
+      "sha256": "2bcb987bfe21e6dba840b2e49cc31e1a66d9e9bc7a0d93da5694fb8054d99721",
+      "reason": "Retired Master V2 canonical authoring/promotion/curation artifact contract; not an app/DB/auth/release-safety exemption."
+    },
+    {
+      "testFile": "scripts/vocabulary-curation.test.ts",
+      "sha256": "9f15c4f6951c06898c3aa3c30d64b7698dbb489838ed025be2b237898cad8b4e",
+      "reason": "Retired Master V2 canonical authoring/promotion/curation artifact contract; not an app/DB/auth/release-safety exemption."
+    }
+  ],
+  "archivedAuditCommand": "pnpm test:archived-authoring",
+  "historicalReplayCommand": "pnpm exec tsx scripts/run-historical-phase-tests.v1.ts --report-dir <new-directory>",
+  "archivedChecksClaimedPassed": false,
+  "archivedSourceHashEncoding": "UTF-8 with CRLF normalized to LF; all other source bytes are preserved"
+}

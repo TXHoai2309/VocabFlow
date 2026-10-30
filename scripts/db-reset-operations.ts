@@ -7,6 +7,11 @@ type SqlClient = ReturnType<typeof postgres>;
 export async function resetApplicationScope(sql: SqlClient) {
   await sql.begin(async (tx) => {
     await tx`SELECT pg_advisory_xact_lock(89421732)`;
+    for (const objectName of DATABASE_RESET_POLICY.applicationViews) {
+      const [schema, view] = objectName.split(".");
+      if (schema !== APP_SCHEMA || !view) throw new Error("INVALID_RESET_POLICY");
+      await tx`DROP VIEW IF EXISTS ${tx.unsafe(`"${schema}"."${view}"`)}`;
+    }
     for (const objectName of DATABASE_RESET_POLICY.applicationTables) {
       const [schema, table] = objectName.split(".");
       if (schema !== APP_SCHEMA || !table) throw new Error("INVALID_RESET_POLICY");

@@ -1,0 +1,367 @@
+{
+  "artifactType": "EDITORIAL_CAMPAIGN_PLAN",
+  "schemaVersion": "editorial-campaign-plan-draft-1",
+  "campaignId": "editorial-refresh-20261028",
+  "createdDate": "2026-10-28",
+  "lastUpdatedDate": "2026-10-29",
+  "status": "DRAFT_IMPLEMENTATION_CONTRACT",
+  "executionAllowed": false,
+  "isExecutableQueue": false,
+  "authority": {
+    "accepted": [
+      "Review the whole corpus; keep correct content and revise selectively.",
+      "Reuse exact suitable Senses across sets and school placements with shared identity and progress.",
+      "Plan approximately 600 genuinely new words or lexical phrases, with a 500–800 envelope after duplicate review.",
+      "Plan approximately 25–35 additional curated learning sets using existing and new content.",
+      "Install the existing to-tickets skill into this repository.",
+      "Approve the 15-ticket breakdown and blocking edges; publish one Markdown file per ticket locally. Approval is for ticket publication only.",
+      "Execute ticket 01 only: freeze a read-only dedicated local/offline baseline, crosswalk, coverage matrix and media inventory; no data activation or provider calls.",
+      "Execute tickets 02 and 03 in parallel: local schema compatibility and recoverable preview, offline three-item manifest/receipt canary with fake media only.",
+      "Owner requested continuation after01–03; execute04 offline 30-word editorial pilot only.",
+      "User explicitly requested05/06, real TTS on logged-in Muse with downloads, and self-generated images or Muse image prompts."
+    ],
+    "pending": [
+      "Choose TTS locale, voice and provider configuration.",
+      "Choose image reuse, generation scope and style policy.",
+      "Approve remaining production/item/provider contracts and any spend before later tickets; bounded01-04 are completed."
+    ]
+  },
+  "ticketPublication": {
+    "approvedDate": "2026-10-29",
+    "tracker": "LOCAL_MARKDOWN",
+    "rootRelative": ".scratch/editorial-refresh-20261028",
+    "indexRelative": ".scratch/editorial-refresh-20261028/index.json",
+    "individualTicketCount": 15,
+    "publicationStatus": "PUBLISHED_NOT_STARTED",
+    "initialTicketStatus": "planned",
+    "implementationAuthorized": false,
+    "batchTemplateIds": [
+      "10",
+      "11",
+      "12",
+      "13",
+      "14"
+    ]
+  },
+  "sourcePins": [
+    {
+      "path": "vocabflow-dataset/workspaces/master-v2-development-sync/master-v2-release-candidate-v9.json",
+      "byteSha256": "4b9a1e7fce55218df12c7b8b813d731361fb802e2654308b70033df3b31b65ab",
+      "use": "Compare 7311 PASS senseDispositions by proposalKey and effectiveContentHash; do not infer publication rights from PASS."
+    },
+    {
+      "path": "vocabflow-dataset/workspaces/master-v2-development-sync/master-v2-development-learning-metadata-enrichment-v1.json",
+      "byteSha256": "29a790a58798a47e3770a70367ad7ea5715671ed4fc8aacfcb1cc3fe80f8aae9",
+      "use": "Offline CEFR evidence matching local IDs and content hashes; not applied by this analysis."
+    }
+  ],
+  "historicalMediaEvidencePins": [
+    {
+      "path": "vocabflow-dataset/workspaces/us57-commercial-media-pipeline/cloudinary-v2-upload-map-v1.json",
+      "byteSha256": "d1e0ebfcc9776499793d41a4daae11012e90c2da1737973eb0b184cb750d56bd",
+      "assetRows": 7120
+    },
+    {
+      "path": ".vocabflow-local/cloudinary-v2-migration/source-backfill-upload-map-v1.json",
+      "byteSha256": "549e832a72927ab5adea2ce45b5da5376db233790eae0579cbc5e6824e799ec6",
+      "assetRows": 13977
+    },
+    {
+      "path": "vocabflow-dataset/workspaces/us57-commercial-media-pipeline/cloudinary-v2-media-migration-manifest-v1.json",
+      "byteSha256": "5a104295dde30d1caeac842bd911a9a3c06fd4541413b0f9e4ce56dab2af30c9",
+      "imageMappingRows": 2945,
+      "wordAudioMappingRows": 4199,
+      "exactExampleAudioMappingRows": 1
+    }
+  ],
+  "observedLocalBaseline": {
+    "observedDate": "2026-10-29",
+    "environment": "DEDICATED_LOCAL_DOCKER_ONLY",
+    "sourceDataset": "VOCABFLOW_MASTER_V2_DEV",
+    "enabledV2Senses": 7311,
+    "enabledLegacyStarterRows": 30,
+    "distinctNormalizedRuntimeDisplayStrings": 6114,
+    "distinctNormalizedProvenanceHeadwordStrings": 5798,
+    "runtimeDisplayDiffersFromProvenanceHeadwordRows": 573,
+    "localCefr": {
+      "A1": 1008,
+      "A2": 905,
+      "B1": 740,
+      "B2": 1424,
+      "C1": 1462,
+      "C2": 0,
+      "UNCLASSIFIED": 1772
+    },
+    "offlineEnrichmentCefr": {
+      "A1": 1017,
+      "A2": 929,
+      "B1": 784,
+      "B2": 1580,
+      "C1": 1778,
+      "C2": 606,
+      "UNCLASSIFIED": 617
+    },
+    "enrichmentAddsLabels": 1155,
+    "all7311SourceKeysAndContentHashesMatch": true,
+    "gradeOrAgeAssignments": 0,
+    "mediaRestorePolicy": "INTENTIONALLY_EMPTY_ARRAYS",
+    "runtimeSchemaCompatibility": "OLDER_RESTORE_REQUIRES_RECONCILIATION",
+    "semanticReviewOfEverySenseCompleted": false,
+    "refreshAttempt20261029": "COMPLETED_READ_ONLY_TICKET_01",
+    "capturedAtUtc": "2026-10-29T01:46:50.503Z"
+  },
+  "scopePlan": {
+    "newWordsAndLexicalPhrases": {
+      "target": 600,
+      "minimumPlanningEnvelope": 500,
+      "maximumPlanningEnvelope": 800,
+      "verifiedGapListFrozen": false
+    },
+    "additionalCuratedSets": {
+      "minimum": 25,
+      "maximum": 35
+    },
+    "separatePlanningCounts": {
+      "alphabetLetters": 26,
+      "firstUtteranceItemsMinimum": 100,
+      "firstUtteranceItemsMaximum": 150,
+      "phonicsActivities": null
+    },
+    "countingRule": "Do not count aliases, inflections, duplicated memberships or child presentation variants as new words. Report new Senses of existing headwords separately. Do not count the same lexical phrase in both expansion and first-utterance totals.",
+    "reviewBatchTargetSenses": 50,
+    "authoringBatchItems": {
+      "minimum": 25,
+      "maximum": 50
+    },
+    "pilot": {
+      "approximateWords": 30,
+      "themes": 4
+    },
+    "contractCanaryItems": 3
+  },
+  "coordinationProposal": {
+    "manifestPolicy": "IMMUTABLE_PER_BATCH",
+    "registryWriter": "SINGLE_COORDINATOR",
+    "workerOutputPolicy": "SEPARATE_IMMUTABLE_ATTEMPT_RECEIPTS",
+    "aggregateStatusWriter": "SINGLE_COORDINATOR_NEW_SNAPSHOT",
+    "identityPolicy": "PRESERVE_EXISTING_IDS_AND_CROSSWALKS_ASSIGN_NEW_UUIDV7_ONCE",
+    "workerMayApproveOwnOutput": false,
+    "overlap": "Editorial batch N+1 may proceed while image and TTS workers process frozen batch N.",
+    "manifestRootRelative": "vocabflow-dataset/workspaces/editorial-refresh-20261028",
+    "binaryRootRelative": ".vocabflow-local/editorial-refresh-20261028",
+    "workerOutputPathPattern": "runs/<runUuid>/<jobUuid>/attempt-<number>/output.<extension>",
+    "imageAssetPathPattern": "assets/images/<fullOutputSha256>.<extension>",
+    "audioAssetPathPattern": "assets/audio/<fullOutputSha256>.<extension>",
+    "ignoredArtifactHandoffRequired": true,
+    "commonBackupLocation": null,
+    "ttsLocale": null,
+    "ttsVoice": null,
+    "ttsProvider": null,
+    "imageProvider": null,
+    "imagePolicy": null,
+    "providerBudget": null
+  },
+  "approvedTicketGraph": [
+    {
+      "id": "01",
+      "blockedBy": []
+    },
+    {
+      "id": "02",
+      "blockedBy": [
+        "01"
+      ]
+    },
+    {
+      "id": "03",
+      "blockedBy": [
+        "01"
+      ]
+    },
+    {
+      "id": "04",
+      "blockedBy": [
+        "03"
+      ]
+    },
+    {
+      "id": "05",
+      "blockedBy": [
+        "04"
+      ]
+    },
+    {
+      "id": "06",
+      "blockedBy": [
+        "04"
+      ]
+    },
+    {
+      "id": "07",
+      "blockedBy": [
+        "02",
+        "05",
+        "06"
+      ]
+    },
+    {
+      "id": "08",
+      "blockedBy": [
+        "07"
+      ]
+    },
+    {
+      "id": "09",
+      "blockedBy": [
+        "07"
+      ]
+    },
+    {
+      "id": "10",
+      "blockedBy": [
+        "07"
+      ],
+      "boundedBatchTemplate": true
+    },
+    {
+      "id": "11",
+      "blockedBy": [
+        "07"
+      ],
+      "boundedBatchTemplate": true
+    },
+    {
+      "id": "12",
+      "blockedBy": [
+        "07"
+      ],
+      "boundedBatchTemplate": true
+    },
+    {
+      "id": "13",
+      "blockedBy": [
+        "07"
+      ],
+      "boundedBatchTemplate": true
+    },
+    {
+      "id": "14",
+      "blockedBy": [
+        "07"
+      ],
+      "boundedBatchTemplate": true
+    },
+    {
+      "id": "15",
+      "blockedBy": [
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14"
+      ],
+      "requiresEveryIncludedBatchInstanceComplete": true
+    }
+  ],
+  "items": [],
+  "jobs": [],
+  "limitations": [
+    "This JSON is a reviewable plan, not an implemented schema or worker interface.",
+    "Raw dataset and binary roots are Git ignored and require explicit package and backup handoff.",
+    "Historical media inventories overlap and do not prove current delivery, semantic match or new-asset rights.",
+    "The source pins and counts describe local and offline evidence, not current Production state."
+  ],
+  "executionAuthorization": {
+    "date": "2026-10-29",
+    "ticketIds": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07"
+    ],
+    "scope": "Per-ticket authorizations01–07.07 permits bounded local integration; no bulk authoring or production release.",
+    "completedTicketIds": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "07"
+    ],
+    "activeTicketIds": [
+      "05",
+      "06"
+    ]
+  },
+  "selectedBaseline": {
+    "baselineId": "baseline-v2",
+    "rootRelative": "vocabflow-dataset/workspaces/editorial-refresh-20261028/baseline-v2",
+    "manifestByteSha256": "eef748df5dda27086c19f071ad6e3601f474b4494e07822fd844eda75f6365b2",
+    "resultRelative": "docs/plans/editorial-refresh-2026-10-28/ticket-01-baseline.result.json",
+    "resultStatus": "COMPLETE",
+    "handoff": {
+      "archiveRelative": ".vocabflow-local/editorial-refresh-20261028/handoff/baseline-v2-eef748df5dda27086c19f071ad6e3601f474b4494e07822fd844eda75f6365b2.zip",
+      "receiptRelative": ".vocabflow-local/editorial-refresh-20261028/handoff/baseline-v2-eef748df5dda27086c19f071ad6e3601f474b4494e07822fd844eda75f6365b2.receipt.json",
+      "archiveByteSha256": "144c8a01d7d1754cb0af66ab58438b913e6cdda30c5642159d8c142a6f19806b",
+      "archiveByteLength": 665093401,
+      "verifiedEntries": 14045,
+      "verifiedMediaAssets": 13977
+    }
+  },
+  "ticketResults": {
+    "02": {
+      "status": "COMPLETE_LOCAL_ONLY",
+      "resultRelative": "docs/plans/editorial-refresh-2026-10-28/ticket-02-local-preview.result.json"
+    },
+    "03": {
+      "status": "COMPLETE_MOCK_ONLY",
+      "resultRelative": "docs/plans/editorial-refresh-2026-10-28/ticket-03-manifest-canary.result.json"
+    },
+    "04": {
+      "status": "COMPLETE_OFFLINE_DRAFT_ONLY",
+      "resultRelative": "docs/plans/editorial-refresh-2026-10-28/ticket-04-frozen-pilot.result.json"
+    }
+  },
+  "localCompatibility": {
+    "status": "MIGRATIONS_0019_TO_0021_APPLIED_LOCAL",
+    "resultRelative": "docs/plans/editorial-refresh-2026-10-28/ticket-02-local-preview.result.json",
+    "contentIdsAndProgressPreserved": true
+  },
+  "canaryHandoff": {
+    "status": "VERIFIED_MOCK_ONLY",
+    "resultRelative": "docs/plans/editorial-refresh-2026-10-28/ticket-03-manifest-canary.result.json",
+    "packageRelative": ".vocabflow-local/editorial-refresh-20261028/ticket03-handoff-v1",
+    "packageManifestByteSha256": "e9069b44b26dbcb30d4f3af03d13ce852d8991f3f761312ce184f278fa66d0c6",
+    "items": 3,
+    "jobs": 9,
+    "receipts": 9,
+    "runtimeEligible": false
+  },
+  "pilotDraftHandoff": {
+    "status": "COMPLETE_OFFLINE_DRAFT_ONLY",
+    "resultRelative": "docs/plans/editorial-refresh-2026-10-28/ticket-04-frozen-pilot.result.json",
+    "rootRelative": ".vocabflow-local/editorial-refresh-20261028/ticket04-handoff-v1",
+    "manifestByteSha256": "17bea1e964a0003a000d77a64d0899c61a473bc7068e60ccf9b4bab5523400d1",
+    "packageManifestByteSha256": "16b07298fa7096d2bbd3ea1b92b7415daa758a135aa4672919adafb898fce786",
+    "items": 30,
+    "potentialMediaOutputs": 85,
+    "runtimeEligible": false
+  },
+  "mediaProduction": {
+    "workOrdersRelative": ".vocabflow-local/editorial-refresh-20261028/media-production-r0001/work-orders.json",
+    "byteSha256": "d13a6efc767869df1f8d34d8363b87f4bca9da3343bff86a28db9c02f8d46728",
+    "status": "IN_PROGRESS"
+  },
+  "localPilotIntegration": {
+    "status": "OWNER_ACCEPTED_LOCAL_PILOT",
+    "resultRelative": "docs/plans/editorial-refresh-2026-10-28/ticket-07-local-pilot.result.json",
+    "scope": "Owner-authorized dedicated local preview only; bulk execution remains false",
+    "ownerAcceptanceRelative": "docs/plans/editorial-refresh-2026-10-28/ticket-07-owner-acceptance.json",
+    "activePreviewRevision": 2,
+    "heldWordAudio": 0
+  }
+}

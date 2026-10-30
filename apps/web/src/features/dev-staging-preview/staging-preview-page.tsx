@@ -109,21 +109,30 @@ export function StagingPreviewPage() {
   const [error, setError] = useState(false);
   const [retryKey, setRetryKey] = useState(0);
 
-  useEffect(() => setSearchDraft(search), [search]);
-  useEffect(() => setStatusDraft(Object.hasOwn(statusLabels, status) ? status : "ALL"), [status]);
+  useEffect(() => {
+    const timer = window.setTimeout(() => setSearchDraft(search), 0);
+    return () => window.clearTimeout(timer);
+  }, [search]);
+  useEffect(() => {
+    const timer = window.setTimeout(() => setStatusDraft(Object.hasOwn(statusLabels, status) ? status : "ALL"), 0);
+    return () => window.clearTimeout(timer);
+  }, [status]);
 
   useEffect(() => {
     const controller = new AbortController();
     const params = new URLSearchParams({ page: String(page), status });
     if (search) params.set("search", search);
-    setLoading(true);
-    setError(false);
-    fetch(`/api/dev/staging-preview?${params}`, { signal: controller.signal, cache: "no-store" })
+    Promise.resolve().then(() => {
+      if (controller.signal.aborted) return null;
+      setLoading(true); setError(false);
+      return fetch(`/api/dev/staging-preview?${params}`, { signal: controller.signal, cache: "no-store" });
+    })
       .then(async (response) => {
+        if (!response) return null;
         if (!response.ok) throw new Error("Staging preview request failed");
         return response.json() as Promise<PreviewResponse>;
       })
-      .then((result) => setData(result))
+      .then((result) => { if (!controller.signal.aborted && result) setData(result); })
       .catch((cause: unknown) => {
         if (cause instanceof Error && cause.name === "AbortError") return;
         setError(true);

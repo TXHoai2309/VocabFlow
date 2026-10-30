@@ -23,6 +23,7 @@ const BASELINE = Object.freeze({ identities: 7451, effective: 7172, pendingConte
   snapshotSha256: "377f65129d8390050ddd93db6f004f7c45350f1bddca508c41c478929a546cd5",
   snapshotFingerprint: "ad20b2092de92b43aee03eb42e101164e3830caeedd244d9bffe4d434f70fc59" });
 const RIGHTS = "UNKNOWN_REVIEW_REQUIRED";
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- Version-pinned historical artifact/SQL adapter; runtime target and source-pin validation remain mandatory.
 type Row = Record<string, any>;
 
 function stable(value: unknown): string {
@@ -138,6 +139,7 @@ async function runtimeCounts() {
   } finally { await sql.end({ timeout: 5 }); }
 }
 
+// eslint-disable-next-line @typescript-eslint/no-explicit-any -- Version-pinned historical artifact/SQL adapter; runtime target and source-pin validation remain mandatory.
 async function readStagingCounts(tx: any) {
   const [identityCount] = await tx`SELECT count(*)::int AS count FROM ${tx.unsafe(`${SCHEMA}.identity_registry`)}`;
   const statuses = await tx`SELECT resolution_status,count(*)::int AS count FROM ${tx.unsafe(`${SCHEMA}.identity_registry`)} GROUP BY resolution_status`;

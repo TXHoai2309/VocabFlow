@@ -1,0 +1,63 @@
+{
+  "artifactType": "TICKET10_BOUNDED_REVIEW_HANDOFF",
+  "batchId": "ticket10-a1-a2-batch-0001",
+  "state": "EDITORIAL_REVIEW_COMPLETE_RUNTIME_MEDIA_BINDING_PENDING",
+  "reviewedSenses": 51,
+  "headwordGroups": 35,
+  "levels": {
+    "A1": 27,
+    "A2": 24
+  },
+  "keep": 51,
+  "contentEdits": 0,
+  "databaseWrites": 0,
+  "providerCalls": 0,
+  "membershipObservation": {
+    "path": ".vocabflow-local/editorial-refresh-20261030/ticket10-a1-a2-batch-0001/membership-observation-r0001.json",
+    "sha256": "a3325f93486eeb9a31aae52d7f4e9b1ad2092004b5689a4abf6f9dca366444c3",
+    "byteLength": 6201
+  },
+  "ownedRowsWithExistingSetMembership": 51,
+  "proposedMediaSlots": 57,
+  "withheldMismatchedSentenceClips": 3,
+  "reviewSummary": {
+    "path": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket10-a1-a2-batch-0001/review-summary-r0001.json",
+    "sha256": "620d355c3a43d74e5567c7a9d43b8575fd3624a66d5531a83771be16812bb2e3",
+    "byteLength": 1547
+  },
+  "dispositions": {
+    "path": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket10-a1-a2-batch-0001/editorial-dispositions-r0001.json",
+    "sha256": "8e67bc99ce3abc52c95d1ddf52a3417a84f4c4706bebe3ed5f0a11a3b90ecb3a",
+    "byteLength": 231840
+  },
+  "mediaProposal": {
+    "path": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket10-a1-a2-batch-0001/media-reuse-proposal-r0001.json",
+    "sha256": "f972c5b7b86b29e2a31406cd4154485c635be5c5f54ae81e3cee7c38426ee437",
+    "byteLength": 88487
+  },
+  "variantImageContextReview": {
+    "path": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket10-a1-a2-batch-0001/variant-image-context-review-r0001.json",
+    "sha256": "df35fbc2c30e109ad9fd1faecdd04f7669fb36cb8259a476be4fa7ac4282be7f",
+    "byteLength": 2240
+  },
+  "gallery": {
+    "path": ".vocabflow-local/editorial-refresh-20261030/ticket10-a1-a2-batch-0001/review-gallery-r0001.html",
+    "sha256": "6a582083f5d43650fca5be2b64c81fa42663f9c92d08102eeada7a705ae0f4d7",
+    "byteLength": 53297
+  },
+  "archive": {
+    "path": ".vocabflow-local/editorial-refresh-20261030/ticket10-a1-a2-batch-0001/ticket10-a1-a2-51-review-handoff-r0001.zip",
+    "sha256": "e8f8a50954e128832592b8ef37581c6ef0c5a98e3344ac60cf60824b8f9b1297",
+    "byteLength": 60051535,
+    "members": 168,
+    "crcAndAllMemberHashesVerified": true
+  },
+  "originalTicket10Acceptance": {
+    "dispositionsAndOwnership": "PASS",
+    "unchangedTextIdsAndProtectedState": "PASS",
+    "mediaAndMembershipApplied": "PENDING_NOT_APPLIED",
+    "learnerRuntimePreviewWithMedia": "PENDING_NOT_IMPLEMENTED",
+    "wholeTicketFamily10Complete": false
+  },
+  "nextConcreteStep": "Resolve existing-media binding for the51 owned IDs without reusing pilot07 FIRST_WORDS namespace; preserve exact current examples and withhold the3 different sentence clips. Do not generate new assets or change IDs."
+}

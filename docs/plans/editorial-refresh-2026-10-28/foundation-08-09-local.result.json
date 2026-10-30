@@ -1,0 +1,122 @@
+{
+  "artifactType": "FOUNDATION08_09_LOCAL_IMPLEMENTATION_HANDOFF",
+  "date": "2026-10-30",
+  "state": "LOCAL_18_AUDIO_OWNER_ACCEPTED_6_SOUNDS_MISSING",
+  "ticketStatus": {
+    "08": "in-progress",
+    "09": "in-progress"
+  },
+  "dataset": {
+    "path": "vocabflow-dataset/workspaces/editorial-refresh-20261030/foundation08-09-r0001/dataset-selected-r0002.json",
+    "sha256": "a30fd9e285227c28703a21b5e621489ed525c4586083d0c7bb0ab884a087e918",
+    "byteLength": 97870
+  },
+  "executionManifest": {
+    "path": "vocabflow-dataset/workspaces/editorial-refresh-20261030/foundation08-09-r0001/execution-manifest-r0001.json",
+    "sha256": "4236cc7a50dc6f646ddba7d436dff58c1bfcaa71baf6692e793ed8cb54b7e1da",
+    "byteLength": 114536
+  },
+  "counts": {
+    "letters": 6,
+    "letterActivities": 12,
+    "utterances": 12,
+    "targets": 24,
+    "receivedAudio": 18,
+    "isolatedSoundAudioMissing": 6,
+    "images": 0,
+    "newLexicalSenses": 0
+  },
+  "mediaAsrMatches": 18,
+  "humanListeningAccepted": true,
+  "componentAndRegressionTests": {
+    "passed": 189,
+    "failed": 0,
+    "report": {
+      "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-local-r0001/focused-tests-r0002.json",
+      "sha256": "995bccc82fa78d53c633e3d6950aaeb0c81f3dac6b12e66546f0a6d159c09210",
+      "byteLength": 63342
+    }
+  },
+  "realPostgresAndApiChecks": {
+    "passed": 32,
+    "report": {
+      "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-local-r0001/verification.current.json",
+      "sha256": "c0b08d75c2ff6ebcaa4b4301aa926e06953cedbf6fcb181ce0561dc49c72cb7a",
+      "byteLength": 1900
+    },
+    "sessionIdentityInjectedForAccountTests": true,
+    "realBrowserLoginPerformed": false
+  },
+  "dedicatedLocalApplication": {
+    "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-local-r0001/application-result.json",
+    "sha256": "462d464e2841fe11a36918380488220492e23e7fd049a1d0032a16b05cb5e29d",
+    "byteLength": 722
+  },
+  "existingTablesPreserved": 28,
+  "remoteDatabaseAccess": false,
+  "vocabularyProgressWrites": 0,
+  "build": "PASS",
+  "apiTypecheck": "PASS",
+  "webTypecheck": "PASS",
+  "focusedChangedTsTsxLint": "PASS",
+  "impeccableMechanicalDetector": {
+    "findings": 0,
+    "runtimeVisualVerificationClaim": false
+  },
+  "browserVerification": {
+    "state": "PENDING_LOCAL_BROWSER_USE_DISABLED",
+    "requiredWidths": [
+      390,
+      1440
+    ],
+    "realPlaybackVerified": false
+  },
+  "remaining": [
+    "6isolated phoneme recordings unavailable from current Muse plain-text TTS",
+    "Actual desktop/mobile/browser playback verification remains unperformed"
+  ],
+  "gallery": {
+    "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/review-gallery-r0002.html",
+    "sha256": "97415f97e2321caf7f2b11ebeffbe2336771cad2c3233958aa4527ae478d5848",
+    "byteLength": 10283
+  },
+  "archive": {
+    "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-local-r0002/foundation08-09-owner-accepted-r0002.zip",
+    "sha256": "cf96113fc3590827ecd638799cf49975201544eee7edf50fd5c97d535d48dda5",
+    "byteLength": 667159,
+    "members": 10,
+    "crcAndEveryMemberHashVerified": true,
+    "containsAccountRowsEnvOrDbDump": false
+  },
+  "routes": [
+    "http://127.0.0.1:5173/foundation/learn?module=letters",
+    "http://127.0.0.1:5173/foundation/learn?module=utterances"
+  ],
+  "deploymentPerformed": false,
+  "revision": 2,
+  "previousHandoff": {
+    "path": "vocabflow-dataset/workspaces/editorial-refresh-20261030/foundation08-09-r0001/handoff-r0001.json",
+    "sha256": "5873083b8569b5161d80eb1106b3cfe10d7567700b7f04ebd281bc4448285ebb",
+    "byteLength": 3535
+  },
+  "runtimeSeed": {
+    "path": "vocabflow-dataset/workspaces/editorial-refresh-20261030/foundation08-09-r0001/runtime-seed-r0002.json",
+    "sha256": "c0f0fd716c27b7b3e98daecd7af5719dcb63241b3e8d8046c80cf337a10f4da7",
+    "byteLength": 35590
+  },
+  "ownerListeningAcceptance": {
+    "path": "docs/plans/editorial-refresh-2026-10-28/foundation-08-09-owner-listening-acceptance-r0001.json",
+    "sha256": "c4e307432dae8666f176aa3c22249ff40388b2a839ade1c438279bbcd6ed82cf",
+    "byteLength": 16693
+  },
+  "audioAcceptanceApplication": {
+    "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-local-r0002/application-result.json",
+    "sha256": "fc3d85bdeb4dcf96fd5d0279aa17157ecdeb2ad95fa8c569c833f888ac19b10f",
+    "byteLength": 1780
+  },
+  "acceptanceRealApiVerification": {
+    "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-local-r0002/verification-r0002.json",
+    "sha256": "cd0cc9bfcb3da4c1f6a53783571bfa573740d644e781b7ffe3e49a8a35f86f26",
+    "byteLength": 298
+  }
+}

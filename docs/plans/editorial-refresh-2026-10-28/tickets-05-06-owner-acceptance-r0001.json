@@ -1,0 +1,79 @@
+{
+  "artifactType": "OWNER_TICKETS_05_06_FINAL_ACCEPTANCE",
+  "date": "2026-10-30",
+  "authority": "Direct owner message in this chat",
+  "ticketIds": [
+    "05",
+    "06"
+  ],
+  "ticketStatus": "done",
+  "verbatimOwnerStatements": [
+    "rv chi tiết tôi cũng rv tương đói ok rồi, duyệt đi",
+    "nguồn tạo thì là muse do tôi tạo thì phải dc duyệt chứ",
+    "thông tin/ quyền cũng là cảu tôi"
+  ],
+  "decision": "OWNER_ACCEPTED_REVIEW_PROVIDER_AND_RIGHTS",
+  "scope": "Final acceptance and closure of the existing selected pilot media:25 images,30 word audio,30 example audio and5 intentional image omissions. Owner review is the acceptance authority for the outstanding review gate. Muse execution/provider amendment is accepted. Rights/ownership are recorded as explicitly attested by the owner.",
+  "gates": {
+    "contentAndMediaReview": "OWNER_REVIEW_ACCEPTED",
+    "providerExecutionAmendment": "OWNER_CONFIRMED_MUSE_SOURCE_ACCEPTED",
+    "usageAndOwnershipRights": "OWNER_ATTESTED_AND_ACCEPTED",
+    "remainingTicket05Or06AcceptanceGates": []
+  },
+  "evidencePolicy": {
+    "newIndependentReviewClaim": false,
+    "newFullPerClipPhoneticChecklistClaim": false,
+    "rightsBasis": "OWNER_ATTESTATION",
+    "originalProviderReceiptsAndPlanningHashesPreserved": true
+  },
+  "counts": {
+    "selectedImages": 25,
+    "wordAudio": 30,
+    "exampleAudio": 30,
+    "omittedImages": 5
+  },
+  "selectedPlan": {
+    "path": ".vocabflow-local/editorial-refresh-20261028/ticket07-local-pilot-r0002/integration-plan.json",
+    "sha256": "9ce4e83ddb69862a5ea8579a0be6f3969a422418980358e945945c85190a0f39",
+    "byteLength": 175270
+  },
+  "existingLocalVerification": {
+    "path": ".vocabflow-local/editorial-refresh-20261028/ticket07-local-pilot-r0002/verification-result.json",
+    "sha256": "10e93463d44f91227d7865663624eb624458ca02e4f8eda5e93cfa94c9b98ebc",
+    "byteLength": 1407
+  },
+  "ownerGalleryAcceptance": {
+    "path": ".vocabflow-local/editorial-refresh-20261028/media-production-r0001/owner-gallery-approval-r0001.json",
+    "sha256": "184436a950e63553ea41d1d639c4ad55aff6ed363f4058aee4852ebfa088dfcf",
+    "byteLength": 1272
+  },
+  "ownerFiveClipListeningAcceptance": {
+    "path": "docs/plans/editorial-refresh-2026-10-28/ticket-06-owner-listening-acceptance.json",
+    "sha256": "f250f7d8d14b6f3ae25861c2ed315507c67ce200572364fd2b38dde476137af8",
+    "byteLength": 3849
+  },
+  "previousMediaCheckpoint": {
+    "path": "docs/plans/editorial-refresh-2026-10-28/tickets-05-06-media-handoff.result.json",
+    "sha256": "fe3ccd13e975fc41ac9e168d4048e66bd5aaf51aa578441ec9049f4b15efe00c",
+    "byteLength": 2269
+  },
+  "closureVerification": {
+    "selectedAssetsHashAndLengthVerified": 85,
+    "selectedReceiptHashesVerified": 85,
+    "selectedPlanAndPriorVerificationPinsMatch": true
+  },
+  "newMediaGenerated": 0,
+  "databaseWrites": 0,
+  "applicationChanges": false,
+  "deploymentPerformed": false,
+  "doesNotCloseOtherTickets": [
+    "08",
+    "09",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15"
+  ]
+}

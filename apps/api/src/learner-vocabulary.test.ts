@@ -133,7 +133,7 @@ describe("US-22 learner vocabulary API boundary", () => {
   it("rejects invalid or duplicate browse query parameters before reading data", async () => {
     const browse = vi.fn();
     const app = createApp({ readSession: async () => ({ user: { id: "parent-1" } }), learnerVocabularyBrowseService: { browse } });
-    for (const suffix of ["?pageSize=15", "?page=0", "?cefr=Z9", "?topic=Animals&topic=Food"]) {
+    for (const suffix of ["?pageSize=15", "?page=0", "?cefr=Z9", "?cefr=intro-first-utterances", "?cefr=UNCLASSIFIED&cefr=A1", "?topic=Animals&topic=Food"]) {
       const response = await app.request("http://localhost/api/learners/" + learnerId + "/vocabulary/browse" + suffix);
       expect(response.status).toBe(400);
     }
@@ -142,6 +142,29 @@ describe("US-22 learner vocabulary API boundary", () => {
 });
 
 describe("US-22 paged vocabulary browse service", () => {
+  it("uses the same explicit unclassified predicate for the page and count", async () => {
+    const queries: Array<{ sql: string; params: unknown[] }> = [];
+    const execute = vi.fn(async (query) => {
+      const compiled = new PgDialect().sqlToQuery(query);
+      queries.push(compiled);
+      if (compiled.sql.includes('"learner_profiles"')) return authorizedRows();
+      if (compiled.sql.includes("COUNT(*)")) return { rows: [{ total: 1 }] };
+      if (compiled.sql.includes("cefr_options")) return { rows: [{ cefr_options: ["A1"], topic_options: [] }] };
+      return { rows: [vocabularyRow(31)] };
+    });
+    const service = createLearnerVocabularyBrowseService({ execute }, { datasetVersion: "v2" });
+    const result = await service.browse("parent-1", learnerId, { page: 1, pageSize: 30, cefr: "UNCLASSIFIED", level: "GRADE_1" });
+    expect(result.total).toBe(1);
+    const filtered = queries.filter(({ sql }) => sql.includes('FROM "vocabflow_app"."vocabularies" v')
+      && (sql.includes("LIMIT") || sql.includes("COUNT(*)")));
+    expect(filtered).toHaveLength(2);
+    for (const query of filtered) {
+      expect(query.sql).toContain("NULLIF(trim(md.cefr), '') IS NULL");
+      expect(query.sql).toContain("v.level =");
+      expect(query.params).toContain("GRADE_1");
+      expect(query.params).not.toContain("UNCLASSIFIED");
+    }
+  });
   it("filters in PostgreSQL, returns only one compact stable page, and counts separately", async () => {
     const queries: Array<{ sql: string; params: unknown[] }> = [];
     const execute = vi.fn(async (query) => {
@@ -167,7 +190,8 @@ describe("US-22 paged vocabulary browse service", () => {
     expect(result.vocabulary[0]).not.toHaveProperty("examples");
     const pageQuery = queries.find((query) => query.sql.includes('FROM "vocabflow_app"."vocabularies" v') && query.sql.includes("LIMIT"));
     const countQuery = queries.find((query) => query.sql.includes("COUNT(*)"));
-    expect(pageQuery?.sql).toContain("v.word ILIKE");
+    expect(pageQuery?.sql).toContain("END ILIKE");
+    expect(pageQuery?.params).toContain("%tear%");
     expect(pageQuery?.sql).toContain("v.level =");
     expect(pageQuery?.sql).toContain("md.cefr =");
     expect(pageQuery?.sql).not.toContain("jsonb_array_elements_text");

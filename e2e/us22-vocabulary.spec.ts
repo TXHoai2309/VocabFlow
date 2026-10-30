@@ -23,12 +23,12 @@ async function mockVocabularyPage(page: import("@playwright/test").Page) {
   await page.route("**/api/learners", async (route) => {
     await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ learners: [learner] }) });
   });
-  await page.route("**/api/learners/" + learnerId + "/vocabulary", async (route) => {
+  await page.route("**/api/learners/" + learnerId + "/vocabulary/browse?*", async (route) => {
     await route.fulfill({
       status: 200,
       contentType: "application/json",
       body: JSON.stringify({
-        vocabulary: [
+        page: 1, pageSize: 30, total: 3, totalPages: 1, filters: { cefrOptions: [], topicOptions: [] }, vocabulary: [
           {
             id: 1,
             word: "apple",
@@ -78,22 +78,22 @@ async function mockVocabularyPage(page: import("@playwright/test").Page) {
             nextReviewDate: "2026-09-20"
           }
         ]
-      })
+      }, (key, value) => ["definitionEn", "exampleEn"].includes(key) ? undefined : value)
     });
   });
 }
 
-test("US-22 opens vocabulary list and shows learner-scoped statuses", async ({ page }) => {
+test("US-22 opens the current vocabulary cards for the resolved learner", async ({ page }) => {
   await mockVocabularyPage(page);
   await page.goto("/learners");
 
   await expect(page.locator(".app-layout")).toBeVisible();
   await page.getByRole("navigation", { name: "Điều hướng chính", exact: true }).getByRole("link", { name: "Từ vựng", exact: true }).click();
   await expect(page).toHaveURL(/\/vocabulary$/);
-  await expect(page.getByRole("heading", { name: "Từ vựng của An" })).toBeVisible();
-  await expect(page.getByTestId("vocabulary-row-1")).toContainText("Từ mới");
-  await expect(page.getByTestId("vocabulary-row-2")).toContainText("Đang học");
-  await expect(page.getByTestId("vocabulary-row-3")).toContainText("Đã thành thạo");
+  await expect(page.getByRole("heading", { name: "Từ vựng của bạn" })).toBeVisible();
+  await expect(page.getByTestId("vocabulary-row-1")).toContainText("apple");
+  await expect(page.getByTestId("vocabulary-row-2")).toContainText("book");
+  await expect(page.getByTestId("vocabulary-row-3")).toContainText("cat");
 });
 
 test("US-22 keeps the vocabulary list within a mobile viewport", async ({ page }) => {
@@ -103,6 +103,6 @@ test("US-22 keeps the vocabulary list within a mobile viewport", async ({ page }
   await expect(page.locator(".app-layout")).toBeVisible();
   await page.getByRole("navigation", { name: "Điều hướng chính trên di động", exact: true }).getByRole("link", { name: "Từ vựng", exact: true }).click();
 
-  await expect(page.getByTestId("vocabulary-list")).toBeVisible();
+  await expect(page.getByTestId("vocabulary-grid")).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth)).toBeLessThanOrEqual(375);
 });

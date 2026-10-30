@@ -1,5 +1,910 @@
 # Current Handoff Snapshot
 
+## 2026-10-30 — US65 release authorized; CI repair and PR #10 in progress
+
+Owner explicitly authorized commit/push, CI repair and completion of Production.
+PR #10 publishes the separate owner catalog/runtime and operational safeguards.
+Full lint/typecheck pass. Active catalog integrity passes with platform-neutral
+LF source hashes; the progress empty-state test now waits for completed history.
+Public owner-production responses disable HTTP caching across the atomic catalog
+switch so a fresh index cannot be paired with a cached retired word/media record.
+Trusted DB checks run only through GitHub against the new isolated empty test
+project; no Production/Development data was copied into it. See ADR0003 for the
+explicit retired authoring-test scope. Prior prepared checkpoint is historical;
+live migration/deployment/content replacement and cloud retirement are pending.
+
+## 2026-10-30 — US65 Production replacement prepared; live catalog unchanged
+
+Owner explicitly requests Production first and Cloudinary retirement, Development
+later. Uploaded all4,640selected media originals (3,009,529,461bytes) to a new
+owner-publication namespace, with byte/MD5 checks and source SHA/receipt pins.
+18live original GETs match exact source bytes. No fresh generation.
+
+Real Production has7,311rows/4,537enabled. Source-record identity crosswalk keeps
+900IDs (not local905), adds647and retires6,411. Catalog plan has exact1,547words,
+73topics/76sets and complete HTTPS media. Production private7,437,657byte backup
+restored28/28tables with deterministic UTC/C fingerprints. Exact PostgreSQL18
+full rehearsal passes rollback, atomic apply, no-write idempotent rerun, public
+index/levels, deployed Hono media middleware and actual account read/ownership
+checks.8retained progress and8reviews remain;27progress/36reviews retire only
+in rehearsal so far. Auth/settings/XP/protected data fingerprints match.
+
+Cloudinary has8,722old assets shared by current Production/Development,206other
+assets protected, and9,168unreferenced candidates. All9,168have verified local
+original backups (241,783,727bytes). Earlier8,679shared count was corrected for
+43malformed legacy raw-GIF URLs. No old cloud deletion has occurred.
+
+New explicit owner-production runtime, additive0024publication/compatibility
+view and exact published-media allowlist are prepared. Compatibility keeps V2
+readable until content apply. FIRST_WORDS now works from real content in a
+production build; guest backup/reconciliation uses a separate production catalog
+identity. Fixed native Node ESM exports and existing tooling types; root typecheck,
+build/scans, changed-source lint,962app tests and release/boundary suites pass.
+Strict premium audit0findings. Full-repo test historical artifacts/pins and10
+existing dev-staging/foundation lint errors still prevent a full CI-pass claim.
+Browser preview is pending because Local browser use was disabled on attempt.
+
+**Production DB/schema/content writes0; Development Neon writes0; old Cloudinary
+deletes0; commits/push/deploy0.** New Cloudinary uploads are the only external
+writes. Source remains uncommitted; AGENTS13/DEC018release boundary requires
+explicit commit/push authorization and valid release gates. Prepared apply
+refuses to write until matching READY main deployment and compatible runtime
+header are live. Retirement additionally rechecks both DBs and asset versions.
+
+[Detailed checkpoint](plans/editorial-refresh-2026-10-28/owner-production-replacement-2026-10-30.md). Operational/common JSON:
+`.vocabflow-local/editorial-refresh-20261030/owner-production-r0001/prepared-handoff-r0001.json`.
+This supersedes current priority US64 without changing its completed local data.
+No campaign15or Production completion is claimed.
+
+## 2026-10-30 — US64 owner-selected local catalog: 1,547 active entries
+
+The owner explicitly selected the three Muse packages and retired all other
+local vocabulary. Applied atomically after a full backup/restore rehearsal:
+7,341 before = 905 retained IDs + 6,436 retired; 642 new local IDs yield 1,547.
+Exactly 547 + 500 + 500 selected entries, 73 topics and 76 learning sets.
+All have image/word/example audio: 4,641 bindings, 4,640 byte-pinned files.
+One identical chair/sit example audio is intentionally shared.
+Levels: FIRST_WORDS 139, A1 731, A2 544, B1 132, B2 1, C1/C2 0. No forced
+CEFR/grade mapping. Owner-selected local review is separate from Master PASS;
+WordNet attribution and reused text provenance remain in the common JSON.
+
+Removed only lexical rows/related progress outside the keep set and replaced
+lexical collections/memberships. Preserved protected account/settings/foundation
+fingerprints and progress for retained IDs. Guest backup + cross-tab-locked
+reconciliation keeps settings and retained progress. The browser now shows
+1,544 new + 3 learned. A dashboard race with catalog reconciliation was fixed.
+Migration0023 and Node-only pinned media use a separate owner-local authority;
+production legacy/V2 routing remains independent. Apply rerun wrote nothing.
+
+221 focused tests/15 files, API/web typecheck, changed TypeScript lint, syntax,
+build and client secret/source-map checks PASS. Real API and account-service
+checks cover all IDs/collections/level counts, 18 byte-exact media requests and
+household denial without account writes. Guest browser collection→setup→5-word
+study, image and word/sentence playback verified. Fixed the sentence audio's
+zero-width grid track; 260px after fix, no horizontal overflow at small viewport.
+No agent ratings. Root typecheck still fails in existing unrelated tooling;
+no repository-wide test/lint PASS or all-file human-listening claim.
+
+Common export/handoff: `vocabflow-dataset/workspaces/editorial-refresh-20261030/owned-catalog-r0001/current.json`.
+Private backup/restore index: `.vocabflow-local/editorial-refresh-20261030/owned-catalog-r0001/backup.json`.
+[Replacement report](plans/editorial-refresh-2026-10-28/owner-local-catalog-replacement-2026-10-30.md). Three original media roots and historical artifacts
+remain intact. Small manifest ZIP references existing media; it excludes media
+bytes, secrets and the private DB dump. Preview collection30 is superseded by
+31/32/33; old10–13 review templates are superseded for the active local catalog,
+not completed corpus reviews. Further generation remains paused; foundation
+08/09's 18 accepted clips and 6 missing sounds remain unchanged. Campaign15
+is not declared complete. No remote DB, provider jobs, commit, push or deploy.
+
+Everything below is historical unless explicitly carried into this snapshot.
+
+## 2026-10-30 — Ticket10-01 local preview, 51 existing A1/A2 senses
+
+Owner reprioritized10: “oci làm 10 đi”. Continue only the frozen51-ID batch,
+one session; further lexical/image/TTS generation stays paused. KEEP51; no
+content,CEFR,ID or contentVersion edits. Native local collection30 contains
+exactly51existing IDs,27A1/24A2; original CEFR collections remain intact.
+
+20projection media fields now bind19existing PNG,20word MP3 and17exact sentence
+MP3. Afternoon image withheld because it cannot distinguish the time of day;
+3variant sentence clips remain withheld.31senses remain explicitly text-only.
+No claim of complete media coverage or fresh owner/expert audio acceptance.
+Separate Node-only pinned media route leaves the accepted FIRST_WORDS overlay,
+85pilot assets,and08/09foundation data untouched. A shared exact sense/hash/
+index/text fallback renders accident's keyless source example without editing
+its frozen JSON. No UI redesign.
+
+Backup and atomic apply verified36protected fingerprints; rerun returns
+ALREADY_APPLIED_NO_WRITES. Real public/account-service checks pass,including
+51/27/24/0collection/CEFR intersections and household denial. Browser guest
+collection/setup/study checked; actual word+sentence playback decoded without
+errors. No ratings submitted by agent; user session advanced independently.
+Account browser login and all-file human listening were not performed.
+
+151focused tests pass; API/web scoped typecheck,changed-file lint,build and
+strict premium static audit pass. Root `pnpm typecheck` fails in existing
+out-of-scope tooling scripts (backfill/pending/foundation verification); do not
+report repository-wide typecheck PASS. Bounded10-01is ready for owner review
+with explicit media gaps,not completion of all A1/A2or campaign15. See
+[local continuation](plans/editorial-refresh-2026-10-28/ticket-10-01-local-preview-r0002.md).
+Foundation08/09acceptance and pending6sounds remain unchanged; no new provider
+job,remote DB access,commit,push or deployment.
+
+## 2026-10-30 — Owner accepts all18 foundation audio clips
+
+Direct owner statement:“tôi nghe ok rồi mà chưa có hình ảnh hả”. Recorded exact
+18file/receipt acceptance in
+`docs/plans/editorial-refresh-2026-10-28/foundation-08-09-owner-listening-acceptance-r0001.json`.
+Forward dataset/runtime-seed r0002sets6name+12utterance clips OWNER_ACCEPTED;
+18target acceptance metadata rows updated in dedicated local DB after backup.
+All33other application tables,including foundation progress/reviews/attempts
+and memberships,retain fingerprints. No audio bytes,IDs or spoken revisions
+change. Real API confirms6names listeningReady and12utterance audio accepted.
+
+Current dataset SHA `a30fd9e285227c28703a21b5e621489ed525c4586083d0c7bb0ab884a087e918`.
+Current pointer `vocabflow-dataset/workspaces/editorial-refresh-20261030/foundation08-09-r0001/current.json`;
+gallery `review-gallery-r0002.html`/`review-gallery.current.html` in media root.
+Forward acceptance archive667,159bytes,10members verified,SHA
+`cf96113fc3590827ecd638799cf49975201544eee7edf50fd5c97d535d48dda5`.
+Old handoff/receipts remain historical and unchanged. Do not reopen listening
+approval from earlier pending labels. No fresh independent expert review claimed.
+
+Images remain intentionally0:08uses live text glyph pairs,09uses contextual
+text. Owner asked about images but has not instructed image generation in this
+message. Suggested optional09enhancement:4situation illustrations;not started.
+Six sound audio files remain missing;browser rendering/playback checks remain
+unperformed. Owner hearing approval does not automatically close full08/09.
+
+## 2026-10-30 — Foundation08/09 resumed and implemented locally
+
+Owner explicitly resumed both tickets,then requested continuation. One session,
+no worker dispatch. Frozen UUIDv7 registry has6letter parents,12letter activities
+and12utterances;0lexical additions,0images. Muse generated6letter-name+12utterance
+MP3.18/18receipt bindings/hash/length/decode and unprompted cached-model ASR match.
+Exact provider ZIPs retained;downloaded originals removed after verification.
+Muse plain-text TTS does not support the required isolated phonemes:/æ/canary
+UNSUPPORTED,no file;other5sound jobs not submitted. Six sound activities stay
+pending and unassessable. No phoneme substitute,provider switch or extra spend.
+
+Trusted additive0022migration applied only to dedicated Development PostgreSQL,
+with fresh4,379,007-byte pg_dump backup/TOC before mutation.24targets,8collections,
+48memberships seeded;all28preexisting table fingerprints and migration prefix
+preserved,zero lexical progress/account changes. Re-running apply is a no-write
+checkpoint replay. Backup lives separately from the media handoff because it
+contains account data;no env/account rows/DB dump are copied into the media ZIP.
+
+Node local entry alone installs foundation endpoints. Account Better Auth+
+household authorization,transactional progress/receipts,strict DTOs,opaque
+attempt/options/audio,and idempotent replay/stale/content/reveal checks. Public
+queue never reads account progress. Guest foundation state uses separate
+validated Web Locks storage and durable save-before-advance. Lexical state,
+word quotas/goals and current scheduler remain unchanged. Session capacity
+5/10/20/30 is a shared existing-study control with typed unit labels.
+
+Local routes `/foundation/learn?module=letters` and `?module=utterances` are linked
+from Mức học.12utterances have contextual reveal/audio/self-recall.6names have
+unscored practice while new audio awaits listening acceptance. No new-media
+owner acceptance inferred from05/06. Six absent sounds never enter active queue.
+
+Validation:189focused component/domain/legacy regression tests PASS;32real local
+PostgreSQL/Hono checks PASS using injected session identity and actual household
+authorization with disposable fixtures cleaned;not a real browser login.
+API+web typecheck,changed-source ESLint,build PASS. Impeccable mechanical detector
+0findings. Build reports existing dynamic-import/chunk-size warnings. Actual
+390/1440rendering and media playback verification remain PENDING:browser Work
+permission now says Local browser use disabled;async question sent,await response.
+Do not bypass through other automation or claim rendered UI from component tests.
+
+Current contract/result location:
+`docs/plans/editorial-refresh-2026-10-28/foundation-08-09-execution-2026-10-30.md`.
+Dataset: `vocabflow-dataset/workspaces/editorial-refresh-20261030/foundation08-09-r0001/dataset-selected-r0001.json`.
+08/09remain IN PROGRESS for missing sounds/listening/browser evidence;10-01review
+preserved,05/06/07remain done. No remote DB,commit,push or deployment.
+
+## 2026-10-30 — Owner closes media tickets05/06
+
+Direct owner instruction: review is acceptable, approve it; Muse generation
+source and usage/ownership rights are confirmed by the owner. Recorded final
+acceptance in `docs/plans/editorial-refresh-2026-10-28/tickets-05-06-owner-acceptance-r0001.json`.
+Both tickets and tracker are DONE, with no remaining05/06 acceptance gates.
+Selected pilot remains25 images+30 word+30 sentence audio and5 intentional
+image omissions. Rechecked all85 asset hashes/lengths and85 receipt hashes.
+No new independent/full phonetic review or external legal verification claimed;
+acceptance is based on the owner's explicit review and rights attestation.
+Original source receipts, ASR and historical checkpoint JSON remain unchanged.
+Old pending review/provider/rights labels are superseded for these exact assets;
+do not ask for the same approval again. No DB/app/media changes or deployment.
+Ticket10-01 remains the active batch; other tickets are not closed by this record.
+
+## 2026-10-30 — Ticket10 first bounded existing A1/A2 review
+
+Owner explicitly assigned the next ticket after stopping new vocabulary/media.
+One-session instance10-01 freezes51existing runtime IDs/35headword groups,
+27A1/24A2;alphabetic selection retains all sibling senses. Read all definitions,
+bilingual examples and POS:51KEEP,zero text/CEFR/ID changes. Historical independent
+content receipts match exact51hashes;no fresh independent or CEFR assessment claim.
+Dedicated old Development Docker container restarted;read-only capture matches
+all51live DB rows and real API responses.13protected table fingerprints unchanged.
+Learning-index confirms all51existing CEFR memberships,no new collection.
+
+All51API rows currently have empty media. Existing selected packages supply
+17exact complete sense/example matches plus3same-sense simplified variants.
+Offline JSON proposes20images+20word+17exact sentence recordings;three different
+sentence clips withheld. Three variant image context limits recorded explicitly.
+26deduplicated historical binding candidates have valid bytes but no new semantic/
+phonetic acceptance. No provider,new media,DB write or app change. Pilot07 namespace
+would wrongly tag these as FIRST_WORDS;do not use it to force integration.
+
+Editorial/text checkpoint complete;instance remains IN PROGRESS for correct media
+binding and learner runtime validation. Full10family and15campaign NOT complete.
+Result: `docs/plans/editorial-refresh-2026-10-28/ticket-10-01-existing-a1-a2-review.md`.
+Data handoff: `vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket10-a1-a2-batch-0001/handoff-r0001.json`.
+Subset backup168members/60,051,535bytes,all CRC/member hashes verified,SHA256
+`e8f8a50954e128832592b8ef37581c6ef0c5a98e3344ac60cf60824b8f9b1297`.
+Actual gallery remains offline comparison,not learner-runtime media acceptance.
+
+## 2026-10-30 — Owner stops further vocabulary production
+
+Direct owner request: stop creating vocabulary here and move to another task.
+Completed offline production/packaging checkpoint is CLOSED/DONE. Do not create
+new lexical/media jobs, call Muse, retry old omitted jobs or dispatch chats.
+Verified frozen JSON pins for selected547+500+500 learning entries; not a claim
+of1547new canonical records. Keep exports/backups/receipts and listening flags
+unchanged. No DB import or app changes. Closure record:
+`docs/plans/editorial-refresh-2026-10-28/vocabulary-production-checkpoint-closure-2026-10-30.json`.
+
+Local tracker/index reflect closed production and owner-paused further authoring.
+Original14template and full15campaign NOT marked done.08/09runtime remains
+deferred. Recommended next:10,one existing A1/A2 batch about50senses, no new
+words/provider jobs; recommendation only, no batch assigned/started yet.
+
+## 2026-10-30 — BASIC-PLUS-500 complete selected dataset
+
+Supersedes the historical in-progress snapshot below. All13 owner-approved
+image ZIPs downloaded/hash-intaked;500 original PNG+1000MP3, zero missing base
+jobs or duplicate asset hashes. Exact downloaded ZIPs cleaned after verified
+copies. Full500-image screen across25sheets found1 readable-writing issue in
+phrase; fresh correction job downloaded and full-resolution reviewed PASS.
+Original image retained. Final selected media remains500PNG+1000MP3.
+
+Selected export in `.vocabflow-local/editorial-refresh-20261029/basic-plus-500-media-r0001/`:
+`dataset-complete-r0003.json`,4,095,375bytes,SHA
+`979623530945044b8bf832a78e93fd8186b374d1584b39fa2993501ad4b1cb9f`.
+Active pointer `vocabflow-dataset/workspaces/editorial-refresh-20261029/basic-plus-500-current.json`.
+Source meanings/examples/source levels remain exact;500 existing local senses,
+207A1/293A2,20curated topics×25, zero overlap with prior547+500 exports and
+zero net new canonical records. Raw topic pins preserved; supplementary
+memberships explicitly swap social movement/lifetime display placement.
+
+All1000audio decode PASS; six low-level warnings. ASR sample36 has29 matches,
+3 spelling variants,4 listening-review flags; no automatic rejection/recreation.
+Gallery includes direct links to those4clips. This is technical+image self-review,
+not all1000 spoken-content human review or owner acceptance. No DB/runtime/app
+changes, imports, commits or deployment. Complete archive verified CRC plus
+every member SHA/length:3,124 members,1,257,148,678bytes:
+`handoff/basic-plus-500-complete-media-r0003-aa356cf2b3b83385.zip`,SHA
+`497ec611655b7b31f927945c31ae5e0934ffab2b65eec14df07f51990f259b41`.
+Active pointer links this result. No remaining production/packaging work.
+Gallery500cards/500images/1000audio controls and25sheet hashes match selected
+JSON; correction image included, original phrase excluded from selected view.
+Opened gallery through Codex panel; tab title/URL confirmed in inventory.
+CUA file-URL policy prevents DOM rendering inspection of this local page;
+do not bypass it. Local HTML/media/index validation PASS. Owner review pending.
+
+## Historical — Additional BASIC-PLUS-500 production snapshot, superseded above
+
+Latest local receipt-backed count: **4 images+1000 audio =1004 jobs**. First4
+images root-reviewed as appropriate watercolor/sense, not owner acceptance.
+Decode checkpoint covers ALL1000 received audio PASS, six low-average-level warnings;
+ASR sample36 has29 normalized matches,3 spelling variants and4 listening checks
+(athlete/jewellery/can word clips, route example). No automatic regeneration.
+ASR difference alone does not indicate incorrect speech. All1000 decoding is
+technical verification, not all1000 spoken-content review or owner approval.
+Muse reports complete500PNG; local has4 until new image ZIP links approved.
+All10 audio ZIPs hash-intaked; exact download originals cleaned after verified copies.
+
+Latest actual-media backup: `handoff/basic-plus-500-media1004-c777d0bf22ec024a.zip`,
+45,033,408bytes/2,087 verified members,SHA
+`5b3934acf8d64d4e2eb3d4200f84926b785ea87ba8db88b615097fd314c1021a`.
+Readable500-entry topic-sorted CSV: `review-by-topic-r0001.csv` in data root.
+
+OWNER APPROVED2026-10-30: new public48h sharing for exact13 files
+`basic-plus-500-r0001-images40-01.zip` through13,500PNG,provider-reported
+1,094.6MB summed (question used approximate1.11GB). Prepared file list and
+screenshot saved in media root as `muse-sharing-proposal-r0001.json` and
+`muse-images-sharing-proposal.png`. Direct owner reply approves all13 files.
+Consent sent through Muse; proof and structured consent saved as
+`muse-sharing-consent-proof.png`/`muse-sharing-consent-r0001.json`.
+Receive links, intake13archives, inspect25 image sheets, correct forward if
+needed, then freeze. No additional sharing confirmation within this same set.
+
+Actual504-media backup verified1,058 members/34,052,849 bytes:
+`handoff/basic-plus-500-media504-3a17857ea3ef96c0.zip`,SHA
+`03356a271fe0649852b423aa8d80b89bf7ab978ec42734618091ecb861977c68`.
+Audio06/07/08/09/10 subsequently intaked with archive/asset hashes verified and exact
+downloaded ZIPs cleaned. Full source ZIPs remain under provider-bundles.
+
+Offline finalizer prepared as `scripts/editorial-basic-plus500-finalize-v1.py`.
+It requires1500 receipts/assets and1000 matching successful decode results,
+preserves raw content pins and attaches curated display memberships separately.
+Not run yet because media is incomplete; no completed export claim.
+
+Preserved text/source/contracts backup29members /1,662,014bytes:
+`handoff/basic-plus-500-text-efcb70b54461ddc5.zip`,SHA
+`6e9eab69c0ada4c5d50258625c81386d938fcee83534b9542838df7db9707406`.
+Actual first104 media checkpoint239members /22,317,981bytes:
+`handoff/basic-plus-500-first104-37de74052e54f54b.zip`,SHA
+`2293a39bb013cb4deee1e1903d05f7efb5807da4fe4b3a79640f8b7ecba37126`.
+Paths are under `.vocabflow-local/editorial-refresh-20261029/`.
+
+Selection review and `collection-memberships-r0001.json` record a display-topic swap: movement
+is the social-movement sense, so show under community-life; life is a lifetime,
+so show under health-body. Preserve exact source text/hash/media bindings and
+record supplementary collection placement explicitly rather than rewriting a
+source sense as bodily motion. Gallery uses the supplementary display membership;
+all20 groups retain25 entries. Frozen topic/hash/media pins unchanged.
+
+Owner asks another500. Same chat, no subagents. Curated500 headwords in20groups
+of25, zero normalized overlap with prior547+500 exports. All500 reference exact
+existing local senses and reuse exact Vietnamese/English definitions and first
+bilingual example; **0 net new canonical records**. Explained this distinction
+in commentary. Explicit homograph selection map, historical source PASS pinned;
+preserved A1 207/A2 293, no grade inference. Previous selected export untouched.
+
+Data root `vocabflow-dataset/workspaces/editorial-refresh-20261029/basic-plus-500-r0001/`;
+media root `.vocabflow-local/editorial-refresh-20261029/basic-plus-500-media-r0001/`.
+Frozen dataset SHA `6f8ca8736cdfcbd1f2555c48c9dbbed1556c4350b4ee32b53597de7ff2072d04`.
+15,017 source/identity/media-binding checks PASS. Uploaded request JSON and
+sent full1,500-job request through logged-in Muse UI:500PNG+1,000MP3. Actual
+local received count at submission0. Requests first4 image private pilot,
+10privateaudio ZIPs and13preparedimage ZIPs. **No public sharing approved for
+this new collection**; old BASIC-500 approval only covered its named13ZIPs.
+Wait for actual file names/sizes before asking new permission, continue useful
+audio/private pilot intake while images are generated. No DB/runtime changes.
+
+Use `editorial-basic-plus500-media-v1.py` to intake/assemble, plus review and
+validation scripts with same prefix. Do not invoke old campaign CLIs against
+new files. See plans/editorial-refresh-2026-10-28/basic-plus-500-production.md.
+
+## 2026-10-29 — BASIC-500 complete selected offline export
+
+Complete portable package verified3,121 members /1,051,810,241bytes:
+`handoff/basic-500-complete-media-r0003-c59b6628499bc410.zip` under the new local
+campaign. SHA `fda302dfd0d36701559ea8e87c392a51353718ed9407fdfa0df92218303dca36`.
+Contains built text/export and actual assets/receipts/QA/tooling, excludes
+duplicate run outputs and separately preserved provider ZIP copies. Gallery
+validation500cards/500images/1,000audio/zero missing placeholders PASS; final
+gallery SHA `1dd026a0609fc08f5265c2283d7d880f0367616eab4b5fd3dbe02a47255733d2`.
+No basic-500 ZIPs remain in Downloads after verified cleanup. Active pointer
+also names the complete package. Owner acceptance/canonical DB import remain
+pending. Do not resume obsolete download-generation actions from earlier notes.
+
+Created media-complete `dataset-complete-r0003.json` in
+`.vocabflow-local/editorial-refresh-20261029/basic-500-media-r0002/`, SHA
+`85c8d508270b8c9d857962e97efbd76de89be4c4cd26ec2d43dbc5458e174c9b`.
+500 entries/20 topics,500 selected images+1,000audio; all1,500 selected
+asset+receipt hashes and identity/text bindings verified. Selected1,499 unique
+asset hashes because two exact same examples share audio bytes intentionally.
+
+All six corrections downloaded via three small private ZIPs, hash-verified and
+visually inspected by root: comb/melon/shrimp/shoe/month/cool now address the
+recorded concept errors. Original assets untouched, no text/audio modifications.
+`image-corrections-r0001/visual-review-r0001.json` records the review; month has
+a decorative mascot but calendar concept remains clear. Gallery rebuilt from
+selected r0003, active pointer updated. All500 original images decode1600x1600;
+six replacements also decode1600x1600. All1,000 audio decode; ASR sample and
+eight audibility warnings remain explicitly owner-review items, not hidden.
+
+**No owner acceptance or canonical import inferred.** Reconciliation remains:
+405 proposed existing-sense references,95 pending candidates; A1/A2 proposals
+preserve source CEFR. User can inspect complete gallery now. No more generation
+needed unless review identifies a specific correction.
+
+## 2026-10-29 — BASIC-500 full media intake; six image corrections
+
+Owner approved all13 public48-hour image ZIP links. Downloaded/intaked all13
+large ZIPs with exact mapping/source/asset checks, removing only exact original
+Downloads ZIPs after verified archive and asset copies. After an initial429,
+09–11 succeeded on a later authorized request. Local counts now **500 images,
+500 word audio,500 example audio =1,500 job bindings**, no missing jobs.
+
+Root screened all500 images across25 contact sheets. Number counts0–10,
+ordinal positions, color swatches and weekday highlights match. Six semantic
+corrections requested with new UUID jobs: comb (brush), melon (watermelon),
+shrimp (large claws), shoe (open anatomically implausible sneaker), month
+(annual seasonal wheel), cool (cold/snow/blanket). Original images retained;
+text and1,000 audio unchanged. Muse acknowledged exactly6 replacement PNGs,
+3 private downloadable ZIPs of2, no new public-link permission. Source/request
+and findings are in basic media root `image-corrections-r0001/` and
+`visual-review-r0001.json`. Do not mark the corrections accepted before actual
+download and root review.
+
+New offline finalizer `scripts/editorial-basic500-finalize-v1.py` requires all
+original1,500 receipts plus6 corrected receipts and a correction review record,
+then freezes `dataset-complete-r0003.json`. It does not authorize DB/runtime
+import or infer owner acceptance. Review builder accepts `--source` for the
+selected complete export. Text validation17,140 checks still PASS. Audio
+decode1,000PASS and ASR36-sample limitations from prior checkpoint still apply.
+
+## 2026-10-29 — BASIC-500 authored and submitted to Muse
+
+Owner subsequently approves all13 prepared images40 ZIPs for public48-hour
+links. Confirmation sent to Muse; matching file-specific Allow prompts are
+authorized, no repeated owner confirmation required. Evidence is
+`owner-public-links-authorization-r0001.json` in the media root. Resume creating
+links/downloading/intaking and reviewing500 images; previous pending-approval
+paragraphs below describe the earlier checkpoint only.
+
+Latest: **1,000 audio+32 images locally received**,1,032 exact job/source/asset
+bindings verified. All1,000 audio decode PASS; eight low-average-level warnings.
+36-clip offline ASR risk sample:30 normalized matches, six differences requiring
+listening (not automatic regeneration). Review gallery and two image contact
+sheets generated; root visually reviewed the32 received images as a sample,
+not all500. Melon uses a watermelon rendering; generic meaning permits it, but
+distinct melon imagery would be clearer beside the separate watermelon entry.
+
+Provider reports all500 images ready. Prepared13 larger ZIPs (40x12+20),
+`basic-500-r0002-images40-01.zip` through `...-13.zip`,42.6–86.2MB each,
+957MB total. Original tiny ZIP02 timed out twice,03 once; no local files for
+those failed attempts. Awaiting owner's async answer for public48-hour links
+covering this exact13-ZIP set. **Do not click Allow/send sharing authorization
+until the actual answer arrives.** Independent local authoring/audio/review
+work can continue; no new images/audio should be regenerated for repackaging.
+
+Current gallery:
+`.vocabflow-local/editorial-refresh-20261029/basic-500-media-r0002/review-gallery.current.html`.
+Text/source backup31 members,7.55MB at
+`.vocabflow-local/editorial-refresh-20261029/handoff/basic-500-text-b996406e15fd33d0.zip`;
+SHA `dbf9deb282845afbcb705c18f6ab9414659e77c706750bd01c68f96187eba7a0`.
+It has no actual new media; protect actual received audio/images separately.
+
+Protected actual1,032 media jobs in
+`handoff/basic-500-media1032-checkpoint-bbbaf3e607fafcba.zip` under the new local
+campaign:160,485,335bytes /2,151 verified members, SHA
+`17282415ae9a6fb6d7e403eb8efc7ffaeb82fed54c5c9b057c0bf9add7902788`.
+Audio has999 unique byte hashes for1,000 job bindings: chair/sit intentionally
+share the identical example text, explicitly reviewed as legitimate. Canonical
+IDs/progress remain separate. Active dataset pointer is
+`vocabflow-dataset/workspaces/editorial-refresh-20261029/basic-500-current.json`.
+
+Owner requests another 500 basic entries, same chat. Active text is
+`vocabflow-dataset/workspaces/editorial-refresh-20261029/basic-500-r0002/`:
+500 entries/500 bilingual examples, 20 topics x25, zero normalized form
+overlap with the preceding547 export. 405 reviewed existing-runtime sense
+references, 82 missing runtime forms, 13 missing chosen senses. These are
+500 curated entries, not500 proven new canonical words. Of95 pending
+candidates,13 already have same-form editorial-queue occurrences. Proposed
+A1 393/A2 107; retain original source CEFR separately, no DB reclassification.
+
+17,140 offline binding/source checks PASS; reused ZIP security tests8/8 PASS.
+Frozen text SHA `43d559f7ed983a5258585f04fc0f6ef28f5538c6dbc31eda874f642feaab6077`.
+No r0001 media was submitted; pre-production r0002 tightens five sense/example
+bindings with fresh media job IDs, retaining the initial snapshot.
+
+Submitted `muse-basic-500-request-r0002.json` via logged-in UI to the existing
+Muse thread: 500 PNG +1000 MP3 exact jobs. Submission evidence/screenshot and
+separate work orders live under
+`.vocabflow-local/editorial-refresh-20261029/basic-500-media-r0002/`.
+Muse visibly preparing folders; actual downloads at this checkpoint **0**.
+Preflight six audio jobs (person/walk/read) before bulk TTS; if backend still
+fails, continue images and stop repeated failing audio calls. Do not retry the
+old excluded three items. No blanket public-sharing permission for new ZIPs.
+
+Resume with `scripts/editorial-basic500-media-v1.py` (not old550 assembler).
+Source ZIP goes to hashed provider-bundles, exact UUID job receipts and hashed
+asset paths; cleanup only after verified copies. Intake totals derive from
+actual source/jobs. No runtime/UI changes or DB import.
+See `plans/editorial-refresh-2026-10-28/basic-500-production.md`.
+
+## 2026-10-29 — Owner omits three missing-TTS items; current export is547
+
+Owner allows removing the three items without word TTS. Created
+`dataset-547-r0004.json` and `review-gallery-547-r0004.html` under the expansion
+production root. Selected547 items in33 topics, each with one image, wordaudio
+and exampleaudio:1641 distinct output hashes, all receipt/text bindings
+verified. Omitted eyelash/muffin tin/wake up only from this export; original
+550-item drafts/media remain intact. All retained item payloads unchanged.
+No more retry of these three jobs is required for this selected export.
+Previous sampled owner acceptance is pinned. Canonical reconciliation/full
+speech review remain unfinished; no database writes or import performed.
+Current source of truth: `selection-547-r0004.result.json`, dataset SHA
+`153f5dfed457145e1c8c9febffb22a0cf0b33e5c8ad01a743f144baf47e9fdfb`.
+
+## 2026-10-29 — Owner accepts sampled r0003 content, images and listening
+
+Owner stated “tôi nghe thử nội dung và ảng ok r” while viewing the r0003
+gallery. Saved `owner-sampled-acceptance-r0003.json`, pinned to dataset SHA
+`4ac63bafa658ad2a79d165cf7fa24096b10c57b45d1b1723355766ded14068ab`.
+The sampled subset is unspecified; this is not evidence of individually
+listening to all recordings or a completed independent semantic audit.
+Three word recordings remain absent: eyelash, muffin tin, wake up.
+No import, promotion or mutation of the pinned dataset follows from this
+preview acceptance. Continue from the current r0003 production checkpoint.
+
+## 2026-10-29 — r0003 joins13 corrected images; only three audio outputs absent
+
+Downloaded the four small correction ZIPs, verified13 new job/content hashes,
+visually self-reviewed and joined them without mutating original assets.
+Current550-item JSON selects550 images,547 wordaudio,550 exampleaudio:1647
+distinct hashes with exact receipt/text bindings verified. Six definition
+sense corrections preserved in forward amendment. Missing eyelash/muffin tin/
+wake up wordaudio after same-voice backend retry failure. Full speech/semantic
+review remains unfinished (ASR interrupted at247); no canonical/database import.
+Current gallery `review-gallery-r0003.html` and result
+`checkpoint-r0003.result.json` are under the expansion production root.
+Base media checkpoint plus correction delta archived/verified. See
+[production status](plans/editorial-refresh-2026-10-28/expansion-550-production.md).
+
+## 2026-10-29 — 1,647 original media jobs verified; editorial corrections in progress
+
+All550 original images,547 wordaudio and550 exampleaudio downloaded and
+hash-bound. All1097 audio decode; one low-level warning. Missing only original
+wordaudio eyelash/muffin tin/wake up; Muse's same-voice retry still fails with
+empty/truncated backend output. Screened550 images at contact-sheet scale,
+flagged13; corrected six editor-selected dictionary sense errors in a new
+snapshot without mutating pinned originals or changing audio text. Sent13
+replacement image briefs with new jobIDs; Muse acknowledged production.
+ASR screening interrupted at247, incomplete. No canonical promotion/import.
+See [current production](plans/editorial-refresh-2026-10-28/expansion-550-production.md).
+
+## 2026-10-29 — First 54 expansion media files archived; remaining jobs sent
+
+Downloaded 4 images and 50 audio files; exact intake bindings/hashes verified,
+source downloads cleaned after verified copying. Four images visually
+self-reviewed. All audio decodes; unprompted offline ASR matches 46/50 and
+flags four differences, without automatic rejection or acceptance. JSON binds
+54 actual outputs; no canonical imports. Submitted all remaining 1,596 media
+jobs to Muse and observed image generation. Media checkpoint ZIP and local
+review gallery are recorded in the [production status](plans/editorial-refresh-2026-10-28/expansion-550-production.md).
+
+## 2026-10-29 — Owner reprioritizes 550-word expansion; Muse access restored
+
+One chat owns vocabulary authoring and media production. 08/09 runtime work
+is deferred by owner direction. Authored 550 lexical candidates, 33 topics,
+550 bilingual examples; classification is an editorial estimate. Prepared
+1,650 exact media jobs. Muse browser connection now works: uploaded and sent
+images-0001 (4 jobs) plus audio-0001 (50 jobs); provider processing observed.
+No expansion media downloaded/verified yet; no canonical imports or runtime
+changes. See [production status](plans/editorial-refresh-2026-10-28/expansion-550-production.md).
+
+## 2026-10-29 — Existing setup quantity retained for08/09
+
+Owner rejected duplicating quantity controls. Updated the foundation contract
+to reuse existing setup session capacity; withdrew proposed10+10daily quotas.
+Capacity is not a daily allowance. Vocabulary limits/goals remain unchanged;
+no runtime/DB/media work follows from this documentation correction.
+
+
+## 2026-10-29 — 08/09 offline review passes; local implementation contract ready
+
+Received08r0002and09compat-r0001. Verified44artifact hashes/lengths and71input
+pins; reran08core231checks/70negative cases and09canaries28PASS. C08-01resolved
+in offline pre-answer projection.09adapter still pins historical08r0001;
+coordinator forward mapping now pins08r0002,24targets,111bridge checksPASS,
+unchanged audio target dependencies. No canonical IDs/runtime/DB/media changes.
+Prepared concrete next local implementation contract: typed target/progress,
+separate guest persistence, proposed10/10New limits,24audio/0image and capability
+canary, parallel file ownership. READY FOR CONTRACT REVIEW; full08/09notDONE.
+See [review/contract](plans/editorial-refresh-2026-10-28/parallel-08-09-review-r0002/implementation-contract.md).
+
+
+## 2026-10-29 — Coordinator reviews both08/09worker handoffs
+
+Verified27artifact byte hashes/lengths and12input pins; reran08validator120PASS,
+09validator14PASS/12negativecases rejected. Found C08-01: all12letter activity
+instructions disclose the answer before a listening-choice response.08requires
+revision2with neutral instructions/post-answer teaching and leakage checks.
+09's12EN/VI/context pairs have no blocking wording issue identified in this
+review. Shared target/progress proposal and separate follow-up prompts prepared;
+workers not yet dispatched for follow-up. No runtime/DB/media changes or new
+lexical Senses. Both full tickets remain in-progress. See
+[coordinator review](plans/editorial-refresh-2026-10-28/parallel-08-09-review-r0001/review.md).
+
+
+## 2026-10-29 — Two manual worker chats prepared
+
+Owner chose this chat as coordinator and will open two chats/paste prompts.
+Prepared separate08letter/sound and09utterance contract/offline-draft briefs,
+shared pinned coordination JSON, exclusive output roots and handoff contract.
+Workers are NOT yet dispatched; no runtime/DB/provider work started. Shared
+registry/app integration and Muse UI lease remain coordinator-owned. Read
+[parallel setup](plans/editorial-refresh-2026-10-28/parallel-08-09-r0001/coordination.json).
+
+
+## 2026-10-29 — Owner listening clears five isolated audio holds
+
+After hearing the exact duck/blue/white/pen/pencil files, owner confirmed they
+match. Saved exact-file acceptance; enabled the same five clips in local pilot
+r0002. Current counts25images/30wordaudio/30exampleaudio; no regeneration or
+progress writes. Original draft, source receipts, ASR output and r0001 plan
+remain immutable.11real local checksPASS,85asset hashes/MIMEsPASS and amendment
+idempotencePASS.07 remains owner-accepted/DONE;08 not started.
+
+
+## 2026-10-29 — Owner accepts ticket07 local pilot
+
+Owner explicitly stated “ticker 07 tôi duyệt”. Ticket07 is DONE for the
+verified local pilot; its dependency for08 is satisfied. Saved acceptance
+bound to the prior result and exact integration/verification pins. Five
+isolated word recordings remain withheld. No DB/media/runtime change or
+production release follows from this acceptance.08 remains planned, with
+its separate letter/name/sound item model still to be reviewed when assigned.
+See [acceptance](plans/editorial-refresh-2026-10-28/ticket-07-owner-acceptance.json).
+
+
+## 2026-10-29 — Ticket07 local pilot verified
+
+Owner requested the next step after gallery acceptance. Applied a reversible
+30-Sense development presentation and four local sets (8/8/8/6), preserving
+runtime IDs, original content columns, account progress and migration history.
+Local FIRST_WORDS filter now reaches setup/study with exact child examples;
+25images/25wordaudio/30exampleaudio are served by a hash allowlist. Five isolated
+recordings remain withheld. 241focused tests/build/API+web typecheck/scoped lint
+PASS; repository lint/typecheck retain preexisting script errors. Real DB/API
+checks11PASS; browser390/1440, flip/image/audio verified.07 remains in-progress
+for final05/06/canonical public gates;08–15 not started. See
+[07 evidence](plans/editorial-refresh-2026-10-28/ticket-07-local-pilot.md).
+
+
+## 2026-10-29 — Owner accepts pilot media gallery
+
+Owner directly stated “tôi thấy ok rồi đó” for galleryr0002. Saved exact
+approval with gallery/snapshot hashes;60audio/25selectedimages/5OMIT accepted
+at gallery-review scope. No repeat gallery approval needed. Technical
+listening uncertainties and provider/receipt gates retained honestly;
+no new license or runtime/DB activation inferred.
+
+
+## 2026-10-29 — 05/06 all real outputs downloaded; acceptance pending
+
+Browser access restored. DownloadedMusebatch3/4/5/6, includingcorrectedcow/orange.
+Saved60audio+25selectedimages,5OMIT; oldimageattempts preserved. Updatedgallery
+review-gallery-r0002.html andcoordinator-snapshot-r0002.json. Cleanedall6ZIP
+sessiondownloadcopies afterhashverification. 23focusedtestsPASS. All30example
+ASRmatch;5isolatedwordsstillneedlistening. NoDBactivation. Finalreview/rights/
+executionamendmentacceptance pending;05/06notmarkedDONE. See
+`docs/plans/editorial-refresh-2026-10-28/tickets-05-06-media-handoff.md`.
+
+
+## 2026-10-29 — Tickets05/06 real media production checkpoint
+
+Owner authorized real TTS in logged-in Muse, image generation and downloads;
+then requested batch Muse generation and cleanup of verified download copies.
+05/06 are in-progress, not complete. No DB import/activation or Production operation.
+
+- Frozen04 draft unchanged. Production work orders and single run are under
+  `.vocabflow-local/editorial-refresh-20261028/media-production-r0001/`.
+-60 real MP3 files downloaded:30 word +30 exact example sentences. All60 receipt
+  bindings and decodes pass; independent offline unprompted ASR matches55/60,
+  including30/30 sentences. duck/blue/white/pen/pencil isolated words require
+  listening; ASR mismatch is not proof that audio is wrong. No human listening claimed.
+-12 images saved:4 built-in(dog,bird,fish,duck),8 Muse(cow,horse,rabbit,sheep,
+  red,blue,green,yellow). Built-in4 independently visually reviewed by root;
+  independent Muse review7PASS and cowCHANGES_REQUIRED (anatomy).5 relationship
+  images OMIT.13 remaining image slots lack local output. Muse has generated
+  additional batches3/4, batch5 submitted; actual downloads still required.
+- Preserved originals and source ZIPs, exact mapping and per-job receipts.
+  Removed only3 session MP3 downloads and2 session ZIP downloads after hashes
+  verified at durable destinations; no unrelated Download files removed.
+- Known provenance correction: original image order config names built-in provider;
+  actual Muse receipts honestly identify Muse, but original planning hash is not
+  exact Muse execution hash. Forward amendment required; originals remain sealed.
+- Muse voice avocado_v2:MAI_01/Aria/en-US/speed90 is provider-reported, not
+  independently proven. Muse SupplementalTerms read logged-in (updated8Sep2026)
+  and MetaAI Terms read (effective13May2026); generic ownership/responsibility
+  provisions do not establish per-voice commercial clearance. Rights pending.
+- Local review-gallery.html and coordinator-snapshot-r0001.json preserve30-item
+  mapping/status. QA10tests and archive13tests passed. No media is runtime eligible.
+- Current blocker: CUA reports Local browser use disabled in Work settings, even
+  after owner says enabled. Do not bypass this setting via another automation
+  interface. Resume exact same Muse thread when capability is restored; do not
+  regenerate completed audio. Need downloadbatches3/4/5, makebaby, repaircow/orange,
+  finalize execution amendment, visual/listening/rights review and portable handoff.
+
+
+## 2026-10-29 — Ticket04 complete: frozen 30-word editorial draft
+
+- Owner requested continuation after01–03. Completed next frontier04 offline:
+  30 existing V2 Senses across animals8/colours8/school8/family6, concise Vietnamese
+  meanings and30 new bilingual example drafts. No new Lexeme/Sense/word is counted
+  toward the ~600 expansion target. No DB access, application source changes,
+  provider calls, image/audio generation, import or activation.
+- Scanned all7341 runtime/7320 review-queue entries and5004 Oxford/4673 Vocab4600
+  records for supplied headword/display/variant/legacy candidates; six deferred
+  searches are not verified gaps. Preserved exact runtime/proposal/hash identity,
+  source examples and learner progress keys; Master entity IDs remain null.
+- Draft placements: Từ đầu tiên,27 items Grade1 and30 Grade2, explicitly editorial
+  with adult support;25 A1/5 unknown labels unchanged. Four groups are draft sets,
+  not newly approved canonical topics. Human/identity/runtime placement gates remain.
+- Independent reviewer `/root/ticket04_independent_review` checked30/30 exact
+  items and90 media slots, PASS_DRAFT_ONLY with0 blockers and9 read input pins.
+  Source/presentation hashes recorded per item; no visual/listening review claimed.
+- Five relationship images OMIT;85 potential outputs remain. Existing candidates:
+  images for6 active slots, word audio for11;18 exact-byte files included (one
+  family image retained as unused evidence).30 new sentences need exact audio;
+  generation range68–85 only if later authorized, before retries.
+- Sealed shared manifest SHA17bea1e964a0003a000d77a64d0899c61a473bc7068e60ccf9b4bab5523400d1;
+  portable package30 pinned payload files, manifest SHA
+  16b07298fa7096d2bbd3ea1b92b7415daa758a135aa4672919adafb898fce786.
+  Actual package verifies after receiving-workspace relocation;11/11 guard tests
+  pass, ESLint and whitespace checks pass. No UI verification claim for this data-only step.
+- Report and next-session hashes: `docs/plans/editorial-refresh-2026-10-28/ticket-04-frozen-pilot.md`
+  and `.result.json`. Tracker01–04 done;05–15 planned.05/06 can be assigned in
+  parallel after media config/work orders; providerRequestHash remains null and
+  every slot non-executable. Off-machine backup and activation remain pending.
+
+## 2026-10-29 — Tickets 02 and 03 complete locally, in parallel
+
+- Owner explicitly requested 02 and 03. 02 used dedicated local env/identity,
+  full pre-migration custom dump plus password-free globals and per-table
+  hashes, then applied only existing 0019/0020/0021 through the existing local
+  migration entrypoint/trusted executor. Backup TOC and full decode PASS;
+  recovery procedure exists, no restore was executed.
+- Preserved all 30 pre-existing app/protected table fingerprints, role/schema
+  security, app sequences and entire historical migration prefix. Added three
+  history rows; the known extra old row remains verbatim. Counts unchanged:
+  7,341 vocabularies, 7,311 V2, one progress, one review. No short-meaning import
+  or content/media activation. Post-browser read-only verify also PASS.
+- Real local API + current Vite source + Chromium: index7311 IDs, A1=1008,
+  unclassified1772, A1×grade1 empty. Guest browse/setup/study/flip flows PASS at
+  1440/A1 and390/unclassified, screenshots inspected; no API mocks, account
+  mutations, external requests or page errors. Early harness startup/native
+  option assertion failures were fixed and retained in local evidence.
+- 02 guard tests9/9 PASS; related migration suites4 files/21 tests PASS. No
+  application UI/runtime code was changed, and no remote DB/CI/deploy executed.
+  Exact scope, backup limits and hashes: ticket-02-local-preview.md/result.json.
+- 03 completed three existing items (apple/blue/dog), nine fake jobs and nine
+  receipts. Separate image/TTS processes finish concurrently; single coordinator
+  merges, catches wrong/stale/conflicting inputs and handles replay/retry.
+  Tests21/21 PASS, including dependency-specific invalidation and portable
+  relocation. Package33 pinned files, manifest SHA-256
+  e9069b44b26dbcb30d4f3af03d13ce852d8991f3f761312ce184f278fa66d0c6.
+- Outputs are output.fake.json/application-json, REVIEW_REQUIRED_MOCK, never
+  image/audio or runtime eligible. No Master IDs minted, provider/voice chosen,
+  content approved or provider called. Production contract remains draft.
+- Tracker:01–03 done,04–15 planned. 04 now has its technical dependency met;
+  this instruction did not authorize authoring the pilot or further tickets.
+
+## 2026-10-29 — Ticket 01 complete: frozen read-only baseline and full handoff
+
+- Owner explicitly requested only ticket 01. Started existing Docker Desktop/
+  development container and captured the dedicated local DB in a read-only,
+  repeatable-read transaction at 01:46:50 UTC. No remote env/DB, learner rows,
+  migrations, data activation, provider spend or generation.
+- Selected immutable baseline-v2 under the editorial campaign workspace:
+  manifest SHA-256 `eef748df5dda27086c19f071ad6e3601f474b4494e07822fd844eda75f6365b2`.
+  All 7,311 V2 keys/hashes/learner fields and historical receipt bindings match
+  RC V9 plus replayed overlays; 30 legacy rows are retained separately.
+- Crosswalk preserves runtime/proposal IDs with pending Master IDs. Created
+  148 exclusive headword/sibling shards covering all 7,341 IDs exactly once,
+  unassigned and unauthorized for later editing. Coverage sample: 355 targets,
+  262 candidate matches, 93 requiring further search; no auto-approved gaps.
+- Verified 13,977 local media assets against exact size/hash and joined old/
+  latest mapping generations to current runtime IDs. Added latest backfill
+  evidence; old 7,120 assets are a subset, not additional coverage. Kept
+  semantic/pronunciation/policy review pending; no media activated.
+- Packaged 51 operational source entries, including three recovered exact-byte
+  inputs. Historical OEWN raw archive/member/record evidence remains partial
+  and explicitly disclosed; this is current-content reproducibility, not
+  full historical primary-source replay or fresh semantic review.
+- Full portable local ZIP: 665,093,401 bytes, SHA-256
+  `144c8a01d7d1754cb0af66ab58438b913e6cdda30c5642159d8c142a6f19806b`.
+  Verified every one of 14,045 archive entries, including all media bytes.
+  JSON result and handoff paths: `docs/plans/editorial-refresh-2026-10-28/ticket-01-baseline.result.json`.
+- Added guarded collector/verifier and packager tools. Node guard integration
+  tests 9/9 PASS; offline sealed-baseline verification PASS; independent
+  structural review PASS. Ticket 01 done; 02–15 remain planned. 02/03 have
+  their baseline dependency satisfied, but were not started by this instruction.
+
+## 2026-10-29 — Approved breakdown published as 15 local tickets
+
+- Owner explicitly approved the 15-ticket breakdown/edges and local Markdown
+  storage, with the question specifying publication only, not implementation.
+  Published one file per ticket in `.scratch/editorial-refresh-20261028/issues/`,
+  plus the entry README and machine-readable index. No existing ticket was
+  overwritten; this is the first local publication of this campaign.
+- All statuses are `planned`, execution authorization is false. This follows
+  the owner's limited scope rather than the skill's default ready-for-agent.
+  Added campaign-scoped tracker/triage docs under `docs/agents/`; unrelated
+  tracker defaults and AGENTS.md are unchanged.
+- JSON plan records approved graph/publication while retaining the draft
+  implementation contract, `executionAllowed=false` and empty items/jobs.
+  Templates 10–14 need bounded batch IDs, pinned inputs and ownership before
+  assignment; 15 waits for every included instance, not just the templates.
+- No DB access, schema/app changes, generation/provider calls or worker
+  dispatch in this publication step. US-62 remains editorial preflight.
+- Publication validation: 14/14 structural checks PASS, including every ticket
+  title/status/authorization, four criteria per ticket, exact approved blocker
+  edges, dependency ordering, acyclic graph, all local links, five input byte
+  pins and unchanged skill. JSONs parse; tracked diff whitespace check passes.
+
+## 2026-10-29 — Whole-corpus editorial campaign analysis; no execution
+
+- Owner approved whole-corpus review with selective corrections, approximately
+  600 genuinely new words/lexical phrases (500–800 after deduplication), and
+  approximately 25–35 curated sets. This is a planning envelope, not 600
+  verified gaps. Letters, utterance items and new Senses of old headwords have
+  separate counts. No generation or import is authorized by this analysis.
+- Compared all 7,311 local V2 proposal keys/content hashes to RC V9 PASS
+  dispositions and offline CEFR enrichment: all match. Enrichment adds 1,155
+  labels, including 606 C2, leaving 617 unclassified; not applied locally.
+  Runtime has 6,114 distinct display strings but 5,798 provenance headword
+  strings; 573 rows differ. Do not deduplicate or detect gaps by display alone.
+- The Docker restore deliberately empties media arrays. Historical media
+  inventories overlap and require exact binding/hash/policy checks before
+  reuse; local emptiness is not a regeneration backlog. Full structural scan
+  is complete, independent semantic review of every Sense is still future work.
+- Added the owner's requested repo-local to-tickets skill unchanged from
+  installed plugin 1.3.1; source/destination byte hashes verified. Tracker is
+  not configured by installing the skill. Planning documents are under
+  `docs/plans/editorial-refresh-2026-10-28/`: corpus findings, scope, immutable
+  batch JSON/worker receipt proposal, and 15 numbered ticket families with
+  bounded parallel batches. JSON is non-executable, with no items/jobs.
+- Pending: owner review of breakdown/edges/tracker, TTS locale/voice/provider,
+  image policy and later implementation/spend authorization. No ready tickets,
+  schema/code/data changes, media generation, remote access or deployment in
+  this campaign analysis. US-62 remains editorial preflight; US-63 unchanged.
+- Documentation checks pass: JSONs, source byte pins, inventory cardinality,
+  dependency DAG, internal links and unchanged installed skill bytes. A fresh
+  local SELECT attempt on 29 October failed because the Docker engine is off;
+  no evidence artifact was written for that attempt. Local counts explicitly
+  retain the 28 October observation; no remote fallback was attempted.
+
+## 2026-10-28 — US-63 nine learning levels implemented locally
+
+- Owner confirmed all nine levels. Vocabulary now uses one main Mức học
+  selector; grade/topic are supplementary and still survive into study.
+  Introductory groups are visibly unavailable, never inferred from missing
+  CEFR. Initial metadata failure is distinguished from no content.
+- Unclassified is an explicit query filter with shared validation. Account
+  browse/count and queue use one SQL predicate; guest queue and topic/collection
+  summaries use the matching shared function. All/progression/SRS behavior and
+  content identities are unchanged.
+- Targeted Vitest: nine files 242/242 PASS; final affected browse suite 30/30
+  PASS after adding one metadata-failure case. Final Chromium run 4/4 PASS for
+  account/guest at 375/1440px, including native-menu keyboard, loading/error/
+  retry/no-results/reload and scope through setup/study. Screenshots inspected.
+- Web/API TypeScript, changed-source ESLint, build and diff checks PASS.
+  Strict premium audit zero findings, Impeccable detector empty. Existing build
+  bundle/import notices remain. Exact evidence is in US-63 and its QA report.
+- US-63: IMPLEMENTED / READY FOR OWNER CHECK. US-62 remains editorial preflight.
+  Next data work needs the foundational item/placement contract and draft
+  content; do not auto-classify unknown CEFR. Audited Docker schema remains
+  behind the current app and was not migrated by this change. No DB writes,
+  generation/provider spend, commit/push or deployment.
+
+## 2026-10-28 — Local content audit and level-discovery discussion
+
+- Read the repo and queried only Docker `127.0.0.1:55432/vocabflow_dev` with
+  read-only repeatable-read transactions. Started the existing local container;
+  did not use the remote app `.env`, apply migrations, import content or call TTS.
+- Evidence and rerunnable guarded script:
+  `docs/audits/local-content-audit-2026-10-28/`. Current local V2: 7,311 enabled
+  Sense rows, 6,114 normalized headwords, 0 grade/age assignments; CEFR A1 1,008,
+  A2 905, B1 740, B2 1,424, C1 1,462, unknown 1,772, no C2/Pre-A1.
+  There are 30 separate legacy starter rows and 10 sets with V2 content.
+- Local restore is behind current schema: no short-meaning table, topic review/
+  hierarchy fields or flashcard display field. Media arrays/URLs and IPA are
+  empty locally. These are not production findings. Nine enumerated reference
+  checks have no orphan rows; semantic review was sampled, not exhaustive.
+- Owner accepted reusing exact suitable Senses, authoring only missing content,
+  separate introductory letter/sound content and multi-grade/set reuse with
+  shared identity/progress. Recorded ADR-0002, glossary and decisions; no new
+  placement/variant schema is implemented. US-62 pilot remains editorial preflight.
+- Owner prefers learner-friendly levels and confirmed nine levels after the
+  four/seven-level proposals: letter/sound introduction, first words, first
+  utterances, then named A1–C2 groups, plus a separate unclassified state.
+  US-63 implements the discovery slice, with introductory levels unavailable
+  until curated content exists. Do not implement the earlier grade-primary or
+  four/seven-level layouts. The foundation item/placement model and content
+  generation remain separate future work, without data writes in this slice.
+- Removed the explicitly requested Vocabulary header “Duyệt theo chủ đề”
+  navigation, unused URL construction and dedicated CSS, preserving taxonomy
+  and study scopes. Existing component suite 27/27 and catalog E2E 2/2 pass;
+  inspected screenshots at 375/1440px. Web TypeScript, changed-source ESLint,
+  build and diff checks pass; Impeccable detector has no findings. Build keeps
+  the existing large-bundle/ineffective-dynamic-import notices. No commit,
+  push, deployment, remote DB access, media generation or provider spend.
+
 ## 2026-10-28 — UI/UX Pro Max polish for Vocabulary Browse & Study Flashcard
 
 - Executed grill-with-docs and aligned on UI/UX Pro Max improvements with project owner:

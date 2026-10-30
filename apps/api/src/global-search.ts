@@ -1,3 +1,4 @@
+import { vocabularyProjectionTable } from "./vocabulary-dataset-version";
 import { topicMembership } from "./topic-policy";
 import { sql, type SQL } from "drizzle-orm";
 import {
@@ -84,7 +85,7 @@ async function searchRows(
   const containsPattern = `%${literalQuery}%`;
   const prefixPattern = `${literalQuery}%`;
   const escapeCharacter = "\\";
-  const eligibleMembership = datasetVersion === "v2"
+  const eligibleMembership = datasetVersion !== "legacy"
     ? vocabularyDatasetPredicate("v", datasetVersion)
     : sql`EXISTS (
           SELECT 1
@@ -93,7 +94,7 @@ async function searchRows(
           JOIN "${sql.raw(APP_SCHEMA)}"."learning_set_items" lsi ON lsi.learning_set_id = ls.id AND lsi.vocabulary_id = v.id
           WHERE lls.learner_id = ${learnerId}::uuid AND lls.active = true
         )`;
-  const legacyEntitiesEnabled = datasetVersion === "v2" ? sql`false` : sql`true`;
+  const collectionSearchEnabled = datasetVersion === "v2" ? sql`false` : sql`true`;
   const result = await database.execute(sql`
     WITH eligible_vocabulary AS (
       SELECT DISTINCT v.id
@@ -123,7 +124,7 @@ async function searchRows(
         0::integer AS stable_order
       FROM eligible_vocabulary ev
       JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = ev.id
-      LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_development_projections" md ON md.vocabulary_id = v.id
+      LEFT JOIN ${vocabularyProjectionTable(datasetVersion)} md ON md.vocabulary_id = v.id
       LEFT JOIN "${sql.raw(APP_SCHEMA)}"."master_v2_short_meanings" sm
         ON sm.vocabulary_id = v.id AND sm.source_content_hash = md.content_sha256 AND sm.validation_status = 'VERIFIED'
       WHERE lower(v.word) LIKE lower(${containsPattern}) ESCAPE ${escapeCharacter}
@@ -187,7 +188,7 @@ async function searchRows(
       LEFT JOIN "${sql.raw(APP_SCHEMA)}"."learning_set_items" lsi ON lsi.learning_set_id = ls.id
       LEFT JOIN "${sql.raw(APP_SCHEMA)}"."vocabularies" v ON v.id = lsi.vocabulary_id
       WHERE ls.enabled = true
-        AND ${legacyEntitiesEnabled}
+        AND ${collectionSearchEnabled}
         AND (
           lower(ls.name) LIKE lower(${containsPattern}) ESCAPE ${escapeCharacter}
           OR lower(ls.description) LIKE lower(${containsPattern}) ESCAPE ${escapeCharacter}

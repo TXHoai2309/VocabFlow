@@ -1,0 +1,29 @@
+{
+  "artifactType": "OWNER_TICKET_ACCEPTANCE",
+  "ticketId": "07",
+  "date": "2026-10-29",
+  "authority": "Direct human message in current chat",
+  "verbatimOwnerStatement": "ticker 07 tôi duyệt",
+  "status": "OWNER_ACCEPTED_LOCAL_PILOT",
+  "scope": "Acceptance of ticket07 as demonstrated: dedicated local 30-item pilot, four collections and currently enabled media; five isolated word recordings remain withheld. This closes07 and satisfies its dependency for planning08.",
+  "acceptedResultBeforeUpdate": {
+    "path": "docs/plans/editorial-refresh-2026-10-28/ticket-07-local-pilot.result.json",
+    "sha256": "c65549f8a96f832177ed72621bef6d522033335cbf2d735dca05ec4a5f09f6f6"
+  },
+  "integrationPlan": {
+    "path": ".vocabflow-local/editorial-refresh-20261028/ticket07-local-pilot-r0001/integration-plan.json",
+    "sha256": "c85095a6c90540f9e71032c3337cf9ba36b547854a5f6633b5c241616a0483a3"
+  },
+  "verification": {
+    "path": ".vocabflow-local/editorial-refresh-20261028/ticket07-local-pilot-r0001/verification-result.json",
+    "sha256": "17d710a854870f5cc383e664eb36444041a62929af47ec2ff8a8467e83f6b987",
+    "checksPassed": 11
+  },
+  "changesToMediaOrDatabase": false,
+  "productionRelease": false,
+  "authorizesTicket08Execution": false,
+  "remainingWorkOwnedBy": [
+    "05/06 final media checks and any future public release",
+    "08 item-model design and execution when requested"
+  ]
+}

@@ -1,5 +1,62 @@
 # Technical Architecture v1.0.17
 
+## Owner publication compatibility — US65, 2026-10-30 (prepared)
+
+A separate owner_editorial_projections table/migration0024 records honest
+OWNER_SELECTED_PUBLICATION data. Explicit owner-production mode requires the
+canonical Production runtime endpoint/role and deployment/environment markers.
+The active projection view uses old V2 rows while publication is empty; owner
+source/projection and catalog identity switch with the atomic content apply.
+Index is no-store in this mode. Published media has a separate exact namespace
+and URL policy at the deployed Hono response boundary; local routes never ship.
+This is prepared code, not evidence of a completed Production deploy. See
+[US65 checkpoint](../plans/editorial-refresh-2026-10-28/owner-production-replacement-2026-10-30.md).
+
+## Dedicated owner-local catalog — 2026-10-30
+
+US64 adds an owner-selected local projection table through migration0023,
+independent of Master V2 review/canonical identities. Existing DTO/queue rules
+reuse this authority only under exact owner-local Development markers and
+127.0.0.1 local PostgreSQL. The local Node entry serves only manifest-allowlisted
+media after path/length/hash checks; production runtime has no media authority.
+Public index identifies this catalog so guest reconciliation backs up state,
+filters retired lexical IDs under a Web Lock and preserves settings/retained
+progress. In-flight dashboard reads wait for an already-started reconciliation;
+confirmed idempotent review replay remains offline-safe. See
+[local replacement contract](../plans/editorial-refresh-2026-10-28/owner-local-catalog-replacement-2026-10-30.md).
+
+## Foundation08/09 local extension — owner resumed2026-10-30
+
+Dedicated local Node entry installs foundation APIs;the production Worker does
+not import this authority. Additive0022tables hold typed UUID targets,
+collections/memberships,opaque attempts,progress and review receipts. No lexical
+foreign keys or existing progress are repurposed. Better Auth and existing
+household ownership authorize account access;public content never joins account
+progress. Account target-state writes serialize per learner,check served pins
+and expectedRevision,and atomically persist scheduler state/receipt. Exact
+idempotent replay precedes stale checks. Guest grading receipts provide an
+authority-derived result;guest state persists in its own validated Web-Locks
+namespace before UI advance. Vocabulary guest.v1anddaily word goals are separate.
+
+Authoring JSON/answer keys remain private. Listening delivery has opaque option/
+attempt/audio handles and neutral labels. Reveal invalidates blind assessment;
+missing or unaccepted audio cannot start scored letter activity. Account audio
+requires the same household boundary;guest audio requires its opaque capability.
+New18clips are pending listening review;6isolated sounds lack provider support.
+Forward-only local backup/migration and28-table preservation evidence are in
+`plans/editorial-refresh-2026-10-28/foundation-08-09-execution-2026-10-30.md`.
+
+## Learning-level discovery projection (US-63, 2026-10-28)
+
+The six named CEFR groups use existing catalog `cefr` query identities, without
+rewriting vocabulary data. `UNCLASSIFIED` is an explicit filter token for absent
+or blank CEFR; it is not a stored proficiency code. Browse/count/queue and guest
+selection share equivalent predicates and preserve scope through study. The
+three approved introductory groups have no published item model/content yet;
+the first UI release shows them unavailable rather than deriving them from
+unknown CEFR. No foundation import, migration or automatic classification is
+part of this slice. Grade and topic remain independent supplementary filters.
+
 ## Learner flashcard display preference (US-60, 2026-10-21)
 
 `learner_profiles.flashcard_display_mode` stores one validated presentation

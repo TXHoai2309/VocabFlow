@@ -1,0 +1,11 @@
+# Worker09 follow-up — compatibility fixtures, offline
+
+Read `D:/hoctienganh/VocabFlow/docs/plans/editorial-refresh-2026-10-28/parallel-08-09-review-r0001/review.md`, `review.json`, `shared-target-proposal.md` and original parallel-08-09-r0001/common.md. Coordinator found no blocking wording issue in12utterance draft; preserve originalr0001 unchanged. Work only in NEW root `vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket09-compat-r0001/`.
+
+Build an offline proposed typed-contract schema, mapper and meaningful compatibility fixtures for vocabulary/LETTER_ACTIVITY/UTTERANCE based on coordinator proposal. Explicitly label them PROPOSED_OFFLINE, not production DTOs. Read08draft but do not edit it. Reuse existing typed revisions/canonical UUID validation conventions where possible; canonical IDs remain unallocated in real draft data. Synthetic IDs live in test fixtures only and must be labeled synthetic.
+
+Map all12utterance targets and validate exact EN/VI/context/audio dependencies, progress-owner and placement separation. Add canary fixtures for A-name/A-sound isolation, same item reused in two collections, utterance vs component Sense progress isolation, typed-key collision, empty scope, quota parameter independence, stale revision/audio binding, conflicting replay payload and failed durable save not advancing. These are contract examples/reference checks, not claims that an account/guest runtime implementation exists. Delegate no DB/server integration to yourself.
+
+Keep self-recall semantics: opening/audio playback alone is not a completed review, synonyms are not automatically marked wrong, supporting responses are not extra targets. Preserve original source and media dependency algorithms and show explicit adapter version rather than rehashing oldfiles. Propose concrete API/guest/persistence seams and report policy decisions still needed. Use truthful validation names and report what the fixtures cannot prove.
+
+Save input pins for original09handoff, shared proposal and this follow-up; provide complete artifact hashes/lengths in handoff.json READY_FOR_COORDINATOR_REVIEW. No production/shared app edits, migration, provider work, canonical allocation or mutation of coordinator registries. Return the handoff path to the user.

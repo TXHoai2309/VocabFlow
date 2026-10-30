@@ -1,5 +1,24 @@
 # User Flow v1
 
+## Foundation08/09 local pilot —2026-10-30
+
+Vocabulary Mức học → Làm quen chữ và âm / Câu đầu tiên → exact typed collection
+→ existing5/10/20/30capacity andnew/review/mixed mode → study. Grade/topic/search
+scopes cannot silently widen into foundation content. Empty/missing-audio scopes
+stay empty. Utterance:context → revealEN/VI/audio → explicit self-recall →
+durable saved result → next. Name audio pending approval:reveal/practice →
+continue without graded listening progress. Future accepted name/sound audio:
+neutral listening+opaque options → authority grade/save → next;teaching reveal
+invalidates the assessed attempt. Save failure keeps the current item and exact
+reviewId for retry;stale state offers reload. No automatic guest-account transfer.
+
+## Nine learning levels (US-63, 2026-10-28)
+
+Vocabulary → choose Mức học → optionally open Lọc bổ sung for grade/topic →
+Học nội dung đã chọn → Setup/Study retain the exact scope. Unclassified is
+explicit; unavailable introductory levels cannot start a session. No mandatory
+level order or CEFR-to-grade conversion is introduced.
+
 ## Flashcard display preferences (US-60, 2026-10-21)
 
 Settings → choose `Tự nhớ`, `Dễ làm quen` or `Chi tiết` → save → next study

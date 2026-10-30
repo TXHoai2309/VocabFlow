@@ -30,8 +30,8 @@ export const DATABASE_TARGETS = {
   test: {
     environment: "test",
     provider: "neon",
-    projectId: "shy-hill-72364426",
-    branchId: "br-red-cloud-b3go3xze",
+    projectId: "round-pine-05524116",
+    branchId: "br-fancy-snow-aoirkprq",
     databaseName: "neondb",
     pooled: true,
     usage: "shared-ci",

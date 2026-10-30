@@ -1,0 +1,73 @@
+{
+  "artifactType": "TICKET10_LOCAL_PREVIEW_HANDOFF",
+  "revision": "r0002",
+  "batchId": "ticket10-a1-a2-batch-0001",
+  "status": "LOCAL_PREVIEW_VERIFIED_WITH_EXPLICIT_MEDIA_GAPS",
+  "ticketStatus": "READY_FOR_OWNER_REVIEW",
+  "wholeTicket10Complete": false,
+  "allMediaComplete": false,
+  "counts": {
+    "senses": 51,
+    "A1": 27,
+    "A2": 24,
+    "withMedia": 20,
+    "textOnly": 31,
+    "images": 19,
+    "wordAudio": 20,
+    "exampleAudio": 17,
+    "assets": 56
+  },
+  "selectedDataset": {
+    "path": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket10-a1-a2-batch-0001/dataset-selected-r0002.json",
+    "sha256": "9505637c7d6dbf183164f3c1dd610be37ef89d78789261bbad989b610bcc8c58",
+    "byteLength": 151039
+  },
+  "integrationPlan": {
+    "path": ".vocabflow-local/editorial-refresh-20261030/ticket10-a1-a2-runtime-r0002/integration-plan-r0002.json",
+    "sha256": "94b7a904599e7851b2dd7e38c528a5b111cdd885fa9d01d4446ac54af5e6aa1d",
+    "byteLength": 120882
+  },
+  "application": {
+    "path": ".vocabflow-local/editorial-refresh-20261030/ticket10-a1-a2-runtime-r0002/application-result.json",
+    "sha256": "04fee97658d5d50769a860ac4fce5675723b33d19a27a6fc907631b86fb20a83",
+    "byteLength": 10606
+  },
+  "verification": {
+    "path": ".vocabflow-local/editorial-refresh-20261030/ticket10-a1-a2-runtime-r0002/checks-r0002.json",
+    "sha256": "392994c259119c52a8ec313bbac0976a65b33451d3a8248841706e192456ab88",
+    "byteLength": 1185
+  },
+  "localLearningSet": {
+    "id": 30,
+    "slug": "editorial-a1-a2-local-0001",
+    "count": 51
+  },
+  "previewUrl": "http://127.0.0.1:5173/learning-sets/30",
+  "protectedFingerprints": 36,
+  "progressWritesByCoordinator": 0,
+  "newProviderJobs": 0,
+  "remoteWrites": 0,
+  "productionEligible": false,
+  "remaining": [
+    "31senses without activated media; generation remains owner-paused",
+    "Owner review of this bounded local preview",
+    "Remaining A1/A2 batches are outside this frozen51-ID instance"
+  ],
+  "archiveIndexPath": ".vocabflow-local/editorial-refresh-20261030/ticket10-a1-a2-runtime-r0002/archive-index-r0002.json",
+  "previousHandoffUnchanged": {
+    "path": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket10-a1-a2-batch-0001/handoff-r0001.json",
+    "sha256": "19e7839e6e05de62ca7837ecd79c0fd3b6dcfadc05d4d7ed774105d2893edb52",
+    "byteLength": 2858
+  },
+  "archive": {
+    "artifactType": "TICKET10_ARCHIVE_INDEX",
+    "archive": {
+      "path": ".vocabflow-local/editorial-refresh-20261030/ticket10-a1-a2-runtime-r0002/ticket10-a1-a2-51-local-preview-r0002.zip",
+      "sha256": "784c4b80eb688d63e2a7303877bc7c500a344fd0054d90d35a464b2985101740",
+      "byteLength": 48942113
+    },
+    "members": 147,
+    "crcAndEveryMemberSha256Verified": true,
+    "accountRowsOrDatabaseDumpIncluded": false
+  }
+}

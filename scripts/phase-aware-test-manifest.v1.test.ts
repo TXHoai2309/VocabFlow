@@ -36,7 +36,7 @@ const manifest = JSON.parse(
 
 function listVitestFiles(directory: string, prefix = ""): string[] {
   return readdirSync(directory, { withFileTypes: true }).flatMap((entry) => {
-    if (entry.name === "node_modules" || entry.name === "dist" || entry.name === ".git" || entry.name === "e2e") return [];
+    if (["node_modules", "dist", ".git", "e2e", ".vocabflow-local", ".scratch", "vocabflow-dataset", ".vercel"].includes(entry.name)) return [];
     const relativePath = prefix ? `${prefix}/${entry.name}` : entry.name;
     if (entry.isDirectory()) return listVitestFiles(path.join(directory, entry.name), relativePath);
     return /\.(?:test|spec)\.(?:ts|tsx)$/u.test(entry.name) ? [relativePath] : [];

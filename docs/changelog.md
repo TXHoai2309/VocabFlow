@@ -1,5 +1,354 @@
 # VocabFlow Changelog
 
+## 2026-10-30 — Prepare Production owner catalog; no live cutover yet
+
+Published4,640new media originals to Cloudinary, verified/restored a private
+28-table Production backup and rehearsed exact1,547replacement with rollback,
+idempotency and account/data-preservation checks. Prepared separate publication
+authority/compatibility view and repaired Production media/first-words handling.
+9,168old unused resources are backed up;8,722shared dev resources and206unrelated
+assets are protected. No Production DB/schema write, old cloud delete or deploy.
+[Checkpoint, verification and release boundary](plans/editorial-refresh-2026-10-28/owner-production-replacement-2026-10-30.md).
+
+## 2026-10-30 — Replace local catalog with 1,547 owner-selected entries
+
+Kept the three 547/500/500 Muse packages, retained 905 existing IDs, added 642
+local IDs and retired 6,436 other vocabulary rows after a verified restore
+rehearsal. Rebuilt 73 topics/76 sets with complete image/word/example bindings.
+Separate owner-local projection and loopback-only Node media preserve honest
+source/review metadata. Preserved nonlexical/foundation data and retained-ID
+progress; reconciled guest state with a prior backup. Fixed owner collection
+search, dashboard reconciliation ordering and a collapsed sentence audio player.
+221 focused tests plus scoped typecheck/lint/build and browser study/playback
+PASS; unrelated root tooling typecheck failures are recorded. Local only.
+[Evidence and handoff](plans/editorial-refresh-2026-10-28/owner-local-catalog-replacement-2026-10-30.md).
+
+## 2026-10-30 — Put ticket10-01's 51 reviewed senses into local study
+
+Added native local collection30 and reused19images/20word/17sentence audio
+across20existing senses;31remain text-only. Preserved original text,IDs,CEFR,
+progress,collections,foundation data and FIRST_WORDS pilot. Separate pinned
+Node-only media delivery; exact source/hash/index/text fallback supports a
+keyless example in the existing shared detail/flashcard audio component.
+Browser guest flow/playback and real account services verified;151tests pass.
+Whole ticket10and full media coverage remain open. No generation or deployment.
+
+## 2026-10-30 — Accept18 foundation audio clips after owner listening
+
+Owner listened and approved18existing clips. Recorded exact file/receipt pins
+and applied forward r0002acceptance metadata locally;6names now listeningReady,
+12utterance audio accepted.33other tables/progress unchanged;no new media.
+Updated common JSON/current pointer/gallery and verified forward backup package.
+Images remain0by the original08/09scope;six isolated sounds remain missing.
+
+## 2026-10-30 — Implement local foundation letters and first utterances
+
+Resume08/09by owner request. Freeze24typed foundation targets,create/download
+18Muse clips with receipts and exact bindings;6isolated sounds remain pending
+unsupported plain-text TTS capability. Add dedicated local-only authority and
+additive foundation persistence after backup,without changing28existing tables.
+Reuse5/10/20/30setup control,existing shell and vocabulary Mức học entry;support
+context/reveal/self-recall and unscored name practice. Separate guest durable
+state,server household authorization and transactional idempotent review handling.
+189focused tests and32real local API/DB checks PASS;build/typecheck/changed lint
+PASS. Actual browser rendering/playback and new-media listening approval remain
+pending;no deployment or expansion to26letters.
+
+## 2026-10-30 — Close tickets05/06 after explicit owner acceptance
+
+Owner accepted media review, confirmed Muse source and attested usage rights.
+Closed both tickets and synchronized tracker with a pinned acceptance record.
+Rechecked85 selected assets/receipts; original media, source metadata and QA
+evidence preserved. No regeneration, application change or DB write.
+
+## 2026-10-30 — Review first51 existing A1/A2 senses under ticket10
+
+Pinned51IDs/35headwords,27A1/24A2;reviewed bilingual text and sense distinctions,
+KEEP51. Read-only local DB/API and existing collection coverage verified without
+changing IDs/progress. Prepared exact media-reuse JSON and withheld3different
+sentence recordings;recorded variant image limits. Backed up168members with CRC
+and every member SHA verified. No new generation/import/app changes. Full batch
+remains in-progress for runtime/media binding,not marked done from offline review.
+
+## 2026-10-30 — Close offline vocabulary production checkpoint
+
+Owner stopped further vocabulary/media generation. Recorded closure of the
+completed547+500+500offline selected packages, rechecked dataset hashes and
+updated tracker direction. Preserve canonical/listening-review gates and all
+exports; do not mark the14template or whole15campaign complete. Recommend
+bounded existing-content A1/A2 review10next; no next implementation started.
+
+## 2026-10-30 — Complete BASIC-PLUS-500 media and selected JSON
+
+Downloaded all13 approved image ZIPs, verified500PNG+1000MP3 receipt/hash
+bindings and cleaned exact download originals. Screened all500 images; replaced
+one phrase image containing writing with a new separately identified image,
+retaining the original. Froze complete r0003 selected export and updated pointer.
+All1000audio decode;36-clip recognition sample retains4 listening flags.
+Curated topic membership preserves raw source content pins. No DB/app changes
+or owner acceptance inferred from media-sharing permission.
+
+## 2026-10-29 — Curate another500 distinct learning entries
+
+Added BASIC-PLUS-500:20topics,500 distinct headwords beyond the prior547+500
+collections. Reuse500 exact existing local senses/examples and source levels
+(207A1/293A2), avoiding duplicate runtime records. Freeze new UUID media jobs,
+validate15,017 source/binding checks, submit500image+1,000audio jobs to Muse.
+New media root and offline intake/review tooling isolate this batch. No prior
+public-link permission carried forward; no DB import or application changes.
+
+## 2026-10-29 — Freeze complete BASIC-500 selected export
+
+Selected500 images and1,000audio for500 curated entries across20 topics.
+Replaced six conceptually misleading images and verified the new receipts,
+hashes and visual content; kept originals and all audio. Froze r0003 complete
+JSON, updated active pointer and gallery. Owner review/canonical reconciliation
+remain pending; no DB/runtime import.
+
+## 2026-10-29 — Complete BASIC-500 media downloads
+
+Received all500 original images and1,000 audio files from Muse with exact
+JSON/receipt/hash bindings and verified download cleanup. Full image screening
+identified6 targeted replacements; requested fresh job IDs without changing
+text or audio. Added offline selected-export finalizer and retained original
+assets. No application changes, DB write or owner acceptance inferred.
+
+## 2026-10-29 — Author the additional BASIC-500 collection
+
+Authored 500 basic entries and bilingual examples across20 themes, preserving
+405 proposed existing-sense references and separating95 reconciliation
+candidates. Explicitly distinguish ambiguous senses and US/UK spellings;
+retain prior547 export. Freeze text/media bindings, validate17,140 checks and
+submit500 image/1000 audio jobs to Muse with TTS preflight. Added isolated
+offline build/validation/intake tooling and readable text review. Media still
+pending at submission; no DB import or application changes.
+
+Follow-up: received1,000 audio and32 images, all exact job/receipt/hash bindings
+verified. All audio decode;36-clip ASR sample30 matches/six review differences.
+Preserved actual partial media checkpoint and local review gallery. Muse reports
+all500 images ready and repackaged as13 larger ZIPs; public48-hour download
+authorization pending after original tiny ZIP02/03 download failures. No new
+media is counted from provider reports alone.
+
+## 2026-10-29 — Select547 items with complete media
+
+Per owner direction, omit eyelash/muffin tin/wake up from the current export
+because their word TTS is unavailable. New revision4 selects547 items with
+547 images and1094 audio clips; all media bindings verified. Recalculated
+topic/level totals and generated a matching review gallery. Original drafts
+and assets preserved; no database import or app change.
+
+## 2026-10-29 — Expanded media intake and first content corrections
+
+Archived all550 original images and1097 audio files with exact request/item
+bindings and distinct output hashes. All1097 audio decode; three word clips
+remain unavailable after Muse reported another failed same-voice backend
+retry. Visual screening identified13 images to correct and six mistaken
+dictionary sense selections in the authored draft. Saved a forward-only
+definition amendment and explicit image holds, preserving old pinned files.
+Muse produced a replacement ZIP; download/review is still pending. No new
+canonical IDs, database imports or app UI changes.
+
+
+## 2026-10-29 — 550-item authoring draft and Muse production requests
+
+Prepared 550 lexical candidates in 33 topics with bilingual examples,
+attributed definitions and editorial learning-level estimates. Added exact
+media work orders, archive intake and receipt assembly tooling. Structural
+and binding checks passed; generated media and canonical imports remain zero
+at this checkpoint. Muse access restored; first 4-image/50-audio requests sent.
+Owner deferred 08/09 runtime work and chose one-session data production.
+See [production status](plans/editorial-refresh-2026-10-28/expansion-550-production.md).
+
+## 2026-10-29 — 08/09 offline review passes; local implementation contract ready
+
+Received08r0002and09compat-r0001. Verified44artifact hashes/lengths and71input
+pins; reran08core231checks/70negative cases and09canaries28PASS. C08-01resolved
+in offline pre-answer projection.09adapter still pins historical08r0001;
+coordinator forward mapping now pins08r0002,24targets,111bridge checksPASS,
+unchanged audio target dependencies. No canonical IDs/runtime/DB/media changes.
+Prepared concrete next local implementation contract: typed target/progress,
+separate guest persistence, proposed10/10New limits,24audio/0image and capability
+canary, parallel file ownership. READY FOR CONTRACT REVIEW; full08/09notDONE.
+See [review/contract](plans/editorial-refresh-2026-10-28/parallel-08-09-review-r0002/implementation-contract.md).
+
+
+## 2026-10-29 — Coordinator reviews both08/09worker handoffs
+
+Verified27artifact byte hashes/lengths and12input pins; reran08validator120PASS,
+09validator14PASS/12negativecases rejected. Found C08-01: all12letter activity
+instructions disclose the answer before a listening-choice response.08requires
+revision2with neutral instructions/post-answer teaching and leakage checks.
+09's12EN/VI/context pairs have no blocking wording issue identified in this
+review. Shared target/progress proposal and separate follow-up prompts prepared;
+workers not yet dispatched for follow-up. No runtime/DB/media changes or new
+lexical Senses. Both full tickets remain in-progress. See
+[coordinator review](plans/editorial-refresh-2026-10-28/parallel-08-09-review-r0001/review.md).
+
+
+## 2026-10-29 — Two manual worker chats prepared
+
+Owner chose this chat as coordinator and will open two chats/paste prompts.
+Prepared separate08letter/sound and09utterance contract/offline-draft briefs,
+shared pinned coordination JSON, exclusive output roots and handoff contract.
+Workers are NOT yet dispatched; no runtime/DB/provider work started. Shared
+registry/app integration and Muse UI lease remain coordinator-owned. Read
+[parallel setup](plans/editorial-refresh-2026-10-28/parallel-08-09-r0001/coordination.json).
+
+
+## 2026-10-29 — Owner listening clears five isolated audio holds
+
+After hearing the exact duck/blue/white/pen/pencil files, owner confirmed they
+match. Saved exact-file acceptance; enabled the same five clips in local pilot
+r0002. Current counts25images/30wordaudio/30exampleaudio; no regeneration or
+progress writes. Original draft, source receipts, ASR output and r0001 plan
+remain immutable.11real local checksPASS,85asset hashes/MIMEsPASS and amendment
+idempotencePASS.07 remains owner-accepted/DONE;08 not started.
+
+
+## 2026-10-29 — Owner accepts ticket07 local pilot
+
+Owner explicitly stated “ticker 07 tôi duyệt”. Ticket07 is DONE for the
+verified local pilot; its dependency for08 is satisfied. Saved acceptance
+bound to the prior result and exact integration/verification pins. Five
+isolated word recordings remain withheld. No DB/media/runtime change or
+production release follows from this acceptance.08 remains planned, with
+its separate letter/name/sound item model still to be reviewed when assigned.
+See [acceptance](plans/editorial-refresh-2026-10-28/ticket-07-owner-acceptance.json).
+
+
+## 2026-10-29 — Ticket07 local pilot verified
+
+Owner requested the next step after gallery acceptance. Applied a reversible
+30-Sense development presentation and four local sets (8/8/8/6), preserving
+runtime IDs, original content columns, account progress and migration history.
+Local FIRST_WORDS filter now reaches setup/study with exact child examples;
+25images/25wordaudio/30exampleaudio are served by a hash allowlist. Five isolated
+recordings remain withheld. 241focused tests/build/API+web typecheck/scoped lint
+PASS; repository lint/typecheck retain preexisting script errors. Real DB/API
+checks11PASS; browser390/1440, flip/image/audio verified.07 remains in-progress
+for final05/06/canonical public gates;08–15 not started. See
+[07 evidence](plans/editorial-refresh-2026-10-28/ticket-07-local-pilot.md).
+
+
+## 2026-10-29 — Owner accepts pilot media gallery
+
+Owner directly stated “tôi thấy ok rồi đó” for galleryr0002. Saved exact
+approval with gallery/snapshot hashes;60audio/25selectedimages/5OMIT accepted
+at gallery-review scope. No repeat gallery approval needed. Technical
+listening uncertainties and provider/receipt gates retained honestly;
+no new license or runtime/DB activation inferred.
+
+
+## 2026-10-29 — 05/06 all real outputs downloaded; acceptance pending
+
+Browser access restored. DownloadedMusebatch3/4/5/6, includingcorrectedcow/orange.
+Saved60audio+25selectedimages,5OMIT; oldimageattempts preserved. Updatedgallery
+review-gallery-r0002.html andcoordinator-snapshot-r0002.json. Cleanedall6ZIP
+sessiondownloadcopies afterhashverification. 23focusedtestsPASS. All30example
+ASRmatch;5isolatedwordsstillneedlistening. NoDBactivation. Finalreview/rights/
+executionamendmentacceptance pending;05/06notmarkedDONE. See
+`docs/plans/editorial-refresh-2026-10-28/tickets-05-06-media-handoff.md`.
+
+
+## 2026-10-29 — Real pilot media production started (05/06)
+
+- Download60 real Muse TTS outputs and12 images with source/job/hash receipts;
+  preserve ZIP evidence and clean verified session download copies.
+- Add guarded media intake, secure ZIP binding and independent local ASR QA.
+  All60audio decode/bindings pass,55ASR exact,5words await listening.
+- Keep05/06 in-progress: cow repair, remaining image downloads, execution-provider
+  amendment and final reviews pending. Browser capability currently disabled.
+  No runtime/DB activation. Local gallery and status snapshot saved.
+
+
+## 2026-10-29 — Freeze source-bound 30-word pilot draft (04)
+
+- Reuse30 existing V2 meanings in four draft collections; add concise Vietnamese
+  presentations and30 bilingual child examples without changing source IDs or DB.
+- Record exact source/variant/legacy candidate search, explicit age proposals,
+  separate draft example references and independent30-item review with input hashes.
+- Prepare90 non-executable media slots, omit5 ambiguous relationship images,
+  and package18 existing candidate files for review before generation. Preserve
+  existing APKG attestation scope; no new media approval/provider call.
+- Add offline seal/verifier/portable export tooling;11 guard tests and actual
+  package relocation pass. Mark04 done as draft only;05/06 are technical frontier.
+
+## 2026-10-29 — Complete local compatibility and manifest canary (02/03)
+
+- Apply existing additive local migrations0019–0021 after full recoverable dump,
+  strict identity/history checks and source pins; preserve all30 prior table
+  hashes, content IDs, learner progress/history, privileges and sequences.
+- Verify real guest browse/setup/study against Docker on desktop/mobile,
+  correct A1/unclassified counts and empty intersections. No API mocks or
+  account writes. Guard9/9 and related migration21/21 tests pass.
+- Implement a three-item/nine-job fake-media manifest/receipt canary with
+  independent concurrent workers, safe paths, pins, stale/retry/idempotence
+  checks and portable handoff;21/21 tests pass. No provider/media generation
+  or runtime activation. Mark02/03 done, leave04–15 planned.
+
+## 2026-10-29 — Complete ticket 01 local baseline and portable data handoff
+
+- Capture 7,311 V2 + 30 legacy rows read-only, reconcile RC/metadata/review
+  receipts, preserve runtime IDs and disclose pending canonical IDs.
+- Freeze source-pinned baseline with 148 exclusive review shards and a
+  355-target candidate matrix. Keep every campaign disposition unreviewed.
+- Verify 13,977 local media files, join mapping generations to frozen IDs,
+  recover three exact-byte metadata inputs and package a full-media local ZIP.
+  Preserve unresolved historical raw-evidence and semantic-review limits.
+- Add collector/verifier, archive packager and 9 passing guard checks. Update
+  local tracker: only 01 done; no DB mutation, new vocabulary/media or runtime
+  application change in this ticket.
+
+## 2026-10-29 — Publish approved editorial campaign tickets locally
+
+- Export the owner-approved breakdown as 15 individual Markdown tickets with
+  acceptance criteria and exact blocking edges, plus a linked index for handoff.
+- Record campaign-local tracker/triage configuration and the five bounded
+  review/authoring templates. Keep all work `planned`: the owner approved
+  ticket publication only. Update the plan/decision/story handoff accordingly.
+- No application code, DB writes, media generation or implementation started.
+
+## 2026-10-29 — Editorial expansion campaign plan and repo-local ticket skill
+
+- Add analysis for selective review of the whole corpus and the owner-approved
+  approximately 600 new words/phrases (500–800 envelope), plus 25–35 curated
+  sets. Distinguish existing display strings, canonical headword candidates,
+  new Senses and non-lexical introductory activities.
+- Reconcile local content hashes against RC V9 and CEFR enrichment; identify
+  1,155 available metadata additions including 606 C2 before new authoring.
+  Explain deliberate empty local media and reusable historical inventories.
+- Add a draft coordination contract, non-executable JSON plan, coverage sample
+  and 15 proposed ticket families with dependencies and parallel batch flow.
+  Install the original to-tickets skill locally in the repo at owner request.
+  No application code, DB writes, generated assets or ready tickets in this step.
+
+## 2026-10-28 — US-63 nine learning levels (local)
+
+- Implement the owner-approved nine-level Vocabulary selector with named A1–C2
+  choices and separate All/Unclassified. Introductory groups without published
+  content are visibly unavailable; initial load failure is not labeled no content.
+- Move grade/topic under Lọc bổ sung and preserve the exact selection into
+  study. Align Unclassified predicates in account browse/count/queue and guest
+  selection/collection summaries without changing data or progress identities.
+- Targeted tests pass: nine files 242/242, then final affected browse suite
+  30/30 with one additional case. Final browser run passes 4/4 at mobile/desktop
+  widths. Web/API typecheck, changed-source lint, build and static audits pass.
+  No migration, generated content, provider call or deployment included.
+
+## 2026-10-28 — Local content audit and Vocabulary navigation cleanup
+
+- Add a guarded, repeatable local-only read audit with SQL evidence, Sense/
+  headword counts, grade/CEFR gaps, relationship checks and authoring proposals.
+  Record accepted cross-grade Sense reuse without migrating or backfilling data.
+- Remove the owner-requested “Duyệt theo chủ đề” header link and its unused
+  styles; preserve topic data, routes and study scope. Existing browse tests
+  pass 27/27 and catalog browser tests pass 2/2 at mobile/desktop widths;
+  web typecheck, changed-source lint and build pass.
+- The owner subsequently confirmed nine learner-facing levels; the discovery
+  implementation is tracked in US-63. No content/media activation, remote DB
+  operation or deployment is included in the audit/navigation slice.
+
 ## 2026-10-21 — US-61 grade/topic discovery and catalog consistency
 
 - Add URL-backed set search, grade/topic intersection filters, reviewed topic

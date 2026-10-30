@@ -3,6 +3,7 @@ import {
   learnerVocabularyBrowseResponseSchema, publicVocabularyMatchResponseSchema, type PublicLearningIndex, type VocabularyDto,
   type LearnerVocabularyBrowseItem
 } from "@vocabflow/contracts";
+import { reconcileGuestCatalog } from "./guest-store";
 
 let indexPromise: Promise<PublicLearningIndex> | undefined;
 const wordPromises = new Map<number, Promise<VocabularyDto | undefined>>();
@@ -23,10 +24,19 @@ async function fetchDetailBatch(ids: number[]) {
   }
 }
 export function clearPublicLearningCache() { indexPromise = undefined; wordPromises.clear(); }
+/** Dashboard-local metrics wait for an already-started catalog transition.
+ * No new request is made, preserving standalone/offline receipt behavior. */
+export async function waitForStartedPublicCatalog() {
+  if (indexPromise) {
+    try { await indexPromise; } catch { /* Existing persisted metrics remain readable offline. */ }
+  }
+}
 export function requestPublicLearningIndex(): Promise<PublicLearningIndex> {
   indexPromise ??= fetch("/api/public/learning-index", { credentials: "omit" }).then(async (response) => {
     if (!response.ok) throw new Error("PUBLIC_INDEX_UNAVAILABLE");
-    return publicLearningIndexSchema.parse(await response.json());
+    const data = publicLearningIndexSchema.parse(await response.json());
+    if (data.catalogIdentity) await reconcileGuestCatalog(data);
+    return data;
   }).catch((error: unknown) => { indexPromise = undefined; throw error; });
   return indexPromise;
 }

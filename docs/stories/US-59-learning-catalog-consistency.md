@@ -1,5 +1,21 @@
 # US-59 — Consistent, compact learning catalog
 
+## Owner-requested follow-up — 2026-10-28
+
+- Follow-up status: `IMPLEMENTED / READY FOR OWNER CHECK`.
+- The owner explicitly requested removal of the pictured “Duyệt theo chủ đề”
+  entry on Vocabulary. Remove that header navigation and its unused styles;
+  preserve taxonomy, topic memberships, collection APIs and study scope.
+- Reprioritized narrow scope: this navigation removal only. The owner later
+  confirmed the nine-level grouping, implemented separately in US-63. No
+  database or data operation is part of this navigation follow-up.
+- Removed the header link, unused URL construction and link-specific CSS.
+  Updated its existing component expectation. Verification: 27/27 browse
+  component tests, 2/2 existing catalog Chromium E2E tests at 375/1440px,
+  web TypeScript, changed-source ESLint and production build pass. Both E2E
+  screenshots were inspected; APIs are mocked so this does not establish live
+  local-DB compatibility. Impeccable detector returns no findings. No deployment.
+
 - Status: IMPLEMENTED / READY FOR OWNER CHECK
 - Owner: Project Owner
 - Last updated: 2026-10-21

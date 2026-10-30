@@ -269,3 +269,4 @@ export function scheduleReview(input: SchedulerInput): SchedulerOutput {
     totalIncorrect: currentState.status === "NEW" ? 0 : currentState.totalIncorrect
   };
 }
+export * from "./foundation-queue.js";

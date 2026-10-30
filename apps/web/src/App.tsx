@@ -21,6 +21,7 @@ import { StudySetupPage } from "./features/study/study-setup-page";
 import { LearningSetDetailPage, LearningSetsPage } from "./features/learning-sets/learning-sets-page";
 import { LearnerLearningSetsPage } from "./features/learning-sets/learner-learning-sets-page";
 import { HomePage } from "./features/home/home-page";
+import { FoundationSetupPage, FoundationStudyPage } from "./features/foundation/foundation-page";
 
 function Shell({ children }: { children: React.ReactNode }) {
   return (
@@ -133,6 +134,8 @@ export function AppRoutes() {
         <Route path="/study/setup" element={<StudySetupPage />} />
         <Route path="/study" element={<StudyPage />} />
         <Route path="/study/exercises" element={<ExerciseStudyPage />} />
+        <Route path="/foundation/learn" element={<FoundationSetupPage />} />
+        <Route path="/foundation/study" element={<FoundationStudyPage />} />
         <Route index element={<HomePage />} />
       </Route>
       <Route path="/foundation" element={<Shell><FoundationRoute /></Shell>} />

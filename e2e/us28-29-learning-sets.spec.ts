@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { mockAccount } from "./account-learning-fixture";
 
 const learnerId = "00000000-0000-4000-8000-000000000010";
 const learner = {
@@ -28,10 +29,13 @@ const session = {
 };
 
 test("US-28 browses an ordered learning-set catalog and detail", async ({ page }) => {
+  await mockAccount(page, [learner]);
+  await page.route(`**/api/learners/${learnerId}/vocabulary`, route => route.fulfill({ json: { vocabulary: [] } }));
+  await page.route(`**/api/learners/${learnerId}/learning-sets`, route => route.fulfill({ json: { learningSets: [] } }));
   await page.route("**/api/auth/get-session", async (route) => {
     await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(session) });
   });
-  await page.route("**/api/learning-sets", async (route) => {
+  await page.route("**/api/learning-sets?includeTopics=1", async (route) => {
     await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ learningSets: [learningSet] }) });
   });
   await page.route("**/api/learning-sets/1", async (route) => {
@@ -46,7 +50,7 @@ test("US-28 browses an ordered learning-set catalog and detail", async ({ page }
   await page.goto("/learning-sets");
   await expect(page.getByTestId("learning-sets-list")).toContainText("Bộ từ khởi đầu VocabFlow");
   await page.getByRole("link", { name: "Xem bộ từ" }).click();
-  await expect(page.getByTestId("learning-set-detail-items")).toContainText("apple");
+  await expect(page.getByTestId("collection-vocabulary-list")).toContainText("apple");
 });
 
 test("US-29 assigns a set to the active learner and shows success", async ({ page }) => {

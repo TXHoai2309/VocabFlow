@@ -92,15 +92,17 @@ export function DevelopmentSenseMediaPreview({ proposalKey, contentFingerprint, 
     const query = new URLSearchParams({ contentFingerprint });
     if (includeProposed) query.set("includeProposed", "1");
     const path = `/api/dev/media-review/senses/${encodeURIComponent(proposalKey)}/learning-preview?${query}`;
-    setLoading(true);
-    setFailed(false);
-    setData(null);
-    fetch(path, { signal: controller.signal, cache: "no-store" })
+    Promise.resolve().then(() => {
+      if (controller.signal.aborted) return null;
+      setLoading(true); setFailed(false); setData(null);
+      return fetch(path, { signal: controller.signal, cache: "no-store" });
+    })
       .then(async (response) => {
+        if (!response) return null;
         if (!response.ok) throw new Error("Development media preview request failed");
         return response.json() as Promise<SenseMediaResponse>;
       })
-      .then((result) => setData(result))
+      .then((result) => { if (!controller.signal.aborted && result) setData(result); })
       .catch((cause: unknown) => {
         if (cause instanceof Error && cause.name === "AbortError") return;
         setFailed(true);

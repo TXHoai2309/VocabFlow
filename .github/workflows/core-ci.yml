@@ -17,6 +17,8 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       # Keep this version in lockstep with package.json#packageManager.
       - name: Set up pnpm
@@ -40,8 +42,11 @@ jobs:
       - name: Typecheck
         run: pnpm typecheck
 
-      - name: Validate US-41 curation manifest (dry run)
-        run: pnpm vocab:curate
+      - name: Restore pinned offline test inputs removed from the live dataset tree
+        run: node scripts/restore-archived-test-fixtures.mjs
+
+      - name: Validate the active owner publication catalog
+        run: pnpm exec vitest run --config vitest.release.config.mts scripts/owner-publication-catalog.test.ts
 
       - name: Unit and component tests
         run: pnpm test

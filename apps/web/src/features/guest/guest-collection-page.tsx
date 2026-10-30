@@ -2,7 +2,7 @@ import { CatalogLearningFilters } from "../learners/catalog-learning-filters";
 import { catalogLearningFilterParams, readCatalogLearningFilters } from "../learners/catalog-learning-filter-state";
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router";
-import type { PublicLearningIndex, LearnerVocabularyBrowseResponse } from "@vocabflow/contracts";
+import { matchesCefrFilter, type PublicLearningIndex, type LearnerVocabularyBrowseResponse } from "@vocabflow/contracts";
 import { CollectionDetailView, type CollectionKind } from "../learners/collection-detail-view";
 import { ErrorState, LoadingState } from "../../components/async-states";
 import { publicCardVocabulary, requestPublicBrowse, requestPublicLearningIndex } from "./public-learning-client";
@@ -39,11 +39,11 @@ export function GuestCollectionPage({ kind, id }: { kind: CollectionKind; id: nu
   const collection = (kind === "topic" ? index.topics : index.learningSets).find((item) => item.id === id);
   if (!collection) return <main className="collection-detail-page"><p role="status">Nội dung này hiện không khả dụng.</p><Link to={kind === "topic" ? "/topics" : "/learning-sets"}>Quay lại danh sách</Link></main>;
   const items = result.vocabulary.map((word) => ({ ...publicCardVocabulary(word), status: state.progress[word.id]?.status ?? "NEW" as const }));
-  const eligibleIds = collection.vocabularyIds.filter((wordId) => { const word = index.vocabulary.find((word) => word.id === wordId); return word && (!level || word.level === level) && (!cefr || word.cefr === cefr); });
+  const eligibleIds = collection.vocabularyIds.filter((wordId) => { const word = index.vocabulary.find((word) => word.id === wordId); return word && (!level || word.level === level) && matchesCefrFilter(word.cefr, cefr, word.tags); });
   const learnedCount = eligibleIds.filter((wordId) => state.progress[wordId]).length;
   const masteredCount = eligibleIds.filter((wordId) => state.progress[wordId]?.status === "MASTERED").length;
   const scopeParams = catalogLearningFilterParams(params); scopeParams.set(kind === "topic" ? "topicId" : "learningSetId", String(id));
-  return <><CatalogLearningFilters /><CollectionDetailView kind={kind} title={collection.name} description={kind === "topic" ? `Từ vựng về ${collection.name.toLocaleLowerCase("vi-VN")}.` : collection.description}
+  return <><CatalogLearningFilters firstWordsAvailable={index.vocabulary.some(word => word.tags?.includes("EDITORIAL:FIRST_WORDS"))} /><CollectionDetailView kind={kind} title={collection.name} description={kind === "topic" ? `Từ vựng về ${collection.name.toLocaleLowerCase("vi-VN")}.` : collection.description}
     level={kind === "learning-set" ? index.learningSets.find((set) => set.id === id)?.grade ?? null : null} items={items} progressTotal={eligibleIds.length}
     learnedCount={learnedCount} masteredCount={masteredCount} directStudyScope studyReady
     studyHref={`/study/setup?${scopeParams}`}

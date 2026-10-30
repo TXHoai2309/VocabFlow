@@ -73,11 +73,12 @@ test("US-24 confirms a learner-scoped reset and refreshes the progress summary",
   });
 
   await page.goto("/learners");
-  await page.getByRole("link", { name: "Xem tiến trình" }).click();
+  await page.goto("/progress");
   await expect(page.getByTestId("progress-summary")).toBeVisible();
 
+  await page.getByText("Quản lý tiến trình").click();
   await page.getByRole("button", { name: "Đặt lại tiến trình" }).click();
-  await expect(page.getByRole("dialog")).toContainText("Đặt lại tiến trình của An?");
+  await expect(page.getByRole("dialog")).toContainText("Đặt lại tiến trình của bạn?");
   await page.getByRole("button", { name: "Hủy" }).click();
   expect(resetCalls).toBe(0);
 
@@ -88,7 +89,7 @@ test("US-24 confirms a learner-scoped reset and refreshes the progress summary",
   finishReset();
 
   await expect(page.getByTestId("progress-empty-state")).toBeVisible();
-  await expect(page.getByText("Đã đặt lại tiến trình của An.")).toBeVisible();
-  await expect(page.getByText("Đã học").locator("..")).toContainText("0");
+  await expect(page.getByText("Đã đặt lại tiến trình")).toBeVisible();
+  await expect(page.getByTestId("progress-metric-learned")).toContainText("0");
   expect(summaryCalls).toBe(2);
 });
