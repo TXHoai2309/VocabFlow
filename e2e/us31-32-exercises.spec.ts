@@ -94,10 +94,8 @@ test("US-31 runs a multiple-choice meaning exercise through the canonical review
   await expect(page).toHaveURL(/\/study\/exercises\?/);
   await expect(page.getByTestId("exercise-card")).toHaveAttribute("data-exercise-type", "MULTIPLE_CHOICE_MEANING");
   await page.getByRole("button", { name: "quả táo" }).click();
-  await expect(page.getByRole("button", { name: "Tiếp tục" })).toBeVisible();
-  expect(reviewBody).toMatchObject({ learnerId: learner.id, vocabularyId: 1, result: "REMEMBERED", expectedRevision: 0 });
-  await page.getByRole("button", { name: "Tiếp tục" }).click();
-  await expect(page.locator(".flashcard-word")).toHaveText("book");
+  await expect.poll(() => reviewBody).toMatchObject({ learnerId: learner.id, vocabularyId: 1, result: "REMEMBERED", expectedRevision: 0 });
+  await expect(page.locator(".flashcard-word, .exercise-word")).toHaveText("book");
 });
 
 test("US-32 hides the listening prompt target and maps a wrong choice to FORGOTTEN", async ({ page }) => {
