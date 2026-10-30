@@ -52,6 +52,17 @@ describe("dedicated application schema", () => {
     expect(MIGRATION_SCHEMA).toBe("drizzle");
     expect(DATABASE_RESET_POLICY.applicationSchemas).toEqual([APP_SCHEMA]);
     expect(DATABASE_RESET_POLICY.applicationTables).toEqual([
+      `${APP_SCHEMA}.foundation_reviews`,
+      `${APP_SCHEMA}.foundation_attempts`,
+      `${APP_SCHEMA}.foundation_progress`,
+      `${APP_SCHEMA}.foundation_memberships`,
+      `${APP_SCHEMA}.foundation_targets`,
+      `${APP_SCHEMA}.foundation_collections`,
+      `${APP_SCHEMA}.owner_editorial_projections`,
+      `${APP_SCHEMA}.owner_editorial_local_projections`,
+      `${APP_SCHEMA}.master_v2_short_meanings`,
+      `${APP_SCHEMA}.master_v2_development_projections`,
+      `${APP_SCHEMA}.master_v2_development_import_runs`,
       `${APP_SCHEMA}.master_learning_set_memberships`,
       `${APP_SCHEMA}.master_vocabulary_topic_memberships`,
       `${APP_SCHEMA}.master_learning_set_mappings`,
@@ -102,7 +113,7 @@ describe("dedicated application schema", () => {
     expect(absentQueries[0]?.values[0]).toBe(APP_SCHEMA);
 
     const presentQueries: CapturedQuery[] = [];
-    await expect(assertApplicationTablesPresent(applicationAssertionSql(String(DATABASE_RESET_POLICY.applicationTables.length), presentQueries))).resolves.toBeUndefined();
+    await expect(assertApplicationTablesPresent(applicationAssertionSql(String(DATABASE_RESET_POLICY.applicationTables.length - DATABASE_RESET_POLICY.importerOnlyTables.length), presentQueries))).resolves.toBeUndefined();
     expect(presentQueries[0]?.values[0]).toBe(APP_SCHEMA);
     await expect(assertApplicationTablesPresent(applicationAssertionSql("3", []))).rejects.toThrow("APPLICATION_SCHEMA_INCOMPLETE");
   });
@@ -139,6 +150,7 @@ describe("dedicated application schema", () => {
     expect(statements.some((statement) => statement.includes("DROP SCHEMA"))).toBe(false);
     expect(statements.some((statement) => /DROP ROLE|GRANT|REVOKE/i.test(statement))).toBe(false);
     expect(unsafeFragments).toEqual([
+      ...DATABASE_RESET_POLICY.applicationViews.map(name => name.split(".").map(part => `"${part}"`).join(".")),
       ...DATABASE_RESET_POLICY.applicationTables.map((objectName) => {
         const [schema, table] = objectName.split(".");
         return `"${schema}"."${table}"`;

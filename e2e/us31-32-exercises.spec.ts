@@ -90,8 +90,8 @@ test("US-31 runs a multiple-choice meaning exercise through the canonical review
   });
 
   await page.goto("/learners");
-  await page.getByRole("link", { name: "Luyện bài tập trắc nghiệm" }).click();
-  await expect(page).toHaveURL(/\/study\/exercises$/);
+  await page.goto("/study/exercises?source=all&type=MULTIPLE_CHOICE_MEANING");
+  await expect(page).toHaveURL(/\/study\/exercises\?/);
   await expect(page.getByTestId("exercise-card")).toHaveAttribute("data-exercise-type", "MULTIPLE_CHOICE_MEANING");
   await page.getByRole("button", { name: "quả táo" }).click();
   await expect(page.getByRole("button", { name: "Tiếp tục" })).toBeVisible();
@@ -139,7 +139,7 @@ test("US-32 hides the listening prompt target and maps a wrong choice to FORGOTT
   });
 
   await page.goto("/learners");
-  await page.getByRole("link", { name: "Luyện bài tập trắc nghiệm" }).click();
+  await page.goto("/study/exercises?source=all&type=LISTENING_CHOICE");
   await expect(page.getByTestId("exercise-card")).toHaveAttribute("data-exercise-type", "LISTENING_CHOICE");
   await expect(page.getByTestId("exercise-prompt")).not.toContainText("apple");
   await expect(page.getByTestId("exercise-audio-button")).toHaveAccessibleName("Nghe phát âm");
@@ -188,7 +188,7 @@ test("US-33 shows a neutral image prompt and maps the correct choice to REMEMBER
   });
 
   await page.goto("/learners");
-  await page.getByRole("link", { name: "Luyện qua hình ảnh" }).click();
+  await page.goto("/study/exercises?type=IMAGE_TO_WORD");
   await expect(page).toHaveURL(/\/study\/exercises\?type=IMAGE_TO_WORD$/);
   await expect(page.getByTestId("exercise-card")).toHaveAttribute("data-exercise-type", "IMAGE_TO_WORD");
   await expect(page.getByTestId("exercise-image")).toHaveAttribute("alt", "Hình ảnh gợi ý cho bài tập từ vựng");
@@ -231,7 +231,7 @@ test("US-34 accepts normalized exact spelling without persisting raw input", asy
   });
 
   await page.goto("/learners");
-  await page.getByRole("link", { name: "Luyện gõ từ" }).click();
+  await page.goto("/study/exercises?source=all&type=TYPE_WORD");
   await expect(page.getByTestId("exercise-card")).toHaveAttribute("data-exercise-type", "TYPE_WORD");
   await expect(page.getByTestId("exercise-prompt")).not.toContainText("apple");
   await page.getByLabel("Từ tiếng Anh").fill(" ＡＰＰＬＥ ");

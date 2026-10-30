@@ -140,7 +140,7 @@ export async function assertApplicationTablesAbsent(sql: ReturnType<typeof openS
 }
 
 export async function assertApplicationTablesPresent(sql: ReturnType<typeof openSql>) {
-  const tables = applicationTableNames();
+  const tables = applicationTableNames().filter(name => !DATABASE_RESET_POLICY.importerOnlyTables.some(optional => optional === name));
   if (tables.length === 0) return;
   const rows = await sql<{ count: string }[]>`
     SELECT count(*)::text AS count

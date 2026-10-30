@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { mockAccount } from "./account-learning-fixture";
 
 const learnerId = "00000000-0000-4000-8000-000000000010";
 const learner = {
@@ -28,10 +29,13 @@ const session = {
 };
 
 test("US-28 browses an ordered learning-set catalog and detail", async ({ page }) => {
+  await mockAccount(page, [learner]);
+  await page.route(`**/api/learners/${learnerId}/vocabulary`, route => route.fulfill({ json: { vocabulary: [] } }));
+  await page.route(`**/api/learners/${learnerId}/learning-sets`, route => route.fulfill({ json: { learningSets: [] } }));
   await page.route("**/api/auth/get-session", async (route) => {
     await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(session) });
   });
-  await page.route("**/api/learning-sets", async (route) => {
+  await page.route("**/api/learning-sets?includeTopics=1", async (route) => {
     await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ learningSets: [learningSet] }) });
   });
   await page.route("**/api/learning-sets/1", async (route) => {

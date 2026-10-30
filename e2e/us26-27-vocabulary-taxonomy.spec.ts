@@ -1,4 +1,5 @@
 import { expect, test } from "@playwright/test";
+import { mockAccount } from "./account-learning-fixture";
 
 const learnerId = "00000000-0000-4000-8000-000000000010";
 const learner = {
@@ -52,6 +53,7 @@ const vocabulary = [
 ];
 
 test("US-26 filters vocabulary by nullable grade level without changing the learner flow", async ({ page }) => {
+  await mockAccount(page, [learner]);
   const vocabularyRequests: string[] = [];
   await page.route("**/api/auth/get-session", async (route) => {
     await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(session) });
@@ -64,13 +66,14 @@ test("US-26 filters vocabulary by nullable grade level without changing the lear
     const filtered = new URL(route.request().url()).searchParams.get("level") === "GRADE_1"
       ? vocabulary.filter((item) => item.level === "GRADE_1")
       : vocabulary;
-    await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ vocabulary: filtered }) });
+    await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ vocabulary: filtered, total: filtered.length, page: 1, pageSize: 30, totalPages: 1, filters: { cefrOptions: [], topicOptions: [] } }) });
   });
 
   await page.goto("/learners");
   await expect(page.locator(".app-layout")).toBeVisible();
   await page.getByRole("navigation", { name: "Điều hướng chính", exact: true }).getByRole("link", { name: "Từ vựng", exact: true }).click();
   await expect(page.getByTestId("vocabulary-row-2")).toBeVisible();
+  await page.getByText("Lọc bổ sung", { exact: true }).click();
   await page.getByTestId("vocabulary-level-filter").selectOption("GRADE_1");
 
   await expect(page.getByTestId("vocabulary-row-1")).toBeVisible();
@@ -79,6 +82,7 @@ test("US-26 filters vocabulary by nullable grade level without changing the lear
 });
 
 test("US-27 browses canonical topics and enabled vocabulary through the topic route", async ({ page }) => {
+  await mockAccount(page, [learner]);
   await page.route("**/api/auth/get-session", async (route) => {
     await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify(session) });
   });

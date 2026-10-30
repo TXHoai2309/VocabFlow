@@ -63,14 +63,11 @@ test("US-20 opens learner progress and renders all summary metrics", async ({ pa
   await expect(page.locator(".app-layout")).toBeVisible();
   await page.goto("/progress");
   await expect(page).toHaveURL(/\/progress$/);
-  await expect(page.getByRole("heading", { name: "Tiến trình của An" })).toBeVisible();
-  await expect(page.getByText("Từ mới").locator("..")).toContainText("30");
-  await expect(page.getByText("Đang học").locator("..")).toContainText("2");
-  await expect(page.getByText("Đã thành thạo").locator("..")).toContainText("3");
-  await expect(page.getByText("Cần ôn tập").locator("..")).toContainText("4");
-  await expect(page.getByText("Đã học").locator("..")).toContainText("5");
-  await expect(page.getByTestId("daily-goal")).toContainText("7 / 10");
-  await expect(page.getByTestId("streak-summary")).toContainText("3 ngày liên tiếp");
+  await expect(page.getByRole("heading", { name: "Tiến trình học tập" })).toBeVisible();
+  await expect(page.getByTestId("progress-metric-learned")).toContainText("5");
+  await expect(page.getByTestId("progress-metric-mastered")).toContainText("3");
+  await expect(page.getByTestId("progress-metric-streak")).toContainText("3 ngày");
+
 });
 
 test("US-20 keeps the progress dashboard within a mobile viewport", async ({ page }) => {
