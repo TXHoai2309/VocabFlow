@@ -90,6 +90,6 @@ test("US-24 confirms a learner-scoped reset and refreshes the progress summary",
 
   await expect(page.getByTestId("progress-empty-state")).toBeVisible();
   await expect(page.getByText("Đã đặt lại tiến trình")).toBeVisible();
-  await expect(page.getByText("Đã học").locator("..")).toContainText("0");
+  await expect(page.getByTestId("progress-metric-learned")).toContainText("0");
   expect(summaryCalls).toBe(2);
 });

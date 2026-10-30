@@ -2,7 +2,7 @@ import { APP_SCHEMA, MIGRATION_SCHEMA } from "@vocabflow/contracts";
 
 export const DATABASE_RESET_POLICY = {
   applicationSchemas: [APP_SCHEMA],
-  importerOnlyTables: ["master_v2_development_projections", "master_v2_development_import_runs"],
+  importerOnlyTables: ["master_v2_development_import_runs"],
   applicationViews: [`${APP_SCHEMA}.owner_editorial_active_projections`],
   applicationTables: [
     `${APP_SCHEMA}.foundation_reviews`,

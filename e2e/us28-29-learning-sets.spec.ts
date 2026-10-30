@@ -50,7 +50,7 @@ test("US-28 browses an ordered learning-set catalog and detail", async ({ page }
   await page.goto("/learning-sets");
   await expect(page.getByTestId("learning-sets-list")).toContainText("Bộ từ khởi đầu VocabFlow");
   await page.getByRole("link", { name: "Xem bộ từ" }).click();
-  await expect(page.getByTestId("learning-set-detail-items")).toContainText("apple");
+  await expect(page.getByTestId("collection-vocabulary-list")).toContainText("apple");
 });
 
 test("US-29 assigns a set to the active learner and shows success", async ({ page }) => {

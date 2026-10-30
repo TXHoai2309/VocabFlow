@@ -78,7 +78,7 @@ async function mockVocabularyPage(page: import("@playwright/test").Page) {
             nextReviewDate: "2026-09-20"
           }
         ]
-      })
+      }, (key, value) => ["definitionEn", "exampleEn"].includes(key) ? undefined : value)
     });
   });
 }

@@ -21,6 +21,25 @@ CREATE TABLE "vocabflow_app"."owner_editorial_projections" (
 --> statement-breakpoint
 ALTER TABLE "vocabflow_app"."owner_editorial_projections" ADD CONSTRAINT "owner_editorial_projections_vocabulary_id_vocabularies_id_fk" FOREIGN KEY ("vocabulary_id") REFERENCES "vocabflow_app"."vocabularies"("id") ON DELETE no action ON UPDATE no action;
 --> statement-breakpoint
+-- Earlier catalog tooling created this table outside the migration chain.
+-- Fresh installations need its exact empty shape for existing read adapters.
+CREATE TABLE IF NOT EXISTS vocabflow_app.master_v2_development_projections (
+  proposal_key text PRIMARY KEY, source_group_key text NOT NULL,
+  vocabulary_id integer NOT NULL UNIQUE REFERENCES vocabflow_app.vocabularies(id),
+  part_of_speech text NOT NULL, cefr text,
+  tags jsonb NOT NULL DEFAULT '[]'::jsonb, examples jsonb NOT NULL DEFAULT '[]'::jsonb,
+  usage_notes text, source_provenance jsonb NOT NULL, content_sha256 text NOT NULL,
+  reviewer_identity text NOT NULL, review_receipt_path text NOT NULL, review_receipt_sha256 text NOT NULL,
+  content_review_decision text NOT NULL DEFAULT 'PASS', editorial_status text NOT NULL DEFAULT 'DRAFT',
+  rights_status text NOT NULL DEFAULT 'UNKNOWN_REVIEW_REQUIRED', development_media jsonb NOT NULL DEFAULT '{}'::jsonb,
+  created_at timestamptz NOT NULL DEFAULT now(), updated_at timestamptz NOT NULL DEFAULT now(),
+  CONSTRAINT master_v2_development_projections_content_sha256_check CHECK(content_sha256 ~ '^[0-9a-f]{64}$'),
+  CONSTRAINT master_v2_development_projections_receipt_sha256_check CHECK(review_receipt_sha256 ~ '^[0-9a-f]{64}$'),
+  CONSTRAINT master_v2_development_projections_review_gate_check CHECK(content_review_decision='PASS' AND editorial_status='DRAFT' AND rights_status='UNKNOWN_REVIEW_REQUIRED')
+);
+--> statement-breakpoint
+GRANT SELECT ON vocabflow_app.master_v2_development_projections TO vocabflow_runtime;
+--> statement-breakpoint
 -- Compatibility view keeps the current V2 catalog readable before the atomic
 -- owner-catalog cutover. It switches with that transaction, without an empty
 -- catalog between schema/app rollout and the separate reviewed content apply.

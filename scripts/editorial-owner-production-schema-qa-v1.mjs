@@ -27,6 +27,7 @@ async function main(){
     pass('fresh-migration-only-database-needs-no-importer-created-legacy-table');
     run(`DROP VIEW vocabflow_app.owner_editorial_active_projections;
       DROP TABLE vocabflow_app.owner_editorial_projections;
+      DROP TABLE vocabflow_app.master_v2_development_projections;
       CREATE TABLE vocabflow_app.master_v2_development_projections(proposal_key text,source_group_key text,vocabulary_id integer,part_of_speech text,cefr text,tags jsonb,examples jsonb,source_provenance jsonb,content_sha256 text,content_review_decision text,editorial_status text,rights_status text,development_media jsonb,created_at timestamptz,updated_at timestamptz);
       INSERT INTO vocabflow_app.vocabularies VALUES(1,'VOCABFLOW_MASTER_V2_DEV',true);
       INSERT INTO vocabflow_app.master_v2_development_projections VALUES('old:one','old',1,'NOUN','A1','[]','[]','{}',repeat('1',64),'PASS','DRAFT','UNKNOWN_REVIEW_REQUIRED','{}',now(),now());`);

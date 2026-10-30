@@ -66,7 +66,7 @@ test("US-26 filters vocabulary by nullable grade level without changing the lear
     const filtered = new URL(route.request().url()).searchParams.get("level") === "GRADE_1"
       ? vocabulary.filter((item) => item.level === "GRADE_1")
       : vocabulary;
-    await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ vocabulary: filtered, total: filtered.length, page: 1, pageSize: 30, totalPages: 1, filters: { cefrOptions: [], topicOptions: [] } }) });
+    await route.fulfill({ status: 200, contentType: "application/json", body: JSON.stringify({ vocabulary: filtered, total: filtered.length, page: 1, pageSize: 30, totalPages: 1, filters: { cefrOptions: [], topicOptions: [] } }, (key, value) => ["definitionEn", "exampleEn"].includes(key) ? undefined : value) });
   });
 
   await page.goto("/learners");
