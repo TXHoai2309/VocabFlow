@@ -61,8 +61,8 @@ async function main() {
       console.log(JSON.stringify({ status: 'READ_ONLY_BASELINE_CAPTURED', counts: baseline.counts, allocation: baseline.allocation }));
       return;
     }
-    const planPath = `${OUT}/production-plan-r0001.json`, bytes = readFileSync(planPath), pin = sha(bytes), plan = JSON.parse(bytes);
-    assert.equal(pin, readFileSync(`${OUT}/production-plan-r0001.sha256`, 'utf8').trim(), 'PLAN_PIN_MISMATCH');
+    const planPath = `${OUT}/production-plan-r0002.json`, bytes = readFileSync(planPath), pin = sha(bytes), plan = JSON.parse(bytes);
+    assert.equal(pin, readFileSync(`${OUT}/production-plan-r0002.sha256`, 'utf8').trim(), 'PLAN_PIN_MISMATCH');
     assert.equal(plan.target.branchId, target.branchId);
     for (const source of plan.sourcePins) assert.equal(sha(readFileSync(source.path)), source.sha256, 'SOURCE_PIN_CHANGED');
     if (phase === 'rehearse') {
@@ -77,7 +77,7 @@ async function main() {
       assert.deepEqual(after.catalog, plan.baseline.catalog, 'REHEARSAL_CHANGED_BASELINE');
       assert.deepEqual(after.counts, plan.baseline.counts);
       const report = { status: 'FULL_REHEARSAL_ROLLBACK_PASS', planSha256: pin, countsAfterRollback: after.counts, result, committedVocabularyWrites: 0 };
-      save('rehearsal-r0001.json', report);
+      save('rehearsal-r0002.json', report);
       console.log(JSON.stringify({ status: report.status, counts: after.counts }));
       return;
     }
@@ -85,7 +85,7 @@ async function main() {
       const sourceCheckout = fileURLToPath(new URL('../', import.meta.url));
       assertCleanReleaseSource({ head: execFileSync('git', ['-C', sourceCheckout, 'rev-parse', 'HEAD'], { encoding: 'utf8' }).trim(),
         requestedSha: plan.runtimeReleaseSha, status: execFileSync('git', ['-C', sourceCheckout, 'status', '--porcelain', '--untracked-files=all'], { encoding: 'utf8' }) });
-      const rehearsal = read(`${OUT}/rehearsal-r0001.json`);
+      const rehearsal = read(`${OUT}/rehearsal-r0002.json`);
       assert.equal(rehearsal.status, 'FULL_REHEARSAL_ROLLBACK_PASS');
       assert.equal(rehearsal.planSha256, pin);
       const proof = await deploymentProof(plan.runtimeReleaseSha);

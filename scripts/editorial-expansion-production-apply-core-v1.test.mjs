@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { test } from 'node:test';
 import canonicalize from 'canonicalize';
-import { applyExpansion, deferredProposalKeys, validateExpansionPlan, expansionPublicationKey } from './editorial-expansion-production-apply-core-v1.mjs';
+import { applyExpansion, deferredProposalKeys, validateExpansionPlan, expansionPublicationKey, expansionProjectionRow } from './editorial-expansion-production-apply-core-v1.mjs';
 
 const digest = content => createHash('sha256').update(canonicalize(content)).digest('hex');
 const image = 'https://res.cloudinary.com/owner/image/upload/v1/vocabflow/owner/production-expansion-4997-20261101-r0001/images/a.png';
@@ -93,4 +93,16 @@ test('owner projection wraps the frozen UUID in the runtime publication authorit
   assert.equal(key, `owner-publication:${original}`);
   assert.match(key, /^owner-publication:[a-z0-9-]+$/i);
   assert.throws(() => expansionPublicationKey(key), /INVALID_OWNER_PUBLICATION_SOURCE_UUID/);
+});
+
+test('JSONB bindings keep arrays and objects typed rather than encoding JSON strings twice', () => {
+  const plan = fixture(), item = plan.items[0], received = [];
+  const tx = { json: value => { received.push(value); return { typedJson: value }; } };
+  const row = expansionProjectionRow(tx, plan, item, 'a'.repeat(64));
+  assert.deepEqual(row.tags.typedJson, item.content.tags);
+  assert.deepEqual(row.examples.typedJson, item.content.examples);
+  assert.equal(typeof row.source_provenance.typedJson, 'object');
+  assert.equal(row.source_provenance.typedJson.ownerPublishedCatalog.catalogId, plan.catalogId);
+  assert.equal(received.length, 3);
+  assert(received.every(value => typeof value !== 'string'));
 });

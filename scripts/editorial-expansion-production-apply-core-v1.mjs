@@ -135,6 +135,14 @@ function provenanceFor(plan, item, pin) {
   return { ownerPublishedCatalog: { catalogId: plan.catalogId, planSha256: pin, shortMeaningVi: item.content.shortMeaningVi, package: 'expansion5000', ownerSelection: plan.ownerSelection ?? null }, expansionPublication: { expansionId: plan.expansionId, planSha256: pin, sourceRecordId: item.sourceRecordId }, sourceText: item.sourceProvenance, mediaEvidence: item.mediaEvidence, classificationEvidence: item.classificationEvidence, independentMasterPassClaimed: false, canonicalMasterIdentityAssigned: false };
 }
 
+
+export function expansionProjectionRow(tx, plan, item, pin) {
+  return { proposal_key: expansionPublicationKey(item.proposalKey), source_group_key: item.topicCodes[0],
+    vocabulary_id: item.runtimeVocabularyId, part_of_speech: item.content.partOfSpeech, cefr: item.content.cefr,
+    tags: tx.json(item.content.tags), examples: tx.json(item.content.examples), content_sha256: item.contentSha256,
+    source_provenance: tx.json(provenanceFor(plan, item, pin)) };
+}
+
 async function verifyOriginalCatalog(tx, baseline) {
   const scopes = [
     ['vocabularies', 'id', baseline.catalog.vocabularies],
@@ -213,8 +221,7 @@ export async function applyExpansion(tx, plan, pin) {
   const protectedBefore = await protectedState(tx);
   const vocab = plan.items.map(item => ({ id: item.runtimeVocabularyId, word: item.content.word, ipa: null, vietnamese: item.content.meaningVi, vietnamese_override: null, definition_en: item.content.definitionEn, example_en: item.content.examples[0].en, image_url: item.content.media.image, audio_url: item.content.media.wordAudio, image_quarantined: false, topic: item.topicLabel ?? plan.groups.find(g => g.code === item.topicCodes[0]).name, level: null, enabled: true, content_version: 1, source_dataset: SOURCE, source_record_id: item.sourceRecordId }));
   for (let n = 0; n < vocab.length; n += 100) await tx`INSERT INTO vocabflow_app.vocabularies ${tx(vocab.slice(n, n + 100))}`;
-  const projections = plan.items.map(item => ({ proposal_key: expansionPublicationKey(item.proposalKey), source_group_key: item.topicCodes[0], vocabulary_id: item.runtimeVocabularyId, part_of_speech: item.content.partOfSpeech, cefr: item.content.cefr, tags: JSON.stringify(item.content.tags), examples: JSON.stringify(item.content.examples), content_sha256: item.contentSha256,
-    source_provenance: JSON.stringify(provenanceFor(plan, item, pin)) }));
+  const projections = plan.items.map(item => expansionProjectionRow(tx, plan, item, pin));
   for (let n = 0; n < projections.length; n += 100) await tx`INSERT INTO vocabflow_app.owner_editorial_projections ${tx(projections.slice(n, n + 100))}`;
   const topicIds = new Map();
   for (const group of plan.groups) {

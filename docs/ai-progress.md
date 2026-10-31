@@ -1,5 +1,14 @@
 # Current Handoff Snapshot
 
+## 2026-11-01 — US67 typed JSONB publication bindings
+
+The full rollback rehearsal rejected string-encoded JSONB tags before any
+publication committed. Bind tags/examples/provenance with the driver's typed
+JSONB parameters. Preserve failed plan revision r0001 and prepare r0002 for
+another full rehearsal. All14,991 cloud originals are uploaded and verified;
+the live catalog still retains1,547words.25 focused publication guards pass.
+
+
 ## 2026-11-01 — US67 owner-authorized additive production expansion
 
 Prepare 4,997 complete entries for additive production publication, retaining
