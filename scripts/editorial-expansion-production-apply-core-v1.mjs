@@ -15,6 +15,11 @@ export const deferredProposalKeys = Object.freeze([
   '01a19020-334c-7c09-ae91-18bd8a404f08', // painter
   '01a19020-3356-76ad-aec6-f612b501260a', // apiece
 ]);
+export function expansionPublicationKey(proposalKey) {
+  assert(UUID.test(proposalKey), 'INVALID_OWNER_PUBLICATION_SOURCE_UUID');
+  return `owner-publication:${proposalKey}`;
+}
+
 const additiveTables = new Set(['vocabularies', 'owner_editorial_projections', 'learning_sets', 'topics', 'learning_set_items', 'vocabulary_topics']);
 const integer = value => Number.isSafeInteger(value) && value > 0 && value < 2147483647;
 const idsSql = ids => { assert(ids.length && ids.every(integer), 'UNSAFE_OR_EMPTY_ID_SCOPE'); return [...ids].sort((a, b) => a - b).join(','); };
@@ -152,7 +157,7 @@ export async function verifyExpansion(tx, plan, pin) {
   const byId = new Map(plan.items.map(item => [item.runtimeVocabularyId, item]));
   for (const row of rows) {
     const item = byId.get(row.id), c = item.content;
-    for (const [key, value] of Object.entries({ word: c.word, ipa: null, vietnamese: c.meaningVi, vietnamese_override: null, definition_en: c.definitionEn, example_en: c.examples[0].en, image_url: c.media.image, audio_url: c.media.wordAudio, image_quarantined: false, topic: item.topicLabel ?? plan.groups.find(g => g.code === item.topicCodes[0]).name, level: null, enabled: true, content_version: 1, source_dataset: SOURCE, source_record_id: item.sourceRecordId, proposal_key: item.proposalKey, source_group_key: item.topicCodes[0], content_sha256: item.contentSha256, part_of_speech: c.partOfSpeech, cefr: c.cefr, content_review_decision: 'OWNER_SELECTED_PUBLICATION', editorial_status: 'OWNER_PUBLISHED_CATALOG', rights_status: 'OWNER_ATTESTED_MEDIA_TEXT_PROVENANCE_RETAINED', development_media: null })) assert.equal(row[key], value, `PUBLISHED_${key.toUpperCase()}_MISMATCH`);
+    for (const [key, value] of Object.entries({ word: c.word, ipa: null, vietnamese: c.meaningVi, vietnamese_override: null, definition_en: c.definitionEn, example_en: c.examples[0].en, image_url: c.media.image, audio_url: c.media.wordAudio, image_quarantined: false, topic: item.topicLabel ?? plan.groups.find(g => g.code === item.topicCodes[0]).name, level: null, enabled: true, content_version: 1, source_dataset: SOURCE, source_record_id: item.sourceRecordId, proposal_key: expansionPublicationKey(item.proposalKey), source_group_key: item.topicCodes[0], content_sha256: item.contentSha256, part_of_speech: c.partOfSpeech, cefr: c.cefr, content_review_decision: 'OWNER_SELECTED_PUBLICATION', editorial_status: 'OWNER_PUBLISHED_CATALOG', rights_status: 'OWNER_ATTESTED_MEDIA_TEXT_PROVENANCE_RETAINED', development_media: null })) assert.equal(row[key], value, `PUBLISHED_${key.toUpperCase()}_MISMATCH`);
     same(row.tags, c.tags, 'PUBLISHED_TAGS_MISMATCH');
     same(row.examples, c.examples, 'PUBLISHED_EXAMPLES_MISMATCH');
     assert.equal(row.source_provenance.ownerPublishedCatalog.catalogId, plan.catalogId);
@@ -198,7 +203,7 @@ export async function applyExpansion(tx, plan, pin) {
   await tx`SET LOCAL statement_timeout='180s'`;
   await tx`SELECT pg_advisory_xact_lock(89421732)`;
   await tx`LOCK TABLE vocabflow_app.vocabularies,vocabflow_app.owner_editorial_projections,vocabflow_app.learning_sets,vocabflow_app.topics,vocabflow_app.learning_set_items,vocabflow_app.vocabulary_topics IN SHARE ROW EXCLUSIVE MODE`;
-  const existing = await tx`SELECT vocabulary_id FROM vocabflow_app.owner_editorial_projections WHERE proposal_key IN ${tx(plan.items.map(item => item.proposalKey))}`;
+  const existing = await tx`SELECT vocabulary_id FROM vocabflow_app.owner_editorial_projections WHERE proposal_key IN ${tx(plan.items.map(item => expansionPublicationKey(item.proposalKey)))}`;
   if (existing.length) {
     assert.equal(existing.length, 4997, 'PARTIAL_EXPANSION_REQUIRES_REVIEW');
     return { status: 'ALREADY_APPLIED_NO_WRITES', counts: await verifyExpansion(tx, plan, pin) };
@@ -208,7 +213,7 @@ export async function applyExpansion(tx, plan, pin) {
   const protectedBefore = await protectedState(tx);
   const vocab = plan.items.map(item => ({ id: item.runtimeVocabularyId, word: item.content.word, ipa: null, vietnamese: item.content.meaningVi, vietnamese_override: null, definition_en: item.content.definitionEn, example_en: item.content.examples[0].en, image_url: item.content.media.image, audio_url: item.content.media.wordAudio, image_quarantined: false, topic: item.topicLabel ?? plan.groups.find(g => g.code === item.topicCodes[0]).name, level: null, enabled: true, content_version: 1, source_dataset: SOURCE, source_record_id: item.sourceRecordId }));
   for (let n = 0; n < vocab.length; n += 100) await tx`INSERT INTO vocabflow_app.vocabularies ${tx(vocab.slice(n, n + 100))}`;
-  const projections = plan.items.map(item => ({ proposal_key: item.proposalKey, source_group_key: item.topicCodes[0], vocabulary_id: item.runtimeVocabularyId, part_of_speech: item.content.partOfSpeech, cefr: item.content.cefr, tags: JSON.stringify(item.content.tags), examples: JSON.stringify(item.content.examples), content_sha256: item.contentSha256,
+  const projections = plan.items.map(item => ({ proposal_key: expansionPublicationKey(item.proposalKey), source_group_key: item.topicCodes[0], vocabulary_id: item.runtimeVocabularyId, part_of_speech: item.content.partOfSpeech, cefr: item.content.cefr, tags: JSON.stringify(item.content.tags), examples: JSON.stringify(item.content.examples), content_sha256: item.contentSha256,
     source_provenance: JSON.stringify(provenanceFor(plan, item, pin)) }));
   for (let n = 0; n < projections.length; n += 100) await tx`INSERT INTO vocabflow_app.owner_editorial_projections ${tx(projections.slice(n, n + 100))}`;
   const topicIds = new Map();

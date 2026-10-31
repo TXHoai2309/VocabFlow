@@ -2,7 +2,7 @@ import assert from 'node:assert/strict';
 import { createHash } from 'node:crypto';
 import { test } from 'node:test';
 import canonicalize from 'canonicalize';
-import { applyExpansion, deferredProposalKeys, validateExpansionPlan } from './editorial-expansion-production-apply-core-v1.mjs';
+import { applyExpansion, deferredProposalKeys, validateExpansionPlan, expansionPublicationKey } from './editorial-expansion-production-apply-core-v1.mjs';
 
 const digest = content => createHash('sha256').update(canonicalize(content)).digest('hex');
 const image = 'https://res.cloudinary.com/owner/image/upload/v1/vocabflow/owner/production-expansion-4997-20261101-r0001/images/a.png';
@@ -84,4 +84,13 @@ test('invalid plan cannot issue any SQL or acquire a mutation lock', async () =>
   const tx = () => { calls++; throw new Error('UNEXPECTED_SQL'); };
   await assert.rejects(applyExpansion(tx, plan, 'a'.repeat(64)), /EXACT_4997_ITEMS_REQUIRED/);
   assert.equal(calls, 0);
+});
+
+// This marker is the runtime public-media authority, not a canonical Master ID.
+test('owner projection wraps the frozen UUID in the runtime publication authority', () => {
+  const original = '01a19020-331f-7546-b420-679f8aa236d5';
+  const key = expansionPublicationKey(original);
+  assert.equal(key, `owner-publication:${original}`);
+  assert.match(key, /^owner-publication:[a-z0-9-]+$/i);
+  assert.throws(() => expansionPublicationKey(key), /INVALID_OWNER_PUBLICATION_SOURCE_UUID/);
 });
