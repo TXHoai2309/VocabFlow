@@ -1,5 +1,28 @@
 # VocabFlow Project Decisions
 
+## 2026-10-30 — US65 Production replacement completed
+
+Production now serves exactly **1,547 words, 76 sets and 73 topics** from the
+selected Muse packages. PR #10 / main `253e382f630eac32db7430af5cbc402c3944e30e`
+passed Core CI, Trusted DB and Production Release. Atomic apply retained 900
+IDs, added 647 and removed 6,411 retired rows. Protected account/settings/XP,
+identity/migration history and retained-word history fingerprints match.
+All 4,641 media bindings, levels and live authenticated UI verify; Home shows
+1,539 new + 8 retained learned words, and First words shows 139 results.
+
+Deleted all 9,168 backed-up, unreferenced old Cloudinary assets. Final provider
+inventory confirms they are absent, all 4,640 new originals remain unchanged,
+and all 8,722 shared Development plus 206 unrelated resources are intact.
+Development Neon was not changed. Its later cutover and shared-media retirement
+remain explicitly deferred. Backup originals and the restore-tested DB dump are
+retained. The prepared checkpoints below are historical.
+
+Common production data and operation ledger:
+`.vocabflow-local/editorial-refresh-20261030/owner-production-r0001/dataset-production-complete-r0001.json`
+and `handoff.current.json` in that directory. See US65 for the executed operator
+proof and JSON driver configuration; no fabricated Master PASS is claimed.
+
+
 ## Production owner publication — owner direction, 2026-10-30
 
 Owner authorizes replacement of Production vocabulary with the selected

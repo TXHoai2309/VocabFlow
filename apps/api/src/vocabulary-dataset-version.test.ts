@@ -80,3 +80,24 @@ describe("Vercel Preview V2 selection", () => {
     expect(vocabularyDatasetVersion({ ...preview, ...override })).toBe("legacy");
   });
 });
+
+describe("Owner-selected publication in canonical Development", () => {
+  const dev = {
+    VOCAB_DATASET_VERSION: "owner-development", VOCABFLOW_ENV: "development",
+    DATABASE_ENV: "development", EXECUTION_CONTEXT: "vercel-preview", VERCEL_ENV: "preview",
+    DATABASE_URL: "postgresql://vocabflow_runtime:fixture@ep-ancient-tree-a15xogc1.ap-southeast-1.aws.neon.tech/neondb",
+  };
+  it("uses the shared publication projection only for the verified Dev runtime", () => {
+    expect(vocabularyDatasetVersion(dev)).toBe("owner-production");
+    expect(vocabularyDatasetVersion({ ...dev, DATABASE_URL: dev.DATABASE_URL.replace("ep-ancient-tree-a15xogc1.", "ep-ancient-tree-a15xogc1-pooler.c-4.") })).toBe("owner-production");
+  });
+  it.each([
+    { VERCEL_ENV: "production" }, { VOCABFLOW_ENV: "production" }, { DATABASE_ENV: "production" },
+    { EXECUTION_CONTEXT: "local-development" }, { VOCAB_DATASET_VERSION: "owner-production" },
+    { DATABASE_URL: dev.DATABASE_URL.replace("ep-ancient-tree-a15xogc1", "ep-twilight-firefly-a1dugz2x") },
+    { DATABASE_URL: dev.DATABASE_URL.replace("vocabflow_runtime", "vocabflow_migration") },
+    { DATABASE_URL: dev.DATABASE_URL.replace("/neondb", "/wrong") },
+  ])("does not broaden another target or a privileged credential: %j", override => {
+    expect(vocabularyDatasetVersion({ ...dev, ...override })).toBe("legacy");
+  });
+});

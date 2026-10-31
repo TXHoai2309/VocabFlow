@@ -1,5 +1,56 @@
 # Current Handoff Snapshot
 
+## 2026-10-31 — US66 Dev sync and old-data purge in progress
+
+Owner now requests only the exact 1,547 Muse items, synchronization into Neon
+Development, deletion of the remaining old Cloudinary assets including the 206
+non-VocabFlow assets (latest correction), and deletion of old backups. The old
+backup-retention policy is explicitly superseded. Keep accounts/settings and
+retained-word history. Dev inventory is 7,311 words; all 900 retained source
+identities match and no new-ID collision exists. Its three additive migrations
+have applied without lexical changes. Explicit canonical Dev publication guard
+and deployed-media checks pass (75 targeted tests); lint and typecheck pass.
+Preview flag is configured for the next compatible build. No old cloud deletion
+or Dev lexical replacement has run at this checkpoint. Production remains live.
+
+## 2026-10-30 — US65 Production replacement completed
+
+Production now serves exactly **1,547 words, 76 sets and 73 topics** from the
+selected Muse packages. PR #10 / main `253e382f630eac32db7430af5cbc402c3944e30e`
+passed Core CI, Trusted DB and Production Release. Atomic apply retained 900
+IDs, added 647 and removed 6,411 retired rows. Protected account/settings/XP,
+identity/migration history and retained-word history fingerprints match.
+All 4,641 media bindings, levels and live authenticated UI verify; Home shows
+1,539 new + 8 retained learned words, and First words shows 139 results.
+
+Deleted all 9,168 backed-up, unreferenced old Cloudinary assets. Final provider
+inventory confirms they are absent, all 4,640 new originals remain unchanged,
+and all 8,722 shared Development plus 206 unrelated resources are intact.
+Development Neon was not changed. Its later cutover and shared-media retirement
+remain explicitly deferred. Backup originals and the restore-tested DB dump are
+retained. The prepared checkpoints below are historical.
+
+Common production data and operation ledger:
+`.vocabflow-local/editorial-refresh-20261030/owner-production-r0001/dataset-production-complete-r0001.json`
+and `handoff.current.json` in that directory. See US65 for the executed operator
+proof and JSON driver configuration; no fabricated Master PASS is claimed.
+
+
+## 2026-10-30 — US65 Production catalog is live; cloud retirement running
+
+Owner-approved PR #10 is merged and deployed at main SHA253e382f630eac32db7430af5cbc402c3944e30e.
+Matching Core CI, Trusted DB and Production Release all pass. Atomic content
+cutover leaves exactly1,547selected words/76sets/73topics;900IDs and their
+retained history are preserved,647IDs added,6,411old rows retired. All4,641
+media bindings verify through live API;18original samples match SHA/length.
+Authenticated browser confirms1,539new +8learned, visible images and139first
+words. Accounts/settings/XP/protected identity fingerprints match. No test
+reviews/settings writes and no Development Neon writes.9,168backed-up unused
+old assets are being retired;8,722shared dev and206unrelated resources remain
+protected. See US65 live checkpoint for detached-main proof and JSON-driver
+operator correction; aborted attempts did not commit partial data.
+
+
 ## 2026-10-30 — US65 release authorized; CI repair and PR #10 in progress
 
 Owner explicitly authorized commit/push, CI repair and completion of Production.

@@ -1,5 +1,13 @@
 # Production replacement — prepared; live catalog has not switched
 
+## Live result supersedes the prepared checkpoint below
+
+Production deployment and exact1,547content replacement are verified live.
+See [US65 live cutover evidence](../../stories/US-65-owner-catalog-production-replacement.md).
+Cloud retirement is complete: 9,168 deleted; final inventory verifies all protected resources. The former prepared/no-writes statements below
+are preserved as historical checkpoints, not current status.
+
+
 Owner instruction,2026-10-30: “giờ thay cho tôi đi, xóa cả bên phía cloudiary nhé,
 ưu tiên làm ở prod trc, dev để sau”. One session; no fresh vocabulary/media
 generation. Production replacement and old vocabulary-media retirement are
