@@ -37,6 +37,11 @@ describe("owner publication media at the actual deployed response boundary", () 
     expect(withoutUnclearedV2Media(word, { ...env, VOCAB_DATASET_VERSION: "v2" })).toMatchObject({ imageUrl: null, audioUrl: null });
     expect(withoutUnclearedV2Media({ ...word, masterSenseIdentity: "other" }, env)).toMatchObject({ imageUrl: null, audioUrl: null });
   });
+  it("keeps the same pinned publication media in explicitly configured canonical Dev", () => {
+    const dev = { ...env, VOCAB_DATASET_VERSION: "owner-development", VERCEL_ENV: "preview", VOCABFLOW_ENV: "development", DATABASE_ENV: "development", EXECUTION_CONTEXT: "vercel-preview", DATABASE_URL: "postgres://vocabflow_runtime:fixture@ep-ancient-tree-a15xogc1.ap-southeast-1.aws.neon.tech/neondb" };
+    expect(withoutUnclearedV2Media(word, dev)).toMatchObject({ imageUrl: image, audioUrl: audio, examples: word.examples });
+    expect(withoutUnclearedV2Media(word, { ...dev, VERCEL_ENV: "production" })).toMatchObject({ imageUrl: null, audioUrl: null });
+  });
   it("withholds localhost, foreign namespaces and unapproved example audio", () => {
     expect(withoutUnclearedV2Media({ ...word, imageUrl: "/api/local-owner-editorial-media/a.png", audioUrl: "https://example.com/word.mp3", examples: [{ en: "A cat.", audioUrl: "https://example.com/sentence.mp3" }] }, env))
       .toMatchObject({ imageUrl: null, audioUrl: null, examples: [{ en: "A cat." }] });

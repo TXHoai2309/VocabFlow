@@ -1,5 +1,16 @@
 # Technical Architecture v1.0.17
 
+## Owner publication in Development — US66, 2026-10-31
+
+The owner requested the exact selected 1,547-word publication in Neon Dev too.
+`owner-development` is a separate opt-in flag requiring consistent Preview,
+Development and canonical Dev runtime endpoint/role markers. It reuses the
+existing owner publication projection/media policy and catalog identity; no
+Master PASS or canonical allocations are manufactured. Production selection
+remains independently guarded. Dev receives additive migrations before rollout,
+then an atomic source-identity-preserving catalog replacement. Old shared media
+is retired only after both selected catalogs and the media keep list verify.
+
 ## Owner publication compatibility — US65, 2026-10-30 (prepared)
 
 A separate owner_editorial_projections table/migration0024 records honest

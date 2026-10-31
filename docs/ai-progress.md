@@ -1,5 +1,18 @@
 # Current Handoff Snapshot
 
+## 2026-10-31 — US66 Dev sync and old-data purge in progress
+
+Owner now requests only the exact 1,547 Muse items, synchronization into Neon
+Development, deletion of the remaining old Cloudinary assets including the 206
+non-VocabFlow assets (latest correction), and deletion of old backups. The old
+backup-retention policy is explicitly superseded. Keep accounts/settings and
+retained-word history. Dev inventory is 7,311 words; all 900 retained source
+identities match and no new-ID collision exists. Its three additive migrations
+have applied without lexical changes. Explicit canonical Dev publication guard
+and deployed-media checks pass (75 targeted tests); lint and typecheck pass.
+Preview flag is configured for the next compatible build. No old cloud deletion
+or Dev lexical replacement has run at this checkpoint. Production remains live.
+
 ## 2026-10-30 — US65 Production replacement completed
 
 Production now serves exactly **1,547 words, 76 sets and 73 topics** from the

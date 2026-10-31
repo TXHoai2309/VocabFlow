@@ -45,6 +45,13 @@ function isV2DevelopmentConnection(value: string | undefined) {
 
 /** Production V2 requires its explicit flag, production markers and staged V2 runtime endpoint. */
 export function vocabularyDatasetVersion(env: RuntimeBindings): VocabularyDatasetVersion {
+  // The same owner-selected publication is now also deployed to canonical Dev.
+  // Keep a distinct flag so a Preview cannot accidentally enable Production.
+  if (env.VOCAB_DATASET_VERSION === "owner-development") {
+    return env.VERCEL_ENV === "preview" && env.VOCABFLOW_ENV === "development"
+      && env.DATABASE_ENV === "development" && env.EXECUTION_CONTEXT === "vercel-preview"
+      && isV2DevelopmentConnection(env.DATABASE_URL) ? "owner-production" : "legacy";
+  }
   if (env.VOCAB_DATASET_VERSION === "owner-production") {
     return env.VERCEL_ENV === "production" && env.VOCABFLOW_ENV === "production"
       && env.DATABASE_ENV === "production" && env.EXECUTION_CONTEXT === "vercel-production"
