@@ -1,5 +1,52 @@
 # VocabFlow Changelog
 
+## 2026-10-31 — US66 selected catalog only: purge completed
+
+Owner explicitly replaced the earlier retention direction: keep the exact
+1,547 Muse-selected words, synchronize canonical Neon Development, delete all
+other Cloudinary originals including the 206 formerly unrelated files, and
+remove old backups. Both canonical branches now verify1,547words/76sets/73topics
+with exact selected text, classifications, examples and4,641media bindings.
+Development retains900source IDs, adds647and retires6,411old rows. Account,
+settings and retained-history fingerprints match; no fake Master PASS.
+
+Deleted the remaining8,928non-selected Cloudinary originals; final inventory
+contains exactly4,640selected originals, checked by asset ID/version/bytes.
+Old+other assets remaining0; backed-up cloud assets0. Combined with US65,
+18,096old/other originals have been removed. All4,640new local original files
+still match source SHA-256 and length. Removed22old local DB/media
+backup targets (1,445,260,632.0bytes) after path/link/keep-list checks. No
+new persistent old-data backup was created. Canonical Neon project has0snapshot
+backups and restore-history window0seconds. Provider disk reclamation remains
+managed asynchronously; no claim of immediate physical-byte erasure.
+
+Protected Preview HTTP and Production API pass. Common new data and evidence:
+`.vocabflow-local/editorial-refresh-20261031/old-data-purge-r0001/dataset-dev-prod-complete-r0001.json`
+and `handoff.current.json`. Historical US64/65 backup/shared-asset retention
+statements are superseded by this explicit owner instruction. Accounts, protected
+identity/migration history, code history and source attribution remain intact.
+
+
+## 2026-10-31 — US66 both canonical catalogs synced; purge running
+
+The owner explicitly confirmed deleting all non-selected cloud assets including
+206 formerly unrelated assets, no old-backup retention, and synchronizing the
+same1,547selected Muse items into Neon Development. Production is unchanged.
+Dev migrations and a full apply/rollback rehearsal pass; atomic sync retains
+900source identities, adds647and retires6,411old rows. Five Dev accounts and
+settings/protected history fingerprints match; two retained progress/review
+records remain. Actual protected Preview HTTP confirms1,547words/76sets/73topics,
+including new image/word/sentence audio. Production's full live API still passes.
+
+Canonical project restore history is now0seconds and its snapshot listing is
+empty, per owner instruction. Cloudinary backup search including deleted assets
+returns0. The remaining8,928non-selected originals are being deleted by pinned
+asset ID/version/length;4,640selected originals are protected.22old local backup
+paths/directories (~1.45GB) are inventoried for deletion after cloud completion.
+No new old-data dump was created. New common dataset and operation ledger live
+under `.vocabflow-local/editorial-refresh-20261031/old-data-purge-r0001/`.
+
+
 ## 2026-10-30 — US65 Production replacement completed
 
 Production now serves exactly **1,547 words, 76 sets and 73 topics** from the
