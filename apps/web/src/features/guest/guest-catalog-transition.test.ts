@@ -31,6 +31,38 @@ describe("owner-authorized guest catalog transition", () => {
     expect(Object.keys(readGuestState().progress)).toEqual(["1"]);
     expect(JSON.parse(localStorage.getItem(`${GUEST_STORAGE_KEY}.before.${productionId}`)!)).toEqual(before);
   });
+  it("admits first-time and legacy guests to the additive Production catalog", async () => {
+    const productionId = "owner-production-1547-20261030-r0001";
+    const expanded = { ...catalog, catalogIdentity: productionId,
+      vocabulary: Array.from({ length: 6544 }, (_, i) => ({ id: i + 1 })) };
+    await reconcileGuestCatalog(expanded);
+    expect(readGuestState().catalogIdentity).toBe(productionId);
+    expect(readGuestState().progress).toEqual({});
+    localStorage.clear();
+    const before = seed();
+    await reconcileGuestCatalog(expanded);
+    expect(readGuestState().progress).toEqual({ 1: progress });
+    expect(readGuestState().settings).toEqual(before.settings);
+    expect(readGuestState().assignments).toEqual({ 99: true });
+  });
+  it("does not rewrite transitioned guest progress or assignments when Production grows", async () => {
+    const productionId = "owner-production-1547-20261030-r0001";
+    const before = seed(); before.catalogIdentity = productionId;
+    localStorage.setItem(GUEST_STORAGE_KEY, JSON.stringify(before));
+    const raw = localStorage.getItem(GUEST_STORAGE_KEY);
+    await reconcileGuestCatalog({ ...catalog, catalogIdentity: productionId,
+      vocabulary: Array.from({ length: 6544 }, (_, i) => ({ id: i + 1 })) });
+    expect(localStorage.getItem(GUEST_STORAGE_KEY)).toBe(raw);
+  });
+  it("retains the exact local pilot guard and rejects undersized Production transitions", async () => {
+    const before = seed(); const raw = localStorage.getItem(GUEST_STORAGE_KEY);
+    await expect(reconcileGuestCatalog({ ...catalog, vocabulary: Array.from({ length: 6544 }, (_, i) => ({ id: i + 1 })) }))
+      .rejects.toThrow("GUEST_CATALOG_INCOMPLETE");
+    await expect(reconcileGuestCatalog({ ...catalog, catalogIdentity: "owner-production-1547-20261030-r0001", vocabulary: catalog.vocabulary.slice(1) }))
+      .rejects.toThrow("GUEST_CATALOG_INCOMPLETE");
+    expect(localStorage.getItem(GUEST_STORAGE_KEY)).toBe(raw);
+    expect(readGuestState().settings).toEqual(before.settings);
+  });
   it("backs up before pruning retired words and preserves retained progress/settings", async () => {
     const before = seed(); await reconcileGuestCatalog(catalog); const after = readGuestState();
     expect(Object.keys(after.progress)).toEqual(["1"]); expect(Object.keys(after.saved)).toEqual(["1"]);

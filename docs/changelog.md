@@ -1,5 +1,15 @@
 # VocabFlow Changelog
 
+## 2026-11-01 — US67 owner-authorized additive production expansion
+
+Prepare 4,997 complete entries for additive production publication, retaining
+all 1,547 existing words and progress. Hold three incomplete proposals. Deploy
+exact namespace and additive guest/index compatibility before DB publication.
+32 runtime/guest tests and 23 additive guard tests pass; typecheck/build pass.
+Cloudinary upload and canonical DB release are in progress, not yet complete.
+See `docs/stories/US-67-additive-owner-expansion-production.md`.
+
+
 ## 2026-10-30 — US65 Production replacement completed
 
 Production now serves exactly **1,547 words, 76 sets and 73 topics** from the
