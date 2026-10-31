@@ -35,4 +35,20 @@ describe("owner Production publication gate", () => {
     expect(index.catalogIdentity).toBe(OWNER_PRODUCTION_CATALOG_ID);
     expect(index.vocabulary[0]!.tags).toEqual(["EDITORIAL:FIRST_WORDS"]);
   });
+  it("keeps the catalog family for an additive 6,544-word publication", async () => {
+    const vocabulary = Array.from({ length: 6544 }, (_, i) => ({ id: i + 1, level: null, source_dataset: OWNER_PRODUCTION_SOURCE, tags: [] }));
+    const execute = vi.fn().mockResolvedValueOnce(vocabulary).mockResolvedValueOnce([]).mockResolvedValueOnce([]);
+    const index = await readPublicLearningIndex({ execute }, "owner-production");
+    expect(index.catalogIdentity).toBe(OWNER_PRODUCTION_CATALOG_ID);
+    expect(index.vocabulary).toHaveLength(6544);
+  });
+  it("does not announce the owner family for an undersized or mixed-source catalog", async () => {
+    for (const vocabulary of [
+      Array.from({ length: 1546 }, (_, i) => ({ id: i + 1, level: null, source_dataset: OWNER_PRODUCTION_SOURCE })),
+      Array.from({ length: 6544 }, (_, i) => ({ id: i + 1, level: null, source_dataset: i === 6543 ? "VOCABFLOW_MASTER_V2_DEV" : OWNER_PRODUCTION_SOURCE }))
+    ]) {
+      const execute = vi.fn().mockResolvedValueOnce(vocabulary).mockResolvedValueOnce([]).mockResolvedValueOnce([]);
+      expect((await readPublicLearningIndex({ execute }, "owner-production")).catalogIdentity).toBeUndefined();
+    }
+  });
 });
