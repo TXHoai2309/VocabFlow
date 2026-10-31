@@ -91,13 +91,21 @@ async function main() {
       const proof = await deploymentProof(plan.runtimeReleaseSha);
       const result = await db.begin('isolation level serializable', tx => applyExpansion(tx, plan, pin));
       // PostgreSQL sequences are nontransactional: advance only after real commit.
-      const [sequence] = await db`SELECT coalesce(last_value,0)::bigint AS last_value FROM pg_sequences WHERE schemaname='vocabflow_app' AND sequencename='vocabularies_id_seq'`;
-      const maximum = Math.max(Number(sequence?.last_value ?? 0), ...plan.items.map(i => i.runtimeVocabularyId));
-      await db`SELECT setval(pg_get_serial_sequence('vocabflow_app.vocabularies','id'),${maximum},true)`;
+      const planMaximum = Math.max(...plan.items.map(i => i.runtimeVocabularyId));
+      await db.begin(async tx => {
+        await tx`SELECT pg_advisory_xact_lock(89421732)`;
+        await tx`LOCK TABLE vocabflow_app.vocabularies IN SHARE ROW EXCLUSIVE MODE`;
+        await tx`SELECT setval(pg_get_serial_sequence('vocabflow_app.vocabularies','id'),greatest(
+          coalesce((SELECT last_value FROM pg_sequences WHERE schemaname='vocabflow_app' AND sequencename='vocabularies_id_seq'),0),
+          coalesce((SELECT max(id) FROM vocabflow_app.vocabularies),0),${planMaximum}),true)`;
+      });
       if (!existsSync(`${OUT}/application-result-r0001.json`)) save('application-result-r0001.json', { ...result, ...proof, planSha256: pin });
       console.log(JSON.stringify({ status: result.status, counts: result.counts, ...proof }));
     }
-    const verified = await db.begin('read only', tx => verifyExpansion(tx, plan, pin));
+    const verified = await db.begin('read only', async tx => {
+      await tx`SET LOCAL TIME ZONE 'UTC'`;
+      return verifyExpansion(tx, plan, pin);
+    });
     const response = await fetch(`${ORIGIN}/api/public/learning-index`, { cache: 'no-store' });
     assert.equal(response.status, 200);
     const index = await response.json();
