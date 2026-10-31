@@ -13,7 +13,7 @@ const pin = path => { const b = readFileSync(path); return { path, byteLength: b
 function main() {
   const runtimeReleaseSha = process.argv[2];
   assert(/^[0-9a-f]{40}$/.test(runtimeReleaseSha ?? ''), 'RUNTIME_RELEASE_SHA_REQUIRED');
-  assert(!existsSync(`${OUT}/production-plan-r0001.json`), 'IMMUTABLE_PLAN_ALREADY_EXISTS');
+  assert(!existsSync(`${OUT}/production-plan-r0002.json`), 'IMMUTABLE_PLAN_ALREADY_EXISTS');
   const baseline = read(`${OUT}/production-baseline-r0001.json`);
   const draft = read(`${INTAKE}/dataset-with-media.current.json`);
   const uploads = read(`${OUT}/upload-checkpoint.current.json`);
@@ -67,7 +67,7 @@ function main() {
     pin(`${OUT}/production-baseline-r0001.json`), pin(`${OUT}/upload-manifest-r0001.json`), pin(`${OUT}/upload-checkpoint.current.json`),
     ...['editorial-expansion-production-apply-core-v1.mjs', 'editorial-expansion-production-release-v1.mjs',
       'editorial-expansion-production-plan-v1.mjs', 'editorial-expansion-production-upload-v1.mjs'].map(f => pin(`scripts/${f}`))];
-  const plan = { artifactType: 'OWNER_PRODUCTION_ADDITIVE_EXPANSION_PLAN', status: 'PREPARED_NOT_APPLIED', revision: 'r0001',
+  const plan = { artifactType: 'OWNER_PRODUCTION_ADDITIVE_EXPANSION_PLAN', status: 'PREPARED_NOT_APPLIED', revision: 'r0002',
     date: '2026-11-01', catalogId: 'owner-production-1547-20261030-r0001', expansionId: 'production-expansion-4997-20261101-r0001',
     sourceDataset: 'VOCABFLOW_OWNER_EDITORIAL', target: baseline.target, baseline, sourcePins, runtimeReleaseSha,
     ownerSelection: { date: '2026-11-01', scope: 'Publish4997complete entries onproduction; defer3; uploadimages/voice tocloud',
@@ -79,8 +79,8 @@ function main() {
     canonicalMasterIdentityAssigned: false, independentMasterPassClaimed: false };
   validateExpansionPlan(plan);
   const bytes = Buffer.from(JSON.stringify(plan, null, 2) + '\n');
-  writeFileSync(`${OUT}/production-plan-r0001.json`, bytes, { flag: 'wx' });
-  writeFileSync(`${OUT}/production-plan-r0001.sha256`, hash(bytes) + '\n', { flag: 'wx' });
+  writeFileSync(`${OUT}/production-plan-r0002.json`, bytes, { flag: 'wx' });
+  writeFileSync(`${OUT}/production-plan-r0002.sha256`, hash(bytes) + '\n', { flag: 'wx' });
   console.log(JSON.stringify({ status: 'ADDITIVE_PLAN_VALIDATED', counts: plan.counts, sha256: hash(bytes), runtimeReleaseSha }));
 }
 try { main(); } catch (e) { console.error(JSON.stringify({ status: 'PLAN_STOPPED', code: /^[A-Z0-9_:-]{3,120}$/.test(e.message ?? '') ? e.message : 'SAFE_FAILURE' })); process.exitCode = 1; }
