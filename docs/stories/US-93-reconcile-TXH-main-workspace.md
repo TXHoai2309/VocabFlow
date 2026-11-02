@@ -1,6 +1,6 @@
 # US-93 — Clean source control and synchronize TXH/main
 
-- Status: IN PROGRESS
+- Status: ACCEPTED
 - Authority: owner2026-11-02 asks clean and push all remaining work to TXH andmain.
 - Dependencies: acceptedlocalmedia relocationUS69; productionUS91/92complete.
 
@@ -44,4 +44,15 @@ existingproduction/catalog/typedJSONB/videooverlap source retainedexactly.
 scans/diffcheckPASS. Gitindexactualsecretvaluehits0; generated/privatefiles0.
 All21practice ticketsdone and Gitindexbyte/SHA hashes matchindex.55filedelta
 frommain comprises remaininglocaltools/tracker/docs andignorepolicy.
-RemoteCoreCI/merge/alignment stillpending; statusINPROGRESS.
+Core CI run 41386129647 passed on exact PR head
+76a9198c02021b84b32a8be8a25b40f4ac522fe5, including the full release tests,
+build and Playwright production-preview checks. PR #16 merged normally as
+849e3b067b5cc84aa613027873a0b883518dd380. Both local and remote TXH/main
+were verified at that merge, with a clean working tree, before this final
+documentation update. No reset, force push or history rewrite was used.
+
+All 262 original paths remain present. Scanning all 1,029 tracked files found
+zero configured secret values and zero private/generated artifacts (the public
+.env.example template is intentional). The practice tracker retains 21 done
+tickets with matching content hashes. Final evidence and the scope of the
+documentation-only follow-up are in docs/releases/branch-sync-2026-11-02.md.

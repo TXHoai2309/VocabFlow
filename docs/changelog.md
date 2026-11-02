@@ -2,11 +2,13 @@
 
 ## 2026-11-02 — Reconcile pending source and named branches
 
-Preserve localmedia relocation, offlineeditorialtools, repositoryskill, canonical
-trackers and releasehandoffs. Ignore runtimeevidence/screenshots/provideroutputs
-and oneoffexecutionreports withoutdeletingthem. LocalSQLrehearsal uses synthetic
-I/O, independentofignoredliveoutputs. OrdinaryTXH/mainmerges preserve published
-features and catalog; secrets remainuntracked. US93 recordsverification/status.
+Preserved local media relocation, offline editorial tools, repository skills,
+canonical trackers and release handoffs. Runtime evidence, screenshots, provider
+outputs and generated reports remain local and ignored, without deletion. The
+local SQL rehearsal now carries synthetic I/O. PR #16 merged after full Core CI
+passed; local and remote TXH/main aligned at 849e3b0 before the documentation-only
+completion update. All 262 original paths remain; secret scans passed. US93 is
+accepted; details are in docs/releases/branch-sync-2026-11-02.md.
 
 
 ## 2026-11-02 — Published overlapping subtitle correction (US92)
