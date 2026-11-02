@@ -1,5 +1,15 @@
 # VocabFlow interaction ownership
 
+## Free practice
+
+US70/US71 use the existing focused task layout, async-states and styles.css
+exercise/choice/button owners. Capacity uses SessionCapacityControl with unit
+câu; source/set/level selects are native with OS-owned popup behavior. Source
+configuration is transient per new session; server-confirmed results/config are
+private session state. Failed save retains the exact pending action and locks
+other responses until retry succeeds. Feedback precedes Next; no toast replaces
+learning feedback. Reuse the same pattern in subsequent practice/game slices.
+
 Business authority: docs/product/product-spec.md, docs/architecture/technical-architecture.md,
 docs/decisions.md and docs/stories/US-58-guest-learning.md. Guest access is an
 explicit exception to the historical account-required entry and server-only
@@ -76,3 +86,40 @@ progress requires an explicit action;duplicate submits are locked,errors retain
 the current item and the exact reviewId,stale state offers reload. Guest writes
 use Web Locks and durable storage before success;account writes use server
 transactions. Other lexical guest state,goals and schedules are unchanged.
+
+## Practice, fish game and private video variants (2026-11-01)
+
+Practice/game compose the established study setup, amount/source controls,
+exercise typing/media, async states and history rows. These are separate learning
+contexts: scheduled progress, rewards and guest learning state remain independent.
+Audio failures expose retry/technical skip; their outcome never counts as a wrong
+answer. Confirmed saves advance; uncertain saves retain the exact action and input.
+Device checkpoints belong to user+learner+context and cannot import guest history.
+
+Private video uses the visible original YouTube player with native controls and
+responsive minimum dimensions. Imported timed English subtitles, native selects,
+segment loop/bookmarks and practice share source version pins. Player errors keep
+text/bookmarks usable and never substitute other audio. Subtitle import retains
+invalid input with inline reasons; missing Vietnamese is explicit. Translation and
+native transcript processing use verified free Supadata native-only and DeepL EN→VI allowances.
+
+Video gap practice owns masked source, first feedback, technical skips and its
+history; it does not mount the full subtitle viewer. A same-device active pointer
+offers resume before full Xem hiểu. Opening source text confirms revealed once for
+the unresolved current question. Draft, pending action and completed view survive
+reload; stale pins preserve historical results and offer an explicit new attempt.
+History uses bounded rows and pagination, distinct viewed-position/bookmark and
+resolved-result labels. Account/learner changes remount private resources and
+cancel late reads. No completion claim arises from elapsed viewing time.
+
+
+Private video management composes native selects, async states and the shared
+app-owned ConfirmationDialog (native dialog, explicit focus return and Tab wrap).
+Preview resolves owned scope/counts; destructive action requires explicit confirm.
+Cancel/Escape before dispatch preserve data. Pending delete is durable before POST;
+uncertain/reloaded requests reuse the exact action. Storage failure sends nothing
+and remains cancelable. Server data revisions and tombstones fence old writes;
+local/cross-tab invalidation cancels late reads and clears matching practice drafts.
+Source errors retain saved bilingual text without replacement audio or automatic
+processing. Translation shows selected source/quota and requires nonpersonal review;
+DeepL retention and deepl.com attribution remain visible.

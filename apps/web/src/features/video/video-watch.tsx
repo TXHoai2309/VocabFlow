@@ -1,0 +1,66 @@
+import {useSourceReports} from "./use-source-reports";
+import { useVideoTranslations } from "./use-video-translations";
+import { VideoNative } from "./video-native";
+import { useEffect, useRef, useState } from "react";
+import { VIDEO_SUBTITLE_MAX_BYTES, type VideoTranscript, type VideoTranscriptImport } from "@vocabflow/contracts";
+import { parseTimedSubtitles, VideoRuleError } from "@vocabflow/learning-domain";
+import { ErrorState, LoadingState } from "../../components/async-states";
+import { importTranscript, requestTranscript, requestTranscripts, VideoClientError } from "./video-client";
+import { YoutubePlayerView } from "./youtube-player";
+import { useVideoPlayback } from "./use-video-playback";
+import { VideoSegments } from "./video-segments";
+import { useNavigate } from "react-router";
+const stamp = (ms: number) => `${Math.floor(ms / 60000)}:${String(Math.floor(ms / 1000) % 60).padStart(2, "0")}.${String(ms % 1000).padStart(3, "0")}`;
+function ImportSubtitles({ learnerId, videoId, onSaved }: { learnerId: string; videoId: string; onSaved: (item: VideoTranscript) => void }) {
+  const [text, setText] = useState(""), [format, setFormat] = useState<"srt" | "vtt">("srt"), [fileName, setFileName] = useState<string | null>(null), [busy, setBusy] = useState(false), [uncertain, setUncertain] = useState(false), [error, setError] = useState<string | null>(null);
+  const pending = useRef<VideoTranscriptImport | null>(null), lock = useRef(false), input = useRef<HTMLTextAreaElement>(null), fileVersion = useRef(0);
+  async function file(file: File | undefined) {
+    const version = ++fileVersion.current; if (!file) return;
+    if (!/\.(srt|vtt)$/i.test(file.name) || !file.size || file.size > VIDEO_SUBTITLE_MAX_BYTES) { setError("Chọn file SRT/VTT không rỗng, tối đa512 KiB."); return; }
+    try { const value = await file.text(); if (version !== fileVersion.current) return; setText(value); setFormat(/\.vtt$/i.test(file.name) ? "vtt" : "srt"); setFileName(file.name); setError(null); }
+    catch { if (version === fileVersion.current) setError("Không đọc được file. Chọn lại hoặc dán lời phụ đề."); }
+  }
+  async function save() {
+    if (lock.current) return;
+    try { parseTimedSubtitles(text, format, "en"); } catch (failure) { setError(failure instanceof VideoRuleError ? failure.reason ?? "Kiểm tra lại timing phụ đề." : "Phụ đề không hợp lệ."); input.current?.focus(); return; }
+    lock.current = true; setBusy(true); setError(null); setUncertain(true); pending.current ??= { versionId: crypto.randomUUID(), format, language: "en", text };
+    try { const saved = await importTranscript(learnerId, videoId, pending.current); pending.current = null; setUncertain(false); onSaved(saved); }
+    catch (failure) { if (failure instanceof VideoClientError && failure.code === "INVALID_SUBTITLE") { pending.current = null; setUncertain(false); setError(failure.safeMessage ?? "Phụ đề không hợp lệ. Kiểm tra lời và timing."); } else setError("Chưa xác nhận được phiên bản phụ đề. Giữ nguyên nội dung và thử lại để không tạo trùng."); }
+    finally { lock.current = false; setBusy(false); }
+  }
+  return <section className="exercise-card"><h2>Nhập phụ đề Anh</h2><p>SRT/VTT tối đa512 KiB,5000 cue; dùng mốc thời gian nguồn. Bạn xác nhận file là lời tiếng Anh; kiểm tra ký tự không thay thế xác minh ngôn ngữ.</p><form className="exercise-typing-form" noValidate onSubmit={event => { event.preventDefault(); void save(); }}>
+    <label htmlFor="subtitle-file">File SRT hoặc VTT</label><input id="subtitle-file" type="file" accept=".srt,.vtt" disabled={busy || uncertain} onChange={event => void file(event.target.files?.[0])} />{fileName ? <p role="status">Đã chọn: {fileName}</p> : null}
+    <label htmlFor="subtitle-format">Định dạng phụ đề</label><select id="subtitle-format" value={format} disabled={busy || uncertain} onChange={event => { setFormat(event.target.value as "srt" | "vtt"); setError(null); }}><option value="srt">SRT</option><option value="vtt">VTT</option></select>
+    <label htmlFor="subtitle-text">Lời phụ đề tiếng Anh có thời gian</label><textarea className="resize-none" id="subtitle-text" ref={input} rows={8} style={{ resize: "none" }} value={text} disabled={busy || uncertain} aria-invalid={Boolean(error)} aria-describedby={error ? "subtitle-error" : undefined} onChange={event => { fileVersion.current++; setText(event.target.value); setError(null); }} />
+    {error ? <p id="subtitle-error" role="alert">{error}</p> : null}<button className="button primary" disabled={busy}>{busy ? "Đang lưu phụ đề…" : uncertain ? "Thử lại lưu phụ đề" : "Lưu phiên bản phụ đề Anh"}</button>
+  </form></section>;
+}
+export function VideoWatch({ learnerId, videoId, youtubeId }: { learnerId: string; videoId: string; youtubeId: string }) {
+  const navigate = useNavigate();
+  const playback = useVideoPlayback(), controller = playback.controller; const [retry, setRetry] = useState(0), [version, setVersion] = useState<string | null>(null);
+  const [versions, setVersions] = useState<{ items: Omit<VideoTranscript, "cues">[]; loaded: boolean; error: boolean }>({ items: [], loaded: false, error: false });
+  const [resource, setResource] = useState<{ key: string; item?: VideoTranscript; error?: boolean }>({ key: "" });
+  const [view, setView] = useState<"en" | "bilingual" | "hidden">("en"), [time, setTime] = useState(0), [rates, setRates] = useState<number[]>([]), [rate, setRate] = useState(1), [page, setPage] = useState(1);
+  const [notice, setNotice] = useState<string | null>(null); const key = `${version}:${retry}`;
+  useEffect(() => { let cancelled = false; void requestTranscripts(learnerId, videoId).then(data => { if (!cancelled) { setVersions({ items: data.items, loaded: true, error: false }); setVersion(prior => prior ?? data.latestVersionId); } }).catch(() => { if (!cancelled) setVersions({ items: [], loaded: true, error: true }); }); return () => { cancelled = true; }; }, [learnerId, videoId, retry]);
+  useEffect(() => { if (!version) return; let cancelled = false; void requestTranscript(learnerId, videoId, version).then(item => { if (!cancelled) setResource({ key, item }); }).catch(() => { if (!cancelled) setResource({ key, error: true }); }); return () => { cancelled = true; }; }, [key, learnerId, videoId, version]);
+  const reports=useSourceReports(learnerId,videoId,version);
+  const translations = useVideoTranslations(learnerId,videoId,version);
+  const [openVietnamese,setOpenVietnamese] = useState<string|null>(null);
+  const transcript = resource.key === key ? resource.item : undefined;
+  const activeIndex = transcript?.cues.findIndex(cue => time >= cue.startMs && time < cue.endMs) ?? -1;
+  function saved(item: VideoTranscript) { setVersion(item.versionId); setResource({ key: `${item.versionId}:${retry}`, item }); setVersions(prior => ({ items: [{ ...item }, ...prior.items.filter(version => version.versionId !== item.versionId)], loaded: true, error: false })); setView("en"); setPage(1); setNotice("Đã mở phiên bản phụ đề riêng. Lời và timing nguồn được giữ nguyên."); }
+  return <><YoutubePlayerView youtubeId={youtubeId} controller={controller} onTime={(seconds, duration, state) => { setTime(Math.round(seconds * 1000)); playback.tick(seconds, duration, state); }} onReady={player => { const available = player.getAvailablePlaybackRates().filter(value => Number.isFinite(value) && value > 0); setRates(available); setRate(player.getPlaybackRate()); }} />
+    {rates.length ? <div className="practice-setup"><label htmlFor="video-speed">Tốc độ player hỗ trợ</label><select id="video-speed" value={rate} onChange={event => { const value = Number(event.target.value); if (rates.includes(value)) { controller.current?.setPlaybackRate(value); setRate(value); } }}>{rates.map(value => <option key={value} value={value}>{value}×</option>)}</select></div> : null}
+    {notice ? <p role="status">{notice}</p> : null}
+    <section className="exercise-card"><h2>Phụ đề học</h2>{!versions.loaded ? <LoadingState pattern="rows" label="Đang tải phụ đề đã lưu" /> : versions.error ? <ErrorState description="Chưa tải được phụ đề riêng. Video vẫn xem được." onRetry={() => setRetry(value => value + 1)} /> : !versions.items.length ? <p>Chưa có phụ đề thời gian đã lưu cho video này. Bạn vẫn có thể xem bằng player gốc.</p> : <>
+      <div className="practice-setup"><label htmlFor="transcript-version">Phiên bản phụ đề riêng</label><select id="transcript-version" value={version ?? ""} onChange={event => { setVersion(event.target.value); setPage(1); }}>{versions.items.map(item => <option value={item.versionId} key={item.versionId}>{item.source === "supadata-native" ? "Nguồn Supadata" : "Nhập cá nhân"} · {item.format.toUpperCase()} · {item.createdAt} · {item.versionId.slice(0, 8)}</option>)}</select>
+      <label htmlFor="subtitle-view">Hiển thị phụ đề trong app</label><select id="subtitle-view" value={view} onChange={event => setView(event.target.value as typeof view)}><option value="en">Tiếng Anh</option><option value="bilingual">Anh–Việt</option><option value="hidden">Ẩn lời</option></select></div>
+      {view === "bilingual" && !translations.lookup.size ? <p role="status">Chưa có bản Việt cho phiên bản này. Tiếp tục dùng lời Anh; chưa có yêu cầu dịch nào được gửi.</p> : null}
+      {!transcript ? resource.key === key && resource.error ? <ErrorState description="Chưa tải được phiên bản phụ đề." onRetry={() => setRetry(value => value + 1)} /> : <LoadingState pattern="rows" label="Đang tải lời phụ đề" /> : <><p className="video-player-time">Thời điểm player: {stamp(time)}</p><p>{transcript.source === "supadata-native" ? "Phụ đề có sẵn · Supadata" : "Nguồn nhập cá nhân"} · {transcript.cues.length} cue · Ngôn ngữ khai báo: Anh. Timing theo cue, không phải mốc từng từ.</p>
+      {view === "hidden" ? <p role="status">Đã ẩn lời phụ đề trong app. Phụ đề bật trong player có thể vẫn hiển thị.</p> : <><p role="status">{activeIndex >= 0 ? `Đang nói cue ${activeIndex + 1}` : "Chưa có cue tại thời điểm này"}</p><button className="button secondary" disabled={activeIndex < 0} onClick={() => setPage(Math.floor(activeIndex / 100) + 1)}>Đến cue đang nói</button><ol className="video-cues">{transcript.cues.slice((page - 1) * 100, page * 100).map(cue => <li key={cue.id}><button className="button secondary video-cue" aria-current={transcript.cues[activeIndex]?.id === cue.id ? "true" : undefined} onClick={() => { if (!controller.current) { setNotice("Player chưa sẵn sàng để chuyển mốc. Hãy tải lại player."); return; } controller.current.seekTo(cue.startMs / 1000, true); setTime(cue.startMs); }}><span>{stamp(cue.startMs)}–{stamp(cue.endMs)}</span><span>{cue.text}</span></button>{translations.lookup.has(cue.id) ? <><button className="button secondary" onClick={()=>setOpenVietnamese(openVietnamese===cue.id?null:cue.id)}>Xem bản Việt cue {cue.id.slice(4)}</button>{view==="bilingual"||openVietnamese===cue.id ? <p>{translations.lookup.get(cue.id)} · Gợi ý dịch máy DeepL (deepl.com)</p>:null}</>:null}{reports.items.some(r=>r.cueId===cue.id)?<p>Câu nguồn đã báo lỗi · không dùng cho lượt luyện mới.</p>:<div className="practice-actions"><button className="button secondary" disabled={reports.busy||Boolean(reports.error)} onClick={()=>void reports.report(cue.id,"text")}>Báo lời sai cue {cue.id.slice(4)}</button><button className="button secondary" disabled={reports.busy||Boolean(reports.error)} onClick={()=>void reports.report(cue.id,"timing")}>Báo lệch timing cue {cue.id.slice(4)}</button></div>}</li>)}</ol><nav className="practice-actions" aria-label="Phân trang cue"><button className="button secondary" disabled={page <= 1} onClick={() => setPage(value => value - 1)}>Cue trước</button><span>Trang {page} · {transcript.cues.length} cue</span><button className="button secondary" disabled={page * 100 >= transcript.cues.length} onClick={() => setPage(value => value + 1)}>Cue tiếp</button></nav></>}
+      {reports.error ? <ErrorState description="Chưa xác nhận được báo lỗi nguồn. Thử lại cùng thao tác; kết quả cũ được giữ." onRetry={()=>void reports.report()} />:null}
+      {translations.error ? <ErrorState description="Chưa đọc được bản Việt đã lưu. Lời Anh vẫn dùng được." onRetry={translations.refresh} /> : translations.data?.total ? <nav className="practice-actions" aria-label="Trang bản dịch đã lưu"><button className="button secondary" disabled={translations.page<=1} onClick={()=>translations.setPage(translations.page-1)}>Bản dịch trước</button><span>{translations.data.total} đoạn dịch · Trang {translations.page}</span><button className="button secondary" disabled={translations.page*20>=translations.data.total} onClick={()=>translations.setPage(translations.page+1)}>Bản dịch tiếp</button></nav>:null}
+      </>}
+    </>}</section><VideoSegments onTranslationSaved={translations.refresh} learnerId={learnerId} videoId={videoId} transcript={transcript} playback={playback} onVersion={id => { playback.stop(); setVersion(id); }} onSegment={segment => navigate(`/videos/${videoId}/practice?${new URLSearchParams({ version: segment.versionId, start: String(segment.startMs), end: String(segment.endMs) })}`)} /><VideoNative learner={learnerId} video={videoId} onSaved={saved} /><ImportSubtitles learnerId={learnerId} videoId={videoId} onSaved={saved} /></>;
+}

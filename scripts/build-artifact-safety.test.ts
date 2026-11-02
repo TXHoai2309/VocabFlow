@@ -2,7 +2,7 @@ import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "nod
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { afterEach, describe, expect, it } from "vitest";
-import { buildArtifactDigest, inspectBuildArtifact, sanitizeGeneratedSecretFiles } from "./build-artifact-safety";
+import { buildArtifactDigest, inspectBuildArtifact, sanitizeGeneratedSecretFiles, environmentWithoutKnownArtifactSecrets } from "./build-artifact-safety";
 
 let temporaryRoot: string | undefined;
 
@@ -28,6 +28,16 @@ function createVercelArtifact() {
 }
 
 describe("Vercel build artifact secret safety", () => {
+  it.each(["SUPADATA_API_KEY", "DEEPL_API_KEY"])("rejects %s leaked in static and private function output", name => {
+    const { root, staticRoot, functionRoot } = createVercelArtifact();
+    const secret = "synthetic-provider-secret-for-release-check";
+    writeFileSync(join(staticRoot, "bundle.js"), `const leaked = ${JSON.stringify(secret)};`);
+    writeFileSync(join(functionRoot, "index.js"), `${name}="${secret}";`);
+    expect(inspectBuildArtifact(root, { [name]: secret })).toMatchObject({ safe: false, knownSecretValueMatches: 2, secretValueMatches: 1 });
+  });
+  it("removes both video provider secrets from the build child environment", () => {
+    expect(environmentWithoutKnownArtifactSecrets({ SUPADATA_API_KEY: "synthetic-native-secret", DEEPL_API_KEY: "synthetic-translation-secret", PATH: "synthetic-path" })).toEqual({ PATH: "synthetic-path" });
+  });
   it("removes generated environment files and hashes the static client output", () => {
     const artifact = createArtifact();
     writeFileSync(join(artifact, ".dev.vars"), "DATABASE_URL=synthetic-only", "utf8");

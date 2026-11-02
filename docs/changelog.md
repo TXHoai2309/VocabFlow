@@ -1,5 +1,13 @@
 # VocabFlow Changelog
 
+## 2026-11-02 — Prepare scoped practice/game/video Production release
+
+Owner requests Production deployment plus DB. Isolated main-based release retains
+current published catalog, adds approved21features/11additive migrations and extends
+artifact secret scans/child-environment stripping to Supadata/DeepL keys. Production
+preflight checks canonical identity and exactpending plan. No catalog import/reset
+or unrelated source changes. Release status/evidence tracked in US91.
+
 ## 2026-11-01 — US67 typed JSONB publication bindings
 
 The full rollback rehearsal rejected string-encoded JSONB tags before any

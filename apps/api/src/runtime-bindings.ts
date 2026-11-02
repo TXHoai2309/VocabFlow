@@ -1,4 +1,6 @@
 export type RuntimeBindings = {
+  SUPADATA_API_KEY?: string;
+  DEEPL_API_KEY?: string;
   DATABASE_URL?: string;
   DATABASE_DRIVER?: "neon-http" | "postgres-js" | string;
   BETTER_AUTH_SECRET?: string;
@@ -13,6 +15,8 @@ export type RuntimeBindings = {
 };
 
 const bindingNames = [
+  "SUPADATA_API_KEY",
+  "DEEPL_API_KEY",
   "DATABASE_URL",
   "DATABASE_DRIVER",
   "BETTER_AUTH_SECRET",

@@ -1,0 +1,2 @@
+ALTER TABLE "vocabflow_app"."video_translation_runs" ADD COLUMN "request_id" uuid NOT NULL;--> statement-breakpoint
+ALTER TABLE "vocabflow_app"."video_translation_runs" ADD CONSTRAINT "translation_request_identity" UNIQUE("owner_user_id","learner_id","video_id","request_id");

@@ -134,6 +134,18 @@ export function resolveDatabaseTarget(
 }
 
 export type ErrorCode =
+  | "STALE_PRACTICE_CONTENT"
+  | "PRACTICE_NOT_FOUND"
+  | "GAME_NOT_FOUND"
+  | "STALE_GAME_CONTENT"
+  | "VIDEO_NOT_FOUND"
+  | "INVALID_VIDEO_URL"
+  | "INVALID_SUBTITLE"
+  | "TRANSCRIPT_NOT_FOUND"
+  | "SERVICE_UNAVAILABLE"
+  | "STALE_QUESTION"
+  | "INVALID_OPTION"
+  | "ORIGIN_DENIED"
   | "UNAUTHORIZED"
   | "FORBIDDEN"
   | "HOUSEHOLD_ACCESS_DENIED"
@@ -876,3 +888,15 @@ export const publicVocabularyBrowseQuerySchema = learnerVocabularyBrowseQuerySch
 export type PublicVocabularyBrowseQuery = z.infer<typeof publicVocabularyBrowseQuerySchema>;
 export const publicVocabularyMatchResponseSchema = z.object({ ids: z.array(z.number().int().positive()) }).strict();
 export * from "./foundation.js";
+export * from "./practice.js";
+export * from "./fish-game.js";
+export * from "./video-learning.js";
+export * from "./video-practice.js";
+
+export * from "./video-native.js";
+
+export * from "./video-translation.js";
+
+export * from "./video-source.js";
+
+export * from "./video-management.js";

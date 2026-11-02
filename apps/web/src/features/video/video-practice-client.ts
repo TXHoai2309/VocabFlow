@@ -1,0 +1,11 @@
+import {videoWriteHeaders} from "./video-client";
+import { videoPracticeSessionSchema, videoPracticeHistorySchema, videoPracticeResultsSchema, type VideoPracticeAction, type VideoPracticeCreate } from "@vocabflow/contracts";
+import { VideoClientError } from "./video-client";
+const base = (learner: string, video: string) => `/api/learners/${encodeURIComponent(learner)}/video-library/${encodeURIComponent(video)}/practice-sessions`;
+async function response(value: Response) { if (!value.ok) { let code = "VIDEO_PRACTICE_FAILED"; try { code = (await value.json() as { error?: { code: string } }).error?.code ?? code; } catch { /* Safe response. */ } throw new VideoClientError(code); } return videoPracticeSessionSchema.parse(await value.json()); }
+export async function createVideoPracticeRequest(learner: string, video: string, input: VideoPracticeCreate) { return response(await fetch(base(learner, video), { method: "POST", credentials: "same-origin", headers: videoWriteHeaders(learner,video), body: JSON.stringify(input) })); }
+export async function actVideoPracticeRequest(learner: string, video: string, session: string, action: VideoPracticeAction) { return response(await fetch(`${base(learner, video)}/${session}/actions`, { method: "POST", credentials: "same-origin", headers: videoWriteHeaders(learner,video), body: JSON.stringify(action) })); }
+export async function readVideoPracticeRequest(learner: string, video: string, session: string) { return response(await fetch(`${base(learner, video)}/${session}`, { credentials: "same-origin", cache: "no-store" })); }
+async function historyPayload(response: Response): Promise<unknown> { if (!response.ok) throw new VideoClientError("VIDEO_HISTORY_UNAVAILABLE"); return response.json(); }
+export async function requestVideoPracticeHistory(learner: string, video: string, page: number) { return videoPracticeHistorySchema.parse(await historyPayload(await fetch(`${base(learner, video)}?page=${page}`, { credentials: "same-origin", cache: "no-store" }))); }
+export async function requestVideoPracticeResults(learner: string, video: string, session: string, page: number) { return videoPracticeResultsSchema.parse(await historyPayload(await fetch(`${base(learner, video)}/${session}/results?page=${page}`, { credentials: "same-origin", cache: "no-store" }))); }

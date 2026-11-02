@@ -246,6 +246,9 @@ function StudySetupExperience({ activeLearner, scope: urlScope, userId, preferre
       <header className="study-setup-header">
         <Link className="study-setup-back-link" to={backHref}><SetupIcon name="back" />Quay lại</Link>
         <h1 id="study-setup-title">Thiết lập buổi học</h1>
+        <Link className="button secondary" to="/practice">Luyện tự do</Link>
+        <Link className="button secondary" to="/game">Bắn cá điền từ</Link>
+        <Link className="button secondary" to="/videos">Học YouTube</Link>
         {scope && "level" in scope && scope.level ? <p>{scope.level === "GENERAL" ? "Nội dung chung" : `Lớp ${scope.level.slice(-1)}`}</p> : null}
         {scope && "cefr" in scope && scope.cefr ? <p>Mức học: {learningLevelLabel(scope.cefr)}</p> : null}
 

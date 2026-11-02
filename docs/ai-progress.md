@@ -1,5 +1,16 @@
 # Current Handoff Snapshot
 
+## 2026-11-02 — US91 owner-authorized Production release IN PROGRESS
+
+Isolated release branch from83c7842 preserves newer main catalog and all unrelated
+local edits.21featurestories accepted; scoped feature source/migrations now prepared.
+Neon protectedidentity/free target verified; exactly11 pending0025–0035. Production
+provider secrets provisioned server-only. Core/TrustedDB must pass exactmainSHA
+before atomicforward-onlymigration and same-SHA guardedVerceldeploy. ExistingCI
+Verceltoken invalid; validlocalCLI available for guardedmanualcompletion after
+workflow stops. No raw productionrow export; aggregatebaseline only after automatic
+review rejected full localbackup. StoryUS91 records scope and rollbackproof.
+
 ## 2026-11-01 — US67 typed JSONB publication bindings
 
 The full rollback rehearsal rejected string-encoded JSONB tags before any
