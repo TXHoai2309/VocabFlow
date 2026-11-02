@@ -22,6 +22,16 @@ import {
   masterVocabularyMappings,
   masterVocabularyTopicMemberships,
   reviewEvents,
+  practiceSessions,
+  fishGames,
+  videoLibrary,
+  videoTranscripts,
+  videoWatchStates,
+  videoDeletionReceipts,
+  videoSourceReports,
+  videoTranslationRuns,
+  nativeTranscriptRuns,
+  videoPracticeSessions,
   session,
   topics,
   user,
@@ -52,6 +62,16 @@ describe("dedicated application schema", () => {
     expect(MIGRATION_SCHEMA).toBe("drizzle");
     expect(DATABASE_RESET_POLICY.applicationSchemas).toEqual([APP_SCHEMA]);
     expect(DATABASE_RESET_POLICY.applicationTables).toEqual([
+      `${APP_SCHEMA}.video_deletion_receipts`,
+    `${APP_SCHEMA}.video_source_reports`,
+    `${APP_SCHEMA}.video_translation_runs`,
+    `${APP_SCHEMA}.native_transcript_runs`,
+    `${APP_SCHEMA}.video_practice_sessions`,
+      `${APP_SCHEMA}.video_watch_states`,
+      `${APP_SCHEMA}.video_transcripts`,
+      `${APP_SCHEMA}.video_library`,
+      `${APP_SCHEMA}.fish_games`,
+      `${APP_SCHEMA}.practice_sessions`,
       `${APP_SCHEMA}.foundation_reviews`,
       `${APP_SCHEMA}.foundation_attempts`,
       `${APP_SCHEMA}.foundation_progress`,
@@ -100,7 +120,7 @@ describe("dedicated application schema", () => {
   });
 
   it("binds every runtime Drizzle table to the dedicated application schema", () => {
-    for (const table of [account, session, user, verification, households, householdMembers, learnerProfiles, vocabularies, topics, learningSets, vocabularyTopics, learningSetItems, masterVocabularyImportRuns, masterVocabularyMappings, masterTopicMappings, masterLearningSetMappings, masterVocabularyTopicMemberships, masterLearningSetMemberships, learnerLearningSets, learnerProgress, learnerSavedVocabulary, reviewEvents, xpEvents, achievements, learnerAchievements]) {
+    for (const table of [videoDeletionReceipts, videoSourceReports, videoTranslationRuns, nativeTranscriptRuns, videoPracticeSessions, videoWatchStates, videoTranscripts, videoLibrary, fishGames, practiceSessions, account, session, user, verification, households, householdMembers, learnerProfiles, vocabularies, topics, learningSets, vocabularyTopics, learningSetItems, masterVocabularyImportRuns, masterVocabularyMappings, masterTopicMappings, masterLearningSetMappings, masterVocabularyTopicMemberships, masterLearningSetMemberships, learnerLearningSets, learnerProgress, learnerSavedVocabulary, reviewEvents, xpEvents, achievements, learnerAchievements]) {
       expect(getTableConfig(table).schema).toBe(APP_SCHEMA);
     }
   });
@@ -325,10 +345,10 @@ describe("dedicated application schema", () => {
     expect(reviewSnapshot.tables[`${APP_SCHEMA}.learner_progress`]?.columns.consecutive_correct.type).toBe("bigint");
     expect(reviewSnapshot.tables[`${APP_SCHEMA}.review_events`]?.columns.expected_revision.type).toBe("bigint");
     expect(reviewSnapshot.tables[`${APP_SCHEMA}.review_events`]?.compositePrimaryKeys.review_events_household_review_pk).toBeDefined();
-    expect(journal.entries.map((entry) => entry.tag)).toEqual(["0000_application-schema", "0001_curious_miss_america", "0002_smiling_wrecking_crew", "0003_lazy_lady_deathstrike", "0004_scheduled_review_write", "0005_graceful_eddie_brock", "0006_sticky_risque", "0007_modern_mysterio", "0008_chief_morph", "0009_tricky_meggan", "0010_gamification-rewards", "0011_exercise-correct-xp", "0012_us41_owner_content_overrides", "0013_runtime-vocabulary-sequence-privilege", "0014_vietnamese_catalog_metadata", "0015_clean_yellowjacket", "0016_nostalgic_mattie_franklin", "0017_nosy_hellfire_club", "0018_panoramic_spirit", "0019_light_penance", "0020_learning_topic_review", "0021_flashcard_display_mode", "0022_foundation_learning", "0023_owner_editorial_local", "0024_owner_editorial_publication"]);
+    expect(journal.entries.map((entry) => entry.tag)).toEqual(["0000_application-schema", "0001_curious_miss_america", "0002_smiling_wrecking_crew", "0003_lazy_lady_deathstrike", "0004_scheduled_review_write", "0005_graceful_eddie_brock", "0006_sticky_risque", "0007_modern_mysterio", "0008_chief_morph", "0009_tricky_meggan", "0010_gamification-rewards", "0011_exercise-correct-xp", "0012_us41_owner_content_overrides", "0013_runtime-vocabulary-sequence-privilege", "0014_vietnamese_catalog_metadata", "0015_clean_yellowjacket", "0016_nostalgic_mattie_franklin", "0017_nosy_hellfire_club", "0018_panoramic_spirit", "0019_light_penance", "0020_learning_topic_review", "0021_flashcard_display_mode", "0022_foundation_learning", "0023_owner_editorial_local", "0024_owner_editorial_publication", "0025_free_practice", "0026_fish_games", "0027_private_video_library", "0028_timed_video_transcripts", "0029_video_watch_state", "0030_video_gap_practice", "0031_native_video_transcripts", "0032_video_segment_translation", "0033_translation_request_identity", "0034_private_source_reports", "0035_private_video_deletion_fence"]);
     const latestMigration = journal.entries.at(-1);
     const previousMigration = journal.entries.at(-2);
-    expect(latestMigration).toMatchObject({ idx: 24, tag: "0024_owner_editorial_publication" });
+    expect(latestMigration).toMatchObject({ idx: 35, tag: "0035_private_video_deletion_fence" });
     expect(latestMigration?.when).toBeGreaterThan(previousMigration?.when ?? 0);
     const { id: previousSnapshotId, prevId: previousSnapshotParent, ...previousSnapshotSchema } = previousMigrationSnapshot;
     const { id: currentSnapshotId, prevId: currentSnapshotParent, ...currentSnapshotSchema } = sequencePrivilegeSnapshot;

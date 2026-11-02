@@ -1,0 +1,13 @@
+import { sql } from "drizzle-orm";
+import { errorEnvelope } from "@vocabflow/contracts";
+import type { MiddlewareHandler } from "hono";
+import { createDatabaseVideoLibraryService, VideoError, type VideoLibraryService } from "./video-learning";
+import type { RuntimeBindings } from "./runtime-bindings";
+export const videoWriteFence = (owner: string, learner: string, video: string, epoch = 0) => sql`EXISTS(SELECT 1 FROM vocabflow_app.video_library WHERE owner_user_id=${owner} AND learner_id=${learner}::uuid AND id=${video}::uuid AND data_revision=${epoch} FOR SHARE)`;
+export const videoIdAllowed = (owner: string, learner: string, video: string, kind: "blockedVersions" | "blockedSessions" | "blockedRequests" | "blockedVideo", id: string) => sql`NOT EXISTS(SELECT 1 FROM vocabflow_app.video_deletion_receipts WHERE owner_user_id=${owner} AND learner_id=${learner}::uuid AND video_id=${video}::uuid AND ${kind === "blockedVideo" ? sql`state->>'blockedVideo'='true'` : sql`(state->${kind}) ? ${id}`})`;
+export function videoEpoch(raw: string | undefined) { const n = Number(raw ?? "0"); if (!/^(0|[1-9]\d*)$/.test(raw ?? "0") || !Number.isSafeInteger(n) || n < 0) throw new VideoError("INVALID_REQUEST", 400); return n; }
+export function videoEpochMiddleware(deps: { readSession: (request: Request, env: RuntimeBindings) => Promise<{ user: { id: string } } | null>; library?: VideoLibraryService }): MiddlewareHandler<{ Bindings: RuntimeBindings }> {
+  return async (c, next) => { if (c.req.method !== "POST" || c.req.path.endsWith("/management/delete")) return next(); c.header("Cache-Control", "no-store"); try { const session = await deps.readSession(c.req.raw, c.env); if (!session?.user?.id) return c.json(errorEnvelope("UNAUTHORIZED", "Đăng nhập để ghi dữ liệu video."), 401); let library = deps.library; if (!library) { if (!c.env?.DATABASE_URL) throw new VideoError("SERVICE_UNAVAILABLE", 503); const { createHttpDatabase } = await import("./db/client"); library = createDatabaseVideoLibraryService(createHttpDatabase(c.env.DATABASE_URL, c.env.DATABASE_DRIVER)); }
+    const entry = await library.read(session.user.id, c.req.param("learnerId")!, c.req.param("videoId")!); if (entry.dataRevision !== videoEpoch(c.req.header("X-Video-Revision"))) return c.json(errorEnvelope("STALE_PRACTICE_CONTENT", "Dữ liệu video đã thay đổi. Mở lại video trước khi tiếp tục."), 409); return await next();
+  } catch (error) { return c.json(errorEnvelope(error instanceof VideoError ? error.code : "SERVICE_UNAVAILABLE", "Chưa xác nhận được quyền hoặc phiên dữ liệu video."), error instanceof VideoError ? error.status : 503); } };
+}

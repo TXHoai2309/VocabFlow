@@ -1,3 +1,12 @@
+import {managementRoutes,type ManagementService} from "./video-management";
+import {videoEpochMiddleware} from "./video-write-fence";
+import {sourceReportRoutes,type SourceReportService} from "./video-source";
+import { translationRoutes, type TranslationService } from "./video-translation";
+import { nativeRoutes, type NativeService } from "./video-native";
+import { practiceRoutes, type PracticeService } from "./practice";
+import { fishGameRoutes, type FishGameService } from "./fish-game";
+import { videoLearningRoutes, type VideoLibraryService } from "./video-learning";
+import { videoPracticeRoutes, type VideoPracticeService } from "./video-practice";
 import { readPublicLearningIndex } from "./public-learning-index";
 import { readPublicVocabularyBrowse, readPublicVocabularyMatchIds } from "./learner-vocabulary-browse";
 import { readPublicVocabulary } from "./vocabulary";
@@ -82,6 +91,14 @@ type BootstrapRunner = (userId: string, env: RuntimeBindings) => Promise<Househo
 type AuthRequestHandler = (request: Request, env: RuntimeBindings) => Promise<Response>;
 
 export type AppDependencies = {
+  videoManagementService?:ManagementService;
+  sourceReportService?: SourceReportService;
+  translationService?: TranslationService;
+  nativeService?: NativeService;
+  practiceService?: PracticeService;
+  fishGameService?: FishGameService;
+  videoLibraryService?: VideoLibraryService;
+  videoPracticeService?: VideoPracticeService;
   publicLearningIndex?: (env: RuntimeBindings) => Promise<PublicLearningIndex>;
   publicVocabularyBatch?: (env: RuntimeBindings, ids: number[]) => Promise<VocabularyDto[]>;
   publicVocabularyBrowse?: (env: RuntimeBindings, query: PublicVocabularyBrowseQuery) => Promise<LearnerVocabularyBrowseResponse>;
@@ -357,6 +374,16 @@ export function createApp(dependencies: AppDependencies = {}) {
   const readSession = dependencies.readSession ?? readAuthenticatedSession;
   const bootstrap = dependencies.bootstrap ?? runBootstrap;
   const application = new Hono<{ Bindings: RuntimeBindings }>();
+
+  application.use("/api/learners/:learnerId/video-library/:videoId/*",videoEpochMiddleware({readSession,library:dependencies.videoLibraryService}));
+  application.route("/api/learners/:learnerId/practice-sessions", practiceRoutes({ readSession, service: dependencies.practiceService }));
+  application.route("/api/learners/:learnerId/fish-games", fishGameRoutes({ readSession, service: dependencies.fishGameService }));
+  application.route("/api/learners/:learnerId/video-library/:videoId/management",managementRoutes({readSession,service:dependencies.videoManagementService}));
+  application.route("/api/learners/:learnerId/video-library/:videoId/transcripts/:versionId/reports",sourceReportRoutes({readSession,service:dependencies.sourceReportService}));
+  application.route("/api/learners/:learnerId/video-library/:videoId/translations", translationRoutes({ readSession, service: dependencies.translationService }));
+  application.route("/api/learners/:learnerId/video-library/:videoId/native-transcript", nativeRoutes({ readSession, service: dependencies.nativeService }));
+  application.route("/api/learners/:learnerId/video-library/:videoId/practice-sessions", videoPracticeRoutes({ readSession, service: dependencies.videoPracticeService }));
+  application.route("/api/learners/:learnerId/video-library", videoLearningRoutes({ readSession, service: dependencies.videoLibraryService }));
 
   application.use("/api/*", async (c, next) => {
     await next();

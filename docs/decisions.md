@@ -916,3 +916,20 @@ its plain-text backend. Six sound targets remain pending and unassessable;
 no paid provider switch or fake phoneme substitute. New audio remains pending
 listening acceptance;old05/06approval is not assigned to new bytes. Evidence:
 `plans/editorial-refresh-2026-10-28/foundation-08-09-execution-2026-10-30.md`.
+
+
+## 2026-11-01 — Execute approved video v1 with verified free providers
+
+The owner assigned all21 tickets and supplied server-only Supadata/DeepL keys.
+Use Supadata native-only timed English (never auto/ASR) after Free quota checks,
+and api-free.deepl.com EN→VI after finite free allowance/language checks. No paid
+fallback or automatic redispatch of uncertain processing. Selected translation
+requires reviewed nonpersonal content; Developer retention/reuse conditions and
+provider attribution are shown. Cached output remains private and version-pinned.
+
+Approved deletion uses owned scope preview/explicit app confirmation and minimal
+idempotency receipts/tombstones. Additive0035 data revision fences all video writes,
+including late provider callbacks; atomic SQL supports the existing HTTP database
+architecture. Receipts keep IDs/counts only, no removed captions/drafts. Migration
+preparation and rollback-only local rehearsal do not authorize cloud application,
+production deletion or deployment.

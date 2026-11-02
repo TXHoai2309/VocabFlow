@@ -1,4 +1,12 @@
+import {VideoManagementPage} from "./features/video/video-management-page";
 import { useState } from "react";
+import { PracticePage } from "./features/practice/practice-page";
+import { PracticeHistoryPage } from "./features/practice/practice-history-page";
+import { GamePage } from "./features/game/game-page";
+import { GameHistoryPage } from "./features/game/game-history-page";
+import { VideoLibraryPageView, VideoPageView } from "./features/video/video-page";
+import { VideoPracticePage } from "./features/video/video-practice-page";
+import { VideoHistoryPage } from "./features/video/video-history-page";
 import { GuestProvider, LearningMode } from "./features/guest/guest-provider";
 import { Link, Navigate, Route, Routes } from "react-router";
 import { AppShell } from "./components/app-shell";
@@ -121,6 +129,13 @@ export function AppRoutes() {
       <Route path="/register" element={<RegisterPage />} />
       <Route element={<AppShellRoute />}>
         <Route path="/progress" element={<ProgressPage />} />
+        <Route path="/game" element={<GamePage />} />
+        <Route path="/game/history" element={<GameHistoryPage />} />
+        <Route path="/videos" element={<VideoLibraryPageView />} />
+        <Route path="/videos/:videoId" element={<VideoPageView />} />
+        <Route path="/videos/:videoId/practice" element={<VideoPracticePage />} />
+        <Route path="/videos/:videoId/manage" element={<VideoManagementPage />} />
+        <Route path="/videos/:videoId/history" element={<VideoHistoryPage />} />
         <Route path="/learner-settings" element={<LearnerSettingsPage />} />
         <Route path="/vocabulary" element={<VocabularyListPage />} />
         <Route path="/vocabulary/:vocabularyId" element={<VocabularyDetailPage />} />
@@ -132,6 +147,8 @@ export function AppRoutes() {
         <Route path="/learning-sets/assign" element={<LearnerLearningSetsPage />} />
         <Route path="/learning-sets/:learningSetId" element={<LearningSetDetailPage />} />
         <Route path="/study/setup" element={<StudySetupPage />} />
+        <Route path="/practice" element={<PracticePage />} />
+        <Route path="/practice/history" element={<PracticeHistoryPage />} />
         <Route path="/study" element={<StudyPage />} />
         <Route path="/study/exercises" element={<ExerciseStudyPage />} />
         <Route path="/foundation/learn" element={<FoundationSetupPage />} />

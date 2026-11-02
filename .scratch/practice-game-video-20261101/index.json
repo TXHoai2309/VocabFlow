@@ -1,0 +1,794 @@
+{
+  "schemaVersion": 1,
+  "feature": "practice-game-video-20261101",
+  "date": "2026-11-01",
+  "timezone": "Asia/Saigon",
+  "approval": {
+    "answer": "Duyệt, xuất Markdown local (đề xuất)",
+    "breakdownApproved": true,
+    "tracker": "local-markdown",
+    "initialStatus": "planned",
+    "executionAuthorized": true,
+    "defaultSkillStatusOverriddenByOwner": true,
+    "executionAssignment": "Owner request 2026-11-01: execute all 21 tickets sequentially, practice → game → video; no workers/commit/push/cloud migration."
+  },
+  "sources": {
+    "spec": "docs/plans/practice-and-link-learning-2026-11-01/spec.md",
+    "specSha256": "698352f2b5c5bca6b13af67bc9aa908612f9c1b38fc33f5692a263ab9b0ee810",
+    "approvedBreakdown": "docs/plans/practice-and-link-learning-2026-11-01/tickets-proposed.md",
+    "approvedBreakdownSha256": "d515a6f6c815d16e56b5f6aee17e17d01b6bc38d9a12991147de573e6f910be0",
+    "specApprovedSha256": "406d8527821e764aa44d4fc6b1d0de03e7c6bcf42d27836f75aacca100ec7dbc"
+  },
+  "sourceOfTruth": "Individual Markdown ticket status/body; synchronize README and this index after changes.",
+  "executionPolicy": {
+    "phaseOrder": [
+      "practice",
+      "game",
+      "video"
+    ],
+    "singleActiveStoryByDefault": true,
+    "storyGateRequired": "READY FOR IMPLEMENTATION",
+    "technicalFrontier": [
+      "01",
+      "13"
+    ],
+    "authorizedExecutionFrontier": [],
+    "recommendedNextWhenAssigned": "01"
+  },
+  "parallelBranches": [
+    {
+      "after": [
+        "02"
+      ],
+      "tickets": [
+        "03",
+        "04",
+        "05"
+      ]
+    },
+    {
+      "after": [
+        "03",
+        "08"
+      ],
+      "tickets": [
+        "09",
+        "10"
+      ]
+    },
+    {
+      "after": [
+        "14"
+      ],
+      "tickets": [
+        "15",
+        "16",
+        "17"
+      ]
+    },
+    {
+      "after": [
+        "15",
+        "16",
+        "18"
+      ],
+      "tickets": [
+        "19",
+        "20"
+      ]
+    }
+  ],
+  "coverage": {
+    "specificStories": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31,
+      32,
+      33,
+      34,
+      35,
+      36,
+      37,
+      38,
+      39,
+      40,
+      41,
+      42,
+      43,
+      44,
+      45,
+      46,
+      47,
+      48,
+      49,
+      50,
+      51,
+      52,
+      53,
+      54,
+      55,
+      56,
+      57,
+      58,
+      59,
+      60,
+      61,
+      62,
+      63,
+      64,
+      65,
+      66,
+      67,
+      68,
+      69,
+      70,
+      71,
+      72,
+      73,
+      74,
+      75,
+      76,
+      77,
+      78,
+      79,
+      80,
+      81,
+      82,
+      83,
+      84,
+      85
+    ],
+    "sharedStories": [
+      86,
+      87,
+      88,
+      89,
+      90
+    ],
+    "ticketCount": 21,
+    "ticketSpecificAcceptanceCriteria": 95
+  },
+  "tickets": [
+    {
+      "id": "01",
+      "title": "Hoàn thành một buổi luyện ảnh chọn từ cho tài khoản",
+      "phase": "practice",
+      "file": "issues/01-account-image-choice.md",
+      "status": "done",
+      "executionAuthorized": true,
+      "blockedBy": [],
+      "specStories": [
+        1,
+        2,
+        5,
+        8,
+        11,
+        12,
+        17,
+        19,
+        20,
+        21,
+        22,
+        26,
+        28
+      ],
+      "sharedSpecStories": [
+        86,
+        87,
+        88,
+        89,
+        90
+      ],
+      "acceptanceCriteriaCount": 5,
+      "externalPrerequisites": [],
+      "sha256": "b3d675d32ad2d42262ad46cf5c93a4e828eb70f2205efe81f329798895835412",
+      "bytes": 3404
+    },
+    {
+      "id": "02",
+      "title": "Chọn nguồn và quy mô buổi luyện đúng phạm vi",
+      "phase": "practice",
+      "file": "issues/02-practice-scope-and-count.md",
+      "status": "done",
+      "executionAuthorized": true,
+      "blockedBy": [
+        "01"
+      ],
+      "specStories": [
+        3,
+        4,
+        10,
+        13,
+        14
+      ],
+      "sharedSpecStories": [
+        86,
+        87,
+        88,
+        89,
+        90
+      ],
+      "acceptanceCriteriaCount": 5,
+      "externalPrerequisites": [],
+      "sha256": "1b6c0853f7aa080feb54b893fed5d29eb850ce8b91f4a6a40feb2854e7934d72",
+      "bytes": 3217
+    },
+    {
+      "id": "03",
+      "title": "Luyện nghe và luân phiên ảnh/nghe với lựa chọn từ",
+      "phase": "practice",
+      "file": "issues/03-listening-and-mixed-practice.md",
+      "status": "done",
+      "executionAuthorized": true,
+      "blockedBy": [
+        "02"
+      ],
+      "specStories": [
+        6,
+        7,
+        15,
+        16,
+        18
+      ],
+      "sharedSpecStories": [
+        86,
+        87,
+        88,
+        89,
+        90
+      ],
+      "acceptanceCriteriaCount": 5,
+      "externalPrerequisites": [],
+      "sha256": "cc1a7686836ff1b00690cd233cef73a31660a82155965068f704a2c573e7adec",
+      "bytes": 2951
+    },
+    {
+      "id": "04",
+      "title": "Gõ từ tiếng Anh trong buổi luyện đã chọn",
+      "phase": "practice",
+      "file": "issues/04-type-word-practice.md",
+      "status": "done",
+      "executionAuthorized": true,
+      "blockedBy": [
+        "02"
+      ],
+      "specStories": [
+        9,
+        17,
+        19
+      ],
+      "sharedSpecStories": [
+        86,
+        87,
+        88,
+        89,
+        90
+      ],
+      "acceptanceCriteriaCount": 5,
+      "externalPrerequisites": [],
+      "sha256": "652a2bb3ce7ca64a61ffece8324df81bd7c33b8fe9b40f1ae2e3daf2fb6c610d",
+      "bytes": 3152
+    },
+    {
+      "id": "05",
+      "title": "Lưu và tiếp tục buổi luyện tài khoản trên cùng thiết bị",
+      "phase": "practice",
+      "file": "issues/05-resume-account-practice.md",
+      "status": "done",
+      "executionAuthorized": true,
+      "blockedBy": [
+        "02"
+      ],
+      "specStories": [
+        26,
+        27
+      ],
+      "sharedSpecStories": [
+        86,
+        87,
+        88,
+        89,
+        90
+      ],
+      "acceptanceCriteriaCount": 5,
+      "externalPrerequisites": [],
+      "sha256": "46b471a9c6c2b441fa978045bda04ef9b89160aac7648ccf3b35379141b24c5e",
+      "bytes": 3072
+    },
+    {
+      "id": "06",
+      "title": "Khách luyện đầy đủ với lịch sử và tiếp tục trên thiết bị",
+      "phase": "practice",
+      "file": "issues/06-guest-practice.md",
+      "status": "done",
+      "executionAuthorized": true,
+      "blockedBy": [
+        "03",
+        "04",
+        "05"
+      ],
+      "specStories": [
+        25,
+        26,
+        27
+      ],
+      "sharedSpecStories": [
+        86,
+        87,
+        88,
+        89,
+        90
+      ],
+      "acceptanceCriteriaCount": 4,
+      "externalPrerequisites": [],
+      "sha256": "97af958f042d2db502e6e85aca26654d819c79b158a3a31d43d56b3ffb2db95c",
+      "bytes": 3161
+    },
+    {
+      "id": "07",
+      "title": "Xem lịch sử, từ cần luyện thêm và luyện lại câu sai",
+      "phase": "practice",
+      "file": "issues/07-practice-history-and-retry.md",
+      "status": "done",
+      "executionAuthorized": true,
+      "blockedBy": [
+        "06"
+      ],
+      "specStories": [
+        23,
+        24,
+        29
+      ],
+      "sharedSpecStories": [
+        86,
+        87,
+        88,
+        89,
+        90
+      ],
+      "acceptanceCriteriaCount": 5,
+      "externalPrerequisites": [],
+      "sha256": "890bd89c37021f09bba146fdf23ba69403ff5309a6c2dcda59855f4c494b934a",
+      "bytes": 3489
+    },
+    {
+      "id": "08",
+      "title": "Chơi một ván bắn cá 5 tim bằng ảnh và gõ từ",
+      "phase": "game",
+      "file": "issues/08-fish-game-five-hearts.md",
+      "status": "done",
+      "executionAuthorized": true,
+      "blockedBy": [
+        "04"
+      ],
+      "specStories": [
+        30,
+        31,
+        32,
+        33,
+        34,
+        35,
+        37,
+        38,
+        39,
+        50,
+        51
+      ],
+      "sharedSpecStories": [
+        86,
+        87,
+        88,
+        89,
+        90
+      ],
+      "acceptanceCriteriaCount": 5,
+      "externalPrerequisites": [],
+      "sha256": "cf636257a1f02552ac7d7674da2861b9ccdbdc931d713228d80e6660933498d4",
+      "bytes": 3476
+    },
+    {
+      "id": "09",
+      "title": "Chơi liên tục đúng nguồn với ảnh/nghe/kết hợp",
+      "phase": "game",
+      "file": "issues/09-game-scoped-continuous-play.md",
+      "status": "done",
+      "executionAuthorized": true,
+      "blockedBy": [
+        "03",
+        "08"
+      ],
+      "specStories": [
+        36,
+        40,
+        41,
+        42,
+        49
+      ],
+      "sharedSpecStories": [
+        86,
+        87,
+        88,
+        89,
+        90
+      ],
+      "acceptanceCriteriaCount": 4,
+      "externalPrerequisites": [],
+      "sha256": "0602b9438026bc1313d9ae515af3bbbf2b7cb1711e7d30281e4d2ee341a07819",
+      "bytes": 3218
+    },
+    {
+      "id": "10",
+      "title": "Tạm dừng, tiếp tục và bắt đầu ván mới đúng tim/điểm",
+      "phase": "game",
+      "file": "issues/10-resume-game.md",
+      "status": "done",
+      "executionAuthorized": true,
+      "blockedBy": [
+        "08"
+      ],
+      "specStories": [
+        44,
+        45,
+        48
+      ],
+      "sharedSpecStories": [
+        86,
+        87,
+        88,
+        89,
+        90
+      ],
+      "acceptanceCriteriaCount": 4,
+      "externalPrerequisites": [],
+      "sha256": "dff4e979adcadd0e217bebd94f41bd1ac44a557743bcb833939e83ef0d79d42e",
+      "bytes": 3025
+    },
+    {
+      "id": "11",
+      "title": "Khách chơi và tiếp tục ván với dữ liệu cục bộ",
+      "phase": "game",
+      "file": "issues/11-guest-game.md",
+      "status": "done",
+      "executionAuthorized": true,
+      "blockedBy": [
+        "09",
+        "10"
+      ],
+      "specStories": [
+        47
+      ],
+      "sharedSpecStories": [
+        86,
+        87,
+        88,
+        89,
+        90
+      ],
+      "acceptanceCriteriaCount": 3,
+      "externalPrerequisites": [],
+      "sha256": "5e6b70ca6868fd69db488a60504944e8f40559f680703bcc03443a7753765c99",
+      "bytes": 3108
+    },
+    {
+      "id": "12",
+      "title": "Lịch sử và kỷ lục game riêng theo nguồn/kiểu gợi ý",
+      "phase": "game",
+      "file": "issues/12-game-history-and-records.md",
+      "status": "done",
+      "executionAuthorized": true,
+      "blockedBy": [
+        "11"
+      ],
+      "specStories": [
+        43,
+        46,
+        51
+      ],
+      "sharedSpecStories": [
+        86,
+        87,
+        88,
+        89,
+        90
+      ],
+      "acceptanceCriteriaCount": 4,
+      "externalPrerequisites": [],
+      "sha256": "e152f60f15aff80c326f96e25f6090823a6d8e7dd55eff2c993be2afed0dbe27",
+      "bytes": 3364
+    },
+    {
+      "id": "13",
+      "title": "Thêm video vào thư viện riêng và xem bằng player gốc",
+      "phase": "video",
+      "file": "issues/13-private-youtube-library.md",
+      "status": "done",
+      "executionAuthorized": true,
+      "blockedBy": [],
+      "specStories": [
+        52,
+        53,
+        54,
+        79,
+        85
+      ],
+      "sharedSpecStories": [
+        86,
+        87,
+        88,
+        89,
+        90
+      ],
+      "acceptanceCriteriaCount": 4,
+      "externalPrerequisites": [],
+      "sha256": "0e0f56da60202ec1766e2c1d5e71b5fcb94754432b8979ada17fa45d2de3bc84",
+      "bytes": 3397
+    },
+    {
+      "id": "14",
+      "title": "Xem hiểu với phụ đề Anh nhập SRT/VTT theo thời gian video",
+      "phase": "video",
+      "file": "issues/14-timed-subtitle-import.md",
+      "status": "done",
+      "executionAuthorized": true,
+      "blockedBy": [
+        "13"
+      ],
+      "specStories": [
+        55,
+        58,
+        59,
+        60,
+        73,
+        74,
+        75
+      ],
+      "sharedSpecStories": [
+        86,
+        87,
+        88,
+        89,
+        90
+      ],
+      "acceptanceCriteriaCount": 5,
+      "externalPrerequisites": [],
+      "sha256": "a4c030b33c535706f45c171a57c11fa389e51edd43d8e45db2b7daee5ee710e3",
+      "bytes": 3502
+    },
+    {
+      "id": "15",
+      "title": "Tự lấy phụ đề Anh từ nguồn hỗ trợ trong quota đã xác minh",
+      "phase": "video",
+      "file": "issues/15-provider-timed-transcripts.md",
+      "status": "done",
+      "executionAuthorized": true,
+      "blockedBy": [
+        "14"
+      ],
+      "specStories": [
+        73,
+        74,
+        75,
+        78
+      ],
+      "sharedSpecStories": [
+        86,
+        87,
+        88,
+        89,
+        90
+      ],
+      "acceptanceCriteriaCount": 5,
+      "externalPrerequisites": [
+        "Nguồn timed transcript, khóa, quota và điều kiện lưu dùng lại phải được xác minh; không phát sinh phí mới."
+      ],
+      "sha256": "b52400d8a4c997e0197133ff418aba5d4983e3478e9ffdbc9ddcc3a67af0004e",
+      "bytes": 4008
+    },
+    {
+      "id": "16",
+      "title": "Dịch đoạn được chọn và xem phụ đề Anh–Việt có dùng lại",
+      "phase": "video",
+      "file": "issues/16-segment-translation.md",
+      "status": "done",
+      "executionAuthorized": true,
+      "blockedBy": [
+        "14"
+      ],
+      "specStories": [
+        56,
+        57,
+        75,
+        76,
+        77,
+        78,
+        88
+      ],
+      "sharedSpecStories": [
+        86,
+        87,
+        88,
+        89,
+        90
+      ],
+      "acceptanceCriteriaCount": 5,
+      "externalPrerequisites": [
+        "Nguồn dịch, khóa, quota và điều kiện lưu dùng lại phải được xác minh; không phát sinh phí mới."
+      ],
+      "sha256": "390684ff33c59039e72ed9a9573f2849042bcff75d29cbec9f55df316c92465d",
+      "bytes": 4085
+    },
+    {
+      "id": "17",
+      "title": "Chọn/nghe lặp và đánh dấu đoạn khó trong video",
+      "phase": "video",
+      "file": "issues/17-video-segment-replay-bookmarks.md",
+      "status": "done",
+      "executionAuthorized": true,
+      "blockedBy": [
+        "14"
+      ],
+      "specStories": [
+        61,
+        62,
+        63
+      ],
+      "sharedSpecStories": [
+        86,
+        87,
+        88,
+        89,
+        90
+      ],
+      "acceptanceCriteriaCount": 4,
+      "externalPrerequisites": [],
+      "sha256": "0c8d00d0461490e0de2c39e3e33641150dcfc1971f32f8e154767065323b8d7d",
+      "bytes": 3157
+    },
+    {
+      "id": "18",
+      "title": "Luyện nghe điền từ trên đoạn video đã chọn",
+      "phase": "video",
+      "file": "issues/18-video-gap-fill.md",
+      "status": "done",
+      "executionAuthorized": true,
+      "blockedBy": [
+        "17"
+      ],
+      "specStories": [
+        64,
+        65,
+        66,
+        67,
+        68,
+        69,
+        72,
+        84
+      ],
+      "sharedSpecStories": [
+        86,
+        87,
+        88,
+        89,
+        90
+      ],
+      "acceptanceCriteriaCount": 6,
+      "externalPrerequisites": [],
+      "sha256": "61fca9f2f8c188482223cc88046f287a8c26513e3a13d64694e41869f3c6743f",
+      "bytes": 3763
+    },
+    {
+      "id": "19",
+      "title": "Báo phụ đề sai và thay phiên bản mà giữ lịch sử đúng nguồn",
+      "phase": "video",
+      "file": "issues/19-subtitle-errors-and-versions.md",
+      "status": "done",
+      "executionAuthorized": true,
+      "blockedBy": [
+        "15",
+        "16",
+        "18"
+      ],
+      "specStories": [
+        70,
+        71,
+        77
+      ],
+      "sharedSpecStories": [
+        86,
+        87,
+        88,
+        89,
+        90
+      ],
+      "acceptanceCriteriaCount": 4,
+      "externalPrerequisites": [],
+      "sha256": "b43930220829d7ae3becdce3d9740ccb311bd4edecd449fa015fab67bbfb3036",
+      "bytes": 3762
+    },
+    {
+      "id": "20",
+      "title": "Lịch sử luyện video và tiếp tục buổi dở cùng thiết bị",
+      "phase": "video",
+      "file": "issues/20-video-history-and-resume.md",
+      "status": "done",
+      "executionAuthorized": true,
+      "blockedBy": [
+        "18"
+      ],
+      "specStories": [
+        63,
+        80,
+        84,
+        88
+      ],
+      "sharedSpecStories": [
+        86,
+        87,
+        88,
+        89,
+        90
+      ],
+      "acceptanceCriteriaCount": 4,
+      "externalPrerequisites": [],
+      "sha256": "a2b5b8c69a5fbe3f6821c38629d652e8cc1be5bb1e2d700f5f5d5e36cc290899",
+      "bytes": 3479
+    },
+    {
+      "id": "21",
+      "title": "Quản lý/xóa dữ liệu video riêng và xử lý nguồn không còn phát được",
+      "phase": "video",
+      "file": "issues/21-video-library-management.md",
+      "status": "done",
+      "executionAuthorized": true,
+      "blockedBy": [
+        "19",
+        "20"
+      ],
+      "specStories": [
+        79,
+        81,
+        82,
+        83
+      ],
+      "sharedSpecStories": [
+        86,
+        87,
+        88,
+        89,
+        90
+      ],
+      "acceptanceCriteriaCount": 4,
+      "externalPrerequisites": [],
+      "sha256": "f081abe1047957748d9dae741a1290fb29af4ce8308292dffa7479565efa09a5",
+      "bytes": 4161
+    }
+  ]
+}
