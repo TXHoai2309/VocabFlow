@@ -81,7 +81,11 @@ export async function reconcileGuestCatalog(catalog: { catalogIdentity?: string;
     || readGuestState().catalogIdentity === identity) return;
   const allowed = new Set(catalog.vocabulary.map(x => x.id));
   const sets = new Set(catalog.learningSets.map(x => x.id));
-  if (allowed.size !== 1547) throw new Error("GUEST_CATALOG_INCOMPLETE");
+  // Production can grow additively while retaining this catalog family and all
+  // published IDs. The original local replacement remains the exact pilot.
+  if (identity === "owner-production-1547-20261030-r0001" ? allowed.size < 1547 : allowed.size !== 1547) {
+    throw new Error("GUEST_CATALOG_INCOMPLETE");
+  }
   await mutateGuestState(state => {
     if (state.catalogIdentity === identity) return SKIP_GUEST_WRITE;
     const backup = `${GUEST_STORAGE_KEY}.before.${identity}`;

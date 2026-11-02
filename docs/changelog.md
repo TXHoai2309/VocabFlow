@@ -1,5 +1,354 @@
 # VocabFlow Changelog
 
+## 2026-11-02 — Reconcile pending source and named branches
+
+Preserve localmedia relocation, offlineeditorialtools, repositoryskill, canonical
+trackers and releasehandoffs. Ignore runtimeevidence/screenshots/provideroutputs
+and oneoffexecutionreports withoutdeletingthem. LocalSQLrehearsal uses synthetic
+I/O, independentofignoredliveoutputs. OrdinaryTXH/mainmerges preserve published
+features and catalog; secrets remainuntracked. US93 recordsverification/status.
+
+
+## 2026-11-02 — Published overlapping subtitle correction (US92)
+
+Currentcue followsnewestactive sourceinterval ratherthanholdingoldoverlappingline.
+PR15/e68a0be Linuxproductionpromoted; Core/TrustedDBgreen; shippedJS2regressions
+redbefore/greenafter. Exact63s screenshotcase, native102cue pagination/reload and
+sourceimmutability verified. No source/data/provider/rewardchange. See hotfixreport.
+
+
+## 2026-11-02 — Published21features and11additive Production migrations
+
+ProductionLinux SHA80ade561ebc3cbfd36a2039c22bfae5d692f768f READY/promoted. Core+TrustedDBgreen; ledgerpending0, preservedbusiness/identity/catalog/media/SRS fingerprints. RealAPI+guestbrowserPASS. WindowsartifactmissingHono wasrolledback then replacedbysameSHA stagedLinuxbuild. ExistingCIdeploytoken remainsinvalid; no rejectedcredentialtransfer or privatebackup export performed. See release report.
+
+
+## 2026-11-01 — Complete all21 tickets with verified providers and private deletion
+
+-15/16: actual Supadata native English and DeepL EN→VI verified under free limits; selected review/quota/cache/privacy and no paid fallback.
+-19/21: source reports/immutable replacement and owned preview/confirmation deletion with exact retry, reload/storage recovery, epoch/tombstone fences and cross-tab late-read cancellation. Saved bilingual text remains usable when original embed fails.
+-Final120files/1417tests,143/143Chromium including actualYouTube, lint/typecheck/build/secret+map scans, SQL35rollback/runtimegrants/unchangedSRS+catalog, strictUIaudit0 PASS. All21ACCEPTED; no blocker.
+-Prepared migrations0025–0035 only. Existing unrelated work/media preserved; no persistent/cloudapply, commit/push/deploy or paid service.
+
+## 2026-11-01 — Video history/resume and final authorized implementation gates
+
+- Ticket20/US88: private bounded source-pinned first-result history, same-device
+  draft/pending/feedback/completed resume, explicit new immutable attempts.
+  Direct Xem hiểu confirms reveal once for unresolved current; feedback does
+  not mark future questions. Storage/account/stale-pin failures preserve history.
+- Final root lint/typecheck,120 files/1409 release tests, build/secret+map scans,
+ 126 full Chromium regressions,14 latest video cases and1 actual original
+  YouTube playback/130s seek PASS. SQL rollback verifies22 attempts paged20+2,
+  ownership/CAS/replay/readback and unchanged SRS/reviews/XP/catalog; UI audit0.
+-17 tickets01–14/17/18/20 accepted.15/16 missing provider credentials+verified
+  free/approved quota/reuse;19/21 dependency-blocked, no fake integration success.
+  Tracker evidence has exact unblock conditions. Additive0025–0030 migrations
+  prepared for review only. No persistent/cloud apply, commit/push/deploy, paid
+  provider, catalog/media mutation or unrelated work overwritten.
+
+## 2026-11-01 — Exported 21 local feature tickets
+
+Owner approved the breakdown and Markdown local tracker. Exported 21 separate
+tickets, README and dependency/coverage index in the new feature namespace, all
+planned with execution unauthorized. Extended local tracker/triage scope and
+updated spec/plan publication metadata; preserved editorial tickets. No feature
+implementation, external issue, provider, database/cloud or deployment changes.
+
+## 2026-11-01 — Proposed feature ticket breakdown
+
+Drafted 21 end-to-end tickets from the confirmed practice/game/video spec, with
+acceptance criteria, dependency graph, independent branches and story coverage.
+Each slice carries relevant tests and no-SRS/privacy/retry guarantees. Awaiting
+breakdown and tracker approval before exporting individual tickets; no code,
+provider processing, database/cloud or deployment change.
+
+## 2026-11-01 — Consolidated practice/game/video spec
+
+Added one to-spec document with 90 user stories covering the confirmed three
+releases, implementation decisions, the owner-confirmed web/API testing approach,
+out-of-scope items and future ideas. Linked the confirmed implementation plan to
+the consolidated spec. Tracker publishing is not performed: existing local tracker
+configuration only covers the editorial campaign. No feature implementation,
+provider processing, database/cloud changes or release.
+
+## 2026-11-01 — New learning features: interview draft
+
+Q44 confirmed the full video-v1 contract, routine defaults and acceptance cases,
+and the consolidated practice → five-heart game → video plan. First-release
+analysis is complete; marked the current briefs/plan confirmed and the interview
+closed. No implementation, provider call, payment, DB/cloud or deployment change.
+
+Q41–Q43 accepted gap-fill answer/reveal rules, segment-only translation/reuse and
+private account video progress with no SRS/XP/streak effects. Added the full video
+product contract for Q44 review, including explicit proposed answer/source-error/
+version/recovery defaults. Updated the consolidated plan, glossary and ADR context;
+no application, provider, database or deployment work.
+
+Q38–Q40 accepted replay/gap-fill for the first video release, English-default
+watch subtitles and honest playback/manual-subtitle fallback. Dictation/guided
+shadowing remain later work; no automatic speech recognition. Updated scope and
+interview frontier; no application, data, provider or deployment changes.
+
+Q35–Q37 accepted YouTube-first scope, selectable watch/intensive workflows and
+original embedded video audio without standalone MP3 extraction in v1. Added the
+resolved workflow glossary terms. Release exercises and subtitle behavior remain
+under interview; no app, database, provider call or deployment changes.
+
+Q34 changed the active link direction to original-video listening and EN/VI
+subtitles. The owner did not confirm the card-first contract. Added a deeper
+video-learning discovery proposal, marked the prior contract historical and
+reopened phase 3; practice/game stay confirmed. Updated the glossary/ADR context.
+No implementation, paid call, dataset, database or deployment changes.
+
+Recorded accepted priority and practice/import ownership boundaries in the glossary
+and ADRs 0004/0005. Detailed practice contract and later game/link releases remain
+under interview; no app behavior, data or deployment changed.
+
+Round 3 accepted learned-word defaults, explicit alternative sources, choice/typed
+English answers and alternating image/audio combined practice. Updated the glossary
+and discovery tree; media failures, result history and rewards remain proposals.
+
+Round 4 subsequently accepted strict media retry/skip, separate practice history
+and no existing XP/streak credit for practice v1. Added the proposed product loop
+and acceptance examples; session/answer/resume decisions are still under interview.
+
+Round 5 accepted the final practice loop and same-device continuation. The complete
+practice brief is READY FOR CONTRACT REVIEW with a whole-contract confirmation
+pending; updated “Buổi luyện” and “Đã xem đáp án” glossary terms. No code changes.
+
+Q14 subsequently confirmed the whole practice product contract and chose game
+analysis next. Added a game discovery draft; answer mechanics, pressure and reward
+boundaries remain questions. No implementation, generated media or remote changes.
+
+Q15 accepted typing the correct word to trigger a fish hit automatically. Recorded
+the game term; Q16/Q17 pressure and reward proposals are still unanswered.
+
+Q16/Q17 subsequently accepted relaxed untimed play and personal game points/records
+without XP/streak. Q18 accepted practice-source/cue reuse. Score formula and round
+structure (Q19/Q20) remain open; no code or remote changes.
+
+Owner revised the game to heart-based continuous play, unlearned-word expansion
+and defeat at zero hearts. Five is the proposed initial heart count; penalty,
+scope and resume rules remain questions. The fixed-length practice contract is
+unchanged. Recorded the Tim concept; no implementation or remote changes.
+
+Q21–Q23 accepted heart penalties, scoped learned/unlearned cycling and retaining
+the game across reload. Added the full game brief and acceptance examples for
+final review; +10/0 scoring and record grouping are still proposals. Updated
+the Tim/Ván chơi glossary meanings. No app, data, cloud or deployment changes.
+
+Q24 confirmed the complete five-heart game contract and moved to link discovery.
+Q25–Q27 accepted a selectable/editable preview, pasted-text/subtitle fallback and
+same-sense reuse with private meanings/source context. Added a link-learning draft
+and primary-source transcript feasibility notes; no provider or paid call selected.
+
+Q28–Q33 accepted text-first private cards, existing-account imports, normal learning
+and eligible practice/game, reviewed AI drafts, ≤30 selected cards/source operation
+and no new paid spending. Added the complete link contract/defaults/acceptance cases
+for final review plus private-meaning/import/draft glossary terms. No code or calls.
+
+Added a DRAFT design tree for practice modes, mini-games and learning from links.
+Existing image/audio/typing exercises were checked before proposing new scope.
+Priority, scheduling separation and personal imported-content ownership are accepted;
+the detailed feature contract remains open. No feature implementation or production
+release is included in this planning entry.
+
+## 2026-11-01 — US69: one current data folder; workspace clutter removed
+
+Owner requested consolidation and deletion of unnecessary local files. All current
+vocabulary data now lives in `D:/hoctienganh/VocabFlow-data`: unchanged 6,544-entry
+catalog, local/cloud media index, 6,544 images, 13,087 unique MP3s, authoring sources,
+three deferred items, 18 foundation clips and source licenses. Original operational
+and Muse input/intake evidence is preserved in a CRC-verified ZIP. Original frozen
+JSON keeps its historical paths; the current index/relocation plan records new ones.
+
+Moved all 19,656 selected/foundation/deferred media files on the same volume. All
+19,649 available file identities and sizes matched; seven deferred files whose
+directory-entry file IDs were unavailable matched SHA-256 before deletion. Final
+SHA-256 checks pass for every relocated original and all eight critical artifacts.
+No source text, ID, learner progress, DB, cloud asset or deployment was changed.
+
+Removed 120 explicit clutter targets and three merged worktrees after verifying
+their commits remain in main and no unrelated edits existed. Preserved 5,086
+historical code/doc/patch files in one ZIP and independent shadow Git refs in a
+verified bundle under `_archive`. Main Git history/branches and dirty work remain.
+The workspace root now contains only `VocabFlow`, `VocabFlow-data` and `_archive`.
+`.vocabflow-local` keeps two unchanged active env files and a README pointer.
+
+Updated only Node local media configuration: a hash-pinned relocated 1,547-item
+manifest and an exact foundation legacy-path relocation, preserving DB content
+hashes and all request/root/hash guards. Sixteen focused tests, targeted ESLint
+and root typecheck pass. Actual default Hono image/audio responses and foundation
+original-path resolution pass; remote-host/unknown-file checks still deny access.
+No browser, database or cloud calls were used for that media smoke check.
+
+Current entry: `vocabflow-dataset/current.json`. Completion:
+`D:/hoctienganh/VocabFlow-data/operations/reorganization-r0001/handoff.json`.
+Prior US67/US68 operation directories are now inside `operations/original-evidence.zip`.
+
+## 2026-11-01 — US68: retired local data removed; selected 6,544 preserved
+
+Owner requested deletion of old local vocabulary data, keeping the selected owner
+catalog. Removed 259 audited absolute targets containing
+136,189 files (11,588,290,253 bytes): retired external
+Anki/Oxford archives, Master V2/import/release payloads, old source/media caches,
+lexical snapshots and copies in historical local working directories. No old-data
+backup was created. Each target was inside D:/hoctienganh, checked for reparse
+points, and disjoint from every retained source before native PowerShell deletion.
+
+All 19,631 current unique image/audio originals and eight critical catalog/source/
+attribution files match their byte length and SHA-256 before and after deletion.
+The combined selected catalog still has exactly 6,544 entries; frozen 5,000-item
+text, three owner-deferred repairs, selected Muse packages and foundation 08/09
+authoring remain intact. Preserved application code, Git history, schemas,
+synthetic fixtures, licenses and operation evidence. Neon, Cloudinary, local DBs,
+accounts/settings and deployments were not changed by this file cleanup.
+
+Historical Master/replay commands intentionally no longer have their real retired
+data inputs. This is not a full historical test-suite PASS claim. The active owner
+catalog/media inputs remain hash-identical. Git history can still contain earlier
+tracked records; no history rewrite or secure physical erasure is claimed.
+
+Current data entry point: `vocabflow-dataset/current.json` and its README.
+Evidence: `.vocabflow-local/editorial-refresh-20261101/local-legacy-cleanup-r0001/handoff.current.json`.
+
+## 2026-11-01 — US67: 4,997 additional entries published on Production
+
+Owner explicitly deferred antihistamine, painter and apiece and authorized the
+remaining release. Production now serves 6,544 words, 438 learning sets and 123
+topics: the existing 1,547 entries plus 4,997 new entries in 362 new lessons over
+50 topics. All original vocabulary, memberships, accounts, settings and progress
+fingerprints were preserved. Development was not changed in this release.
+
+Uploaded and independently inventoried 14,991 new Cloudinary originals: 4,997
+images in `Vocab/images`, and 9,994 word/example MP3 files in `Vocab/audio`.
+Every original's byte length and MD5 match the SHA-256-pinned local source;
+all 4,640 prior assets remain. The frozen 5,000-item text and three held UUIDs
+are unchanged. Publication is owner-selected; no independent Master PASS,
+official CEFR certification, or full human listening acceptance is claimed.
+
+Merged runtime compatibility and additive tooling through PRs #12/#13; clean
+main release `83c7842bd82612bd8d3d6fbf93cb5f52ff74fa50` passed 32 focused
+runtime/guest tests, 25 additive guards, typecheck, build, Core CI and Trusted DB
+Integration. A full 4,997-item transaction rehearsal rolled back successfully
+before the committed additive apply; all new fields and retained fingerprints
+then verified. Public HTTP checks passed for all index entries and memberships,
+20 detailed samples, six level filters, original CDN hashes and image delivery.
+
+The GitHub Production Release deploy step failed because its existing Vercel
+token is invalid. No GitHub secret was changed. A local Windows prebuilt deploy
+briefly caused API failures and was reverted before any catalog write. The final
+release used Vercel's native Git build from main, was health-checked while staged,
+and promoted as `dpl_FfpGieJodAJ7cXbVWLe3ncxc7md2` before the data apply.
+Production is healthy; future automated deployment still needs its token renewed.
+
+Completion evidence and combined JSON are local, excluded from Git:
+`.vocabflow-local/editorial-refresh-20261101/expansion-4997-production-r0001/handoff.current.json`
+and `catalog-prod-6544-r0001.json` in the same directory. The bounded 4,997-item
+release is complete; three deferred repairs and unrelated 08/09 remain separate.
+
+## 2026-11-01 — Ticket14: five Muse parts verified; local lesson draft assembled
+
+The owner supplied parts 1–5 and asked to continue compiling lessons while busy.
+They form one complete ZIP64 archive, read directly across the parts without a
+second 4.9 GB archive copy. All 166 frozen input files are byte-identical to the
+Codex source. All 14,998 returned media files pass ZIP CRC and match their own
+receipt SHA-256/length and job/item/content/request/text bindings. No returned
+script or document instruction was executed.
+
+Independent local decoding passes 14,997 files: 4,999 PNG images at 768×768 and
+9,998 audible MP3 files. The producer omitted word audio for antihistamine and
+apiece. Coordinator decoding additionally found painter's PNG truncated within
+IDAT, although its receipt hash matches. Preserve all three items and their UUIDs;
+do not fill silence, fabricate pixels, remove source text, or mark full completion.
+All 5,000 source records remain in the assembled draft; 4,997 are file-complete.
+
+Partitioned into 362 stable lesson drafts across 50 topics, grouped by editorial
+level and up to 20 planned items per lesson. Partition includes held identities
+before filtering, so later media repairs do not move words between lessons.
+Exported shared JSON bindings, topic lesson JSON, searchable local image/audio
+review gallery, coverage CSV and a 3-job retry ZIP. Reviewed 60 sample entries
+(59 readable images plus painter's decode error); this is not full semantic or
+listening acceptance. Nine reported carrier-isolation word clips remain explicitly
+flagged for listening. Model/provider identifiers were not supplied; retain nulls
+and owner-provided Muse attribution rather than inventing them.
+
+The producer checksum list omits 4,242 returned media entries. Every received
+file nevertheless matches its individual receipt; generated a separate complete
+received-media hash list and preserved the original. All 5 source parts remain
+in Downloads. Existing 1,547 selected source records remain unchanged. No DB,
+Cloudinary, application runtime or deployment write occurred; this is a local
+lesson draft, not a published catalog. Eight multipart/archive safety tests pass,
+including traversal, Windows devices/ambiguous names, links, duplicates, CRC
+corruption, truncation and split-boundary reads; assembly partition/binding/hash
+checks and generated gallery JavaScript syntax pass.
+
+Current handoff: `.vocabflow-local/editorial-refresh-20261101/expansion-5000-intake-r0001/handoff.current.json`.
+Archive SHA-256: `e4cc37570f3474dc17d9d7c4a1fa43ce1b7f3e6ccf531abf120f6451e3a60d2b`.
+
+
+## 2026-10-31 — Ticket14 text complete: 5,000 entries ready for Muse media
+
+Owner requested the text and explicitly approved internal parallel workers in
+this chat. Authored and froze5,000selected entries across50topics, each with an
+original English definition, Vietnamese gloss, bilingual example and specific
+image brief. Existing1,547selected items and all live data remain unchanged.
+The main list excludes their normalized/variant forms and internal duplicates.
+Coverage review prioritized50missing core function words (I/you/the/be/because,
+etc.);50specialist drafts are preserved outside the main batch. Unpublished
+proposal replacements have a ledger;300oldUUIDs remain reserved,300newUUIDs
+were allocated, and no published identity/progress was changed.
+
+Frozen JSON,50rawPSVfiles,reviewCSV, explicit three-job bindings per item,
+15,000work orders and100batches of50items are packaged in one8,683,176-byte
+Muse INPUT ZIP. Every ZIP member CRC/byte equality and input pin verifies;
+all100batches exactly equal canonical5,000items/15,000jobs. Ten negative
+identity/duplicate/CEFR/hash/runtime-ID cases are rejected. Six path-safety
+cases also reject. Four singular-example alignment fixes, a verb/noun example
+fix and letter/number visual clarifications were completed before freezing.
+
+Actual level estimates: FIRST_WORDS14,A1 155,A2 645,B1 1,709,B2 1,994,C1 483,
+C2 0. These are editorial judgments, not official CEFR assessments; targets
+were not forced by relabeling. Text has author/coordinator model review;
+independent human/linguistic and actual media acceptance are not claimed.
+Muse only generates images/TTS. Provider calls0,actual media0,DB writes0,
+no runtime import or deployment. Ticket14 remains open for media/intake.
+
+Current handoff: `.vocabflow-local/editorial-refresh-20261031/ticket14-expansion-5000-r0001/handoff.current.json`.
+Dataset: `vocabflow-dataset/workspaces/editorial-refresh-20261031/expansion-5000-r0001/dataset-text-r0001.json`.
+Input ZIP SHA-256: `ad76f8354ecc84733acac025c7711e9ac0d6031d471861ec23865c90e50f64db`.
+
+
+## 2026-10-31 — Ticket14 reopened: 5,000 additional entries, preparation only
+
+Owner requests approximately5,000additional entries beyond the selected1,547,
+manual Muse handoff and one final ZIP. Owner explicitly reaffirmed Codex authors
+all text; Muse produces only images/TTS. Prepared50topic targets,100internal
+batches of50, reserved authoring UUIDv7 identities, a public-content-only
+1,547entry exclusion baseline, JSON schema, media-only prompt and read-only
+readiness/delivery verifier. Existing local IDs/media/progress remain unchanged.
+The preparation ZIP passes CRC/every-member byte verification and input hashes;
+reserved30,000UUIDv7 values are unique. Validator rejects unsafe paths and the
+current packet correctly returns TEXT_NOT_READY. Authored entries0, executable
+jobs0;5,000entries/15,000media jobs remain targets. No production readiness,
+provider submission, new media, database write or deployment is claimed.
+
+Contract: `docs/plans/editorial-refresh-2026-10-28/ticket14-5000-r0001/contract.md`.
+Operational packet/report: `.vocabflow-local/editorial-refresh-20261031/ticket14-expansion-5000-r0001/`.
+08/09 remain unfinished and separate while this owner reprioritization is active.
+
+
+## 2026-10-31 — Cloudinary Media Library folders corrected
+
+The selected media had public ID paths but empty dynamic `asset_folder`, so
+`Vocab/audio` appeared empty. Assigned all 1,547 images to `Vocab/images` and
+3,093 audio originals to `Vocab/audio` with the Explicit API. Final inventory
+verifies all 4,640 asset IDs, public IDs, versions, original URLs and byte
+lengths unchanged, with no other originals. Image/audio delivery samples return
+HTTP 200; sampled original audio SHA-256 matches. No reupload or database write.
+The owner upload script now sets `asset_folder` explicitly; targeted ESLint
+passes. Evidence: `.vocabflow-local/editorial-refresh-20261031/old-data-purge-r0001/folder-organization-verification.current.json`.
+
+
 ## 2026-10-31 — US66 selected catalog only: purge completed
 
 Owner explicitly replaced the earlier retention direction: keep the exact
@@ -5092,3 +5441,101 @@ Added a content-bound, immutable downstream overlay for three grammar-note field
 - Make preparation, verification, enrichment, and sync artifact paths resolve
   from the TXH repository instead of the former worktree path. Portable
   verification is offline and does not write Neon.
+# 2026-11-01 — Account free practice (ticket 01 / US70)
+
+- Add `/practice`: learned-word image choices, reveal/skip/technical outcomes,
+  server-confirmed feedback and separate summary; retry keeps the same action.
+- Separate authorized PostgreSQL state with CAS/idempotency; prepare additive
+  migration 0025. No review/SRS/XP/streak/catalog/media mutation.
+- 117 focused tests, five Chromium flows and rollback-only local DB rehearsal pass.
+
+# 2026-11-01 — Practice sources and count (ticket 02 / US71)
+
+- Explicit learned/set/level/saved scopes, optional level intersection and
+  5/10/20/30 questions; honest eligible counts and empty-source recovery.
+- Server pins config and source; changed-config retries fail without writes.
+- 27 API/reader tests, eight Chromium flows and local rollback SQL scope checks pass.
+
+# 2026-11-01 — Guest free practice (ticket 06 / US75)
+
+- Public guests use all cue/answer combinations with separate durable practice
+  storage, same-device resume and Web Locks; no scheduled learning writes.
+- Read-only public content transport avoids catalog reconciliation side effects.
+- Storage/corruption/two-tab recovery and account separation verified in browser.
+
+# 2026-11-01 — Typed answers and account resume (tickets 04–05 / US73–74)
+
+- Type exact words on image/audio/mixed cues with normalized text and no blank
+  grading; first results and uncertain retries retain server authority.
+- Same-device account checkpoints retain source/question/draft/pending action;
+  stale content blocks new results while preserving committed history.
+- 32 scoped tests,21 browser flows and local rollback DB checks pass.
+
+# 2026-11-01 — Listening and mixed practice (ticket 03 / US72)
+
+- Add word-audio cues and alternating image/audio sessions without repeated targets.
+- Explicit rejection when mixed media is insufficient; replay, retry and technical
+  skip preserve result rules and never substitute Vietnamese meanings.
+- Cue-specific results/summary persist. 29 scoped tests and 11 browser flows pass.
+
+# 2026-11-01 — Practice history and selected retry (ticket07 / US76)
+
+- Add separate account/guest history, resolved-only details, latest-outcome needs-more and selected-wrong retry. Original results remain immutable; uncertain create/reload uses the same saved ID/selection.
+- Integrate0025 with application schema/reset inventory without running reset or persistent migration. Browser/API/local SQL evidence in US76; full repository regression remains tracked. No SRS/reward/catalog writes.
+
+# 2026-11-01 — Five-heart fish game (ticket08 / US77)
+
+- Account image/typed game scores correct answers +10, charges wrong/reveal/active skip one heart, ends at zero and cycles the learned pool with fresh encounter IDs. Canonical API/CAS receipts prevent duplicate score/hearts.
+- Media errors and blank input do not lose hearts; typed input survives save failures; keyboard/mobile/reduced motion and stale-content recovery verified. Separate fish_games migration0026 prepared, never persistently applied. SQL snapshots verify no learning/reward/catalog side effects.
+
+# 2026-11-01 — Scoped continuous game cues (ticket09 / US78)
+
+- Game source/set/level/saved filters stay pinned. Learned targets precede NEW targets in that source, then cycle without early repeats. Audio/mixed retain actual cue media and replay costs no hearts.
+- Technical failures exclude failed targets; exhausted or incompatible cue phases pause with honest explanation and unchanged points/hearts. No NEW word is promoted to learned. Browser/API/local SQL evidence in US78.
+
+# 2026-11-01 — Same-device game resume (ticket10 / US79)
+
+- Namespaced checkpoint holds canonical game pointer, pending receipt, feedback and typed draft. Pause/reload resumes the same queue/hearts/score; uncertain saves replay once and lost games stay lost.
+- Explicit new game retains old state and starts5/0 with chosen config. Storage failures block writes and keep inputs; account changes cannot display previous drafts. Browser/local SQL evidence in US79.
+
+# 2026-11-01 — Guest fish games (ticket11 / US80)
+
+- Guest game transport uses separate validated local store and Web Locks with the same domain rules and checkpoint lifecycle. Public source reads do not mutate scheduled guest state or import games into accounts.
+- Derived score/heart corruption, failed persistence, missing locks, stale content and competing tabs are handled without silent overwrite. Guest3-cue play/resume/loss and unchanged scheduled-state bytes verified in browser.
+
+# 2026-11-01 — Game history and personal records (ticket12 / US81)
+
+- Add private account/guest paged game history and resolved-only outcomes. Records include finalized games only and stay separate by source/filter/cue/rules version. Pause remains unfinished.
+- Explicit finalize persists one receipt with CAS and reload-safe pending confirmation. No new score after end; historical reads/finalize remain possible after media retirement. GroupA+B57 browser tests and full119 files/1399 release tests pass; local SQL proves no learning/reward/catalog side effects.
+
+# 2026-11-01 — Private YouTube library and original player (ticket13 / US82)
+
+- Account/learner-owned library accepts validated single-video URLs and deduplicates sources. Other household parents cannot read private rows. Additive0027 prepared only.
+- Visible original YouTube player supports native controls/errors/retry and destroys on navigation/logout. Actual official-demo playback passed; no transcript, translation, audio extraction or learning-state writes.
+
+# 2026-11-01 — Timed English subtitle import (ticket14 / US83)
+
+- Validate/import SRT/VTT as immutable private source versions with timing/hash. English is declared with conservative script checks; no speech recognition or automatic translation.
+- Original player time drives cue highlight/seek; speed follows actual player capabilities. App subtitles can be hidden, missing Vietnamese is explained. SQL/browser evidence covers immutable readback, errors, retry, privacy and unchanged learning data.
+
+# 2026-11-01 — Video segments, repeat and private bookmarks (ticket17 / US86)
+
+- Select source-timed segment, replay/loop using visible original player with confirmed seek, buffering/pause handling and no timing/comprehension credit. Private bookmarks retain original transcript version; explicit saved viewing position restores on request.
+- SQL CAS receipts prevent duplicated saves. Real public-demo130s seek observed2:10.000 in one desktop check; no cross-device word-level promise. Provider15/16 remain blocked for missing verified credential/allowance.
+
+# 2026-11-01 — Source-pinned video gap fill (ticket18 / US87)
+
+- Generate one source-word blank per suitable cue entirely within selected timing, hide full text before first result, replay original video and separate reveal/skip/media failures. Server grades pinned first outcomes with CAS/receipt replay; no AI grading or mandatory translation.
+- Opening Xem hiểu from current question saves revealed first; player errors block answer and offer technical skip. SQL0030/browser evidence verifies private persistence and no scheduled-learning/reward/catalog changes.
+
+## 2026-11-01 — Native transcript15 after provider credentials
+
+Server-only Supadata Free quota check, one-per-owned-video persisted CAS run, native-only timed English source with immutable attribution, async poll and safe ambiguous/error/manual fallback. Migration0031 prepared; actual native success verified100→99credits and live-dataSQLrollback, auth/replay/no learning changes. Browser17/API-schema21/typecheck/lint/buildPASS. No paid processing/cloud migration.
+
+## 2026-11-01 — Selected-segment translation16
+
+Free-only DeepL EN→VI with verified quota/languages, exact source preflight, explicit nonpersonal review/provider retention notice, private immutable cache/CAS/request-ID uniqueness. Bilingual/individual VI and resolved-only gap/history reuse, never future answer text.33 actual live characters verified, SQL33rollback/privacy/no learning writes,20video/23API/typecheck/lint/build/premiumPASS. Migrations0032–33 prepared only.
+
+## 2026-11-01 — Private source reports/version integrity19
+
+Private text/timing reports with receipts, technical source-error first outcome, futurecue exclusion without widening, old translated history preserved after personal replacement. Migration0034 preparedonly.22browser/24API-schema/lint/typecheck/build/SQL34rollback PASS. Strict history DTO regression found/fixed and allvideo rerun. No provider processing or learning/media mutations.

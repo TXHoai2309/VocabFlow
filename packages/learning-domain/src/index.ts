@@ -270,3 +270,7 @@ export function scheduleReview(input: SchedulerInput): SchedulerOutput {
   };
 }
 export * from "./foundation-queue.js";
+export * from "./practice.js";
+export * from "./fish-game.js";
+export * from "./video-learning.js";
+export * from "./video-practice.js";

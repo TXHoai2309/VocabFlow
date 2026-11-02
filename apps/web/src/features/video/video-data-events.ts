@@ -1,0 +1,12 @@
+import { useEffect, useState } from "react";
+import type { VideoDeleteResult } from "@vocabflow/contracts";
+import { readVideoCheckpoint, clearVideoCheckpoint } from "./video-practice-checkpoint";
+const eventName = "vocabflow:video-data-changed", storageKey = "vocabflow.video.data-change.v1";
+type Change = { user: string; learner: string; video: string; result: VideoDeleteResult; nonce: string };
+function clearMatching(change: Change) { const cp = readVideoCheckpoint(change.user, change.learner, change.video); if (!cp) return; const { scope } = change.result;
+  if (scope.kind === "video" || (scope.kind === "version" && cp.input.versionId === scope.id) || (scope.kind === "practice" && cp.input.sessionId === scope.id) || (scope.kind === "segment" && cp.input.versionId === change.result.versionId && cp.input.startMs === change.result.startMs && cp.input.endMs === change.result.endMs)) clearVideoCheckpoint(change.user, change.learner, change.video);
+}
+export function publishVideoDeletion(user: string, learner: string, video: string, result: VideoDeleteResult) { const change: Change = { user, learner, video, result, nonce: crypto.randomUUID() }; let storageFailed = false; try { clearMatching(change); localStorage.setItem(storageKey, JSON.stringify(change)); } catch { storageFailed = true; } window.dispatchEvent(new CustomEvent(eventName, { detail: change })); return !storageFailed; }
+export function useVideoInvalidation(user: string | null | undefined, learner: string | undefined, video: string | undefined) { const [revision, setRevision] = useState(0);
+  useEffect(() => { const apply = (value: unknown) => { if (!value || typeof value !== "object" || !("user" in value) || !("learner" in value) || !("video" in value)) return; if (value.user !== user || value.learner !== learner || value.video !== video) return; try { clearMatching(value as Change); } catch { /* Server404 still prevents exposing a deleted draft. */ } setRevision(n => n + 1); }; const local = (event: Event) => apply((event as CustomEvent).detail), remote = (event: StorageEvent) => { if (event.key === storageKey && event.newValue) try { apply(JSON.parse(event.newValue)); } catch { /* Invalid local event ignored. */ } }; window.addEventListener(eventName, local); window.addEventListener("storage", remote); return () => { window.removeEventListener(eventName, local); window.removeEventListener("storage", remote); }; }, [user, learner, video]); return revision;
+}

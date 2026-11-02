@@ -1,12 +1,13 @@
 # Trạng thái và triage cho tracker local
 
-Áp dụng cho [chiến dịch biên tập](issue-tracker.md). Không có label ở dịch vụ
-ngoài; ghi bằng trường Markdown và index local. Thứ tự ưu tiên hoặc nhãn
+Áp dụng cho hai phạm vi trong [cấu hình tracker](issue-tracker.md): chiến dịch
+biên tập và nhóm Luyện/Game/Video đã được duyệt ngày 01/11/2026. Không có label
+ở dịch vụ ngoài; ghi bằng trường Markdown và index local. Thứ tự ưu tiên hoặc nhãn
 không tự cho phép triển khai.
 
 | Status | Ý nghĩa |
 | --- | --- |
-| planned | Ticket đã xuất, chưa được giao thực thi. Đây là trạng thái ban đầu của cả 15 ticket. |
+| planned | Ticket đã xuất, chưa được giao thực thi; dùng khi chủ sản phẩm duyệt xuất kế hoạch mà chưa giao code. |
 | ready-for-agent | Đã được phép thực thi trong phạm vi giao, hợp đồng/story đủ điều kiện và blocker đã hoàn tất. |
 | in-progress | Phiên được giao đã bắt đầu; ghi người sở hữu, batchId nếu có và bằng chứng đang làm. |
 | blocked | Đã được giao nhưng có blocker cụ thể; ghi lý do và điều kiện gỡ. |

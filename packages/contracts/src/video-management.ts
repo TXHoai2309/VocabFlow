@@ -1,0 +1,12 @@
+import { z } from "zod";
+export const videoDeleteKindSchema = z.enum(["video", "version", "segment", "translation", "practice"]);
+export const videoDeleteScopeSchema = z.object({ kind: videoDeleteKindSchema, id: z.uuid() }).strict();
+export const videoDeleteCountsSchema = z.object({ videos: z.number().int().nonnegative(), versions: z.number().int().nonnegative(), bookmarks: z.number().int().nonnegative(), translations: z.number().int().nonnegative(), sessions: z.number().int().nonnegative(), reports: z.number().int().nonnegative(), jobs: z.number().int().nonnegative() }).strict();
+export const videoDeletePreviewSchema = z.object({ scope: videoDeleteScopeSchema, dataRevision: z.number().int().nonnegative(), label: z.string(), counts: videoDeleteCountsSchema, versionId: z.uuid().nullable(), startMs: z.number().nullable(), endMs: z.number().nullable() }).strict();
+export const videoDeleteResultSchema = videoDeletePreviewSchema.extend({ actionId: z.uuid(), deleted: z.literal(true) });
+export const videoDeleteInputSchema = z.object({ actionId: z.uuid(), scope: videoDeleteScopeSchema, expectedRevision: z.number().int().nonnegative(), confirmed: z.literal(true) }).strict();
+export const videoInventorySchema = z.object({ page: z.number().int().positive(), pageSize: z.literal(20), total: z.number().int().nonnegative(), kind: videoDeleteKindSchema, items: z.array(z.object({ id: z.uuid(), label: z.string() })).max(20) }).strict();
+export type VideoDeleteScope = z.infer<typeof videoDeleteScopeSchema>;
+export type VideoDeletePreview = z.infer<typeof videoDeletePreviewSchema>;
+export type VideoDeleteResult = z.infer<typeof videoDeleteResultSchema>;
+export type VideoDeleteInput = z.infer<typeof videoDeleteInputSchema>;

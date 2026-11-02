@@ -9,6 +9,8 @@ import {
 } from "@vocabflow/contracts";
 import { authorizeLearnerOwnership } from "./learners";
 import { jsonArray, jsonObject, vocabularyDatasetPredicate, type VocabularyDatasetVersion } from "./vocabulary-dataset-version";
+import type { PracticeSource } from "@vocabflow/contracts";
+import { catalogCefrFilter } from "./catalog-cefr-filter";
 
 export type LearnerVocabularyDatabase = {
   execute: (query: SQL) => Promise<unknown>;
@@ -128,7 +130,7 @@ export type LearnerVocabularyService = {
   list: (userId: string, learnerId: string, level?: VocabularyLevel, vocabularyId?: number) => Promise<LearnerVocabularyDto[]>;
 };
 
-export function createLearnerVocabularyService(database: LearnerVocabularyDatabase, options: { datasetVersion?: VocabularyDatasetVersion } = {}): LearnerVocabularyService {
+export function createLearnerVocabularyService(database: LearnerVocabularyDatabase, options: { datasetVersion?: VocabularyDatasetVersion; practiceSource?: PracticeSource; practiceIds?: number[] } = {}): LearnerVocabularyService {
   const datasetVersion = options.datasetVersion ?? "legacy";
   return {
     async list(userId, learnerId, level, vocabularyId) {
@@ -169,6 +171,11 @@ export function createLearnerVocabularyService(database: LearnerVocabularyDataba
            AND lp.learner_id = ${ownership.learnerId}::uuid
           WHERE v.enabled = true
             AND ${vocabularyDatasetPredicate("v", datasetVersion)}
+            ${options.practiceIds ? sql`AND v.id = ANY(${`{${options.practiceIds.join(",")}}`}::integer[])` : sql``}
+            ${options.practiceSource?.kind === "learned" ? sql`AND lp.status IN ('LEARNING', 'MASTERED')` : sql``}
+            ${options.practiceSource?.cefr ? sql`AND ${catalogCefrFilter(options.practiceSource.cefr)}` : sql``}
+            ${options.practiceSource?.kind === "saved" ? sql`AND EXISTS (SELECT 1 FROM vocabflow_app.learner_saved_vocabulary saved WHERE saved.learner_id = ${ownership.learnerId}::uuid AND saved.vocabulary_id=v.id)` : sql``}
+            ${options.practiceSource?.kind === "set" ? sql`AND EXISTS (SELECT 1 FROM vocabflow_app.learning_set_items si JOIN vocabflow_app.learning_sets selected ON selected.id=si.learning_set_id AND selected.enabled=true WHERE si.learning_set_id=${options.practiceSource.setId} AND si.vocabulary_id=v.id)` : sql``}
             ${level ? sql`AND v.level = ${level}` : sql``}
             ${datasetVersion !== "legacy" && vocabularyId ? sql`AND v.id = ${vocabularyId}` : sql``}
           ORDER BY v.id ASC

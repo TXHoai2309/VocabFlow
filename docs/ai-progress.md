@@ -1,5 +1,409 @@
 # Current Handoff Snapshot
 
+## 2026-11-02 — US93 source cleanup and TXH/main reconciliation IN PROGRESS
+
+Owner asks clean/commit/push remainingwork toTXH/main. Preserved262pendingfile
+hashes beforechanges. Secrets/env/provideroutput/screenshots/traces/oneoffreports
+remainlocalignored; canonicaltrackers/skills/offlinetools/sourcehandoffs tracked.
+Localmedia relocation/pathguard and offlineintake code retained. SQLrehearsal now
+uses syntheticprovidercues/translation instead of ignoredliveoutputs, retaining
+strictlocalhost/identity/rollback safeguards.48focusedtests+8offlinearchive safety
+checksPASS; configuredsecretvaluehits0. No datadeletions/cloud/providerchanges.
+CommitTXH and ordinarymergeorigin/main, preserve typedpublication/video hotfix;
+thenfullchecks/PR/mainmerge/fastforward bothnamedbranches. CurrentstoryUS93.
+
+
+## 2026-11-02 — US92 subtitle overlap hotfix COMPLETE on Production
+
+Prod https://vocab-flow-steel.vercel.app nowselects lateststartedactivecue, fixing
+one-cue lag withoverlappingnative/importedcaptions. At63s picks62.719s cue instead
+of59.280s cue. Originalsource/timestamps/hash/history/cache unchanged; no DB/provider
+processing/quota/SRS change. PR15maine68a0bea2406b97cc2e40a05667df28aa8b36da4,
+Linuxdpl_Ax1qmKFYvFWh9jtwvUQuwUcnhUb1READY/promoted afterstageAPI+exactJSbytechecks.
+Core41383155074rerun2+Trusted41383155082SUCCESS;2existingpracticeflakyfailures
+verifiedisolated/fullunchangedSHArerun withouttestchanges.14clock+18API+31video
+PASS; realprodJS overlapregressions2FAILbefore→2PASSafter. API/cataloghash unchanged.
+PrivateChromeURLconfidence blocked directsessionplayback; shippedcode testedusing
+exactscreenshottimingsandisolatedIOfixtures. Fullreport docs/releases/video-subtitle-overlap-2026-11-02.md.
+
+
+## 2026-11-02 — Production release COMPLETE (US91 ACCEPTED)
+
+Live https://vocab-flow-steel.vercel.app, SHA80ade561ebc3cbfd36a2039c22bfae5d692f768f, Linuxdpl_ZbsRUXt1e1LhKUReL5UzcuVJZsZy. Core41373643857+Trusted41373643826green;0025–0035 applied, pending0,10newtablegrantsPASS, all38oldbusiness/identitydigests+public6544catalog unchanged. Realguestpractice/game/reload/private401/prodHTTPPASS, zeroaccountAPIwrites/SRSchanges. WindowsprebuiltmissingHono rolledback then sameSHAstagedLinux passedbeforepromotion. GitHubauto-deploytoken remainsinvalid; OAuthtransfer/fullrowbackup rejectedbyautomaticreview and NOTexecuted. ManualVercelreleasecomplete; no rawprivateexport/paidspend. Fullreport docs/releases/practice-game-video-2026-11-02.md.
+
+
+## 2026-11-01 — all21 assigned practice/game/video tickets ACCEPTED
+
+All21 sequential tickets are done; no active story or external blocker. Stories
+US70–US90 include READY-before-code contracts and acceptance evidence. Tracker:
+.scratch/practice-game-video-20261101/README.md; final-verification.md has logs.
+
+Account/guest free practice and5-heart fish game preserve separate results and
+scoped sources. Private originalYouTube player, timed English import/native source,
+selected cachedDeepL EN→VI, repeat/bookmarks/gapfill, source reports/version-pinned
+history/device resume and explicit scoped deletion operate through private server
+authority. Source errors are technical; no automatic media replacement or SRS/XP
+writes. Stale/uncertain actions, storage failure and account/cross-tab isolation
+are verified through web/API and actualSQL.
+
+Final120files/1417release tests,143/143Chromium including actualYouTube playback/
+130sseek, rootlint/typecheck/build+secret/map scans,26videoAPI/schema, localSQL35
+rollback and strictUIaudit0 PASS. Initial unrelated Study timingfailure passed
+25/25isolated and fullrerun without Study source edits; logs retained.
+
+Supadata Free native actual1credit100→99; DeepL actual33nonpersonalcharacters
+1m→999967. Keys server-only/ignored.env, no values exposed; provider guards/terms/
+privacy/cache verified. No paid fallback/new spending. Configuration instructions:
+docs/plans/practice-and-link-learning-2026-11-01/provider-setup.md.
+
+HEAD11fef4ae11393e35e81211b44b2daffadc39dab9 unchanged. Initial unrelateddirty
+editorial/media/data preserved. Additive0025–0035 migrations prepared for review
+only; all syntheticSQL/DDL rolled back, no existingdata deletion, commit/push/
+productiondeploy/cloudapply. Release remains a separate owner-controlled step.
+
+## 2026-11-01 — to-tickets: 21 local feature tickets approved and exported
+
+Owner selected “Duyệt, xuất Markdown local”, approving the 21-slice graph and a
+separate local feature tracker with planned/Execution authorized:no. Exported
+one Markdown per approved ticket, preserving all 95 ticket-specific acceptance
+criteria and appending the approved common constraints to each standalone handoff.
+Created README/index under `.scratch/practice-game-video-20261101` and extended
+tracker/triage configuration only for this feature scope; editorial issues are
+untouched. Spec and plan publication metadata now point to the local tracker.
+
+Index includes dependencies, spec-story coverage, source hashes and distinct
+technical/execution frontiers. Technical candidates are 01/13; no execution is
+authorized, and product priority recommends 01 first. No agents, code, feature
+tests/provider requests, DB/cloud changes, commit/push or deployment performed.
+
+Export validation passed: 21 unique files, all planned/no execution; 95 specific
+criteria and 90/90 spec-story coverage including shared requirements; dependency
+order acyclic; source and ticket hashes/lengths match; all 35 checked local links
+resolve. Nineteen existing editorial issue/index/README files remain byte-identical.
+This is document/export verification, not feature-test or implementation evidence.
+
+## 2026-11-01 — to-tickets: proposed 21 feature slices, review pending
+
+Owner invoked to-tickets against the consolidated confirmed spec. Added
+`docs/plans/practice-and-link-learning-2026-11-01/tickets-proposed.md`: seven
+practice, five game and nine video vertical slices, each with deliverable,
+acceptance criteria, real blocking edges and numbered-spec coverage. No broad
+prefactor is justified; narrow separation from SRS belongs in the first practice
+slice. Browser/API tests and authority/privacy/idempotency travel with each slice.
+
+Priority remains practice → game → video; technical edges do not pretend that
+video needs game scores. Explicit independent branches and provider prerequisites
+are shown without authorizing concurrent execution. Missing provider allowance
+does not block the manual-subtitle video path, but cannot be marked integrated.
+Tracker configuration still only covers editorial data work. Awaiting owner
+approval of granularity/edges and tracker selection before per-ticket publication.
+Proposed local export uses planned/Execution authorized:no, subject to that approval.
+No issue files/labels, agents, code, tests for new features, provider calls,
+DB/cloud, commits or deployments were created by this breakdown.
+
+## 2026-11-01 — Consolidated feature spec (to-spec), documentation only
+
+Owner invoked to-spec to synthesize the already confirmed practice/game/video
+scope into one document. Added `docs/plans/practice-and-link-learning-2026-11-01/spec.md`
+with the requested seven-section template, 90 actor/need/benefit user stories,
+implementation boundaries, behavior-focused tests, exclusions and future ideas.
+Read existing exercise/guest browser and component tests and review/gamification
+API tests; owner confirmed the web acceptance seam plus API authority/privacy/
+idempotency checks, mocked provider I/O and separate real integration verification.
+
+No product re-interview or invented endpoint/table/migration/engine selection.
+Existing tracker config explicitly covers only the editorial-refresh campaign;
+new feature tracker/triage scope remains unconfigured. Saved the complete spec in
+repo but did not create an issue or apply ready-for-agent. The to-spec setup
+instruction is recorded; no new tracker scope was silently invented. No code,
+feature test run, provider processing, DB/cloud, commit/push or deployment.
+
+## 2026-11-01 — Practice, games and learning from links: discovery only
+
+CURRENT: discovery complete. Q44 confirmed the full video-v1 contract, its explicit
+defaults/acceptance cases and the consolidated practice → five-heart game → video
+plan. All three first-release product contracts are confirmed (Q14/Q24/Q44); the
+older card-import proposal remains superseded. Updated current status in briefs,
+discovery and ADR context. Provider/quota verification and technical story design
+remain future implementation prerequisites. No code, provider/paid processing,
+DB/cloud/migration, commit or deployment requested or performed in this closeout.
+
+Latest: Q41–Q43 accepted first-answer/reveal rules, on-demand segment translation
+with reuse within verified quota, and private account video history/resume without
+SRS/XP/streak/learned-count writes. Added `video-learning-v1.proposed.md` (READY FOR
+CONTRACT REVIEW) with explicit proposed defaults/acceptance cases and updated the
+consolidated plan. Q44 is the final whole-contract understanding check. Added the
+resolved segment/video-history terms and accepted boundaries to existing ADRs.
+No code, provider processing/payment, migration, DB/cloud or deployment changes.
+
+Q38–Q40 now accepted: segment replay + listening gap-fill in video v1; full
+dictation/guided shadowing later; English watch subtitles by default, Vietnamese
+on demand; playback/SRT/VTT fallback when no timed English transcript, without
+automatic speech recognition. Next frontier Q41–Q43 concerns exercise visibility/
+grading, on-demand translation bounds and private video progress. Docs only.
+
+Q35–Q37 now accepted: YouTube before articles; both Xem hiểu/Luyện sâu with user
+choice; original voice via the visible YouTube player, no separate MP3 in v1.
+Detailed first-release exercise scope is not yet agreed. Next frontier Q38–Q40:
+scope, watch-mode subtitle defaults and missing-transcript/translation handling.
+Updated the video discovery, plan, glossary and decision history; docs only.
+
+Latest direction: Q34 was NOT confirmed. The owner corrected the core to learning
+directly with YouTube video/original voice and bilingual subtitles, and asked for
+deeper idea development rather than flashcards. Marked the old link contract
+historical, reopened phase 3, and added `video-learning.discovery.md`. Practice/game
+remain confirmed. The prior ≤30-card limit is not a video/subtitle constraint.
+Visible original playback, transcript acquisition and translation are separate
+capabilities. Video mode/learning-loop/audio-storage decisions remain proposals;
+no new code, provider requests, paid spending, DB or cloud changes.
+
+Round 2 accepted: practice → game → link-learning priority; free practice/games
+do not reschedule reviews; imported learning sets are personal by default. Added
+resolved glossary terms and ADRs 0004/0005. Current exercises do update scheduled
+progress, so a new free-practice contract is required. Round 3 accepted: learned
+words by default, explicit other scopes, both choice/typing with choice default,
+and alternating image/audio in combined mode. Round 4 accepted strict media
+retry/skip without grading failures, separate synced-account/device-guest history,
+and no existing XP/streak credit in practice v1. Round 5 accepted the 5/10/20/30
+untimed session (default 10, unique initial words), first-answer scoring with a
+separate pre-answer reveal result, and same-device continuation. The full practice
+brief was confirmed in Q14, including its routine defaults and acceptance cases.
+The owner chose game discovery next and selected typed English answers triggering
+automatic fish hits in Q15. The owner then accepted untimed relaxed play and
+personal points/records without XP/streak in Q16/Q17. Q18 accepted reuse of
+practice sources and image/audio/combined cues. The owner then revised the game
+to continuous play with hearts (five as an example), adding unlearned words after
+learned words run out and losing at zero hearts. This supersedes no-lives/fixed
+round proposals, not the confirmed practice contract. Q21–Q23 then accepted five
+hearts, −1 on wrong/reveal/voluntary skip then next target, scoped learned→unlearned
+expansion/reshuffle, and same-device continuation. Q24 confirmed the complete game
+contract, including +10/0 points and grouped private records, and chose link discovery.
+Q25–Q27 accepted preview/select/edit/save, manual text/SRT/VTT fallback, and matching
+same-sense reuse with private new meanings. Supadata official docs show a possible
+third-party public-video transcript route; no provider/plan/call is selected.
+Q28–Q33 then accepted text-first/reused media, account-only imports, normal study/
+review and eligible practice/game, reviewed AI text drafts, one source and ≤30
+selected cards per batch, and no new paid spending. The full link brief is READY
+FOR CONTRACT REVIEW before the later Q34 scope correction above. Actual provider,
+credentials and free/approved quota are unverified engineering dependencies. Practice
+implementation is not requested.
+
+A concrete consolidated `implementation-plan.proposed.md` records the three phases,
+dependency/gates and conditional parallel-work boundaries. It is a plan only, with
+no ticket dispatch, coding, paid provider call, migration or deployment authorization.
+Link technical constraints are
+recorded with official YouTube sources. All implementation remains unapproved.
+
+Owner invoked grill-with-docs and proposed image/audio/combined practice, review,
+shooting-fish word-completion games, and learning vocabulary from YouTube/web links.
+Read-only code exploration confirms existing exercise primitives; no new feature
+acceptance is claimed. Product questions Q2–Q13 are answered; no coding, migration
+or deployment is approved. Practice understanding is confirmed; game discovery
+is active in `game-v1.proposed.md`, with link discovery still queued.
+Design tree: `docs/plans/practice-and-link-learning-2026-11-01/discovery.md`.
+No code, schema, dataset, DB, cloud or deployment change in this discovery round.
+
+## 2026-11-01 — US69: one current data folder; workspace clutter removed
+
+Owner requested consolidation and deletion of unnecessary local files. All current
+vocabulary data now lives in `D:/hoctienganh/VocabFlow-data`: unchanged 6,544-entry
+catalog, local/cloud media index, 6,544 images, 13,087 unique MP3s, authoring sources,
+three deferred items, 18 foundation clips and source licenses. Original operational
+and Muse input/intake evidence is preserved in a CRC-verified ZIP. Original frozen
+JSON keeps its historical paths; the current index/relocation plan records new ones.
+
+Moved all 19,656 selected/foundation/deferred media files on the same volume. All
+19,649 available file identities and sizes matched; seven deferred files whose
+directory-entry file IDs were unavailable matched SHA-256 before deletion. Final
+SHA-256 checks pass for every relocated original and all eight critical artifacts.
+No source text, ID, learner progress, DB, cloud asset or deployment was changed.
+
+Removed 120 explicit clutter targets and three merged worktrees after verifying
+their commits remain in main and no unrelated edits existed. Preserved 5,086
+historical code/doc/patch files in one ZIP and independent shadow Git refs in a
+verified bundle under `_archive`. Main Git history/branches and dirty work remain.
+The workspace root now contains only `VocabFlow`, `VocabFlow-data` and `_archive`.
+`.vocabflow-local` keeps two unchanged active env files and a README pointer.
+
+Updated only Node local media configuration: a hash-pinned relocated 1,547-item
+manifest and an exact foundation legacy-path relocation, preserving DB content
+hashes and all request/root/hash guards. Sixteen focused tests, targeted ESLint
+and root typecheck pass. Actual default Hono image/audio responses and foundation
+original-path resolution pass; remote-host/unknown-file checks still deny access.
+No browser, database or cloud calls were used for that media smoke check.
+
+Current entry: `vocabflow-dataset/current.json`. Completion:
+`D:/hoctienganh/VocabFlow-data/operations/reorganization-r0001/handoff.json`.
+Prior US67/US68 operation directories are now inside `operations/original-evidence.zip`.
+
+## 2026-11-01 — US68: retired local data removed; selected 6,544 preserved
+
+Owner requested deletion of old local vocabulary data, keeping the selected owner
+catalog. Removed 259 audited absolute targets containing
+136,189 files (11,588,290,253 bytes): retired external
+Anki/Oxford archives, Master V2/import/release payloads, old source/media caches,
+lexical snapshots and copies in historical local working directories. No old-data
+backup was created. Each target was inside D:/hoctienganh, checked for reparse
+points, and disjoint from every retained source before native PowerShell deletion.
+
+All 19,631 current unique image/audio originals and eight critical catalog/source/
+attribution files match their byte length and SHA-256 before and after deletion.
+The combined selected catalog still has exactly 6,544 entries; frozen 5,000-item
+text, three owner-deferred repairs, selected Muse packages and foundation 08/09
+authoring remain intact. Preserved application code, Git history, schemas,
+synthetic fixtures, licenses and operation evidence. Neon, Cloudinary, local DBs,
+accounts/settings and deployments were not changed by this file cleanup.
+
+Historical Master/replay commands intentionally no longer have their real retired
+data inputs. This is not a full historical test-suite PASS claim. The active owner
+catalog/media inputs remain hash-identical. Git history can still contain earlier
+tracked records; no history rewrite or secure physical erasure is claimed.
+
+Current data entry point: `vocabflow-dataset/current.json` and its README.
+Evidence: `.vocabflow-local/editorial-refresh-20261101/local-legacy-cleanup-r0001/handoff.current.json`.
+
+## 2026-11-01 — US67: 4,997 additional entries published on Production
+
+Owner explicitly deferred antihistamine, painter and apiece and authorized the
+remaining release. Production now serves 6,544 words, 438 learning sets and 123
+topics: the existing 1,547 entries plus 4,997 new entries in 362 new lessons over
+50 topics. All original vocabulary, memberships, accounts, settings and progress
+fingerprints were preserved. Development was not changed in this release.
+
+Uploaded and independently inventoried 14,991 new Cloudinary originals: 4,997
+images in `Vocab/images`, and 9,994 word/example MP3 files in `Vocab/audio`.
+Every original's byte length and MD5 match the SHA-256-pinned local source;
+all 4,640 prior assets remain. The frozen 5,000-item text and three held UUIDs
+are unchanged. Publication is owner-selected; no independent Master PASS,
+official CEFR certification, or full human listening acceptance is claimed.
+
+Merged runtime compatibility and additive tooling through PRs #12/#13; clean
+main release `83c7842bd82612bd8d3d6fbf93cb5f52ff74fa50` passed 32 focused
+runtime/guest tests, 25 additive guards, typecheck, build, Core CI and Trusted DB
+Integration. A full 4,997-item transaction rehearsal rolled back successfully
+before the committed additive apply; all new fields and retained fingerprints
+then verified. Public HTTP checks passed for all index entries and memberships,
+20 detailed samples, six level filters, original CDN hashes and image delivery.
+
+The GitHub Production Release deploy step failed because its existing Vercel
+token is invalid. No GitHub secret was changed. A local Windows prebuilt deploy
+briefly caused API failures and was reverted before any catalog write. The final
+release used Vercel's native Git build from main, was health-checked while staged,
+and promoted as `dpl_FfpGieJodAJ7cXbVWLe3ncxc7md2` before the data apply.
+Production is healthy; future automated deployment still needs its token renewed.
+
+Completion evidence and combined JSON are local, excluded from Git:
+`.vocabflow-local/editorial-refresh-20261101/expansion-4997-production-r0001/handoff.current.json`
+and `catalog-prod-6544-r0001.json` in the same directory. The bounded 4,997-item
+release is complete; three deferred repairs and unrelated 08/09 remain separate.
+
+## 2026-11-01 — Ticket14: five Muse parts verified; local lesson draft assembled
+
+The owner supplied parts 1–5 and asked to continue compiling lessons while busy.
+They form one complete ZIP64 archive, read directly across the parts without a
+second 4.9 GB archive copy. All 166 frozen input files are byte-identical to the
+Codex source. All 14,998 returned media files pass ZIP CRC and match their own
+receipt SHA-256/length and job/item/content/request/text bindings. No returned
+script or document instruction was executed.
+
+Independent local decoding passes 14,997 files: 4,999 PNG images at 768×768 and
+9,998 audible MP3 files. The producer omitted word audio for antihistamine and
+apiece. Coordinator decoding additionally found painter's PNG truncated within
+IDAT, although its receipt hash matches. Preserve all three items and their UUIDs;
+do not fill silence, fabricate pixels, remove source text, or mark full completion.
+All 5,000 source records remain in the assembled draft; 4,997 are file-complete.
+
+Partitioned into 362 stable lesson drafts across 50 topics, grouped by editorial
+level and up to 20 planned items per lesson. Partition includes held identities
+before filtering, so later media repairs do not move words between lessons.
+Exported shared JSON bindings, topic lesson JSON, searchable local image/audio
+review gallery, coverage CSV and a 3-job retry ZIP. Reviewed 60 sample entries
+(59 readable images plus painter's decode error); this is not full semantic or
+listening acceptance. Nine reported carrier-isolation word clips remain explicitly
+flagged for listening. Model/provider identifiers were not supplied; retain nulls
+and owner-provided Muse attribution rather than inventing them.
+
+The producer checksum list omits 4,242 returned media entries. Every received
+file nevertheless matches its individual receipt; generated a separate complete
+received-media hash list and preserved the original. All 5 source parts remain
+in Downloads. Existing 1,547 selected source records remain unchanged. No DB,
+Cloudinary, application runtime or deployment write occurred; this is a local
+lesson draft, not a published catalog. Eight multipart/archive safety tests pass,
+including traversal, Windows devices/ambiguous names, links, duplicates, CRC
+corruption, truncation and split-boundary reads; assembly partition/binding/hash
+checks and generated gallery JavaScript syntax pass.
+
+Current handoff: `.vocabflow-local/editorial-refresh-20261101/expansion-5000-intake-r0001/handoff.current.json`.
+Archive SHA-256: `e4cc37570f3474dc17d9d7c4a1fa43ce1b7f3e6ccf531abf120f6451e3a60d2b`.
+
+
+## 2026-10-31 — Ticket14 text complete: 5,000 entries ready for Muse media
+
+Handoff attempt: the in-app Muse tab returned `Local browser use is disabled
+in Work settings`. No ZIP was uploaded and no message was sent. The verified
+input ZIP and prompt remain ready for manual handoff; production has not begun.
+
+Owner requested the text and explicitly approved internal parallel workers in
+this chat. Authored and froze5,000selected entries across50topics, each with an
+original English definition, Vietnamese gloss, bilingual example and specific
+image brief. Existing1,547selected items and all live data remain unchanged.
+The main list excludes their normalized/variant forms and internal duplicates.
+Coverage review prioritized50missing core function words (I/you/the/be/because,
+etc.);50specialist drafts are preserved outside the main batch. Unpublished
+proposal replacements have a ledger;300oldUUIDs remain reserved,300newUUIDs
+were allocated, and no published identity/progress was changed.
+
+Frozen JSON,50rawPSVfiles,reviewCSV, explicit three-job bindings per item,
+15,000work orders and100batches of50items are packaged in one8,683,176-byte
+Muse INPUT ZIP. Every ZIP member CRC/byte equality and input pin verifies;
+all100batches exactly equal canonical5,000items/15,000jobs. Ten negative
+identity/duplicate/CEFR/hash/runtime-ID cases are rejected. Six path-safety
+cases also reject. Four singular-example alignment fixes, a verb/noun example
+fix and letter/number visual clarifications were completed before freezing.
+
+Actual level estimates: FIRST_WORDS14,A1 155,A2 645,B1 1,709,B2 1,994,C1 483,
+C2 0. These are editorial judgments, not official CEFR assessments; targets
+were not forced by relabeling. Text has author/coordinator model review;
+independent human/linguistic and actual media acceptance are not claimed.
+Muse only generates images/TTS. Provider calls0,actual media0,DB writes0,
+no runtime import or deployment. Ticket14 remains open for media/intake.
+
+Current handoff: `.vocabflow-local/editorial-refresh-20261031/ticket14-expansion-5000-r0001/handoff.current.json`.
+Dataset: `vocabflow-dataset/workspaces/editorial-refresh-20261031/expansion-5000-r0001/dataset-text-r0001.json`.
+Input ZIP SHA-256: `ad76f8354ecc84733acac025c7711e9ac0d6031d471861ec23865c90e50f64db`.
+
+
+## 2026-10-31 — Ticket14 reopened: 5,000 additional entries, preparation only
+
+Owner requests approximately5,000additional entries beyond the selected1,547,
+manual Muse handoff and one final ZIP. Owner explicitly reaffirmed Codex authors
+all text; Muse produces only images/TTS. Prepared50topic targets,100internal
+batches of50, reserved authoring UUIDv7 identities, a public-content-only
+1,547entry exclusion baseline, JSON schema, media-only prompt and read-only
+readiness/delivery verifier. Existing local IDs/media/progress remain unchanged.
+The preparation ZIP passes CRC/every-member byte verification and input hashes;
+reserved30,000UUIDv7 values are unique. Validator rejects unsafe paths and the
+current packet correctly returns TEXT_NOT_READY. Authored entries0, executable
+jobs0;5,000entries/15,000media jobs remain targets. No production readiness,
+provider submission, new media, database write or deployment is claimed.
+
+Contract: `docs/plans/editorial-refresh-2026-10-28/ticket14-5000-r0001/contract.md`.
+Operational packet/report: `.vocabflow-local/editorial-refresh-20261031/ticket14-expansion-5000-r0001/`.
+08/09 remain unfinished and separate while this owner reprioritization is active.
+
+
+## 2026-10-31 — Cloudinary Media Library folders corrected
+
+The selected media had public ID paths but empty dynamic `asset_folder`, so
+`Vocab/audio` appeared empty. Assigned all 1,547 images to `Vocab/images` and
+3,093 audio originals to `Vocab/audio` with the Explicit API. Final inventory
+verifies all 4,640 asset IDs, public IDs, versions, original URLs and byte
+lengths unchanged, with no other originals. Image/audio delivery samples return
+HTTP 200; sampled original audio SHA-256 matches. No reupload or database write.
+The owner upload script now sets `asset_folder` explicitly; targeted ESLint
+passes. Evidence: `.vocabflow-local/editorial-refresh-20261031/old-data-purge-r0001/folder-organization-verification.current.json`.
+
+
 ## 2026-10-31 — US66 selected catalog only: purge completed
 
 Owner explicitly replaced the earlier retention direction: keep the exact
@@ -8631,3 +9035,7 @@ owner-approved baseline exception. See
   allocation E2E pass. Web typecheck, changed-code/test ESLint, production build
   and diff whitespace checks pass. Existing Node pin/chunk warnings remain.
   Publish through the previously authorized TXH/dev/main fast-forward scope.
+
+## Provider continuation19 accepted
+
+US89/ticket19 ACCEPTED,20 done total.22controlledvideo/24API-schema/SQL34rollback/lint/typecheck/build PASS.21 private deletion/groupC is remainingstory. SourceReport historyDTO fixed beforeacceptance, oldsource/VI/results retained and qualityannotation independent.

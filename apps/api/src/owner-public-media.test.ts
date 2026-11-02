@@ -33,6 +33,27 @@ describe("owner publication media at the actual deployed response boundary", () 
     expect(result).not.toHaveProperty("developmentMedia");
     expect(result).not.toHaveProperty("contentReviewStatus");
   });
+  it("publishes images, word and example audio from the explicit 4,997-word expansion", async () => {
+    const expansion = "vocabflow/owner/production-expansion-4997-20261101-r0001";
+    const expandedImage = image.replace(folder, expansion);
+    const expandedAudio = audio.replace(folder, expansion);
+    const expandedWord = { ...word, imageUrl: expandedImage, audioUrl: expandedAudio,
+      examples: [{ en: "A relative.", vi: "Một người họ hàng.", audioUrl: expandedAudio }] };
+    const app = createApp({ publicLearningCatalog: async () => ({
+      vocabulary: [{ id: 8000, word: "relative", vietnamese: "người họ hàng", ipa: null, definitionEn: null, exampleEn: "A relative.",
+        topic: null, level: null, enabled: true, contentVersion: 1, ...expandedWord }], learningSets: [], topics: []
+    }) });
+    const response = await app.request("/api/public/learning-catalog", {}, env);
+    expect(response.status).toBe(200);
+    expect((await response.json()).vocabulary[0]).toMatchObject({ imageUrl: expandedImage, audioUrl: expandedAudio, examples: expandedWord.examples });
+  });
+  it("does not broaden the media authority to another expansion or date", () => {
+    for (const disallowed of ["production-expansion-5000-20261101-r0001", "production-expansion-4997-20261102-r0001", "production-expansion-4997-20261101-r0002"]) {
+      const otherFolder = `vocabflow/owner/${disallowed}`;
+      expect(withoutUnclearedV2Media({ ...word, imageUrl: image.replace(folder, otherFolder), audioUrl: audio.replace(folder, otherFolder) }, env))
+        .toMatchObject({ imageUrl: null, audioUrl: null });
+    }
+  });
   it("does not publish owner media on another environment or an arbitrary identity", () => {
     expect(withoutUnclearedV2Media(word, { ...env, VOCAB_DATASET_VERSION: "v2" })).toMatchObject({ imageUrl: null, audioUrl: null });
     expect(withoutUnclearedV2Media({ ...word, masterSenseIdentity: "other" }, env)).toMatchObject({ imageUrl: null, audioUrl: null });

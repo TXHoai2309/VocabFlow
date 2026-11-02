@@ -67,3 +67,14 @@ Core CI run41164580500 passed. The compatible Dev Preview was already READY
 and verified before its lexical cutover; Production's selected catalog was
 not changed by this synchronization. Final cloud inventory verifies zero old
 originals/backups and all4,640selected local originals pass SHA-256.
+
+## 2026-10-31 — Cloudinary Media Library folders corrected
+
+The selected media had public ID paths but empty dynamic `asset_folder`, so
+`Vocab/audio` appeared empty. Assigned all 1,547 images to `Vocab/images` and
+3,093 audio originals to `Vocab/audio` with the Explicit API. Final inventory
+verifies all 4,640 asset IDs, public IDs, versions, original URLs and byte
+lengths unchanged, with no other originals. Image/audio delivery samples return
+HTTP 200; sampled original audio SHA-256 matches. No reupload or database write.
+The owner upload script now sets `asset_folder` explicitly; targeted ESLint
+passes. Evidence: `.vocabflow-local/editorial-refresh-20261031/old-data-purge-r0001/folder-organization-verification.current.json`.

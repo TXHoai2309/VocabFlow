@@ -1,5 +1,77 @@
 # VocabFlow Project Decisions
 
+## 2026-11-01 — US69: one current data folder; workspace clutter removed
+
+Owner requested consolidation and deletion of unnecessary local files. All current
+vocabulary data now lives in `D:/hoctienganh/VocabFlow-data`: unchanged 6,544-entry
+catalog, local/cloud media index, 6,544 images, 13,087 unique MP3s, authoring sources,
+three deferred items, 18 foundation clips and source licenses. Original operational
+and Muse input/intake evidence is preserved in a CRC-verified ZIP. Original frozen
+JSON keeps its historical paths; the current index/relocation plan records new ones.
+
+Moved all 19,656 selected/foundation/deferred media files on the same volume. All
+19,649 available file identities and sizes matched; seven deferred files whose
+directory-entry file IDs were unavailable matched SHA-256 before deletion. Final
+SHA-256 checks pass for every relocated original and all eight critical artifacts.
+No source text, ID, learner progress, DB, cloud asset or deployment was changed.
+
+Removed 120 explicit clutter targets and three merged worktrees after verifying
+their commits remain in main and no unrelated edits existed. Preserved 5,086
+historical code/doc/patch files in one ZIP and independent shadow Git refs in a
+verified bundle under `_archive`. Main Git history/branches and dirty work remain.
+The workspace root now contains only `VocabFlow`, `VocabFlow-data` and `_archive`.
+`.vocabflow-local` keeps two unchanged active env files and a README pointer.
+
+Updated only Node local media configuration: a hash-pinned relocated 1,547-item
+manifest and an exact foundation legacy-path relocation, preserving DB content
+hashes and all request/root/hash guards. Sixteen focused tests, targeted ESLint
+and root typecheck pass. Actual default Hono image/audio responses and foundation
+original-path resolution pass; remote-host/unknown-file checks still deny access.
+No browser, database or cloud calls were used for that media smoke check.
+
+Current entry: `vocabflow-dataset/current.json`. Completion:
+`D:/hoctienganh/VocabFlow-data/operations/reorganization-r0001/handoff.json`.
+Prior US67/US68 operation directories are now inside `operations/original-evidence.zip`.
+
+## 2026-11-01 — US68: retired local data removed; selected 6,544 preserved
+
+Owner requested deletion of old local vocabulary data, keeping the selected owner
+catalog. Removed 259 audited absolute targets containing
+136,189 files (11,588,290,253 bytes): retired external
+Anki/Oxford archives, Master V2/import/release payloads, old source/media caches,
+lexical snapshots and copies in historical local working directories. No old-data
+backup was created. Each target was inside D:/hoctienganh, checked for reparse
+points, and disjoint from every retained source before native PowerShell deletion.
+
+All 19,631 current unique image/audio originals and eight critical catalog/source/
+attribution files match their byte length and SHA-256 before and after deletion.
+The combined selected catalog still has exactly 6,544 entries; frozen 5,000-item
+text, three owner-deferred repairs, selected Muse packages and foundation 08/09
+authoring remain intact. Preserved application code, Git history, schemas,
+synthetic fixtures, licenses and operation evidence. Neon, Cloudinary, local DBs,
+accounts/settings and deployments were not changed by this file cleanup.
+
+Historical Master/replay commands intentionally no longer have their real retired
+data inputs. This is not a full historical test-suite PASS claim. The active owner
+catalog/media inputs remain hash-identical. Git history can still contain earlier
+tracked records; no history rewrite or secure physical erasure is claimed.
+
+Current data entry point: `vocabflow-dataset/current.json` and its README.
+Evidence: `.vocabflow-local/editorial-refresh-20261101/local-legacy-cleanup-r0001/handoff.current.json`.
+
+## 2026-10-31 — Ticket14 expansion scope and Muse ownership
+
+The owner reopened ticket14 with a target of about5,000additional lexical
+entries, keeping the selected1,547. Codex authors and freezes the text; Muse
+produces images/TTS only. This explicitly reaffirms the earlier media-only
+producer boundary. One final ZIP containing actual media and JSON is requested;
+ZIP64/large-file delivery must be checked rather than assumed. Internal bounded
+batches/checkpoints are compatible with one final archive. The user transfers
+the READY packet and reports completion; no repeated coordinator polling is
+needed. The current packet is PREPARATION_ONLY_TEXT_NOT_AUTHORED and cannot
+start Muse. No new public-sharing permission or production import is implied.
+
+
 ## 2026-10-31 — US66 selected catalog only: purge completed
 
 Owner explicitly replaced the earlier retention direction: keep the exact
@@ -963,3 +1035,20 @@ its plain-text backend. Six sound targets remain pending and unassessable;
 no paid provider switch or fake phoneme substitute. New audio remains pending
 listening acceptance;old05/06approval is not assigned to new bytes. Evidence:
 `plans/editorial-refresh-2026-10-28/foundation-08-09-execution-2026-10-30.md`.
+
+
+## 2026-11-01 — Execute approved video v1 with verified free providers
+
+The owner assigned all21 tickets and supplied server-only Supadata/DeepL keys.
+Use Supadata native-only timed English (never auto/ASR) after Free quota checks,
+and api-free.deepl.com EN→VI after finite free allowance/language checks. No paid
+fallback or automatic redispatch of uncertain processing. Selected translation
+requires reviewed nonpersonal content; Developer retention/reuse conditions and
+provider attribution are shown. Cached output remains private and version-pinned.
+
+Approved deletion uses owned scope preview/explicit app confirmation and minimal
+idempotency receipts/tombstones. Additive0035 data revision fences all video writes,
+including late provider callbacks; atomic SQL supports the existing HTTP database
+architecture. Receipts keep IDs/counts only, no removed captions/drafts. Migration
+preparation and rollback-only local rehearsal do not authorize cloud application,
+production deletion or deployment.

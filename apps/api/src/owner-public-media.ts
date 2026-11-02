@@ -9,8 +9,8 @@ function publishedUrl(value: unknown, kind: "image" | "audio"): string | null {
       || [...url.searchParams.keys()].some(key => key !== "_a") || url.searchParams.getAll("_a").length > 1
       || (url.searchParams.has("_a") && !/^[A-Za-z0-9_-]{1,128}$/.test(url.searchParams.get("_a") ?? ""))) return null;
     const path = kind === "image"
-      ? /^\/[^/]+\/image\/upload\/(?:[^/]+\/)?v\d+\/vocabflow\/owner\/production-1547-20261030-r0001\/images\/[a-f0-9]{64}\.png$/
-      : /^\/[^/]+\/video\/upload\/v\d+\/vocabflow\/owner\/production-1547-20261030-r0001\/audio\/[a-f0-9]{64}\.mp3$/;
+      ? /^\/[^/]+\/image\/upload\/(?:[^/]+\/)?v\d+\/vocabflow\/owner\/(?:production-1547-20261030-r0001|production-expansion-4997-20261101-r0001)\/images\/[a-f0-9]{64}\.png$/
+      : /^\/[^/]+\/video\/upload\/v\d+\/vocabflow\/owner\/(?:production-1547-20261030-r0001|production-expansion-4997-20261101-r0001)\/audio\/[a-f0-9]{64}\.mp3$/;
     return path.test(url.pathname) ? value : null;
   } catch { return null; }
 }

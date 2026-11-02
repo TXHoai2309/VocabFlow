@@ -9,11 +9,11 @@ let indexPromise: Promise<PublicLearningIndex> | undefined;
 const wordPromises = new Map<number, Promise<VocabularyDto | undefined>>();
 let activeDetailBatches = 0;
 const pendingDetailBatches: (() => void)[] = [];
-async function fetchDetailBatch(ids: number[]) {
+async function fetchDetailBatch(ids: number[], signal?: AbortSignal) {
   if (activeDetailBatches < 2) activeDetailBatches += 1;
   else await new Promise<void>((resolve) => pendingDetailBatches.push(resolve));
   try {
-    const response = await fetch(`/api/public/vocabulary?ids=${ids.join(",")}`, { credentials: "omit" });
+    const response = await fetch(`/api/public/vocabulary?ids=${ids.join(",")}`, { credentials: "omit", signal });
     if (!response.ok) throw new Error("PUBLIC_WORDS_UNAVAILABLE");
     const words = vocabularyListResponseSchema.parse(await response.json()).vocabulary;
     return new Map(words.map((word) => [word.id, word]));
@@ -52,6 +52,23 @@ export async function requestPublicWords(ids: number[]): Promise<VocabularyDto[]
   }
   const words = await Promise.all(unique.map((id) => wordPromises.get(id)!));
   return words.filter((word): word is VocabularyDto => word !== undefined);
+}
+
+/** Practice must never reconcile or rewrite the guest's scheduled progress. */
+export async function requestPracticePublicIndex(): Promise<PublicLearningIndex> {
+  const response = await fetch("/api/public/learning-index", { credentials: "omit", cache: "no-store", signal: AbortSignal.timeout(15000) });
+  if (!response.ok) throw new Error("PUBLIC_INDEX_UNAVAILABLE");
+  return publicLearningIndexSchema.parse(await response.json());
+}
+/** Fresh, bounded reads for pinned practice content; no scheduler/cache mutation. */
+export async function requestFreshPublicWords(ids: number[]): Promise<VocabularyDto[]> {
+  const unique = [...new Set(ids)];
+  const batches: Promise<VocabularyDto[]>[] = [];
+  for (let offset = 0; offset < unique.length; offset += PUBLIC_VOCABULARY_BATCH_LIMIT) {
+    const batch = unique.slice(offset, offset + PUBLIC_VOCABULARY_BATCH_LIMIT);
+    batches.push(fetchDetailBatch(batch, AbortSignal.timeout(15000)).then(words => batch.flatMap(id => words.has(id) ? [words.get(id)!] : [])));
+  }
+  return (await Promise.all(batches)).flat();
 }
 
 export async function requestPublicBrowse(params: URLSearchParams, signal?: AbortSignal) {

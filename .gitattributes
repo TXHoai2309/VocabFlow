@@ -19,3 +19,15 @@
 /vocabflow-dataset/workspaces/legacy-vocabulary-cleanup-audit/validation-summary.json text eol=lf
 /vocabflow-dataset/workspaces/legacy-vocabulary-cleanup-audit/manifest.json text eol=lf
 /vocabflow-dataset/reports/development-legacy-vocabulary-cleanup-audit.md text eol=lf
+
+# Immutable practice/game/video migration and tracker bytes across Windows/CI.
+/drizzle/migrations/002[5-9]_*.sql text eol=lf
+/drizzle/migrations/003[0-5]_*.sql text eol=lf
+/.scratch/practice-game-video-20261101/**/*.md text eol=lf
+/.scratch/practice-game-video-20261101/**/*.json text eol=lf
+/.scratch/practice-game-video-20261101/**/*.mjs text eol=lf
+/docs/plans/practice-and-link-learning-2026-11-01/*.md text eol=lf
+
+# Canonical offline editorial ticket bytes for cross-platform hash checks.
+/.scratch/editorial-refresh-20261028/**/*.md text eol=lf
+/.scratch/editorial-refresh-20261028/**/*.json text eol=lf

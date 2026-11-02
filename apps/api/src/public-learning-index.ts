@@ -55,7 +55,9 @@ export async function readPublicLearningIndex(database: VocabularyDatabase, data
   });
   return publicLearningIndexSchema.parse({ vocabulary,
     ...(datasetVersion === "owner-local" ? { catalogIdentity: OWNER_LOCAL_CATALOG_ID } : {}),
-    ...(datasetVersion === "owner-production" && wordRows.length === 1547 && wordRows.every(row => row.source_dataset === OWNER_PRODUCTION_SOURCE)
+    // Additive publications preserve the existing family identity and retained
+    // IDs; do not turn an expansion into another guest-state replacement.
+    ...(datasetVersion === "owner-production" && wordRows.length >= 1547 && wordRows.every(row => row.source_dataset === OWNER_PRODUCTION_SOURCE)
       ? { catalogIdentity: OWNER_PRODUCTION_CATALOG_ID } : {}),
     learningSets: rows<CollectionRow>(setsResult).map((row) => {
       const set = collection(row);

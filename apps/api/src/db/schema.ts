@@ -18,7 +18,49 @@ import { sql } from "drizzle-orm";
 import { APP_SCHEMA } from "@vocabflow/contracts";
 
 export const vocabflowApp = pgSchema(APP_SCHEMA);
+// Separate extra-practice state: no scheduler/reward trigger or write.
+export const practiceSessions = vocabflowApp.table("practice_sessions", {
+  learnerId: uuid("learner_id").notNull().references(() => learnerProfiles.id),
+  id: uuid("id").notNull(),
+  revision: integer("revision").notNull().default(0),
+  state: jsonb("state").notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow()
+}, table => [primaryKey({ columns: [table.learnerId, table.id] }), check("practice_revision_nonnegative", sql`${table.revision} >= 0`)]);
 export const householdRole = vocabflowApp.enum("household_role", ["OWNER", "PARENT"]);
+export const videoLibrary = vocabflowApp.table("video_library", {
+  dataRevision:integer("data_revision").notNull().default(0),
+  ownerUserId: text("owner_user_id").notNull().references(() => user.id), learnerId: uuid("learner_id").notNull().references(() => learnerProfiles.id),
+  id: uuid("id").notNull(), youtubeId: text("youtube_id").notNull(), createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow()
+}, table => [primaryKey({ columns: [table.ownerUserId, table.learnerId, table.id] }), unique("video_library_owner_learner_source_unique").on(table.ownerUserId, table.learnerId, table.youtubeId), check("video_library_youtube_id_check", sql`${table.youtubeId} ~ '^[A-Za-z0-9_-]{11}$'`)]);
+export const videoTranscripts = vocabflowApp.table("video_transcripts", {
+  ownerUserId: text("owner_user_id").notNull(), learnerId: uuid("learner_id").notNull(), videoId: uuid("video_id").notNull(), id: uuid("id").notNull(),
+  sourceKind: text("source_kind").notNull().default("personal-import"),
+  format: text("format").notNull(), language: text("language").notNull(), sourceText: text("source_text").notNull(), sha256: text("sha256").notNull(), cues: jsonb("cues").notNull(), createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow()
+}, table => [primaryKey({ columns: [table.ownerUserId, table.learnerId, table.videoId, table.id] }), foreignKey({ columns: [table.ownerUserId, table.learnerId, table.videoId], foreignColumns: [videoLibrary.ownerUserId, videoLibrary.learnerId, videoLibrary.id], name: "video_transcripts_owned_video_fk" }), check("video_transcript_format_check", sql`${table.format} IN ('srt','vtt') AND ${table.language}='en'`)]);
+export const videoWatchStates = vocabflowApp.table("video_watch_states", {
+  ownerUserId: text("owner_user_id").notNull(), learnerId: uuid("learner_id").notNull(), videoId: uuid("video_id").notNull(), revision: integer("revision").notNull(), state: jsonb("state").notNull()
+}, table => [primaryKey({ columns: [table.ownerUserId, table.learnerId, table.videoId] }), foreignKey({ columns: [table.ownerUserId, table.learnerId, table.videoId], foreignColumns: [videoLibrary.ownerUserId, videoLibrary.learnerId, videoLibrary.id], name: "video_watch_owned_video_fk" })]);
+export const videoDeletionReceipts = vocabflowApp.table("video_deletion_receipts",{
+  ownerUserId:text("owner_user_id").notNull(),learnerId:uuid("learner_id").notNull(),videoId:uuid("video_id").notNull(),actionId:uuid("action_id").notNull(),state:jsonb("state").notNull()
+},table=>[primaryKey({name:"video_deletion_receipts_pk",columns:[table.ownerUserId,table.learnerId,table.actionId]})]);
+export const videoSourceReports = vocabflowApp.table("video_source_reports", {
+  ownerUserId:text("owner_user_id").notNull(),learnerId:uuid("learner_id").notNull(),videoId:uuid("video_id").notNull(),versionId:uuid("version_id").notNull(),cueId:text("cue_id").notNull(),actionId:uuid("action_id").notNull(),reason:text("reason").notNull(),reportedAt:timestamp("reported_at",{withTimezone:true}).notNull().defaultNow()
+},table=>[primaryKey({name:"video_source_reports_pk",columns:[table.ownerUserId,table.learnerId,table.videoId,table.versionId,table.cueId]}),unique("source_report_request_identity").on(table.ownerUserId,table.learnerId,table.videoId,table.actionId),foreignKey({name:"source_reports_owned_source_fk",columns:[table.ownerUserId,table.learnerId,table.videoId,table.versionId],foreignColumns:[videoTranscripts.ownerUserId,videoTranscripts.learnerId,videoTranscripts.videoId,videoTranscripts.id]})]);
+export const videoTranslationRuns = vocabflowApp.table("video_translation_runs", {
+  requestId: uuid("request_id").notNull(),
+  ownerUserId: text("owner_user_id").notNull(), learnerId: uuid("learner_id").notNull(), videoId: uuid("video_id").notNull(), versionId: uuid("version_id").notNull(), startMs: integer("start_ms").notNull(), endMs: integer("end_ms").notNull(), revision: integer("revision").notNull(), state: jsonb("state").notNull()
+}, table => [unique("translation_request_identity").on(table.ownerUserId,table.learnerId,table.videoId,table.requestId), primaryKey({columns:[table.ownerUserId,table.learnerId,table.videoId,table.versionId,table.startMs,table.endMs]}),foreignKey({columns:[table.ownerUserId,table.learnerId,table.videoId,table.versionId],foreignColumns:[videoTranscripts.ownerUserId,videoTranscripts.learnerId,videoTranscripts.videoId,videoTranscripts.id],name:"translation_owned_source_fk"})]);
+export const nativeTranscriptRuns = vocabflowApp.table("native_transcript_runs", {
+  ownerUserId: text("owner_user_id").notNull(), learnerId: uuid("learner_id").notNull(), videoId: uuid("video_id").notNull(), revision: integer("revision").notNull(), state: jsonb("state").notNull()
+}, table => [primaryKey({ columns: [table.ownerUserId, table.learnerId, table.videoId] }), foreignKey({ columns: [table.ownerUserId, table.learnerId, table.videoId], foreignColumns: [videoLibrary.ownerUserId, videoLibrary.learnerId, videoLibrary.id], name: "native_runs_owned_video_fk" })]);
+export const videoPracticeSessions = vocabflowApp.table("video_practice_sessions", {
+  ownerUserId: text("owner_user_id").notNull(), learnerId: uuid("learner_id").notNull(), videoId: uuid("video_id").notNull(), id: uuid("id").notNull(), revision: integer("revision").notNull(), state: jsonb("state").notNull(), createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow()
+}, table => [primaryKey({ columns: [table.ownerUserId, table.learnerId, table.videoId, table.id] }), foreignKey({ columns: [table.ownerUserId, table.learnerId, table.videoId], foreignColumns: [videoLibrary.ownerUserId, videoLibrary.learnerId, videoLibrary.id], name: "video_practice_owned_video_fk" })]);
+export const fishGames = vocabflowApp.table("fish_games", {
+  learnerId: uuid("learner_id").notNull().references(() => learnerProfiles.id),
+  id: uuid("id").notNull(), revision: integer("revision").notNull().default(0), state: jsonb("state").notNull(),
+  createdAt: timestamp("created_at", { withTimezone: true }).notNull().defaultNow()
+}, table => [primaryKey({ columns: [table.learnerId, table.id] }), check("fish_game_revision_nonnegative", sql`${table.revision} >= 0`)]);
 export const learningStatus = vocabflowApp.enum("learning_status", ["NEW", "LEARNING", "MASTERED"]);
 export const reviewResult = vocabflowApp.enum("review_result", ["REMEMBERED", "FORGOTTEN"]);
 export const vocabularyLevel = vocabflowApp.enum("vocabulary_level", [

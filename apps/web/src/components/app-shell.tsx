@@ -25,7 +25,7 @@ type AccountPlacement = "sidebar" | "mobile";
 function isDestinationActive(pathname: string, destination: string) {
   if (destination === "/") return pathname === "/";
   if (destination === "/vocabulary") return pathname === "/vocabulary" || pathname.startsWith("/vocabulary/");
-  if (destination === "/study/setup") return ["/study/setup", "/study", "/study/exercises"].includes(pathname);
+  if (destination === "/study/setup") return pathname.startsWith("/practice") || pathname.startsWith("/game") || pathname.startsWith("/videos") || ["/study/setup", "/study", "/study/exercises"].includes(pathname);
   return pathname === destination;
 }
 

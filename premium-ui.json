@@ -9,9 +9,20 @@
     "apps/web/src/features/learning-sets",
     "apps/web/src/features/search",
     "apps/web/src/features/study",
-    "apps/web/src/features/vocabulary"
+    "apps/web/src/features/practice",
+    "apps/web/src/features/vocabulary",
+    "apps/web/src/features/game",
+    "apps/web/src/features/video"
   ],
   "canonicalMap": "UX-CONTRACT.md",
-  "requiredCapabilities": ["Select/Listbox", "Form", "Scrollbar", "Toast", "CRUD"],
-  "ownership": { "Select/Listbox": "native" }
+  "requiredCapabilities": [
+    "Select/Listbox",
+    "Form",
+    "Scrollbar",
+    "Toast",
+    "CRUD"
+  ],
+  "ownership": {
+    "Select/Listbox": "native"
+  }
 }

@@ -1,5 +1,124 @@
 # VocabFlow Roadmap and Batch Index
 
+## 2026-11-01 — US69: one current data folder; workspace clutter removed
+
+Owner requested consolidation and deletion of unnecessary local files. All current
+vocabulary data now lives in `D:/hoctienganh/VocabFlow-data`: unchanged 6,544-entry
+catalog, local/cloud media index, 6,544 images, 13,087 unique MP3s, authoring sources,
+three deferred items, 18 foundation clips and source licenses. Original operational
+and Muse input/intake evidence is preserved in a CRC-verified ZIP. Original frozen
+JSON keeps its historical paths; the current index/relocation plan records new ones.
+
+Moved all 19,656 selected/foundation/deferred media files on the same volume. All
+19,649 available file identities and sizes matched; seven deferred files whose
+directory-entry file IDs were unavailable matched SHA-256 before deletion. Final
+SHA-256 checks pass for every relocated original and all eight critical artifacts.
+No source text, ID, learner progress, DB, cloud asset or deployment was changed.
+
+Removed 120 explicit clutter targets and three merged worktrees after verifying
+their commits remain in main and no unrelated edits existed. Preserved 5,086
+historical code/doc/patch files in one ZIP and independent shadow Git refs in a
+verified bundle under `_archive`. Main Git history/branches and dirty work remain.
+The workspace root now contains only `VocabFlow`, `VocabFlow-data` and `_archive`.
+`.vocabflow-local` keeps two unchanged active env files and a README pointer.
+
+Updated only Node local media configuration: a hash-pinned relocated 1,547-item
+manifest and an exact foundation legacy-path relocation, preserving DB content
+hashes and all request/root/hash guards. Sixteen focused tests, targeted ESLint
+and root typecheck pass. Actual default Hono image/audio responses and foundation
+original-path resolution pass; remote-host/unknown-file checks still deny access.
+No browser, database or cloud calls were used for that media smoke check.
+
+Current entry: `vocabflow-dataset/current.json`. Completion:
+`D:/hoctienganh/VocabFlow-data/operations/reorganization-r0001/handoff.json`.
+Prior US67/US68 operation directories are now inside `operations/original-evidence.zip`.
+
+## 2026-11-01 — US68: retired local data removed; selected 6,544 preserved
+
+Owner requested deletion of old local vocabulary data, keeping the selected owner
+catalog. Removed 259 audited absolute targets containing
+136,189 files (11,588,290,253 bytes): retired external
+Anki/Oxford archives, Master V2/import/release payloads, old source/media caches,
+lexical snapshots and copies in historical local working directories. No old-data
+backup was created. Each target was inside D:/hoctienganh, checked for reparse
+points, and disjoint from every retained source before native PowerShell deletion.
+
+All 19,631 current unique image/audio originals and eight critical catalog/source/
+attribution files match their byte length and SHA-256 before and after deletion.
+The combined selected catalog still has exactly 6,544 entries; frozen 5,000-item
+text, three owner-deferred repairs, selected Muse packages and foundation 08/09
+authoring remain intact. Preserved application code, Git history, schemas,
+synthetic fixtures, licenses and operation evidence. Neon, Cloudinary, local DBs,
+accounts/settings and deployments were not changed by this file cleanup.
+
+Historical Master/replay commands intentionally no longer have their real retired
+data inputs. This is not a full historical test-suite PASS claim. The active owner
+catalog/media inputs remain hash-identical. Git history can still contain earlier
+tracked records; no history rewrite or secure physical erasure is claimed.
+
+Current data entry point: `vocabflow-dataset/current.json` and its README.
+Evidence: `.vocabflow-local/editorial-refresh-20261101/local-legacy-cleanup-r0001/handoff.current.json`.
+
+## 2026-11-01 — Ticket14 media intake checkpoint
+
+Five owner-delivered parts form a complete ZIP64; all frozen text/IDs unchanged.
+Local draft: 5,000 items, 50 topics, 362 stable lesson drafts, 4,997 file-complete
+items. Hold antihistamine/apiece for missing word audio and painter for truncated
+PNG. 14,997 media decode successfully; no database/runtime/cloud publication.
+Current evidence: `.vocabflow-local/editorial-refresh-20261101/expansion-5000-intake-r0001/handoff.current.json`.
+
+
+## 2026-10-31 — Ticket14 text complete: 5,000 entries ready for Muse media
+
+Owner requested the text and explicitly approved internal parallel workers in
+this chat. Authored and froze5,000selected entries across50topics, each with an
+original English definition, Vietnamese gloss, bilingual example and specific
+image brief. Existing1,547selected items and all live data remain unchanged.
+The main list excludes their normalized/variant forms and internal duplicates.
+Coverage review prioritized50missing core function words (I/you/the/be/because,
+etc.);50specialist drafts are preserved outside the main batch. Unpublished
+proposal replacements have a ledger;300oldUUIDs remain reserved,300newUUIDs
+were allocated, and no published identity/progress was changed.
+
+Frozen JSON,50rawPSVfiles,reviewCSV, explicit three-job bindings per item,
+15,000work orders and100batches of50items are packaged in one8,683,176-byte
+Muse INPUT ZIP. Every ZIP member CRC/byte equality and input pin verifies;
+all100batches exactly equal canonical5,000items/15,000jobs. Ten negative
+identity/duplicate/CEFR/hash/runtime-ID cases are rejected. Six path-safety
+cases also reject. Four singular-example alignment fixes, a verb/noun example
+fix and letter/number visual clarifications were completed before freezing.
+
+Actual level estimates: FIRST_WORDS14,A1 155,A2 645,B1 1,709,B2 1,994,C1 483,
+C2 0. These are editorial judgments, not official CEFR assessments; targets
+were not forced by relabeling. Text has author/coordinator model review;
+independent human/linguistic and actual media acceptance are not claimed.
+Muse only generates images/TTS. Provider calls0,actual media0,DB writes0,
+no runtime import or deployment. Ticket14 remains open for media/intake.
+
+Current handoff: `.vocabflow-local/editorial-refresh-20261031/ticket14-expansion-5000-r0001/handoff.current.json`.
+Dataset: `vocabflow-dataset/workspaces/editorial-refresh-20261031/expansion-5000-r0001/dataset-text-r0001.json`.
+Input ZIP SHA-256: `ad76f8354ecc84733acac025c7711e9ac0d6031d471861ec23865c90e50f64db`.
+
+
+## 2026-10-31 — Ticket14 reopened: 5,000 additional entries, preparation only
+
+Owner requests approximately5,000additional entries beyond the selected1,547,
+manual Muse handoff and one final ZIP. Owner explicitly reaffirmed Codex authors
+all text; Muse produces only images/TTS. Prepared50topic targets,100internal
+batches of50, reserved authoring UUIDv7 identities, a public-content-only
+1,547entry exclusion baseline, JSON schema, media-only prompt and read-only
+readiness/delivery verifier. Existing local IDs/media/progress remain unchanged.
+The preparation ZIP passes CRC/every-member byte verification and input hashes;
+reserved30,000UUIDv7 values are unique. Validator rejects unsafe paths and the
+current packet correctly returns TEXT_NOT_READY. Authored entries0, executable
+jobs0;5,000entries/15,000media jobs remain targets. No production readiness,
+provider submission, new media, database write or deployment is claimed.
+
+Contract: `docs/plans/editorial-refresh-2026-10-28/ticket14-5000-r0001/contract.md`.
+Operational packet/report: `.vocabflow-local/editorial-refresh-20261031/ticket14-expansion-5000-r0001/`.
+08/09 remain unfinished and separate while this owner reprioritization is active.
+
+
 ## 2026-10-31 — US66 selected catalog only: purge completed
 
 Owner explicitly replaced the earlier retention direction: keep the exact

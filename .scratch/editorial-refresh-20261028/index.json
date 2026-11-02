@@ -1,0 +1,863 @@
+{
+  "artifactType": "LOCAL_TICKET_INDEX",
+  "schemaVersion": 1,
+  "campaignId": "editorial-refresh-20261028",
+  "publicationStatus": "PRODUCTION_6544_COMPLETE_DEVELOPMENT_1547_UNCHANGED",
+  "approvalDate": "2026-10-29",
+  "approvalScope": "Initial approval covered the 15-ticket breakdown and local Markdown publication only. Subsequent per-ticket execution is recorded separately below.",
+  "executionAllowed": false,
+  "issueTracker": "LOCAL_MARKDOWN",
+  "statusSource": "Individual ticket Markdown; coordinator keeps this index synchronized.",
+  "planPath": "docs/plans/editorial-refresh-2026-10-28/campaign-plan.draft.json",
+  "coordinationContractPath": "docs/plans/editorial-refresh-2026-10-28/coordination-contract.md",
+  "initialTechnicalFrontier": [
+    "01"
+  ],
+  "tickets": [
+    {
+      "id": "01",
+      "title": "Đóng băng baseline đối chiếu toàn kho",
+      "path": "issues/01-freeze-reconciled-baseline.md",
+      "blockedBy": [],
+      "status": "done",
+      "executionAuthorized": true,
+      "boundedBatchTemplate": false,
+      "requiresEveryIncludedBatchInstanceComplete": false,
+      "suggestedRole": "coordinator",
+      "assignedWorker": "current-coordinator",
+      "evidenceRepoRelative": "docs/plans/editorial-refresh-2026-10-28/ticket-01-baseline.result.json"
+    },
+    {
+      "id": "02",
+      "title": "Làm cho local preview đọc đúng baseline và giữ lịch sử",
+      "path": "issues/02-local-preview-compatibility.md",
+      "blockedBy": [
+        "01"
+      ],
+      "status": "done",
+      "executionAuthorized": true,
+      "boundedBatchTemplate": false,
+      "requiresEveryIncludedBatchInstanceComplete": false,
+      "suggestedRole": "integration",
+      "assignedWorker": "ticket02_local_compat",
+      "evidenceRepoRelative": "docs/plans/editorial-refresh-2026-10-28/ticket-02-local-preview.result.json"
+    },
+    {
+      "id": "03",
+      "title": "Chạy thử hợp đồng bàn giao với ba mục và kết quả giả lập",
+      "path": "issues/03-manifest-receipt-canary.md",
+      "blockedBy": [
+        "01"
+      ],
+      "status": "done",
+      "executionAuthorized": true,
+      "boundedBatchTemplate": false,
+      "requiresEveryIncludedBatchInstanceComplete": false,
+      "suggestedRole": "integration",
+      "assignedWorker": "ticket03_manifest_canary",
+      "evidenceRepoRelative": "docs/plans/editorial-refresh-2026-10-28/ticket-03-manifest-canary.result.json"
+    },
+    {
+      "id": "04",
+      "title": "Đóng băng bản thảo pilot 30 từ, bốn chủ đề",
+      "path": "issues/04-freeze-thirty-word-pilot.md",
+      "blockedBy": [
+        "03"
+      ],
+      "status": "done",
+      "executionAuthorized": true,
+      "boundedBatchTemplate": false,
+      "requiresEveryIncludedBatchInstanceComplete": false,
+      "suggestedRole": "editorial",
+      "assignedWorker": "current-coordinator",
+      "evidenceRepoRelative": "docs/plans/editorial-refresh-2026-10-28/ticket-04-frozen-pilot.result.json"
+    },
+    {
+      "id": "05",
+      "title": "Ảnh pilot có kết quả review và binding kiểm tra được",
+      "path": "issues/05-reviewed-pilot-images.md",
+      "blockedBy": [
+        "04"
+      ],
+      "status": "done",
+      "executionAuthorized": true,
+      "boundedBatchTemplate": false,
+      "requiresEveryIncludedBatchInstanceComplete": false,
+      "suggestedRole": "images",
+      "assignedWorker": "ticket05-images",
+      "evidenceRepoRelative": "docs/plans/editorial-refresh-2026-10-28/tickets-05-06-owner-acceptance-r0001.json",
+      "ownerAcceptance": {
+        "path": "docs/plans/editorial-refresh-2026-10-28/tickets-05-06-owner-acceptance-r0001.json",
+        "sha256": "dc3f87f8019d0b15524a9ff8fcfc517474a8543c26670762f11606a6092d3293",
+        "byteLength": 3062
+      },
+      "completedDate": "2026-10-30",
+      "remainingAcceptanceGates": []
+    },
+    {
+      "id": "06",
+      "title": "Audio pilot có phát âm và câu ví dụ chính xác",
+      "path": "issues/06-reviewed-pilot-audio.md",
+      "blockedBy": [
+        "04"
+      ],
+      "status": "done",
+      "executionAuthorized": true,
+      "boundedBatchTemplate": false,
+      "requiresEveryIncludedBatchInstanceComplete": false,
+      "suggestedRole": "tts",
+      "assignedWorker": "current-coordinator",
+      "evidenceRepoRelative": "docs/plans/editorial-refresh-2026-10-28/tickets-05-06-owner-acceptance-r0001.json",
+      "ownerAcceptance": {
+        "path": "docs/plans/editorial-refresh-2026-10-28/tickets-05-06-owner-acceptance-r0001.json",
+        "sha256": "dc3f87f8019d0b15524a9ff8fcfc517474a8543c26670762f11606a6092d3293",
+        "byteLength": 3062
+      },
+      "completedDate": "2026-10-30",
+      "remainingAcceptanceGates": []
+    },
+    {
+      "id": "07",
+      "title": "Pilot đầu tiên hoạt động đầy đủ trong học local",
+      "path": "issues/07-complete-local-learning-pilot.md",
+      "blockedBy": [
+        "02",
+        "05",
+        "06"
+      ],
+      "status": "done",
+      "executionAuthorized": true,
+      "boundedBatchTemplate": false,
+      "requiresEveryIncludedBatchInstanceComplete": false,
+      "suggestedRole": "integration",
+      "assignedWorker": "current-coordinator",
+      "evidenceRepoRelative": "docs/plans/editorial-refresh-2026-10-28/ticket-07-local-pilot.result.json",
+      "ownerAcceptanceRepoRelative": "docs/plans/editorial-refresh-2026-10-28/ticket-07-owner-acceptance.json"
+    },
+    {
+      "id": "08",
+      "title": "Làm quen chữ và âm qua một mô-đun nhỏ hoàn chỉnh",
+      "path": "issues/08-letter-and-sound-module.md",
+      "blockedBy": [
+        "07"
+      ],
+      "status": "in-progress",
+      "executionAuthorized": true,
+      "boundedBatchTemplate": false,
+      "requiresEveryIncludedBatchInstanceComplete": false,
+      "suggestedRole": "content-and-integration",
+      "assignedWorker": "current-coordinator",
+      "dependencySatisfied": true,
+      "executionScope": "CONTRACT_AND_OFFLINE_DRAFT_ONLY",
+      "draftReviewStatus": "COORDINATOR_REVIEW_PASS",
+      "implementationContractStatus": "READY_FOR_CONTRACT_REVIEW",
+      "evidenceRepoRelative": "docs/plans/editorial-refresh-2026-10-28/foundation-08-09-local.result.json",
+      "deferredReason": "Owner reprioritized vocabulary expansion; retain offline drafts, do not implement runtime.",
+      "runtimeImplementedLocal": true,
+      "browserVerification": "PENDING_LOCAL_BROWSER_USE_DISABLED",
+      "newAudioListeningAcceptance": "OWNER_ACCEPTED",
+      "requiredIsolatedSoundFilesMissing": 6,
+      "ownerListeningAcceptance": {
+        "path": "docs/plans/editorial-refresh-2026-10-28/foundation-08-09-owner-listening-acceptance-r0001.json",
+        "sha256": "c4e307432dae8666f176aa3c22249ff40388b2a839ade1c438279bbcd6ed82cf",
+        "byteLength": 16693
+      }
+    },
+    {
+      "id": "09",
+      "title": "Câu đầu tiên qua một mô-đun nhỏ hoàn chỉnh",
+      "path": "issues/09-first-utterances-module.md",
+      "blockedBy": [
+        "07"
+      ],
+      "status": "in-progress",
+      "executionAuthorized": true,
+      "boundedBatchTemplate": false,
+      "requiresEveryIncludedBatchInstanceComplete": false,
+      "suggestedRole": "content-and-integration",
+      "assignedWorker": "current-coordinator",
+      "executionScope": "CONTRACT_AND_OFFLINE_DRAFT_ONLY",
+      "draftReviewStatus": "COORDINATOR_REVIEW_PASS",
+      "implementationContractStatus": "READY_FOR_CONTRACT_REVIEW",
+      "evidenceRepoRelative": "docs/plans/editorial-refresh-2026-10-28/foundation-08-09-local.result.json",
+      "deferredReason": "Owner reprioritized vocabulary expansion; retain offline drafts, do not implement runtime.",
+      "runtimeImplementedLocal": true,
+      "browserVerification": "PENDING_LOCAL_BROWSER_USE_DISABLED",
+      "newAudioListeningAcceptance": "OWNER_ACCEPTED",
+      "utteranceAudioFilesReceived": 12,
+      "ownerListeningAcceptance": {
+        "path": "docs/plans/editorial-refresh-2026-10-28/foundation-08-09-owner-listening-acceptance-r0001.json",
+        "sha256": "c4e307432dae8666f176aa3c22249ff40388b2a839ade1c438279bbcd6ed82cf",
+        "byteLength": 16693
+      }
+    },
+    {
+      "id": "10",
+      "title": "Biên tập một lô A1/A2 tới preview hoàn chỉnh",
+      "path": "issues/10-review-a1-a2-batch-template.md",
+      "blockedBy": [
+        "07"
+      ],
+      "status": "superseded-for-active-local-catalog",
+      "executionAuthorized": false,
+      "boundedBatchTemplate": true,
+      "requiresEveryIncludedBatchInstanceComplete": false,
+      "suggestedRole": "editorial-batch",
+      "assignedWorker": null,
+      "historicalStatusBeforeOwnerCatalog": "planned",
+      "supersededBy": "US-64",
+      "wholeCorpusReviewClaimed": false
+    },
+    {
+      "id": "11",
+      "title": "Biên tập một lô B1/B2 tới preview hoàn chỉnh",
+      "path": "issues/11-review-b1-b2-batch-template.md",
+      "blockedBy": [
+        "07"
+      ],
+      "status": "superseded-for-active-local-catalog",
+      "executionAuthorized": false,
+      "boundedBatchTemplate": true,
+      "requiresEveryIncludedBatchInstanceComplete": false,
+      "suggestedRole": "editorial-batch",
+      "assignedWorker": null,
+      "historicalStatusBeforeOwnerCatalog": "planned",
+      "supersededBy": "US-64",
+      "wholeCorpusReviewClaimed": false
+    },
+    {
+      "id": "12",
+      "title": "Biên tập một lô C1/C2 đã hòa giải nguồn",
+      "path": "issues/12-review-c1-c2-batch-template.md",
+      "blockedBy": [
+        "07"
+      ],
+      "status": "superseded-for-active-local-catalog",
+      "executionAuthorized": false,
+      "boundedBatchTemplate": true,
+      "requiresEveryIncludedBatchInstanceComplete": false,
+      "suggestedRole": "editorial-batch",
+      "assignedWorker": null,
+      "historicalStatusBeforeOwnerCatalog": "planned",
+      "supersededBy": "US-64",
+      "wholeCorpusReviewClaimed": false
+    },
+    {
+      "id": "13",
+      "title": "Xử lý một lô chưa phân loại bằng bằng chứng",
+      "path": "issues/13-review-unclassified-batch-template.md",
+      "blockedBy": [
+        "07"
+      ],
+      "status": "superseded-for-active-local-catalog",
+      "executionAuthorized": false,
+      "boundedBatchTemplate": true,
+      "requiresEveryIncludedBatchInstanceComplete": false,
+      "suggestedRole": "editorial-batch",
+      "assignedWorker": null,
+      "historicalStatusBeforeOwnerCatalog": "planned",
+      "supersededBy": "US-64",
+      "wholeCorpusReviewClaimed": false
+    },
+    {
+      "id": "14",
+      "title": "Mở rộng khoảng5.000mục mới; Codex soạnchữ/Musemedia",
+      "path": "issues/14-author-verified-gap-batch-template.md",
+      "blockedBy": [
+        "07"
+      ],
+      "status": "bounded-release-complete-3-deferred",
+      "executionAuthorized": true,
+      "boundedBatchTemplate": true,
+      "requiresEveryIncludedBatchInstanceComplete": false,
+      "suggestedRole": "authoring-batch",
+      "assignedWorker": "current-coordinator",
+      "additionalGeneration": "FROZEN_5000_PUBLISHED_4997_3_DEFERRED",
+      "activeInstance": "14-5000",
+      "authoredAdditionalItems": 5000,
+      "plannedAdditionalItems": 5000,
+      "textStage": "READY_FOR_MUSE_MEDIA",
+      "actualMedia": 14998,
+      "plannedMediaJobs": 15000,
+      "evidenceRepoRelative": ".vocabflow-local/editorial-refresh-20261101/expansion-4997-production-r0001/handoff.current.json",
+      "latestIntake": {
+        "date": "2026-11-01",
+        "status": "LOCAL_LESSON_DRAFT_ASSEMBLED_4997_FILE_COMPLETE_3_HELD",
+        "sourceParts": 5,
+        "items": 5000,
+        "fileCompleteItems": 4997,
+        "heldItems": 3,
+        "topics": 50,
+        "lessons": 362,
+        "decodedMedia": 14997,
+        "runtimePublished": false,
+        "handoffRepoRelative": ".vocabflow-local/editorial-refresh-20261101/expansion-5000-intake-r0001/handoff.current.json"
+      },
+      "decodedMedia": 14997,
+      "fileCompleteItems": 4997,
+      "heldItems": 3,
+      "publishedAdditionalItems": 4997,
+      "publishedMedia": 14991,
+      "remainingDeferredItems": 3
+    },
+    {
+      "id": "15",
+      "title": "Đóng chiến dịch với coverage và gói bàn giao tái lập",
+      "path": "issues/15-close-campaign-coverage-handoff.md",
+      "blockedBy": [
+        "08",
+        "09",
+        "10",
+        "11",
+        "12",
+        "13",
+        "14"
+      ],
+      "status": "planned",
+      "executionAuthorized": false,
+      "boundedBatchTemplate": false,
+      "requiresEveryIncludedBatchInstanceComplete": true,
+      "suggestedRole": "coordinator",
+      "assignedWorker": null
+    }
+  ],
+  "executionAuthorization": {
+    "date": "2026-10-29",
+    "ticketIds": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07",
+      "08",
+      "09",
+      "14"
+    ],
+    "scope": "Owner ran two manual worker chats for08/09contract and offline drafts; coordinator reviewed the handoffs. Follow-up correction/compatibility prompts prepared. No08/09runtime or provider execution authorized by draft review.",
+    "completedTicketIds": [
+      "01",
+      "02",
+      "03",
+      "04",
+      "05",
+      "06",
+      "07"
+    ],
+    "activeTicketIds": [
+      "14"
+    ],
+    "deferredTicketIds": [
+      "08",
+      "09"
+    ],
+    "latestScopeDate": "2026-10-31",
+    "latestScope": "Owner redirected priority to preparing5000additional lexical entries. Preserve unfinished08/09; no completion claimed."
+  },
+  "currentTechnicalFrontier": [],
+  "parallelWorkerSetup": {
+    "coordinationRelative": "docs/plans/editorial-refresh-2026-10-28/parallel-08-09-r0001/coordination.json",
+    "coordinatorThreadId": "01a18267-b4b9-7313-9837-a94e2be8661e",
+    "workerCount": 2,
+    "dispatchMode": "USER_OPENS_CHATS_AND_PASTES_PROMPTS",
+    "status": "OFFLINE_REVIEW_PASS_IMPLEMENTATION_CONTRACT_READY",
+    "phase": "CONTRACT_AND_OFFLINE_DRAFT",
+    "ticketIds": [
+      "08",
+      "09"
+    ],
+    "forwardCoordinationRelative": "docs/plans/editorial-refresh-2026-10-28/parallel-08-09-review-r0001/coordination-r0002.json",
+    "reviewRelative": "docs/plans/editorial-refresh-2026-10-28/parallel-08-09-review-r0002/review.json",
+    "implementationContractRelative": "docs/plans/editorial-refresh-2026-10-28/parallel-08-09-review-r0002/implementation-contract.md"
+  },
+  "currentOwnerDirection": {
+    "date": "2026-11-01",
+    "mode": "ONE_SESSION",
+    "ownerInstruction": "Defer three incomplete items; publish the complete 4,997 entries and upload images/audio to cloud.",
+    "scope": "PRODUCTION_4997_PUBLISHED_3_DEFERRED",
+    "furtherGenerationAllowed": true,
+    "automaticMuseSubmissionAllowed": false,
+    "databaseWritesAuthorizedByThisPreparation": false,
+    "evidenceRepoRelative": "docs/plans/editorial-refresh-2026-10-28/ticket14-5000-r0001/contract.md",
+    "internalParallelWorkersExplicitlyApproved": true,
+    "museHandoffAuthorizedByPriorOwnerRequest": true,
+    "museSubmissionPerformed": false
+  },
+  "productionCheckpoint": {
+    "status": "done",
+    "additionalAuthoring": "OWNER_REOPENED_5000_PREPARATION_20261031",
+    "evidenceRepoRelative": "docs/plans/editorial-refresh-2026-10-28/vocabulary-production-checkpoint-closure-2026-10-30.json",
+    "parentTemplate14Complete": false,
+    "campaign15Complete": false
+  },
+  "nextRecommendedTicket": {
+    "id": "14-5000",
+    "state": "SUPERSEDED_BY_COMPLETED_PRODUCTION_RELEASE",
+    "autoExecutionAuthorized": false
+  },
+  "historicalTechnicalFrontierBeforeProductionClosure": [
+    "05",
+    "06",
+    "08"
+  ],
+  "frontierNote": "Production additive release complete: +4,997 words, total 6,544; 14,991 new cloud assets. Three media repairs deferred by owner. Development and unrelated 08/09 unchanged.",
+  "activeBoundedBatch": {
+    "id": "14-5000",
+    "family": "14",
+    "path": "issues/14-5000-prepare-muse-handoff.md",
+    "status": "PRODUCTION_COMPLETE_4997_3_OWNER_DEFERRED",
+    "targetItems": 5000,
+    "authoredItems": 5000,
+    "mediaJobsPlanned": 15000,
+    "mediaJobsExecutable": 15000,
+    "mediaReceived": 14998,
+    "mediaDecoded": 14997,
+    "fileCompleteItems": 4997,
+    "heldItems": 3,
+    "handoffRepoRelative": ".vocabflow-local/editorial-refresh-20261101/expansion-4997-production-r0001/handoff.current.json",
+    "publishedItems": 4997,
+    "productionTotalWords": 6544
+  },
+  "boundedExecutionAuthorizations": [
+    {
+      "id": "10-01",
+      "date": "2026-10-30",
+      "ownerInstruction": "rồi làm cho tôi ticker tiếp",
+      "owner": "current-coordinator",
+      "mode": "ONE_SESSION",
+      "inputManifest": {
+        "path": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket10-a1-a2-batch-0001/input-manifest-r0001.json",
+        "sha256": "9ead950dbcd9fafd5a4c25b8b9e099c4baddb15627f63135bf5f5c6d8ca327cd",
+        "byteLength": 133173
+      },
+      "scope": "Review existing51A1/A2senses; preserve IDs/source text/progress, no new vocabulary or media. Current handoff is read-only review and offline reuse proposal; runtime binding not applied."
+    },
+    {
+      "id": "foundation08-09-r0001",
+      "date": "2026-10-30",
+      "ticketIds": [
+        "08",
+        "09"
+      ],
+      "ownerInstruction": "vậy làm luôn cái đó đi; làm tiếp cho tôi",
+      "mode": "ONE_SESSION",
+      "scope": "Bounded local implementation of6letter parents/12activities and12utterances,24planned audio/0images;additive dedicated local DB only.",
+      "sourceManifest": {
+        "path": "vocabflow-dataset/workspaces/editorial-refresh-20261030/foundation08-09-r0001/execution-manifest-r0001.json",
+        "sha256": "4236cc7a50dc6f646ddba7d436dff58c1bfcaa71baf6692e793ed8cb54b7e1da",
+        "byteLength": 114536
+      }
+    },
+    {
+      "id": "10-01-local-r0002",
+      "date": "2026-10-30",
+      "ownerInstruction": "oci làm 10 đi",
+      "mode": "ONE_SESSION",
+      "scope": "Apply pinned existing-media bindings and native local collection for frozen51existing senses; preserve text/identity/progress and accepted pilot/foundation data.",
+      "newProviderJobsAllowed": false
+    }
+  ],
+  "pilotMediaFinalAcceptance": {
+    "ticketIds": [
+      "05",
+      "06"
+    ],
+    "status": "done",
+    "evidence": {
+      "path": "docs/plans/editorial-refresh-2026-10-28/tickets-05-06-owner-acceptance-r0001.json",
+      "sha256": "dc3f87f8019d0b15524a9ff8fcfc517474a8543c26670762f11606a6092d3293",
+      "byteLength": 3062
+    },
+    "ownerReviewAccepted": true,
+    "museProviderAccepted": true,
+    "ownerRightsAttestationAccepted": true
+  },
+  "activeFoundationWave": {
+    "ticketIds": [
+      "08",
+      "09"
+    ],
+    "status": "in-progress",
+    "executionAuthorized": true,
+    "sourceManifest": "vocabflow-dataset/workspaces/editorial-refresh-20261030/foundation08-09-r0001/execution-manifest-r0001.json",
+    "manifestSha256": "4236cc7a50dc6f646ddba7d436dff58c1bfcaa71baf6692e793ed8cb54b7e1da",
+    "audioReceived": 18,
+    "isolatedSoundsPending": 6,
+    "newLexicalSenses": 0,
+    "phase": "LOCAL_18_AUDIO_OWNER_ACCEPTED_6_SOUNDS_MISSING",
+    "evidenceRepoRelative": "docs/plans/editorial-refresh-2026-10-28/foundation-08-09-local.result.json",
+    "dataset": {
+      "path": "vocabflow-dataset/workspaces/editorial-refresh-20261030/foundation08-09-r0001/dataset-selected-r0002.json",
+      "sha256": "a30fd9e285227c28703a21b5e621489ed525c4586083d0c7bb0ab884a087e918",
+      "byteLength": 97870
+    },
+    "handoff": {
+      "path": "vocabflow-dataset/workspaces/editorial-refresh-20261030/foundation08-09-r0001/handoff-r0002.json",
+      "sha256": "a4d1b79311dc31caf3783f02b21b06823a8b5c8c44f344e93c4938d4dda23bc2",
+      "byteLength": 4806
+    },
+    "archive": {
+      "path": ".vocabflow-local/editorial-refresh-20261030/foundation08-09-local-r0002/foundation08-09-owner-accepted-r0002.zip",
+      "sha256": "cf96113fc3590827ecd638799cf49975201544eee7edf50fd5c97d535d48dda5",
+      "byteLength": 667159,
+      "members": 10,
+      "crcAndEveryMemberHashVerified": true,
+      "containsAccountRowsEnvOrDbDump": false
+    },
+    "testsPassed": 189,
+    "postgresApiChecksPassed": 32,
+    "browserVerification": {
+      "state": "PENDING_LOCAL_BROWSER_USE_DISABLED",
+      "requiredWidths": [
+        390,
+        1440
+      ],
+      "realPlaybackVerified": false
+    },
+    "whole08Complete": false,
+    "whole09Complete": false,
+    "ownerListeningAcceptance": {
+      "path": "docs/plans/editorial-refresh-2026-10-28/foundation-08-09-owner-listening-acceptance-r0001.json",
+      "sha256": "c4e307432dae8666f176aa3c22249ff40388b2a839ade1c438279bbcd6ed82cf",
+      "byteLength": 16693
+    },
+    "newAudioListeningAcceptance": "OWNER_ACCEPTED",
+    "letterNamesListeningReady": 6
+  },
+  "previousTechnicalFrontierBeforeTicket10R0002": [
+    "08",
+    "09"
+  ],
+  "historicalTechnicalFrontierBeforeOwnerCatalog": [
+    "10-01"
+  ],
+  "previousBoundedBatchBeforeOwnerCatalog": {
+    "id": "ticket10-a1-a2-batch-0001",
+    "family": "10",
+    "path": "issues/10-01-review-a1-a2-existing-51.md",
+    "status": "ready-for-owner-review",
+    "executionAuthorized": true,
+    "inputManifest": {
+      "path": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket10-a1-a2-batch-0001/input-manifest-r0001.json",
+      "sha256": "9ead950dbcd9fafd5a4c25b8b9e099c4baddb15627f63135bf5f5c6d8ca327cd",
+      "byteLength": 133173
+    },
+    "ownedRows": 51,
+    "newMediaJobsAllowed": false,
+    "phase": "LOCAL_PREVIEW_VERIFIED_WITH_EXPLICIT_MEDIA_GAPS",
+    "evidenceRepoRelative": "docs/plans/editorial-refresh-2026-10-28/ticket-10-01-local-preview-r0002.result.json",
+    "contentReviewComplete": true,
+    "runtimeMediaBindingComplete": false,
+    "wholeTicket10Complete": false,
+    "selectedMediaBindingsComplete": true,
+    "runtimeLocalPreviewVerified": true,
+    "allOwnedRowsHaveMedia": false,
+    "counts": {
+      "senses": 51,
+      "images": 19,
+      "wordAudio": 20,
+      "exampleAudio": 17,
+      "withMedia": 20,
+      "textOnly": 31
+    },
+    "currentPointer": "vocabflow-dataset/workspaces/editorial-refresh-20261028/ticket10-a1-a2-batch-0001/current.json"
+  },
+  "ownerLocalCatalog": {
+    "story": "US-64",
+    "status": "LOCAL_IMPLEMENTED_READY_FOR_OWNER_CHECK",
+    "catalogId": "owner-editorial-1547-20261030-r0001",
+    "words": 1547,
+    "retainedIds": 905,
+    "newLocalIds": 642,
+    "retiredRows": 6436,
+    "topics": 73,
+    "learningSets": 76,
+    "currentPointer": "vocabflow-dataset/workspaces/editorial-refresh-20261030/owned-catalog-r0001/current.json"
+  },
+  "activeProductionReplacement": {
+    "story": "US-65",
+    "status": "COMPLETED_US65_RETENTION_SUPERSEDED_BY_US66",
+    "newCloudinaryOriginalsUploaded": 4640,
+    "productionWordsPlanned": 1547,
+    "retainedProductionIds": 900,
+    "newProductionIds": 647,
+    "retiredProductionRows": 6411,
+    "backupRestoreTables": 28,
+    "retirementCandidatesBackedUp": 9168,
+    "sharedDevelopmentProtected": 8722,
+    "unrelatedCloudinaryProtected": 206,
+    "liveDatabaseWrites": "SCHEMA_MIGRATIONS_AND_ATOMIC_CATALOG_APPLIED",
+    "oldCloudinaryDeletes": 9168,
+    "handoff": ".vocabflow-local\\editorial-refresh-20261030\\owner-production-r0001\\handoff.current.json",
+    "productionWords": 1547
+  },
+  "selectedOnlyCloudAndNeon": {
+    "story": "US-66",
+    "status": "COMPLETE",
+    "wordsPerCanonicalBranch": 1547,
+    "cloudinaryOriginals": 4640,
+    "oldCloudinaryRemaining": 0,
+    "oldBackupsRemoved": true,
+    "handoff": ".vocabflow-local\\editorial-refresh-20261031\\old-data-purge-r0001\\handoff.current.json"
+  },
+  "expansion5000Preparation": {
+    "status": "SUPERSEDED_BY_LOCAL_MEDIA_INTAKE",
+    "targetItems": 5000,
+    "authoredItems": 5000,
+    "baselineItems": 1547,
+    "roles": "CODEX_AUTHORS_MUSE_MEDIA_ONLY",
+    "handoff": ".vocabflow-local/editorial-refresh-20261101/expansion-5000-intake-r0001/handoff.current.json",
+    "finalDeliveryArchiveCount": 1
+  },
+  "latestExpansion5000Intake": {
+    "date": "2026-11-01",
+    "status": "LOCAL_LESSON_DRAFT_ASSEMBLED_4997_FILE_COMPLETE_3_HELD",
+    "sourceParts": 5,
+    "items": 5000,
+    "fileCompleteItems": 4997,
+    "heldItems": 3,
+    "topics": 50,
+    "lessons": 362,
+    "decodedMedia": 14997,
+    "runtimePublished": false,
+    "handoffRepoRelative": ".vocabflow-local/editorial-refresh-20261101/expansion-5000-intake-r0001/handoff.current.json",
+    "supersededByProductionHandoff": ".vocabflow-local/editorial-refresh-20261101/expansion-4997-production-r0001/handoff.current.json"
+  },
+  "latestExpansionProduction": {
+    "artifactType": "OWNER_EXPANSION_PRODUCTION_COMPLETION",
+    "date": "2026-11-01",
+    "status": "PRODUCTION_COMPLETE",
+    "origin": "https://vocab-flow-steel.vercel.app",
+    "runtimeReleaseSha": "83c7842bd82612bd8d3d6fbf93cb5f52ff74fa50",
+    "deploymentId": "dpl_FfpGieJodAJ7cXbVWLe3ncxc7md2",
+    "counts": {
+      "words": 6544,
+      "retainedWords": 1547,
+      "addedWords": 4997,
+      "learningSets": 438,
+      "topics": 123,
+      "newLessons": 362,
+      "newImages": 4997,
+      "newAudio": 9994,
+      "newCloudAssets": 14991,
+      "retainedCloudAssets": 4640,
+      "uniqueCloudAssets": 19631,
+      "heldWords": 3
+    },
+    "levels": {
+      "FIRST_WORDS": 153,
+      "A2": 1188,
+      "B1": 1841,
+      "A1": 886,
+      "B2": 1994,
+      "C1": 482
+    },
+    "existingRowsUpdated": 0,
+    "existingRowsDeleted": 0,
+    "oldCloudAssetsDeleted": 0,
+    "accountsSettingsAndExistingProgressPreserved": true,
+    "heldWords": [
+      "antihistamine",
+      "painter",
+      "apiece"
+    ],
+    "developmentUpdatedThisRelease": false,
+    "canonicalMasterAllocations": 0,
+    "deploymentMethod": "VERCEL_GIT_REMOTE_BUILD_WITH_EXISTING_OWNER_AUTH",
+    "ciBuildAndTrustedDb": "PASS",
+    "ciDeploymentCredentialStatus": "EXPIRED_TOKEN_NEEDS_REPLACEMENT",
+    "githubSecretsChanged": false,
+    "stagedHealthBeforePromotion": true,
+    "artifacts": [
+      {
+        "path": ".vocabflow-local/editorial-refresh-20261101/expansion-4997-production-r0001/catalog-prod-6544-r0001.json",
+        "byteLength": 51582081,
+        "sha256": "ce5cd3a6edfdcd744d72ff79e94f944bdf8bb73de484a0bee54bd274bdca22b0"
+      },
+      {
+        "path": ".vocabflow-local/editorial-refresh-20261101/expansion-4997-production-r0001/production-plan-r0002.json",
+        "byteLength": 48309265,
+        "sha256": "2efa728cc0a84f50c3371194cbfc264c82e13247996a67265fde0f3e3105a480"
+      },
+      {
+        "path": ".vocabflow-local/editorial-refresh-20261101/expansion-4997-production-r0001/rehearsal-r0002.json",
+        "byteLength": 49860,
+        "sha256": "505d335b093b52fb7da2ed219dd3aaefb6158fe31e0ecf53f677174474efdf4e"
+      },
+      {
+        "path": ".vocabflow-local/editorial-refresh-20261101/expansion-4997-production-r0001/application-result-r0001.json",
+        "byteLength": 45509,
+        "sha256": "1c1b1b4bcad3c5e9ae34b4771a5b1e2e8a3e8a1bcb1089aaf75efa96e0186152"
+      },
+      {
+        "path": ".vocabflow-local/editorial-refresh-20261101/expansion-4997-production-r0001/live-verification.current.json",
+        "byteLength": 507,
+        "sha256": "ef94c08897b850b5ade60d9130fe34eaacb0108f802696df1761b3fcbd0625fc"
+      },
+      {
+        "path": ".vocabflow-local/editorial-refresh-20261101/expansion-4997-production-r0001/live-public-dto.current.json",
+        "byteLength": 8609,
+        "sha256": "c124c2d6bfe9f5904fd56266d7e21ca10bb8cd93f5de048571270d72091162b4"
+      },
+      {
+        "path": ".vocabflow-local/editorial-refresh-20261101/expansion-4997-production-r0001/cloud-verification.current.json",
+        "byteLength": 276,
+        "sha256": "4de471a93aaa51121110f78b9436fe0d2cb74acf67b3d33bdab807f599434828"
+      },
+      {
+        "path": ".vocabflow-local/editorial-refresh-20261101/expansion-4997-production-r0001/upload-checkpoint.current.json",
+        "byteLength": 19526860,
+        "sha256": "83d8e5d968fb696ba87cf4f6801e86710fd83bd02b9233efd363c42a303eb3fd"
+      },
+      {
+        "path": ".vocabflow-local/editorial-refresh-20261101/expansion-4997-production-r0001/main-release-ci.current.json",
+        "byteLength": 714,
+        "sha256": "fd2a01e4b12ebe68ff95562525024ce88a054778c694011b130e5fb52b494250"
+      },
+      {
+        "path": ".vocabflow-local/editorial-refresh-20261101/expansion-4997-production-r0001/release-readiness.current.json",
+        "byteLength": 425,
+        "sha256": "e2b06fb61bdbaf9fbb13a076b28c8601ecaeddba12a148c8d77519234f605de6"
+      },
+      {
+        "path": ".vocabflow-local/editorial-refresh-20261101/expansion-4997-production-r0001/staged-health.current.json",
+        "byteLength": 343,
+        "sha256": "e8102582c3d0b4c52beef762089eccb26aded3a780174ec72e26bfcf4c76e3c3"
+      },
+      {
+        "path": ".vocabflow-local/editorial-refresh-20261101/expansion-4997-production-r0001/production-recovery.current.json",
+        "byteLength": 160,
+        "sha256": "5c5c02448fa723bc47f6c35c7facf7fc80e1c3cfc429401193a168b40ca05657"
+      }
+    ],
+    "handoff": {
+      "path": ".vocabflow-local/editorial-refresh-20261101/expansion-4997-production-r0001/handoff.current.json",
+      "byteLength": 4224,
+      "sha256": "c0739ac0ce2bbc2c05a9dcb0f7cacb244210176b20364a60ac868962367f3387"
+    }
+  },
+  "latestLocalDataCleanup": {
+    "artifactType": "LOCAL_LEGACY_DATA_CLEANUP_COMPLETION",
+    "date": "2026-11-01",
+    "status": "COMPLETE",
+    "deleted": {
+      "targets": 259,
+      "files": 136189,
+      "bytes": 11588290253
+    },
+    "retainedWords": 6544,
+    "retainedMediaFiles": 19631,
+    "threeDeferredItemsPreserved": true,
+    "foundationAuthoringPreserved": true,
+    "sourceAttributionPreserved": true,
+    "cloudOrNeonWrites": false,
+    "codeOrGitHistoryRewritten": false,
+    "newOldDataBackupCreated": false,
+    "currentCatalog": {
+      "path": ".vocabflow-local/editorial-refresh-20261101/expansion-4997-production-r0001/catalog-prod-6544-r0001.json",
+      "byteLength": 51582081,
+      "sha256": "ce5cd3a6edfdcd744d72ff79e94f944bdf8bb73de484a0bee54bd274bdca22b0"
+    },
+    "historicalMasterReplayDataRemovedIntentionally": true,
+    "evidence": [
+      {
+        "path": ".vocabflow-local/editorial-refresh-20261101/local-legacy-cleanup-r0001/delete-plan.current.json",
+        "byteLength": 68887,
+        "sha256": "377539ea891e0de062e77968f1224cd6197be7b59524c8a39cc994a9d035f812"
+      },
+      {
+        "path": ".vocabflow-local/editorial-refresh-20261101/local-legacy-cleanup-r0001/keep-files.current.json",
+        "byteLength": 6757089,
+        "sha256": "9d38c11d2ddf9ef692e67c61aef3856c04551b752c3872eaac3c41d28ccae85b"
+      },
+      {
+        "path": ".vocabflow-local/editorial-refresh-20261101/local-legacy-cleanup-r0001/pre-delete-verification.current.json",
+        "byteLength": 549,
+        "sha256": "0133d1bc87f52d950ef122736e830efac723ef1abdad02ea0cc4fabb9408fc97"
+      },
+      {
+        "path": ".vocabflow-local/editorial-refresh-20261101/local-legacy-cleanup-r0001/delete-result.current.json",
+        "byteLength": 208,
+        "sha256": "055b85cbf83443fdd9db19fdd15dbba5621d6c81b0314fa92452465628393df1"
+      },
+      {
+        "path": ".vocabflow-local/editorial-refresh-20261101/local-legacy-cleanup-r0001/verification.current.json",
+        "byteLength": 313,
+        "sha256": "ba94319fc79da6fd6470f9056d8a839b2887cab6e3929624d5687de8054996e1"
+      }
+    ],
+    "handoff": {
+      "path": ".vocabflow-local/editorial-refresh-20261101/local-legacy-cleanup-r0001/handoff.current.json",
+      "byteLength": 2047,
+      "sha256": "cb30cc89272a45576b05bc14be44a9063f8427c361961263775b9250d19da9df"
+    }
+  },
+  "currentLocalDataRoot": "D:\\hoctienganh\\VocabFlow-data",
+  "latestWorkspaceOrganization": {
+    "artifactType": "LOCAL_WORKSPACE_ORGANIZATION_COMPLETE",
+    "date": "2026-11-01",
+    "status": "COMPLETE",
+    "dataRoot": "D:\\hoctienganh\\VocabFlow-data",
+    "repository": "D:\\hoctienganh\\VocabFlow",
+    "archiveRoot": "D:\\hoctienganh\\_archive",
+    "publishedWords": 6544,
+    "selectedMediaFiles": 19631,
+    "selectedMediaBytes": 7897460101,
+    "foundationAudio": 18,
+    "deferredMedia": 7,
+    "clutterTargetsRemoved": 120,
+    "mergedWorktreesRemoved": 3,
+    "historicalSourceFilesArchived": 5086,
+    "localConfigPreserved": [
+      "postgres.env",
+      "development.env"
+    ],
+    "runtimeCompatibilityUpdatedLocally": true,
+    "databaseCloudDeployChanges": false,
+    "gitHistoryRewritten": false,
+    "canonicalMasterIdsAllocated": 0,
+    "catalog": {
+      "path": "D:\\hoctienganh\\VocabFlow-data\\catalog.json",
+      "byteLength": 51582081,
+      "sha256": "ce5cd3a6edfdcd744d72ff79e94f944bdf8bb73de484a0bee54bd274bdca22b0"
+    },
+    "mediaIndex": {
+      "path": "D:\\hoctienganh\\VocabFlow-data\\index.json",
+      "byteLength": 11657660,
+      "sha256": "0d6ae5b092c5baeb21569c6b720e736344b4627f59535fd5dbe5e0fdddbc1f40"
+    },
+    "evidence": [
+      {
+        "path": "D:\\hoctienganh\\VocabFlow-data\\operations\\reorganization-r0001\\plan.json",
+        "byteLength": 10444223,
+        "sha256": "d8f24b18ee5a50992d79ef78fd25a7d914b02bbc7fe40a43eca982c2fc78bb57"
+      },
+      {
+        "path": "D:\\hoctienganh\\VocabFlow-data\\operations\\reorganization-r0001\\identity-verification.json",
+        "byteLength": 209,
+        "sha256": "8c6a032bc0e4a8be6feb8d7c71137b598fe6f414790ddfcef6d6476b5b4bf461"
+      },
+      {
+        "path": "D:\\hoctienganh\\VocabFlow-data\\operations\\reorganization-r0001\\apply-result.json",
+        "byteLength": 219,
+        "sha256": "e86916ade85b083b95ff4b91929a7e370215154c68efd0d4f045903d3e8ac5e2"
+      },
+      {
+        "path": "D:\\hoctienganh\\VocabFlow-data\\operations\\reorganization-r0001\\verification.json",
+        "byteLength": 371,
+        "sha256": "3bcf9ed150e0ad0f6cb64c6a589b853ff8f6bae14554e84168903cc93c99adf6"
+      },
+      {
+        "path": "D:\\hoctienganh\\VocabFlow-data\\operations\\reorganization-r0001\\runtime-verification.json",
+        "byteLength": 255,
+        "sha256": "f74ad01b83b844578b3c9a4a07939c33fa0d2356f823856934d857fef78f2725"
+      },
+      {
+        "path": "D:\\hoctienganh\\VocabFlow-data\\operations\\reorganization-r0001\\checks.json",
+        "byteLength": 223,
+        "sha256": "82785166ae83acee9c6d2ca93e0eb6d9db71af3d5ac267e2813cf221d96d0fa8"
+      }
+    ]
+  }
+}
