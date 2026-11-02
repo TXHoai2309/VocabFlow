@@ -7,7 +7,8 @@ Reproduced exact screenshot intervals at63s in actualviewer/Hono: oldfindIndex
 keeps59.280–65.199s cue over newer62.719–66.880s cue. Redbrowsercase then green
 after latest-started-active selection; pausedclock excludespolling-only diagnosis.
 Originalsource/timings/hash/cache/history unchanged, no DB/providerprocessing.
-14boundary/tie/gap/backwardclock tests pass; fullvideo/type/lint gates pending.
+14boundary/tie/gap/backwardclock+18API tests pass; fullvideo31PASS1liveSkip,
+type/lint/build+secret/mapscan/diffcheckPASS. RemoteCI/deployment pending.
 Isolatedbranch fix/video-overlap-20261102 based deployedmain80ade56; originaldirty
 work/handoff preserved. BrowserURLconfidence policy prevents privateChrome access;
 no privateDBread/export or guessed sourceoffset. CurrentstoryUS92READY beforecode.
