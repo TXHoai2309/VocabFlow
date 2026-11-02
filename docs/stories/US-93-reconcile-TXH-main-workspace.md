@@ -34,3 +34,14 @@ This request authorizescommit/push/ordinarymerges; it doesnotauthorize secrets
 publication, newproviders, paidservices, datamutations or forcepush.
 
 READY gate recorded before changes; implementation now in progress.
+
+## Local integration evidence
+
+Saved262inputfilehashes; all262stillpresent afterclassification, nofiledeletion.
+Mergedmainruntime unchanged except4acceptedlocalmedia path/helper/test files;
+existingproduction/catalog/typedJSONB/videooverlap source retainedexactly.
+48focusedTS checks +8offlinearchive checks, rootbuild/typecheck/lint/secret-map
+scans/diffcheckPASS. Gitindexactualsecretvaluehits0; generated/privatefiles0.
+All21practice ticketsdone and Gitindexbyte/SHA hashes matchindex.55filedelta
+frommain comprises remaininglocaltools/tracker/docs andignorepolicy.
+RemoteCoreCI/merge/alignment stillpending; statusINPROGRESS.

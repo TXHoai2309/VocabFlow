@@ -5539,3 +5539,43 @@ Free-only DeepL EN→VI with verified quota/languages, exact source preflight, e
 ## 2026-11-01 — Private source reports/version integrity19
 
 Private text/timing reports with receipts, technical source-error first outcome, futurecue exclusion without widening, old translated history preserved after personal replacement. Migration0034 preparedonly.22browser/24API-schema/lint/typecheck/build/SQL34rollback PASS. Strict history DTO regression found/fixed and allvideo rerun. No provider processing or learning/media mutations.
+
+<!-- Historical main notes preserved during TXH reconciliation. -->
+
+## 2026-11-02 — Fix current subtitle selection when source intervals overlap
+
+Viewer follows the latest-started active sourcecue ratherthanholdinganearlier
+activecue until its end. At63s with59.280–65.199/62.719–66.880 overlap, select
+62.719s line. Half-openboundaries, backwardseek, source-order ties and gaps
+preserve exactsourceclock; no source rewrite/offset/providerre-extraction/DBchange.
+Regression reproduces user screenshots throughactualviewer/service boundary.
+
+
+
+## 2026-11-02 — Prepare scoped practice/game/video Production release
+
+Owner requests Production deployment plus DB. Isolated main-based release retains
+current published catalog, adds approved21features/11additive migrations and extends
+artifact secret scans/child-environment stripping to Supadata/DeepL keys. Production
+preflight checks canonical identity and exactpending plan. No catalog import/reset
+or unrelated source changes. Release status/evidence tracked in US91.
+
+
+## 2026-11-01 — US67 typed JSONB publication bindings
+
+The full rollback rehearsal rejected string-encoded JSONB tags before any
+publication committed. Bind tags/examples/provenance with the driver's typed
+JSONB parameters. Preserve failed plan revision r0001 and prepare r0002 for
+another full rehearsal. All14,991 cloud originals are uploaded and verified;
+the live catalog still retains1,547words.25 focused publication guards pass.
+
+
+
+## 2026-11-01 — US67 owner-authorized additive production expansion
+
+Prepare 4,997 complete entries for additive production publication, retaining
+all 1,547 existing words and progress. Hold three incomplete proposals. Deploy
+exact namespace and additive guest/index compatibility before DB publication.
+32 runtime/guest tests and 23 additive guard tests pass; typecheck/build pass.
+Cloudinary upload and canonical DB release are in progress, not yet complete.
+See `docs/stories/US-67-additive-owner-expansion-production.md`.

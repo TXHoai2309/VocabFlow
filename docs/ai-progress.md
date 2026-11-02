@@ -9039,3 +9039,51 @@ owner-approved baseline exception. See
 ## Provider continuation19 accepted
 
 US89/ticket19 ACCEPTED,20 done total.22controlledvideo/24API-schema/SQL34rollback/lint/typecheck/build PASS.21 private deletion/groupC is remainingstory. SourceReport historyDTO fixed beforeacceptance, oldsource/VI/results retained and qualityannotation independent.
+
+<!-- Historical main notes preserved during TXH reconciliation. -->
+
+## Historical main checkpoint — US92 before completed hotfix
+
+Owner reports one-cue lag on Production video28d3d6de-b4b3-41bd-a04a-25194e38a482.
+Reproduced exact screenshot intervals at63s in actualviewer/Hono: oldfindIndex
+keeps59.280–65.199s cue over newer62.719–66.880s cue. Redbrowsercase then green
+after latest-started-active selection; pausedclock excludespolling-only diagnosis.
+Originalsource/timings/hash/cache/history unchanged, no DB/providerprocessing.
+14boundary/tie/gap/backwardclock+18API tests pass; fullvideo31PASS1liveSkip,
+type/lint/build+secret/mapscan/diffcheckPASS. RemoteCI/deployment pending.
+Isolatedbranch fix/video-overlap-20261102 based deployedmain80ade56; originaldirty
+work/handoff preserved. BrowserURLconfidence policy prevents privateChrome access;
+no privateDBread/export or guessed sourceoffset. CurrentstoryUS92READY beforecode.
+
+
+
+## Historical main checkpoint — US91 before completed release
+
+Isolated release branch from83c7842 preserves newer main catalog and all unrelated
+local edits.21featurestories accepted; scoped feature source/migrations now prepared.
+Neon protectedidentity/free target verified; exactly11 pending0025–0035. Production
+provider secrets provisioned server-only. Core/TrustedDB must pass exactmainSHA
+before atomicforward-onlymigration and same-SHA guardedVerceldeploy. ExistingCI
+Verceltoken invalid; validlocalCLI available for guardedmanualcompletion after
+workflow stops. No raw productionrow export; aggregatebaseline only after automatic
+review rejected full localbackup. StoryUS91 records scope and rollbackproof.
+
+
+## 2026-11-01 — US67 typed JSONB publication bindings
+
+The full rollback rehearsal rejected string-encoded JSONB tags before any
+publication committed. Bind tags/examples/provenance with the driver's typed
+JSONB parameters. Preserve failed plan revision r0001 and prepare r0002 for
+another full rehearsal. All14,991 cloud originals are uploaded and verified;
+the live catalog still retains1,547words.25 focused publication guards pass.
+
+
+
+## 2026-11-01 — US67 owner-authorized additive production expansion
+
+Prepare 4,997 complete entries for additive production publication, retaining
+all 1,547 existing words and progress. Hold three incomplete proposals. Deploy
+exact namespace and additive guest/index compatibility before DB publication.
+32 runtime/guest tests and 23 additive guard tests pass; typecheck/build pass.
+Cloudinary upload and canonical DB release are in progress, not yet complete.
+See `docs/stories/US-67-additive-owner-expansion-production.md`.
