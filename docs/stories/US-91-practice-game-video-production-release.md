@@ -1,8 +1,8 @@
 # US-91 — Release approved practice/game/video v1 to Production
 
-- Status: IN PROGRESS
+- Status: ACCEPTED
 - Authority: owner request2026-11-02: deploy Production for testing and run DB.
-- Dependency:21ticketsUS70–90 ACCEPTED; latestmain83c7842 is deployed.
+- Dependency:21ticketsUS70–90 ACCEPTED; starting deployedmain was83c7842.
 
 ## Contract before release implementation
 
@@ -47,3 +47,7 @@ aggregate-only baseline and forward-only atomicDDL; no sensitivebackup workaroun
 Pin newly tracked0025–0035 SQL and featuretracker/source-plan text to LF so
 Windows/CI migration hashes and21ticket byte/SHA records remain consistent.
 Approved originalspecSHA retained separately; no oldmigration bytes changed.
+
+## Final acceptance
+
+ProductionREADY/promotedLinux dpl_ZbsRUXt1e1LhKUReL5UzcuVJZsZy, exactmainSHA80ade561ebc3cbfd36a2039c22bfae5d692f768f. Core/TrustedDBgreen;11migrationsapplied/pending0/runtimegrants10, alloldbusiness+identityhashes unchanged. StagedAPI thenrealprodHTTP/guestbrowserPASS. WindowsmissingHono incidentrolledbackandfixedbyLinuxbuild. Automaticreviewrejected fullrowbackup and OAuthtransfer; neither executed. ExistingCIdeploytoken remainsinvalid, manualVercelGit releasecomplete. See docs/releases/practice-game-video-2026-11-02.md.

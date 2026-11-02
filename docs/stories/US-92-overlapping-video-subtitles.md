@@ -1,6 +1,6 @@
 # US-92 — Fix stale current subtitle during overlapping cues
 
-- Status: IN PROGRESS
+- Status: ACCEPTED
 - Authority: owner reports Production video28d3d6de-b4b3-41bd-a04a-25194e38a482
   subtitles lag about one cue, screenshots2026-11-02. Continue approved prod test/fix.
 - Dependencies: US83/US91 accepted. Currentmain80ade561.
@@ -37,3 +37,20 @@ skip(49.9s), including nativeoverlaps102cue/reload/pagejump, chainboundaries,
 backwardseek/paused/buffering1.5speed/source-byte invariance/noextraextraction.
 Rootlint/typecheck/build/secret+map scans anddiffcheckPASS. RemoteCI/prodreload
 verification pending; story remainsINPROGRESS until deployedhotfix isverified.
+
+## Production acceptance —2026-11-02
+
+MergedPR15, maine68a0bea2406b97cc2e40a05667df28aa8b36da4. CoreCI41383155074
+attempt2SUCCESS and TrustedDB41383155082SUCCESS onexactSHA. FirstCoreattempt
+had2existing freepractice reloadtimingfailures; bothisolatedPASS and fullunchanged
+SHA rerunPASS, no suppression/testedit. Productionworkflow41384498552 verifies
+pending0 thenfailsinvalidexistingdeploytoken; noGitHubcredentialchanges.
+
+LinuxGitbuild staged dpl_Ax1qmKFYvFWh9jtwvUQuwUcnhUb1 withdomainunassigned;
+health/auth/publicindex200/private401 and exactJSbytehash matchlocalfixedbuild
+PASSbeforepromotion. Canonicaldomain promoted; same2regressionsonrealprodJS
+failBEFORE and PASSAFTER (14s) using isolatedaccount/API/mediaIOfixtures, zero
+realprivatewrites/providercalls. ActualprodAPI/canonicaldeployment/cataloghashPASS.
+NoDBmigration/sourcecaption/cache/history/learningdata changes. PrivateChrome
+URLconfidence policy preventeddirect user-session playback; no claimword-level
+sourceaccuracy beyondverified appselectionbug.

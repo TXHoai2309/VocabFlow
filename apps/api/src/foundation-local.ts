@@ -12,6 +12,7 @@ import { createHttpDatabase } from "./db/client";
 import { authorizeLearnerOwnership } from "./learners";
 import { householdLocalDate } from "./reviews";
 import { runtimeBindingsFromEnvironment } from "./runtime-bindings";
+import { foundationLocalAudioPath, foundationLocalMediaRoot } from "./foundation-local-media-path";
 
 const mediaSchema = z.object({ path: z.string(), sha256: z.string().regex(/^[a-f0-9]{64}$/), byteLength: z.number().int().positive(), review: z.enum(["PENDING", "OWNER_ACCEPTED"]) }).strict();
 const contentSchema = z.object({ glyph: z.string().nullable(), optionGlyphs: z.array(z.string()), instruction: z.string(), context: z.string().nullable(), title: z.string(), textEn: z.string(), translationVi: z.string(), explanation: z.string(), audio: mediaSchema.nullable() }).strict();
@@ -22,7 +23,6 @@ type Attempt = { id: string; owner_key: string; target_id: string; payload: Atte
 const fresh: FoundationProgress = { revision: 0, state: { status: "NEW", consecutiveCorrect: 0, intervalDays: 0, firstLearnedDate: null, lastReviewedDate: null, nextReviewDate: null, totalCorrect: 0, totalIncorrect: 0 } };
 const hash = (value: string | Buffer) => createHash("sha256").update(value).digest("hex");
 const same = (left: unknown, right: unknown) => JSON.stringify(left) === JSON.stringify(right);
-const sourceMediaRoot = ".vocabflow-local/editorial-refresh-20261030/foundation08-09-media-r0001/assets/audio";
 class FoundationError extends Error { constructor(readonly code: string, readonly status: 400 | 401 | 403 | 404 | 409 | 503) { super(code); } }
 function fail(code: string, status: FoundationError["status"]): never { throw new FoundationError(code, status); }
 function valid<T>(schema: z.ZodType<T>, value: unknown): T { const p = schema.safeParse(value); return p.success ? p.data : fail("INVALID_REQUEST", 400); }
@@ -138,7 +138,7 @@ export function installFoundationLocal(app: Hono, env: NodeJS.ProcessEnv, depend
       const at = await loadAttempt(id, a); const t = await target(at.target_id); currentAttempt(at, t);
       if (at.phase === "ASSESS" && (at.payload.mode !== "ASSESS" || !listenReady(t))) fail("AUDIO_NOT_REVEALED", 403);
       const audio = contentSchema.parse(t.content).audio; if (!audio) fail("AUDIO_MISSING", 404);
-      const mediaRoot = realpathSync(sourceMediaRoot); const file = realpathSync(audio.path); const relative = path.relative(mediaRoot, file);
+      const mediaRoot = realpathSync(foundationLocalMediaRoot); const file = realpathSync(foundationLocalAudioPath(audio.path, audio.sha256)); const relative = path.relative(mediaRoot, file);
       if (!relative || relative.startsWith("..") || path.isAbsolute(relative) || !/^[a-f0-9]{64}\.mp3$/.test(relative)) fail("AUDIO_MISSING", 404);
       const blob = readFileSync(file); if (hash(blob) !== audio.sha256 || blob.length !== audio.byteLength) fail("MEDIA_CHANGED", 409);
       c.header("Content-Type", "audio/mpeg"); c.header("Content-Length", String(blob.length)); c.header("X-Content-Type-Options", "nosniff");

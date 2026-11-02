@@ -3,9 +3,11 @@
 ## Phạm vi đã cấu hình
 
 Chủ sản phẩm chọn ticket Markdown local cho chiến dịch
-`editorial-refresh-20261028` ngày 29/10/2026. Quyết định này cung cấp tracker
-cho skill to-tickets ở chiến dịch này; chưa chọn tracker mặc định cho các việc
-khác trong repo.
+`editorial-refresh-20261028` ngày 29/10/2026. Ngày 01/11/2026, chủ sản phẩm
+duyệt thêm tracker Markdown local cho nhóm `practice-game-video-20261101`.
+Hai phạm vi có ID/index riêng; chưa chọn tracker mặc định cho các việc khác.
+
+### Chiến dịch biên tập dữ liệu
 
 - Entry point: [tracker chiến dịch](../../.scratch/editorial-refresh-20261028/README.md).
 - Ticket: một Markdown mỗi việc trong `.scratch/editorial-refresh-20261028/issues/`.
@@ -17,7 +19,26 @@ khác trong repo.
 - Không có parent issue từ tracker bên ngoài cần sửa/đóng. Không gửi việc sang
   GitHub, Linear hoặc các chat khác trong bước xuất local.
 
+### Luyện tự do, Game bắn cá và Học YouTube
+
+- Entry point: [tracker tính năng](../../.scratch/practice-game-video-20261101/README.md).
+- Một Markdown mỗi ticket trong `.scratch/practice-game-video-20261101/issues/`.
+- ID 01–21 theo dependency order đã duyệt; không dùng ID để tham chiếu ticket
+  biên tập cùng số. Luôn kèm tên phạm vi nếu giao việc ngoài tracker này.
+- [index.json](../../.scratch/practice-game-video-20261101/index.json) tra đường
+  dẫn, nguồn spec, AC, coverage và blocking edges. Nội dung/trạng thái từng
+  Markdown là chuẩn; đồng bộ index/mục lục khi trạng thái thay đổi.
+- Spec tổng hợp và sơ đồ 21 lát cắt đã được duyệt. User chọn “Duyệt, xuất Markdown
+  local”, đồng thời duyệt xuất ở `planned`, `Execution authorized: no`. Đây là
+  ngoại lệ rõ ràng với trạng thái mặc định ready-for-agent của skill.
+- Thứ tự sản phẩm Luyện → Game → Video; cạnh kỹ thuật không thêm phụ thuộc giả.
+  Frontier kỹ thuật 01/13 không có nghĩa đã giao cả hai. Ticket đề xuất làm đầu là 01.
+- Chưa tạo issue trên dịch vụ ngoài, chưa giao agent code hoặc thay gate story.
+
 ## Giao việc
+
+Quy tắc triage dùng cho cả hai tracker. Đoạn sau ghi lịch sử giao việc ban đầu
+của chiến dịch biên tập; không áp các số/trạng thái lịch sử đó cho tracker tính năng.
 
 Đọc [vocabulary triage](triage-labels.md) trước khi đặt trạng thái. Ban đầu user
 duyệt xuất ticket, nên các ticket được tạo `planned`, `Execution authorized: no`.

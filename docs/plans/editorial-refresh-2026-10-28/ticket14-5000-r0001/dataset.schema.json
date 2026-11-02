@@ -1,0 +1,50 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VocabFlow expansion5000 frozen editorial dataset",
+  "type": "object",
+  "required": ["schemaVersion", "campaignId", "state", "runtimeEligible", "items"],
+  "properties": {
+    "schemaVersion": {"const": "vocabflow-expansion-5000/1.0.0"},
+    "campaignId": {"const": "expansion-5000-20261031-r0001"},
+    "state": {"const": "TEXT_FROZEN_PENDING_MEDIA"},
+    "runtimeEligible": {"const": false},
+    "items": {
+      "type": "array", "minItems": 5000, "maxItems": 5000,
+      "items": {"$ref": "#/$defs/item"}
+    }
+  },
+  "$defs": {
+    "uuid": {"type": "string", "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-7[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"},
+    "hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "text": {"type": "string", "minLength": 1},
+    "item": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["slot", "itemId", "example", "pronunciation", "mediaJobIds", "displayForm", "partOfSpeech", "meaningVi", "shortMeaningVi", "definitionEn", "learningLevel", "cefr", "classificationStatus", "classificationRationale", "topicCodes", "imageBrief", "masterLexemeId", "masterSenseId", "runtimeVocabularyId", "editorialReview", "sources", "contentSha256"],
+      "properties": {
+        "slot": {"type": "integer", "minimum": 1, "maximum": 5000},
+        "itemId": {"$ref": "#/$defs/uuid"},
+        "displayForm": {"$ref": "#/$defs/text"},
+        "partOfSpeech": {"enum": ["NOUN", "VERB", "ADJECTIVE", "ADVERB", "PRONOUN", "PREPOSITION", "DETERMINER", "CONJUNCTION", "INTERJECTION", "NUMBER", "PHRASE"]},
+        "meaningVi": {"$ref": "#/$defs/text"},
+        "shortMeaningVi": {"type": "string", "minLength": 1, "maxLength": 120},
+        "definitionEn": {"$ref": "#/$defs/text"},
+        "learningLevel": {"enum": ["FIRST_WORDS", "A1", "A2", "B1", "B2", "C1", "C2"]},
+        "cefr": {"enum": [null, "A1", "A2", "B1", "B2", "C1", "C2"]},
+        "classificationStatus": {"const": "EDITORIAL_ESTIMATE"},
+        "classificationRationale": {"$ref": "#/$defs/text"},
+        "topicCodes": {"type": "array", "minItems": 1, "uniqueItems": true, "items": {"$ref": "#/$defs/text"}},
+        "imageBrief": {"type": "string", "minLength": 25},
+        "mediaJobIds": {"type": "object", "additionalProperties": false, "required": ["image", "wordAudio", "exampleAudio"], "properties": {"image": {"$ref": "#/$defs/uuid"}, "wordAudio": {"$ref": "#/$defs/uuid"}, "exampleAudio": {"$ref": "#/$defs/uuid"}}},
+        "masterLexemeId": {"type": "null"},
+        "masterSenseId": {"type": "null"},
+        "runtimeVocabularyId": {"type": "null"},
+        "editorialReview": {"const": "CODEX_EDITOR_SELF_REVIEWED_PENDING_FINAL_ACCEPTANCE"},
+        "sources": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["kind", "attribution"], "properties": {"kind": {"enum": ["CODEX_EDITOR_AUTHORED", "CONSULTED_REFERENCE", "LICENSED_EXCERPT"]}, "attribution": {"$ref": "#/$defs/text"}, "url": {"type": ["string", "null"]}, "license": {"type": ["string", "null"]}}}},
+        "example": {"type": "object", "additionalProperties": false, "required": ["exampleId", "en", "vi"], "properties": {"exampleId": {"$ref": "#/$defs/uuid"}, "en": {"$ref": "#/$defs/text"}, "vi": {"$ref": "#/$defs/text"}}},
+        "pronunciation": {"type": "object", "additionalProperties": false, "required": ["pronunciationId", "locale", "ipa", "ipaSource"], "properties": {"pronunciationId": {"$ref": "#/$defs/uuid"}, "locale": {"const": "en-US"}, "ipa": {"type": ["string", "null"]}, "ipaSource": {"type": ["string", "null"]}}},
+        "contentSha256": {"$ref": "#/$defs/hash"}
+      }
+    }
+  }
+}

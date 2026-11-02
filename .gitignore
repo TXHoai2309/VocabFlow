@@ -59,3 +59,22 @@ __pycache__/
 
 # Dataset workspaces
 vocabflow-dataset/
+
+# Track canonical ticket sources, keep local execution output out of Git.
+/.scratch/*
+!/.scratch/editorial-refresh-20261028/
+!/.scratch/practice-game-video-20261101/
+/.scratch/editorial-refresh-20261028/*
+!/.scratch/editorial-refresh-20261028/README.md
+!/.scratch/editorial-refresh-20261028/index.json
+!/.scratch/editorial-refresh-20261028/issues/
+/.scratch/practice-game-video-20261101/*
+!/.scratch/practice-game-video-20261101/README.md
+!/.scratch/practice-game-video-20261101/CHECKPOINT.md
+!/.scratch/practice-game-video-20261101/index.json
+!/.scratch/practice-game-video-20261101/sync.mjs
+!/.scratch/practice-game-video-20261101/issues/
+!/.scratch/practice-game-video-20261101/evidence/
+/.scratch/practice-game-video-20261101/evidence/*
+!/.scratch/practice-game-video-20261101/evidence/*.md
+/premium-audit.json

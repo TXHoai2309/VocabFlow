@@ -115,4 +115,9 @@ flowchart TD
 
 [Bằng chứng cuối](evidence/final-verification.md) · [Provider đã xác minh](evidence/provider-blockers.md) · [Checkpoint](CHECKPOINT.md) · [Cấu hình provider](../../docs/plans/practice-and-link-learning-2026-11-01/provider-setup.md).
 
-120files/1417tests và143/143Chromium (gồm playerYouTube thật), lint/typecheck/build, SQL35 rollback và strictUIaudit0 PASS. Supadata còn99credits; DeepL còn999,967ký tự tại lần kiểm tra. Runtime kiểm quota trước xử lý; không fallback trả phí. Migration0025–0035 chỉ chuẩn bị review; chưa commit/push/deploy/applycloud.
+120files/1417tests và143/143Chromium (gồm playerYouTube thật), lint/typecheck/build, SQL35 rollback và strictUIaudit0 PASS. Supadata còn99credits; DeepL còn999,967ký tự tại lần kiểm tra. Runtime kiểm quota trước xử lý; không fallback trả phí. Phần này ghi nhận nghiệm thu local ngày01/11; Production ngày02/11 được ghi bên dưới.
+
+
+## Production —2026-11-02
+
+All21features are live at https://vocab-flow-steel.vercel.app. Migrations0025–0035 applied, pending0. CoreCI/TrustedDBgreen, datahashes unchanged, actualprodAPI/guestpractice/game smokePASS. SameSHA Linuxbuild fixed WindowsartifactmissingHono afterrollback. [Release report](../../docs/releases/practice-game-video-2026-11-02.md). ExistingGitHubdeploytoken stillneeds separatecredentialauthorization; currentProduction release is complete.

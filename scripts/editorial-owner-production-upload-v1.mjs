@@ -35,7 +35,7 @@ async function main(){
         if(cp.assets[asset.sha256]){assert.equal(cp.assets[asset.sha256].publicId,asset.publicId);completed++;continue;}
         let uploaded;
         for(let attempt=1;attempt<=3;attempt++){
-          try{uploaded=await cloudinary.uploader.upload(asset.repoRelativePath,{resource_type:asset.resourceType,type:'upload',public_id:asset.publicId,overwrite:false,unique_filename:false,use_filename:false,
+          try{uploaded=await cloudinary.uploader.upload(asset.repoRelativePath,{resource_type:asset.resourceType,type:'upload',public_id:asset.publicId,asset_folder:asset.resourceType==='image'?'Vocab/images':'Vocab/audio',overwrite:false,unique_filename:false,use_filename:false,
             tags:['vocabflow-owner-publication','owner-production-1547-20261030-r0001'],context:{source_sha256:asset.sha256},timeout:120000});break;}
           catch(error){if(attempt===3||![408,420,429,500,502,503,504].includes(error?.http_code))throw error;await new Promise(r=>setTimeout(r,attempt*1500));}
         }

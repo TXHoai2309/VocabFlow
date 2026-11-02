@@ -1,5 +1,124 @@
 # VocabFlow Project Decisions
 
+## 2026-11-01 — US69: one current data folder; workspace clutter removed
+
+Owner requested consolidation and deletion of unnecessary local files. All current
+vocabulary data now lives in `D:/hoctienganh/VocabFlow-data`: unchanged 6,544-entry
+catalog, local/cloud media index, 6,544 images, 13,087 unique MP3s, authoring sources,
+three deferred items, 18 foundation clips and source licenses. Original operational
+and Muse input/intake evidence is preserved in a CRC-verified ZIP. Original frozen
+JSON keeps its historical paths; the current index/relocation plan records new ones.
+
+Moved all 19,656 selected/foundation/deferred media files on the same volume. All
+19,649 available file identities and sizes matched; seven deferred files whose
+directory-entry file IDs were unavailable matched SHA-256 before deletion. Final
+SHA-256 checks pass for every relocated original and all eight critical artifacts.
+No source text, ID, learner progress, DB, cloud asset or deployment was changed.
+
+Removed 120 explicit clutter targets and three merged worktrees after verifying
+their commits remain in main and no unrelated edits existed. Preserved 5,086
+historical code/doc/patch files in one ZIP and independent shadow Git refs in a
+verified bundle under `_archive`. Main Git history/branches and dirty work remain.
+The workspace root now contains only `VocabFlow`, `VocabFlow-data` and `_archive`.
+`.vocabflow-local` keeps two unchanged active env files and a README pointer.
+
+Updated only Node local media configuration: a hash-pinned relocated 1,547-item
+manifest and an exact foundation legacy-path relocation, preserving DB content
+hashes and all request/root/hash guards. Sixteen focused tests, targeted ESLint
+and root typecheck pass. Actual default Hono image/audio responses and foundation
+original-path resolution pass; remote-host/unknown-file checks still deny access.
+No browser, database or cloud calls were used for that media smoke check.
+
+Current entry: `vocabflow-dataset/current.json`. Completion:
+`D:/hoctienganh/VocabFlow-data/operations/reorganization-r0001/handoff.json`.
+Prior US67/US68 operation directories are now inside `operations/original-evidence.zip`.
+
+## 2026-11-01 — US68: retired local data removed; selected 6,544 preserved
+
+Owner requested deletion of old local vocabulary data, keeping the selected owner
+catalog. Removed 259 audited absolute targets containing
+136,189 files (11,588,290,253 bytes): retired external
+Anki/Oxford archives, Master V2/import/release payloads, old source/media caches,
+lexical snapshots and copies in historical local working directories. No old-data
+backup was created. Each target was inside D:/hoctienganh, checked for reparse
+points, and disjoint from every retained source before native PowerShell deletion.
+
+All 19,631 current unique image/audio originals and eight critical catalog/source/
+attribution files match their byte length and SHA-256 before and after deletion.
+The combined selected catalog still has exactly 6,544 entries; frozen 5,000-item
+text, three owner-deferred repairs, selected Muse packages and foundation 08/09
+authoring remain intact. Preserved application code, Git history, schemas,
+synthetic fixtures, licenses and operation evidence. Neon, Cloudinary, local DBs,
+accounts/settings and deployments were not changed by this file cleanup.
+
+Historical Master/replay commands intentionally no longer have their real retired
+data inputs. This is not a full historical test-suite PASS claim. The active owner
+catalog/media inputs remain hash-identical. Git history can still contain earlier
+tracked records; no history rewrite or secure physical erasure is claimed.
+
+Current data entry point: `vocabflow-dataset/current.json` and its README.
+Evidence: `.vocabflow-local/editorial-refresh-20261101/local-legacy-cleanup-r0001/handoff.current.json`.
+
+## 2026-10-31 — Ticket14 expansion scope and Muse ownership
+
+The owner reopened ticket14 with a target of about5,000additional lexical
+entries, keeping the selected1,547. Codex authors and freezes the text; Muse
+produces images/TTS only. This explicitly reaffirms the earlier media-only
+producer boundary. One final ZIP containing actual media and JSON is requested;
+ZIP64/large-file delivery must be checked rather than assumed. Internal bounded
+batches/checkpoints are compatible with one final archive. The user transfers
+the READY packet and reports completion; no repeated coordinator polling is
+needed. The current packet is PREPARATION_ONLY_TEXT_NOT_AUTHORED and cannot
+start Muse. No new public-sharing permission or production import is implied.
+
+
+## 2026-10-31 — US66 selected catalog only: purge completed
+
+Owner explicitly replaced the earlier retention direction: keep the exact
+1,547 Muse-selected words, synchronize canonical Neon Development, delete all
+other Cloudinary originals including the 206 formerly unrelated files, and
+remove old backups. Both canonical branches now verify1,547words/76sets/73topics
+with exact selected text, classifications, examples and4,641media bindings.
+Development retains900source IDs, adds647and retires6,411old rows. Account,
+settings and retained-history fingerprints match; no fake Master PASS.
+
+Deleted the remaining8,928non-selected Cloudinary originals; final inventory
+contains exactly4,640selected originals, checked by asset ID/version/bytes.
+Old+other assets remaining0; backed-up cloud assets0. Combined with US65,
+18,096old/other originals have been removed. All4,640new local original files
+still match source SHA-256 and length. Removed22old local DB/media
+backup targets (1,445,260,632.0bytes) after path/link/keep-list checks. No
+new persistent old-data backup was created. Canonical Neon project has0snapshot
+backups and restore-history window0seconds. Provider disk reclamation remains
+managed asynchronously; no claim of immediate physical-byte erasure.
+
+Protected Preview HTTP and Production API pass. Common new data and evidence:
+`.vocabflow-local/editorial-refresh-20261031/old-data-purge-r0001/dataset-dev-prod-complete-r0001.json`
+and `handoff.current.json`. Historical US64/65 backup/shared-asset retention
+statements are superseded by this explicit owner instruction. Accounts, protected
+identity/migration history, code history and source attribution remain intact.
+
+
+## 2026-10-31 — US66 both canonical catalogs synced; purge running
+
+The owner explicitly confirmed deleting all non-selected cloud assets including
+206 formerly unrelated assets, no old-backup retention, and synchronizing the
+same1,547selected Muse items into Neon Development. Production is unchanged.
+Dev migrations and a full apply/rollback rehearsal pass; atomic sync retains
+900source identities, adds647and retires6,411old rows. Five Dev accounts and
+settings/protected history fingerprints match; two retained progress/review
+records remain. Actual protected Preview HTTP confirms1,547words/76sets/73topics,
+including new image/word/sentence audio. Production's full live API still passes.
+
+Canonical project restore history is now0seconds and its snapshot listing is
+empty, per owner instruction. Cloudinary backup search including deleted assets
+returns0. The remaining8,928non-selected originals are being deleted by pinned
+asset ID/version/length;4,640selected originals are protected.22old local backup
+paths/directories (~1.45GB) are inventoried for deletion after cloud completion.
+No new old-data dump was created. New common dataset and operation ledger live
+under `.vocabflow-local/editorial-refresh-20261031/old-data-purge-r0001/`.
+
+
 ## 2026-10-30 — US65 Production replacement completed
 
 Production now serves exactly **1,547 words, 76 sets and 73 topics** from the

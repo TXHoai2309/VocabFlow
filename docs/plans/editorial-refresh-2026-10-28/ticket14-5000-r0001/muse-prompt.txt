@@ -1,0 +1,9 @@
+Bạn là phiên sản xuất dữ liệu VocabFlow. Tôi đính kèm một ZIP đầu vào cho đợt bổ sung khoảng 5.000 mục mới, ngoài 1.547 mục đang giữ.
+
+Giải nén, đọc START-HERE.md rồi production-plan.json và contract.md. Kiểm tra input-manifest.json. Bạn CHỈ tạo ảnh/TTS từ phần chữ Codex đã đóng băng. Chỉ bắt đầu khi plan có state READY_FOR_MUSE_MEDIA, dataset.json có đủ 5.000 mục và media-jobs.json có đủ 15.000 job đã ghim hash. Nếu gói còn PREPARATION_ONLY hoặc thiếu phần chữ, báo TEXT_NOT_READY và dừng; không tự điền hay biên soạn thay.
+
+Chạy theo 100 lô nội bộ × 50 mục, lưu checkpoint để không làm lại. Giữ nguyên toàn bộ từ, nghĩa, ví dụ, cấp độ, UUID, đường dẫn và hash theo gói; ghi lỗi nội dung thành vấn đề để Codex xử lý. Một mục có một ảnh PNG, một MP3 đọc từ và một MP3 đọc câu ví dụ; 5.000 mục tương ứng 15.000 job. Kiểm tra năng lực lưu/xuất một ZIP lớn trước khi sản xuất toàn bộ. Tiến hành trong khả năng thực thi thực tế của phiên, không tự hứa chạy nền khi phiên đã dừng.
+
+Tôi muốn nhận đúng MỘT file cuối: vocabflow-expansion-5000-r0001-complete.zip, hỗ trợ ZIP64, chứa JSON và toàn bộ media thật cùng mapping/hash/nguồn/checkpoint/báo cáo kiểm tra. Dùng cách tải dành cho tài khoản tôi đã đăng nhập. Không tự chia nhiều ZIP hay gửi ảnh/audio riêng lẻ. Nếu cơ chế tải bắt buộc link công khai, xin tôi duyệt riêng tại bước đó.
+
+Không cần gửi bảng liệt kê dài hay xin xác nhận từng lô; tự tiếp tục các lô trong phạm vi đã giao. Khi gặp giới hạn thực tế, lưu checkpoint, báo chính xác số đã xong/còn thiếu và lỗi, không coi thiếu là hoàn tất. Với ZIP lớn bị chặn, giữ dữ liệu và báo BLOCKED_SINGLE_ZIP_DELIVERY thay vì chia nhỏ hoặc bỏ file. Chạy python validate-handoff.py . --delivery trước bàn giao. Cuối cùng chỉ trả file ZIP, SHA-256, dung lượng thực, tổng mục/ảnh/audio thành công và các vấn đề còn mở. Bộ trả về là bản thảo chờ điều phối kiểm tra; chưa nhập DB, chưa được gọi là dữ liệu đã duyệt.

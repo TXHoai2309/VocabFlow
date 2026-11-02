@@ -1,3 +1,11 @@
+# Production COMPLETE —2026-11-02
+
+All21features live: https://vocab-flow-steel.vercel.app. MainSHA80ade561ebc3cbfd36a2039c22bfae5d692f768f, Linuxdpl_ZbsRUXt1e1LhKUReL5UzcuVJZsZy READY/promoted. CoreCI+TrustedDBgreen,0025–0035applied/pending0/runtimegrants10, alloldbusiness/identity/cataloghashes unchanged. RealprodAPI+guestbrowserPASS. WindowsmissingHonoartifactrolledbackthenLinuxstagedbuildverifiedbeforepromotion. No rawuserdataexport or GitHubcredentialtransfer (both rejectedbyautomaticreview); existingCIdeploytokenstillinvalid. CurrentproductionreleasecompleteviaVercelGitLinux.
+
+Fullreport: docs/releases/practice-game-video-2026-11-02.md; currentrelease storyUS91ACCEPTED. OriginalworkspaceTXH/11fef4a+dirtyworkpreserved, separate releasecheckout. Privateoperatorcheckpoint .vocabflow-local/practice-release-20261102/CHECKPOINT.md. Do not reset/clean/pull over dirtysource.
+
+## Historical local acceptance checkpoint (before release)
+
 # Complete checkpoint —2026-11-01
 
 All21tickets DONE/ACCEPTED, no active/blocked work. StoryUS70–90 contracts and evidence complete. Owner authorization sequential/no workers respected. No commit/push/deploy/persistent/cloud migration/paidspend. HEAD11fef4ae11393e35e81211b44b2daffadc39dab9 unchanged; unrelateddirtyeditorial/media/data preserved.

@@ -7,12 +7,11 @@ import { vocabularyDatasetVersion } from "./vocabulary-dataset-version";
 
 type Configuration = { planPath: string; planSha256: string; assetRoots: readonly string[] };
 const CONFIG: Configuration = {
-  planPath: "vocabflow-dataset/workspaces/editorial-refresh-20261030/owned-catalog-r0001/catalog-plan-r0001.json",
-  planSha256: "09c1dcf07f9e9b76e3d45bfbf758b0171d92cae57d3ba15b52eebd8c1b68eef3",
+  planPath: "../VocabFlow-data/runtime/owner-local-media.json",
+  planSha256: "79cf8abeddea8ded82940df2023634fd4286782bf49a990da75dbcf6f3f3c311",
   assetRoots: [
-    ".vocabflow-local/editorial-refresh-20261028/expansion-550-media-r0001/assets",
-    ".vocabflow-local/editorial-refresh-20261029/basic-500-media-r0002/assets",
-    ".vocabflow-local/editorial-refresh-20261029/basic-plus-500-media-r0001/assets"
+    "../VocabFlow-data/media/images",
+    "../VocabFlow-data/media/audio"
   ]
 };
 const sha = (raw: Uint8Array) => createHash("sha256").update(raw).digest("hex");
