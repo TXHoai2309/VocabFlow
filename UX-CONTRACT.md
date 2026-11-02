@@ -123,3 +123,9 @@ local/cross-tab invalidation cancels late reads and clears matching practice dra
 Source errors retain saved bilingual text without replacement audio or automatic
 processing. Translation shows selected source/quota and requires nonpersonal review;
 DeepL retention and deepl.com attribution remain visible.
+
+
+Current video cue uses the newest started source interval containing player time
+(start inclusive/end exclusive), retaining source order for equal starts. Native
+rolling captions can overlap; the viewer never waits for the older overlapping
+cue to expire. Source timestamps/text/version pins are unchanged by highlighting.

@@ -1,5 +1,18 @@
 # Current Handoff Snapshot
 
+## 2026-11-02 — US92 overlapping subtitle hotfix IN PROGRESS
+
+Owner reports one-cue lag on Production video28d3d6de-b4b3-41bd-a04a-25194e38a482.
+Reproduced exact screenshot intervals at63s in actualviewer/Hono: oldfindIndex
+keeps59.280–65.199s cue over newer62.719–66.880s cue. Redbrowsercase then green
+after latest-started-active selection; pausedclock excludespolling-only diagnosis.
+Originalsource/timings/hash/cache/history unchanged, no DB/providerprocessing.
+14boundary/tie/gap/backwardclock tests pass; fullvideo/type/lint gates pending.
+Isolatedbranch fix/video-overlap-20261102 based deployedmain80ade56; originaldirty
+work/handoff preserved. BrowserURLconfidence policy prevents privateChrome access;
+no privateDBread/export or guessed sourceoffset. CurrentstoryUS92READY beforecode.
+
+
 ## 2026-11-02 — US91 owner-authorized Production release IN PROGRESS
 
 Isolated release branch from83c7842 preserves newer main catalog and all unrelated

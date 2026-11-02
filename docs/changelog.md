@@ -1,5 +1,14 @@
 # VocabFlow Changelog
 
+## 2026-11-02 — Fix current subtitle selection when source intervals overlap
+
+Viewer follows the latest-started active sourcecue ratherthanholdinganearlier
+activecue until its end. At63s with59.280–65.199/62.719–66.880 overlap, select
+62.719s line. Half-openboundaries, backwardseek, source-order ties and gaps
+preserve exactsourceclock; no source rewrite/offset/providerre-extraction/DBchange.
+Regression reproduces user screenshots throughactualviewer/service boundary.
+
+
 ## 2026-11-02 — Prepare scoped practice/game/video Production release
 
 Owner requests Production deployment plus DB. Isolated main-based release retains
