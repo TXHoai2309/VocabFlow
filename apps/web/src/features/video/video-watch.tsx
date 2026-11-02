@@ -10,6 +10,7 @@ import { YoutubePlayerView } from "./youtube-player";
 import { useVideoPlayback } from "./use-video-playback";
 import { VideoSegments } from "./video-segments";
 import { useNavigate } from "react-router";
+import { currentCueIndex } from "./current-cue";
 const stamp = (ms: number) => `${Math.floor(ms / 60000)}:${String(Math.floor(ms / 1000) % 60).padStart(2, "0")}.${String(ms % 1000).padStart(3, "0")}`;
 function ImportSubtitles({ learnerId, videoId, onSaved }: { learnerId: string; videoId: string; onSaved: (item: VideoTranscript) => void }) {
   const [text, setText] = useState(""), [format, setFormat] = useState<"srt" | "vtt">("srt"), [fileName, setFileName] = useState<string | null>(null), [busy, setBusy] = useState(false), [uncertain, setUncertain] = useState(false), [error, setError] = useState<string | null>(null);
@@ -48,7 +49,7 @@ export function VideoWatch({ learnerId, videoId, youtubeId }: { learnerId: strin
   const translations = useVideoTranslations(learnerId,videoId,version);
   const [openVietnamese,setOpenVietnamese] = useState<string|null>(null);
   const transcript = resource.key === key ? resource.item : undefined;
-  const activeIndex = transcript?.cues.findIndex(cue => time >= cue.startMs && time < cue.endMs) ?? -1;
+  const activeIndex = transcript ? currentCueIndex(transcript.cues, time) : -1;
   function saved(item: VideoTranscript) { setVersion(item.versionId); setResource({ key: `${item.versionId}:${retry}`, item }); setVersions(prior => ({ items: [{ ...item }, ...prior.items.filter(version => version.versionId !== item.versionId)], loaded: true, error: false })); setView("en"); setPage(1); setNotice("Đã mở phiên bản phụ đề riêng. Lời và timing nguồn được giữ nguyên."); }
   return <><YoutubePlayerView youtubeId={youtubeId} controller={controller} onTime={(seconds, duration, state) => { setTime(Math.round(seconds * 1000)); playback.tick(seconds, duration, state); }} onReady={player => { const available = player.getAvailablePlaybackRates().filter(value => Number.isFinite(value) && value > 0); setRates(available); setRate(player.getPlaybackRate()); }} />
     {rates.length ? <div className="practice-setup"><label htmlFor="video-speed">Tốc độ player hỗ trợ</label><select id="video-speed" value={rate} onChange={event => { const value = Number(event.target.value); if (rates.includes(value)) { controller.current?.setPlaybackRate(value); setRate(value); } }}>{rates.map(value => <option key={value} value={value}>{value}×</option>)}</select></div> : null}

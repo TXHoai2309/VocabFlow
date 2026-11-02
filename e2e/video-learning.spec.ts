@@ -35,7 +35,7 @@ window.YT = { Player: class {
 async function setup(page: Page, playerIO = true) {
   const watches = new Map<string, StoredVideoWatch>();
   const account = await mockAccount(page), rows: { owner: string; learner: string; entry: VideoLibraryEntry }[] = [], transcripts: { owner: string; learner: string; entry: VideoTranscript }[] = [];
-  const controls = { translationMode:"success",translationCalls:0, nativeMode:"success", nativeStarts:0,nativePolls:0, user: "account-a", writes: 0, failAfterCommit: false, payloads: [] as unknown[] };
+  const controls = { nativeCues:[{text:'This is native source speech.',offset:1000,duration:3000,lang:'en'}],translationMode:"success",translationCalls:0, nativeMode:"success", nativeStarts:0,nativePolls:0, user: "account-a", writes: 0, failAfterCommit: false, payloads: [] as unknown[] };
   const practiceStates = new Map<string, VideoPracticeState>();
   const library = createVideoLibraryService({
     authorize: async (_user, learner) => learner === profile().id,
@@ -65,7 +65,7 @@ async function setup(page: Page, playerIO = true) {
     list:async(o,l,v,version,hash,page)=>{const all=[...translationRuns.entries()].filter(([key,r])=>key.startsWith([o,l,v,version].join(':')+':')&&r.hash===hash&&r.status==='success').map(([,r])=>{const {revision:_revision,...result}=r;void _revision;return result;});return{page,pageSize:20,total:all.length,items:all.slice((page-1)*20,page*20)};}
   },deeplProvider('controlled-test:fx',(async(input,init)=>{const url=String(input);if(url.includes('/usage'))return controls.translationMode==='quota-error'?new Response('',{status:503}):Response.json({character_count:0,character_limit:1000000});if(url.includes('/languages'))return Response.json([{lang:'en',usable_as_source:true,usable_as_target:true,status:'stable'},{lang:'vi',usable_as_source:true,usable_as_target:true,status:'stable'}]);controls.translationCalls++;if(controls.translationMode==='uncertain')throw new Error('controlled-network-error');const body=JSON.parse(String(init?.body));return Response.json({translations:body.text.map((text:string)=>({text:'VI: '+text}))});})));
   const nativeRuns=new Map<string,StoredNativeRun>(),nativeKey=(owner:string,learner:string,video:string)=>[owner,learner,video].join(':');
-  const nativeService=createNativeService(library,{read:async(o,l,v)=>structuredClone(nativeRuns.get(nativeKey(o,l,v))??null),insert:async(o,l,v,r)=>{const k=nativeKey(o,l,v);if(nativeRuns.has(k))return false;nativeRuns.set(k,structuredClone(r));return true;},replace:async(o,l,v,r,revision)=>{const k=nativeKey(o,l,v);if(nativeRuns.get(k)?.revision!==revision)return false;nativeRuns.set(k,structuredClone(r));return true;}},supadataProvider('controlled-browser-key',async input=>{const url=String(input);if(url.endsWith('/me'))return controls.nativeMode==='quota-error'?new Response('',{status:503}):Response.json({plan:'Free',maxCredits:100,usedCredits:2});if(url.includes('/transcript?')){controls.nativeStarts++;if(controls.nativeMode==='async')return Response.json({jobId:'browser-job'},{status:202});if(controls.nativeMode==='unavailable')return new Response('',{status:404});return Response.json({lang:'en',content:[{text:'This is native source speech.',offset:1000,duration:3000,lang:'en'}]});}controls.nativePolls++;return Response.json({status:'completed',lang:'en',content:[{text:'This is native source speech.',offset:1000,duration:3000,lang:'en'}]});}));
+  const nativeService=createNativeService(library,{read:async(o,l,v)=>structuredClone(nativeRuns.get(nativeKey(o,l,v))??null),insert:async(o,l,v,r)=>{const k=nativeKey(o,l,v);if(nativeRuns.has(k))return false;nativeRuns.set(k,structuredClone(r));return true;},replace:async(o,l,v,r,revision)=>{const k=nativeKey(o,l,v);if(nativeRuns.get(k)?.revision!==revision)return false;nativeRuns.set(k,structuredClone(r));return true;}},supadataProvider('controlled-browser-key',async input=>{const url=String(input);if(url.endsWith('/me'))return controls.nativeMode==='quota-error'?new Response('',{status:503}):Response.json({plan:'Free',maxCredits:100,usedCredits:2});if(url.includes('/transcript?')){controls.nativeStarts++;if(controls.nativeMode==='async')return Response.json({jobId:'browser-job'},{status:202});if(controls.nativeMode==='unavailable')return new Response('',{status:404});return Response.json({lang:'en',content:controls.nativeCues});}controls.nativePolls++;return Response.json({status:'completed',lang:'en',content:controls.nativeCues});}));
   const deletions=memoryManagementRepository({videos:()=>rows,sources:()=>transcripts,removeVideo:(o,l,v)=>{for(let i=rows.length-1;i>=0;i--)if(rows[i]!.owner===o&&rows[i]!.learner===l&&rows[i]!.entry.id===v)rows.splice(i,1);},removeSources:(o,l,v,ids)=>{for(let i=transcripts.length-1;i>=0;i--)if(transcripts[i]!.owner===o&&transcripts[i]!.learner===l&&transcripts[i]!.entry.videoId===v&&ids.has(transcripts[i]!.entry.versionId))transcripts.splice(i,1);},watches,native:nativeRuns,sessions:practiceStates,translations:translationRuns,reports:sourceRows});
   const videoManagementService=createManagementService(library,deletions.repository);
   const app = createApp({videoManagementService,sourceReportService,translationService,nativeService,readSession: async () => ({ user: { id: controls.user } }),videoLibraryService:library,videoPracticeService:practiceService});
@@ -129,6 +129,44 @@ test("official public YouTube demo live player verification", async ({ page }) =
   const measured = await page.locator(".video-player-time").innerText(); console.log(`LIVE_YOUTUBE_SEEK_MEASURED=${measured}`);
 });
 const sampleSrt = "1\n00:00:01,000 --> 00:00:03,500\nHello <b>world</b>.\n\n2\n00:00:04,000 --> 00:00:07,000\nThis is an English video.";
+test('overlapping source cues follow the newest started line at the screenshot 63-second position', async ({ page }) => {
+  const f = await setup(page); await add(page);
+  await page.getByLabel('Lời phụ đề tiếng Anh có thời gian', { exact: true }).fill("1\n00:00:57,039 --> 00:00:59,280\nWe'll see.\n\n2\n00:00:58,295 --> 00:01:02,719\n>> [laughter]\n\n3\n00:00:59,280 --> 00:01:05,199\n>> So, a quick coffee and a small promise\n\n4\n00:01:02,719 --> 00:01:06,880\nto yourself. I think many listeners know\n\n5\n00:01:05,199 --> 00:01:09,360\nthat feeling very well.\n\n6\n00:01:06,880 --> 00:01:12,720\n>> Yeah, I guess so. Mornings can be a mix");
+  await page.getByRole('button', { name: 'Lưu phiên bản phụ đề Anh', exact: true }).click();
+  await page.evaluate(() => { const io = (window as typeof window & { __videoIO: { time: number; emitState: (state: number) => void } }).__videoIO; io.time = 63; io.emitState(2); });
+  await expect(page.getByText('Đang nói cue 4', { exact: true })).toBeVisible();
+  await expect(page.locator('.video-cue[aria-current="true"]')).toContainText('to yourself. I think many listeners know');
+  const original = structuredClone(f.transcripts[0]!.entry), writes = f.controls.writes;
+  await page.getByLabel('Tốc độ player hỗ trợ', { exact: true }).selectOption('1.5');
+  for (const [time, cue] of [[57.5, 1], [58.295, 2], [59.280, 3], [62.718, 3], [62.719, 4], [65.199, 5], [66.880, 6], [63, 4], [59.280, 3]]) {
+    await page.evaluate(time => { const io = (window as typeof window & { __videoIO: { time: number; emitState: (state: number) => void } }).__videoIO; io.time = time!; io.emitState(3); }, time);
+    await expect(page.getByText(`Đang nói cue ${cue}`, { exact: true })).toBeVisible();
+    await expect(page.locator('.video-cue[aria-current="true"]')).toHaveCount(1);
+  }
+  await page.getByRole('button', { name: /to yourself. I think many listeners know/ }).click();
+  await expect(page.getByText('Đang nói cue 4', { exact: true })).toBeVisible();
+  await page.evaluate(() => { (window as typeof window & { __videoIO: { time: number } }).__videoIO.time = 72.720; });
+  await expect(page.getByText('Chưa có cue tại thời điểm này', { exact: true })).toBeVisible();
+  await expect(page.locator('.video-cue[aria-current="true"]')).toHaveCount(0);
+  expect(f.transcripts[0]!.entry).toEqual(original); expect(f.controls.writes).toBe(writes);
+  expect(f.controls.nativeStarts).toBe(0);
+});
+test('overlapping native cues retain original timing after reload and current-cue jump crosses cue-page boundary', async ({ page }) => {
+  const f = await setup(page); await add(page);
+  f.controls.nativeCues = Array.from({length:102},(_,i)=>({text:`Native caption line number ${i+1}.`,offset:i*1000,duration:3000,lang:'en'}));
+  await page.getByRole('button', { name: 'Lấy phụ đề Anh · 1 credit', exact: true }).click();
+  await expect(page.getByRole('button', { name: /Native caption line number 1\./ })).toBeVisible();
+  const original = structuredClone(f.transcripts[0]!.entry);
+  await page.reload();
+  await expect(page.getByRole('button', { name: /Native caption line number 1\./ })).toBeVisible();
+  await page.evaluate(() => { const io = (window as typeof window & { __videoIO: { time: number; duration: number; emitState: (state: number) => void } }).__videoIO; io.duration=200;io.time=100.5;io.emitState(2); });
+  await expect(page.getByText('Đang nói cue 101', { exact: true })).toBeVisible();
+  await page.getByRole('button', { name: 'Đến cue đang nói', exact: true }).click();
+  await expect(page.locator('.video-cue[aria-current="true"]')).toContainText('Native caption line number 101.');
+  await expect(page.getByText('Trang 2 · 102 cue', { exact: true })).toBeVisible();
+  expect(f.transcripts[0]!.entry).toEqual(original); expect(f.transcripts[0]!.entry.source).toBe('supadata-native');
+  expect(f.controls.nativeStarts).toBe(1); expect(f.controls.translationCalls).toBe(0);
+});
 test("imports SRT file, follows real player time, seeks cues, hides text and reopens immutable versions", async ({ page }) => {
   const f = await setup(page); await add(page); await expect(page.getByTitle("Trình phát YouTube gốc", { exact: true })).toBeVisible();
   await page.getByLabel("File SRT hoặc VTT", { exact: true }).setInputFiles({ name: "english.srt", mimeType: "text/plain", buffer: Buffer.from(sampleSrt) });
